@@ -1,3 +1,9 @@
+# Colormaps text files
+*.lut
+
+# Images
+*.ppm
+
 # Prerequisites
 *.d
 

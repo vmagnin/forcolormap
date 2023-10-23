@@ -1,0 +1,29 @@
+name = "forcolormap"
+description= "A small Fortran colormap library"
+version = "0.8.0"
+license = "MIT"
+author = "Vincent Magnin"
+copyright = "Copyright 2023, Vincent Magnin"
+maintainer = "https://github.com/vmagnin/forcolormap/issues"
+homepage   = "https://github.com/vmagnin/forcolormap"
+categories = ["graphics"]
+keywords   = ["Fortran", "fpm", "colormap"]
+
+[[example]]
+name = "example"
+source-dir = "example"
+main = "demo.f90"
+
+[build]
+auto-executables = true
+auto-tests = true
+auto-examples = true
+module-naming = false
+
+[install]
+library = false
+
+[fortran]
+implicit-typing = false
+implicit-external = false
+source-form = "free"
