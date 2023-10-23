@@ -56,7 +56,7 @@ To use ForColormap within your own `fpm` project, add the following lines to you
 
 ```toml
 [dependencies]
-forcolormap = {git = "https://github.com/vmagnin/forcolormap" }
+forcolormap = {git = "https://github.com/vmagnin/forcolormap.git" }
 ```
 
 
