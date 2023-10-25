@@ -63,7 +63,7 @@ module forcolormap
     ! Elaborated colormaps are defined in their own subroutines:
     private :: cubehelix_colormap
     ! Auxiliary functions used by the test method:
-    private :: write_ppm_file, write_ppm_test, write_ppm_colorbar
+    private :: write_ppm_test, write_ppm_colorbar
 
 contains
 
@@ -440,59 +440,33 @@ contains
     end subroutine
 
     ! Creates two PPM output files for testing the colormap:
-    subroutine test(self, prefix)
+    subroutine test(self, prefix, encoding)
         class(Colormap), intent(inout) :: self
         character(*), optional, intent(in) :: prefix
+        character(*), intent(in) :: encoding
 
         if (present(prefix)) then
-            call write_ppm_test(self,     prefix//"_test.ppm")
-            call write_ppm_colorbar(self, prefix//"_colorbar.ppm")
+            call write_ppm_test(self,     prefix//"_test", encoding)
+            call write_ppm_colorbar(self, prefix//"_colorbar", encoding)
         else
-            call write_ppm_test(self,     trim(self%name)//"_test.ppm")
-            call write_ppm_colorbar(self, trim(self%name)//"_colorbar.ppm")
+            call write_ppm_test(self,     trim(self%name)//"_test", encoding)
+            call write_ppm_colorbar(self, trim(self%name)//"_colorbar", encoding)
         end if
     end subroutine
 
-    ! Saves an image in PPM format (Portable PixMap)
-    ! https://en.wikipedia.org/wiki/Netpbm
-    ! Based on Ondrej Certik's code (MIT license):
-    ! https://github.com/certik/fortran-utils/blob/master/src/ppm.f90
-    subroutine write_ppm_file(filename, map)
-        character(*), intent(in) :: filename
-        integer, dimension(0: , 0: , 1:), intent(in) :: map
-        integer :: u          ! File unit
-        integer :: i, j       ! Pixbuffer coordinates
-        integer :: pixwidth
-        integer :: pixheight
 
-        pixwidth  = size(map(:,0,1))
-        pixheight = size(map(0,:,1))
-
-        open(newunit=u, file=filename, status="replace")
-        write(u, '(a2)') "P6"   ! This is a binary PPM file
-        write(u, '(i0," ",i0)') pixwidth, pixheight
-        write(u, '(i0)') 255    ! Maximum value for R, G and B
-
-        do j = pixheight-1, 0, -1
-            do i = 0, pixwidth-1
-                ! Write the RGB values of the pixel (i,j):
-                write(u, '(3a1)', advance='no') achar(map(i,j,1)), achar(map(i,j,2)), achar(map(i,j,3))
-            end do
-        end do
-
-        close(u)
-    end subroutine write_ppm_file
-
-
-    subroutine write_ppm_test(self, filename)
+    subroutine write_ppm_test(self, filename, encoding)
+        use forimage, only: format_pnm
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: filename
         integer :: i, j     ! Pixbuffer coordinates
         integer, parameter :: pixwidth  = 600
         integer, parameter :: pixheight = 600
-        integer, dimension(0:pixwidth-1, 0:pixheight-1 , 1:3) :: rgb_image
+        integer, dimension(pixheight,pixwidth*3) :: rgb_image
         integer  :: red, green, blue
         real(wp) :: z
+        type(format_pnm) :: ppm
+        character(*), intent(in) :: encoding
 
         do i = 0, pixwidth-1
             do j = 0, pixheight-1
@@ -500,33 +474,54 @@ contains
                 z = 1.0_wp + sin(i*j/10000.0_wp) * cos(j/100.0_wp)
                 ! The corresponding RGB values in our colormap:
                 call self%compute_RGB(z, red, green, blue)
-                rgb_image(i, j, 1:3) = [red, green, blue]
+                rgb_image(pixheight-j, 3*(i+1)-2) = red
+                rgb_image(pixheight-j, 3*(i+1)-1) = green
+                rgb_image(pixheight-j, 3*(i+1))   = blue  
             end do
         end do
 
-        call write_ppm_file(filename, rgb_image)
+        call ppm%set_pnm(encoding    = encoding,&
+                         file_format = 'ppm',&
+                         width       = pixwidth,&
+                         height      = pixheight,&
+                         max_color   = 255,&
+                         comment     = 'comment',&
+                         pixels      = rgb_image)
+        call ppm%export_pnm(filename)
     end subroutine write_ppm_test
 
 
-    subroutine write_ppm_colorbar(self, filename)
+    subroutine write_ppm_colorbar(self, filename, encoding)
+        use forimage, only: format_pnm
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: filename
         integer :: i, j     ! Pixbuffer coordinates
         integer, parameter :: pixwidth  = 600
         integer, parameter :: pixheight = 50
-        integer, dimension(0:pixwidth-1, 0:pixheight-1 , 1:3) :: rgb_image
+        integer, dimension(pixheight,pixwidth*3) :: rgb_image
         integer  :: red, green, blue
         real(wp) :: z
+        type(format_pnm) :: ppm
+        character(*), intent(in) :: encoding
 
         do i = 0, pixwidth-1
             do j = 0, pixheight-1
                 z = self%get_zmin() + i / real(pixwidth-1, kind=wp) * (self%get_zmax() - self%get_zmin())
                 call self%compute_RGB(z, red, green, blue)
-                rgb_image(i, j, 1:3) = [red, green, blue]
+                rgb_image(pixheight-j, 3*(i+1)-2) = red
+                rgb_image(pixheight-j, 3*(i+1)-1) = green
+                rgb_image(pixheight-j, 3*(i+1))   = blue  
             end do
         end do
 
-        call write_ppm_file(filename, rgb_image)
+        call ppm%set_pnm(encoding    = encoding,&
+                         file_format = 'ppm',&
+                         width       = pixwidth,&
+                         height      = pixheight,&
+                         max_color   = 255,&
+                         comment     = 'comment',&
+                         pixels      = rgb_image)
+        call ppm%export_pnm(filename)
     end subroutine write_ppm_colorbar
 
     !---------------------------------------------------------------------

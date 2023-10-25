@@ -9,15 +9,23 @@ homepage   = "https://github.com/vmagnin/forcolormap"
 categories = ["graphics"]
 keywords   = ["Fortran", "fpm", "colormap"]
 
+[dependencies]
+forimage = {git="https://github.com/gha3mi/forimage.git"}
+
 [[example]]
-name = "example"
+name = "demo"
 source-dir = "example"
 main = "demo.f90"
+
+[[example]]
+name = "example1"
+source-dir = "example"
+main = "example1.f90"
 
 [build]
 auto-executables = true
 auto-tests = true
-auto-examples = true
+auto-examples = false
 module-naming = false
 
 [install]
