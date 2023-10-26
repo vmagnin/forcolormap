@@ -36,6 +36,7 @@ You need:
 
 * a modern Fortran compiler, for example GFortran or the Intel ifort/ifx compilers. See the [Fortran-lang.org compilers page](https://fortran-lang.org/compilers/) for other compilers.
 * The Fortran Package Manager [fpm](https://fpm.fortran-lang.org/).
+  * For writing PPM files, the library [ForImage](https://github.com/gha3mi/forimage) is used as a fpm dependency.
 * Any operating system.
 
 ### Testing the project
@@ -45,7 +46,7 @@ If you have a GitHub account, just clone the repository and launch the demo exam
 ```bash
 $ git clone git@github.com:vmagnin/forcolormap.git
 $ cd forcolormap
-$ fpm run --example
+$ fpm run --example demo
 ```
 
 The demo is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps.
