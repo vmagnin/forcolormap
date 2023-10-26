@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: vmagnin 2023-10-19
+! Last modification: vmagnin 2023-10-26
 !-------------------------------------------------------------------------------
 
 
@@ -30,8 +30,11 @@ module forcolormap
     use scientific_colour_maps
 
     implicit none
+    private
 
-    real(wp), private, parameter :: pi = 4 * atan(1.0_wp)
+    public :: wp
+
+    real(wp), parameter :: pi = 4 * atan(1.0_wp)
 
     ! List of built-in colormaps:
     character(*), dimension(*), public, parameter :: colormaps_list = &
@@ -39,7 +42,7 @@ module forcolormap
         & "rainbow", "inverted_rainbow", "zebra", &
         & "cubehelix", scientific_colour_maps_list]
 
-    ! The Colormap class:
+    ! The Colormap class (attributes are encapsulated):
     type, public :: Colormap
         character(colormap_name_length), private :: name
         integer, private  :: levels         ! Number of levels
@@ -47,19 +50,20 @@ module forcolormap
         ! An array containing for each level the associated RGB values:
         integer, dimension(:, :), allocatable, private :: map
     contains
-        procedure, public :: set
-        procedure, public :: create
-        procedure, public :: load
-        procedure, public :: get_RGB
-        procedure, public :: compute_RGB
-        procedure, public :: get_current
-        procedure, public :: get_levels
-        procedure, public :: get_zmin
-        procedure, public :: get_zmax
-        procedure, public :: print
-        procedure, public :: test
+        procedure :: set
+        procedure :: create
+        procedure :: load
+        procedure :: get_RGB
+        procedure :: compute_RGB
+        procedure :: get_current
+        procedure :: get_levels
+        procedure :: get_zmin
+        procedure :: get_zmax
+        procedure :: print
+        procedure :: test
     end type Colormap
 
+    ! Other subroutines defined in this module:
     ! Elaborated colormaps are defined in their own subroutines:
     private :: cubehelix_colormap
     ! Auxiliary functions used by the test method:
