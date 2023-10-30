@@ -28,19 +28,21 @@
 module forcolormap
     use iso_fortran_env, only: wp=>real64
     use scientific_colour_maps
+    use matplotlib_colormaps
 
     implicit none
     private
 
     public :: wp
 
+    integer, parameter :: colormap_name_length = 30
     real(wp), parameter :: pi = 4 * atan(1.0_wp)
 
     ! List of built-in colormaps:
     character(*), dimension(*), public, parameter :: colormaps_list = &
         [character(colormap_name_length) :: "grey", "inverted_grey", "fire", &
         & "rainbow", "inverted_rainbow", "zebra", &
-        & "cubehelix", scientific_colour_maps_list]
+        & "cubehelix", scientific_colour_maps_list, matplotlib_colormaps_list]
 
     ! The Colormap class (attributes are encapsulated):
     type, public :: Colormap
@@ -63,11 +65,6 @@ module forcolormap
         procedure :: test
     end type Colormap
 
-    ! Other subroutines defined in this module:
-    ! Elaborated colormaps are defined in their own subroutines:
-    private :: cubehelix_colormap
-    ! Auxiliary functions used by the test method:
-    private :: write_ppm_test, write_ppm_colorbar
 
 contains
 
@@ -282,6 +279,15 @@ contains
             call self%create("vik", self%zmin, self%zmax, vik)
         case("vikO")
             call self%create("vikO", self%zmin, self%zmax, vikO)
+        ! Matplotlib colormaps collection
+        case("magma")
+            call self%create("magma", self%zmin, self%zmax, magma)
+        case("inferno")
+            call self%create("inferno", self%zmin, self%zmax, inferno) 
+        case("plasma")
+            call self%create("plasma", self%zmin, self%zmax, plasma) 
+        case("viridis")
+            call self%create("viridis", self%zmin, self%zmax, viridis) 
         case default
             stop "Unknown colormap!"
         end select
