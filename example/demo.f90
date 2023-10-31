@@ -51,7 +51,7 @@ program demo
         print '("Colormap ", A30, " has ", I0, " levels")', trim(cmap%get_name()), cmap%get_levels()
     end do
 
-    ! Cubehelix can also accept other paramaters (varargs array):
+    ! Cubehelix can also accept other parameters (varargs array):
     call cmap%set("cubehelix", 0.0_wp, 2.0_wp, 1024, [0.5_wp, -1.0_wp, 1.0_wp, 1.0_wp])
     ! We change the name for the output test files:
     call cmap%colorbar('cubehelix_customized_colorbar', encoding='binary')
