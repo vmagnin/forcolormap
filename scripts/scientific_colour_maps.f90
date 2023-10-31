@@ -23,12 +23,11 @@
 !-------------------------------------------------------------------------------
 
 module scientific_colour_maps
+    use colormap_parameters, only: colormap_name_length
     implicit none
-    public
+    private
 
-    integer, parameter :: colormap_name_length = 30
-
-    character(*), dimension(*), parameter :: scientific_colour_maps_list = &
+    character(*), dimension(*), parameter, public :: scientific_colour_maps_list = &
         [character(colormap_name_length) :: &
         "acton", "actonS", "bamako", "bamakoS", "bam", "bamO", &
         "batlowK", "batlowKS", "batlow", "batlowS", "batlowW", "batlowWS", &
@@ -42,7 +41,7 @@ module scientific_colour_maps
         "tofino", "tokyo", "tokyoS", "turku", "turkuS", "vanimo", &
         "vik",         "vikO"]
 
-    integer, dimension(0:255, 1:3) :: acton=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: acton=reshape( [ &
              38, 13, 64,      39, 14, 65,      40, 15, 66,      41, 17, 67, &
              42, 18, 68,      43, 19, 69,      43, 20, 70,      44, 22, 72, &
              45, 23, 73,      46, 24, 74,      47, 25, 75,      48, 27, 76, &
@@ -109,7 +108,7 @@ module scientific_colour_maps
             239,232,248,     239,233,248,     239,233,249,     240,234,250  &
             ], shape(acton), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: actonS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: actonS=reshape( [ &
              38, 13, 64,     240,234,250,     168,102,144,      89, 84,129, &
             221,163,195,      65, 51, 98,     208,121,159,     126, 99,142, &
             232,203,226,     146,100,143,      52, 33, 82,     215,142,177, &
@@ -137,7 +136,7 @@ module scientific_colour_maps
              47, 25, 75,     235,214,234,     216,144,179,     238,226,243  &
             ], shape(actonS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: bamako=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: bamako=reshape( [ &
               0, 59, 71,       0, 59, 71,       1, 59, 71,       1, 60, 71, &
               2, 60, 70,       2, 60, 70,       3, 60, 70,       3, 61, 69, &
               4, 61, 69,       4, 61, 69,       5, 62, 69,       5, 62, 68, &
@@ -204,7 +203,7 @@ module scientific_colour_maps
             252,226,167,     253,227,169,     254,228,171,     255,229,173  &
             ], shape(bamako), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: bamakoS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: bamakoS=reshape( [ &
               0, 59, 71,     255,229,173,      99,122, 10,      37, 82, 49, &
             180,160, 34,      65,100, 31,     221,196,100,      16, 69, 62, &
             139,137,  0,       8, 63, 67,      25, 75, 56,     239,213,138, &
@@ -232,7 +231,7 @@ module scientific_colour_maps
              38, 83, 48,     223,198,105,      17, 69, 61,      67,102, 30  &
             ], shape(bamakoS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: bam=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: bam=reshape( [ &
             101,  2, 75,     103,  5, 78,     106,  7, 80,     108, 10, 82, &
             110, 13, 84,     112, 16, 87,     114, 18, 89,     117, 20, 91, &
             119, 23, 93,     121, 25, 95,     123, 27, 97,     125, 29, 99, &
@@ -299,7 +298,7 @@ module scientific_colour_maps
              21, 81,  4,      18, 79,  3,      15, 77,  1,      13, 76,  0  &
             ], shape(bam), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: bamO=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: bamO=reshape( [ &
              79, 48, 67,      80, 47, 69,      81, 47, 70,      83, 48, 71, &
              84, 48, 73,      86, 48, 75,      88, 48, 77,      90, 49, 78, &
              92, 50, 80,      94, 50, 82,      96, 51, 84,      98, 52, 87, &
@@ -366,7 +365,7 @@ module scientific_colour_maps
              75, 49, 63,      76, 48, 64,      77, 48, 65,      78, 48, 66  &
             ], shape(bamO), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: batlowK=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: batlowK=reshape( [ &
               4,  5, 10,       5,  7, 13,       6,  8, 15,       7, 10, 17, &
               9, 12, 19,      10, 13, 21,      11, 15, 23,      12, 16, 25, &
              13, 17, 26,      14, 18, 28,      15, 20, 30,      15, 21, 31, &
@@ -433,7 +432,7 @@ module scientific_colour_maps
             251,202,244,     251,203,246,     251,203,248,     250,204,250  &
             ], shape(batlowK), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: batlowKS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: batlowKS=reshape( [ &
               4,  5, 10,     253,192,214,     120,124, 65,      57, 85, 95, &
             229,161, 96,      27, 47, 69,     175,147, 58,      84,105, 85, &
             250,174,154,      17, 26, 39,     145,136, 58,     205,155, 71, &
@@ -461,7 +460,7 @@ module scientific_colour_maps
             113,120, 69,      29, 50, 72,      98,113, 76,     253,186,195  &
             ], shape(batlowKS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: batlow=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: batlow=reshape( [ &
               1, 25, 89,       2, 27, 89,       3, 28, 90,       4, 30, 90, &
               5, 31, 90,       6, 33, 91,       7, 34, 91,       7, 36, 91, &
               8, 37, 91,       9, 39, 92,      10, 40, 92,      10, 42, 92, &
@@ -528,7 +527,7 @@ module scientific_colour_maps
             251,202,243,     251,202,246,     250,203,248,     250,204,250  &
             ], shape(batlow), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: batlowS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: batlowS=reshape( [ &
               1, 25, 89,     250,204,250,     130,130, 49,      34, 96, 97, &
             241,157,107,      17, 67, 96,     253,180,180,      77,115, 77, &
             192,144, 54,     103,123, 62,     252,191,214,     161,138, 43, &
@@ -556,7 +555,7 @@ module scientific_colour_maps
             113,125, 57,      17, 65, 96,      51,105, 90,     252,190,209  &
             ], shape(batlowS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: batlowW=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: batlowW=reshape( [ &
               1, 25, 89,       2, 27, 89,       3, 28, 90,       4, 30, 90, &
               5, 31, 90,       6, 33, 91,       7, 34, 91,       7, 36, 91, &
               8, 37, 91,       9, 39, 92,      10, 40, 92,      10, 42, 92, &
@@ -623,7 +622,7 @@ module scientific_colour_maps
             255,251,251,     255,252,252,     255,253,253,     255,254,254  &
             ], shape(batlowW), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: batlowWS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: batlowWS=reshape( [ &
             255,254,254,       1, 25, 89,     124,135, 56,     231,171,132, &
              32, 95, 97,     189,157, 68,     254,209,205,      17, 67, 96, &
              73,116, 81,      13, 49, 93,     156,146, 50,      50,107, 92, &
@@ -651,7 +650,7 @@ module scientific_colour_maps
             255,242,242,      13, 51, 94,     252,198,191,     249,192,181  &
             ], shape(batlowWS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: berlin=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: berlin=reshape( [ &
             158,176,255,     156,176,254,     154,176,253,     152,175,252, &
             149,175,251,     147,175,250,     145,174,249,     142,174,247, &
             140,174,246,     138,174,245,     135,173,244,     133,173,243, &
@@ -718,7 +717,7 @@ module scientific_colour_maps
             249,167,166,     251,169,168,     253,171,171,     255,173,173  &
             ], shape(berlin), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: bilbao=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: bilbao=reshape( [ &
              76,  0,  1,      78,  1,  3,      79,  2,  5,      81,  4,  7, &
              82,  5,  9,      84,  7, 11,      85,  8, 13,      87, 10, 14, &
              88, 11, 16,      90, 13, 17,      91, 14, 19,      93, 16, 20, &
@@ -785,7 +784,7 @@ module scientific_colour_maps
             250,250,250,     251,251,251,     253,253,253,     255,255,255  &
             ], shape(bilbao), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: bilbaoS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: bilbaoS=reshape( [ &
              76,  0,  1,     248,248,248,     169,129, 94,     152, 77, 80, &
             190,183,148,     119, 40, 45,     162,106, 89,     175,153,101, &
             204,202,195,     159, 93, 86,     138, 58, 65,     182,170,119, &
@@ -813,7 +812,7 @@ module scientific_colour_maps
             194,189,164,     187,178,137,     112, 33, 38,     224,224,223  &
             ], shape(bilbaoS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: broc=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: broc=reshape( [ &
              44, 26, 76,      44, 27, 78,      44, 29, 79,      43, 30, 81, &
              43, 32, 82,      43, 33, 84,      43, 35, 85,      43, 36, 87, &
              43, 38, 88,      43, 39, 90,      43, 41, 91,      43, 42, 93, &
@@ -880,7 +879,7 @@ module scientific_colour_maps
              43, 43,  5,      41, 41,  4,      40, 40,  2,      38, 38,  0  &
             ], shape(broc), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: brocO=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: brocO=reshape( [ &
              55, 47, 56,      54, 47, 57,      54, 47, 58,      54, 47, 59, &
              54, 47, 60,      54, 48, 61,      54, 48, 63,      54, 48, 64, &
              54, 48, 65,      54, 49, 67,      54, 49, 68,      54, 50, 70, &
@@ -947,7 +946,7 @@ module scientific_colour_maps
              55, 47, 52,      55, 47, 53,      55, 47, 54,      55, 47, 55  &
             ], shape(brocO), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: buda=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: buda=reshape( [ &
             179,  1,179,     179,  3,178,     179,  5,177,     179,  7,176, &
             179,  9,175,     179, 11,174,     179, 13,174,     179, 15,173, &
             179, 17,172,     179, 18,171,     179, 20,170,     179, 22,169, &
@@ -1014,7 +1013,7 @@ module scientific_colour_maps
             251,251,102,     253,253,102,     254,254,102,     255,255,102  &
             ], shape(buda), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: budaS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: budaS=reshape( [ &
             179,  1,179,     255,255,102,     205,133,126,     188, 78,144, &
             220,190,112,     179, 47,156,     212,161,119,     197,106,135, &
             227,219,105,     192, 92,139,     179, 28,166,     209,147,123, &
@@ -1042,7 +1041,7 @@ module scientific_colour_maps
             203,125,129,     187, 76,145,     181, 57,152,     179, 40,159  &
             ], shape(budaS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: bukavu=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: bukavu=reshape( [ &
              26, 51, 51,      26, 52, 53,      26, 53, 55,      26, 53, 57, &
              27, 54, 59,      27, 55, 61,      27, 56, 63,      27, 57, 65, &
              27, 58, 67,      28, 59, 69,      28, 60, 71,      28, 61, 73, &
@@ -1109,7 +1108,7 @@ module scientific_colour_maps
             234,233,243,     235,234,246,     236,236,249,     237,237,252  &
             ], shape(bukavu), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: cork=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: cork=reshape( [ &
              44, 25, 76,      44, 27, 78,      44, 29, 79,      43, 30, 81, &
              43, 32, 83,      43, 34, 84,      43, 35, 86,      43, 37, 87, &
              43, 38, 89,      43, 40, 91,      43, 41, 92,      42, 43, 94, &
@@ -1176,7 +1175,7 @@ module scientific_colour_maps
              16, 46,  5,      16, 44,  5,      15, 43,  4,      15, 41,  3  &
             ], shape(cork), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: corkO=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: corkO=reshape( [ &
              63, 62, 58,      63, 62, 59,      63, 62, 60,      63, 61, 61, &
              62, 61, 62,      62, 61, 63,      62, 61, 64,      62, 61, 65, &
              62, 61, 66,      62, 61, 67,      62, 61, 68,      62, 61, 69, &
@@ -1243,7 +1242,7 @@ module scientific_colour_maps
              63, 63, 56,      63, 63, 56,      63, 63, 57,      63, 62, 58  &
             ], shape(corkO), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: davos=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: davos=reshape( [ &
               0,  5, 74,       0,  7, 76,       0,  9, 77,       0, 11, 79, &
               1, 12, 80,       1, 14, 81,       2, 15, 83,       2, 16, 84, &
               3, 18, 86,       4, 19, 87,       4, 20, 89,       5, 22, 90, &
@@ -1310,7 +1309,7 @@ module scientific_colour_maps
             254,254,250,     254,254,252,     254,254,253,     254,254,254  &
             ], shape(davos), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: davosS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: davosS=reshape( [ &
               0,  5, 74,     253,253,244,     104,139,148,     178,192,143, &
              45, 88,149,     232,235,192,      19, 48,117,      75,118,157, &
             135,160,137,     154,174,136,      90,130,154,     118,149,142, &
@@ -1338,7 +1337,7 @@ module scientific_colour_maps
             217,223,173,      96,134,152,     113,145,145,     187,199,148  &
             ], shape(davosS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: devon=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: devon=reshape( [ &
              44, 26, 76,      44, 27, 77,      44, 28, 78,      43, 28, 79, &
              43, 29, 80,      43, 30, 81,      43, 31, 82,      43, 32, 83, &
              43, 33, 84,      43, 34, 85,      43, 35, 86,      43, 36, 87, &
@@ -1405,7 +1404,7 @@ module scientific_colour_maps
             252,252,254,     253,253,255,     254,254,255,     255,255,255  &
             ], shape(devon), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: devonS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: devonS=reshape( [ &
              44, 26, 76,     248,248,254,     119,139,218,      40, 86,140, &
             198,192,243,      41, 55,106,      62,111,184,     222,220,248, &
             171,166,237,      42, 41, 91,     149,153,229,      89,125,204, &
@@ -1433,7 +1432,7 @@ module scientific_colour_maps
             145,151,228,      40, 60,111,     164,162,235,     187,181,241  &
             ], shape(devonS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: fes=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: fes=reshape( [ &
              13, 13, 13,      15, 15, 15,      18, 18, 18,      20, 20, 20, &
              22, 22, 22,      24, 24, 24,      25, 25, 25,      27, 27, 27, &
              29, 29, 29,      31, 31, 31,      33, 33, 33,      34, 34, 34, &
@@ -1500,7 +1499,7 @@ module scientific_colour_maps
             234,233,243,     235,234,246,     236,235,249,     237,237,252  &
             ], shape(fes), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: glasgow=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: glasgow=reshape( [ &
              54, 19, 56,      55, 19, 55,      56, 19, 55,      57, 20, 54, &
              58, 20, 53,      59, 20, 52,      60, 20, 51,      61, 21, 51, &
              62, 21, 50,      63, 21, 49,      64, 21, 48,      64, 22, 47, &
@@ -1567,7 +1566,7 @@ module scientific_colour_maps
             212,209,250,     215,209,252,     217,210,253,     219,211,255  &
             ], shape(glasgow), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: glasgowS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: glasgowS=reshape( [ &
              54, 19, 56,     219,211,255,     109,112, 45,     112, 45,  6, &
             105,163,165,      82, 27, 32,     160,187,211,     116, 81,  1, &
              99,138,106,     132,176,190,     104,125, 76,      69, 23, 44, &
@@ -1595,7 +1594,7 @@ module scientific_colour_maps
             116, 79,  1,     111,107, 33,     115, 91,  7,      95,149,133  &
             ], shape(glasgowS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: grayC=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: grayC=reshape( [ &
               0,  0,  0,       2,  2,  2,       4,  4,  4,       5,  5,  5, &
               7,  7,  7,       9,  9,  9,      11, 11, 11,      13, 13, 13, &
              14, 14, 14,      15, 15, 15,      17, 17, 17,      18, 18, 18, &
@@ -1662,7 +1661,7 @@ module scientific_colour_maps
             251,251,251,     252,252,252,     254,254,254,     255,255,255  &
             ], shape(grayC), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: grayCS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: grayCS=reshape( [ &
               7,  7,  7,     249,249,249,     119,119,119,      69, 69, 69, &
             173,173,173,     208,208,208,      41, 41, 41,      95, 95, 95, &
             143,143,143,     107,107,107,     157,157,157,      27, 27, 27, &
@@ -1690,7 +1689,7 @@ module scientific_colour_maps
              75, 75, 75,      53, 53, 53,      91, 91, 91,     230,230,230  &
             ], shape(grayCS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: hawaii=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: hawaii=reshape( [ &
             140,  2,115,     141,  4,114,     141,  6,113,     141,  8,112, &
             141, 10,111,     142, 13,110,     142, 14,109,     142, 16,108, &
             142, 18,107,     142, 19,106,     143, 21,105,     143, 22,104, &
@@ -1757,7 +1756,7 @@ module scientific_colour_maps
             171,242,251,     174,242,252,     177,242,253,     179,242,253  &
             ], shape(hawaii), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: hawaiiS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: hawaiiS=reshape( [ &
             140,  2,115,     179,242,253,     156,150, 28,     151, 78, 62, &
             107,212,142,     146, 46, 85,     137,189, 74,     155,111, 40, &
             103,233,213,     122,201,108,     149, 62, 73,      96,223,178, &
@@ -1785,7 +1784,7 @@ module scientific_colour_maps
             128,197, 95,     151, 80, 60,     154,159, 32,     155,108, 42  &
             ], shape(hawaiiS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: imola=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: imola=reshape( [ &
              26, 51,179,      26, 52,178,      27, 53,178,      27, 53,177, &
              28, 54,177,      28, 55,177,      28, 55,176,      29, 56,176, &
              29, 57,176,      30, 57,175,      30, 58,175,      30, 59,175, &
@@ -1852,7 +1851,7 @@ module scientific_colour_maps
             249,253,102,     251,254,102,     253,254,102,     255,255,102  &
             ], shape(imola), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: imolaS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: imolaS=reshape( [ &
              26, 51,179,     255,255,102,      84,134,127,      48, 94,157, &
             145,195,111,      63,113,142,     189,230,103,      37, 73,168, &
             113,164,119,      43, 83,162,     221,244,102,      72,123,134, &
@@ -1880,7 +1879,7 @@ module scientific_colour_maps
             234,248,102,     100,150,122,      69,119,137,     115,166,118  &
             ], shape(imolaS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: lajolla=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: lajolla=reshape( [ &
              25, 25,  0,      26, 26,  1,      27, 26,  1,      28, 26,  1, &
              29, 27,  2,      30, 27,  2,      30, 27,  3,      31, 28,  3, &
              32, 28,  4,      33, 28,  4,      34, 28,  5,      35, 29,  5, &
@@ -1947,7 +1946,7 @@ module scientific_colour_maps
             255,252,195,     255,253,198,     255,254,200,     255,254,203  &
             ], shape(lajolla), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: lajollaS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: lajollaS=reshape( [ &
              25, 25,  0,     255,254,203,     217, 96, 78,     103, 52, 42, &
             237,174, 84,      55, 36, 17,     229,136, 81,     166, 70, 68, &
             247,218,116,     241,194, 90,     133, 62, 57,      77, 43, 28, &
@@ -1975,7 +1974,7 @@ module scientific_colour_maps
             249,227,132,     235,166, 83,     229,134, 81,     255,253,198  &
             ], shape(lajollaS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: lapaz=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: lapaz=reshape( [ &
              26, 12,100,      27, 14,101,      27, 15,102,      27, 16,103, &
              28, 18,104,      28, 19,104,      28, 20,105,      29, 22,106, &
              29, 23,107,      29, 24,108,      30, 25,109,      30, 26,109, &
@@ -2042,7 +2041,7 @@ module scientific_colour_maps
             254,239,237,     254,240,239,     254,241,241,     254,242,243  &
             ], shape(lapaz), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: lapazS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: lapazS=reshape( [ &
              26, 12,100,     254,242,243,      92,140,163,      45, 83,147, &
             179,172,150,      61,113,160,     234,206,185,      36, 50,126, &
             133,158,156,      32, 32,113,     155,164,150,      51, 98,155, &
@@ -2070,7 +2069,7 @@ module scientific_colour_maps
             152,164,151,      34, 43,121,     135,159,155,     236,208,189  &
             ], shape(lapazS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: lipari=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: lipari=reshape( [ &
               3, 19, 38,       4, 20, 40,       4, 22, 41,       4, 23, 43, &
               5, 24, 45,       5, 25, 47,       5, 27, 49,       5, 28, 51, &
               6, 29, 53,       6, 31, 55,       6, 32, 56,       7, 33, 58, &
@@ -2137,7 +2136,7 @@ module scientific_colour_maps
             251,240,212,     251,241,214,     252,243,216,     253,245,218  &
             ], shape(lipari), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: lipariS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: lipariS=reshape( [ &
               3, 19, 38,     253,245,218,     163, 98,103,     233,153,115, &
              82, 91,122,     216,110, 94,      24, 62, 97,     231,195,152, &
             119, 95,115,     240,219,183,     232,130,101,     190,101, 97, &
@@ -2165,7 +2164,7 @@ module scientific_colour_maps
             245,229,196,     229,181,138,       8, 37, 64,      90, 93,122  &
             ], shape(lipariS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: lisbon=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: lisbon=reshape( [ &
             230,229,255,     227,227,253,     224,226,252,     221,224,250, &
             219,222,249,     216,220,247,     213,218,245,     211,216,244, &
             208,214,242,     205,212,241,     203,210,239,     200,208,237, &
@@ -2232,7 +2231,7 @@ module scientific_colour_maps
             249,248,209,     251,251,211,     253,253,214,     255,255,217  &
             ], shape(lisbon), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: managua=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: managua=reshape( [ &
             255,207,103,     254,205,102,     253,203,102,     251,201,101, &
             250,199,100,     249,197,100,     248,195, 99,     246,193, 98, &
             245,191, 98,     244,189, 97,     243,187, 96,     241,185, 96, &
@@ -2299,7 +2298,7 @@ module scientific_colour_maps
             126,225,251,     127,227,253,     128,229,254,     129,231,255  &
             ], shape(managua), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: navia=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: navia=reshape( [ &
               3, 19, 39,       4, 21, 41,       4, 22, 43,       4, 23, 44, &
               4, 24, 46,       4, 25, 48,       5, 26, 50,       5, 27, 52, &
               5, 28, 54,       5, 29, 56,       5, 30, 58,       5, 32, 60, &
@@ -2366,7 +2365,7 @@ module scientific_colour_maps
             249,243,213,     250,243,214,     251,244,215,     252,244,217  &
             ], shape(navia), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: naviaS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: naviaS=reshape( [ &
               3, 19, 39,     252,244,217,      65,138,128,      27, 96,143, &
             135,194,105,       7, 57,102,     209,227,159,      47,121,139, &
              89,160,114,     234,237,191,       5, 37, 70,      14, 77,129, &
@@ -2394,7 +2393,7 @@ module scientific_colour_maps
              52,126,136,      72,145,124,      75,147,122,     131,192,104  &
             ], shape(naviaS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: naviaW=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: naviaW=reshape( [ &
               4, 20, 39,       4, 21, 41,       4, 22, 43,       4, 23, 45, &
               5, 25, 47,       5, 26, 49,       5, 27, 51,       5, 28, 53, &
               5, 29, 55,       5, 30, 57,       5, 32, 59,       5, 33, 61, &
@@ -2461,7 +2460,7 @@ module scientific_colour_maps
             253,254,249,     253,254,251,     254,254,252,     254,254,253  &
             ], shape(naviaW), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: naviaWS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: naviaWS=reshape( [ &
               4, 20, 39,     251,253,246,      72,144,128,      31, 98,141, &
             162,210,127,     227,240,196,      10, 58,102,      52,125,139, &
             101,170,115,      42,114,143,       6, 39, 71,      85,156,121, &
@@ -2489,7 +2488,7 @@ module scientific_colour_maps
             224,239,191,       7, 47, 84,      15, 72,119,       6, 36, 67  &
             ], shape(naviaWS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: nuuk=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: nuuk=reshape( [ &
               5, 89,140,       7, 90,140,       9, 90,140,      11, 90,139, &
              13, 91,139,      14, 91,139,      16, 91,138,      17, 91,138, &
              19, 92,137,      20, 92,137,      21, 92,137,      23, 92,136, &
@@ -2556,7 +2555,7 @@ module scientific_colour_maps
             251,251,174,     252,252,175,     253,253,177,     254,254,178  &
             ], shape(nuuk), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: nuukS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: nuukS=reshape( [ &
               5, 89,140,     254,254,178,     161,166,152,      83,119,133, &
             195,195,133,      45,100,131,     181,181,145,     125,143,145, &
             221,221,139,     188,188,139,     173,174,149,     145,155,150, &
@@ -2584,7 +2583,7 @@ module scientific_colour_maps
              39, 97,132,     128,145,146,     162,167,152,      47,101,131  &
             ], shape(nuukS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: oleron=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: oleron=reshape( [ &
              26, 38, 89,      27, 40, 91,      29, 41, 92,      30, 43, 94, &
              32, 44, 95,      33, 46, 97,      35, 47, 98,      36, 49,100, &
              38, 50,101,      40, 52,103,      41, 53,104,      43, 55,106, &
@@ -2651,7 +2650,7 @@ module scientific_colour_maps
             252,248,222,     252,249,225,     252,251,227,     253,253,230  &
             ], shape(oleron), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: oslo=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: oslo=reshape( [ &
               1,  1,  1,       1,  2,  3,       2,  4,  5,       2,  5,  7, &
               3,  6,  9,       4,  7, 11,       4,  8, 13,       5,  9, 15, &
               5, 10, 16,       6, 11, 18,       6, 12, 19,       7, 13, 21, &
@@ -2718,7 +2717,7 @@ module scientific_colour_maps
             250,250,251,     252,252,252,     253,253,254,     255,255,255  &
             ], shape(oslo), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: osloS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: osloS=reshape( [ &
               3,  6,  9,     249,249,249,      80,123,188,      22, 59, 94, &
             160,175,201,      14, 32, 50,     123,152,202,      39, 88,142, &
             202,206,213,      11, 20, 30,      18, 45, 72,      55,103,166, &
@@ -2746,7 +2745,7 @@ module scientific_colour_maps
             229,230,231,       4,  8, 13,      19, 50, 81,      30, 75,122  &
             ], shape(osloS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: roma=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: roma=reshape( [ &
             126, 23,  0,     127, 26,  1,     128, 29,  2,     129, 32,  3, &
             130, 34,  4,     131, 37,  4,     132, 39,  5,     133, 42,  6, &
             134, 44,  6,     135, 46,  7,     136, 48,  8,     138, 50,  8, &
@@ -2813,7 +2812,7 @@ module scientific_colour_maps
               9, 55,155,       7, 53,154,       5, 51,153,       3, 49,152  &
             ], shape(roma), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: romaO=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: romaO=reshape( [ &
             115, 57, 87,     116, 57, 86,     117, 57, 84,     117, 56, 83, &
             118, 56, 81,     119, 56, 80,     119, 56, 79,     120, 56, 77, &
             121, 56, 76,     121, 56, 75,     122, 56, 73,     123, 56, 72, &
@@ -2880,7 +2879,7 @@ module scientific_colour_maps
             112, 58, 93,     113, 58, 92,     114, 58, 90,     114, 57, 89  &
             ], shape(romaO), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: tofino=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: tofino=reshape( [ &
             222,217,255,     219,215,254,     217,213,253,     214,211,251, &
             211,209,250,     208,207,249,     206,205,248,     203,203,247, &
             200,202,246,     198,200,244,     195,198,243,     192,196,242, &
@@ -2947,7 +2946,7 @@ module scientific_colour_maps
             210,225,151,     213,226,152,     216,228,154,     219,230,155  &
             ], shape(tofino), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: tokyo=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: tokyo=reshape( [ &
              28, 14, 52,      29, 15, 52,      31, 15, 53,      33, 16, 53, &
              35, 16, 54,      36, 16, 54,      38, 17, 55,      40, 17, 56, &
              41, 18, 56,      43, 18, 57,      45, 19, 57,      47, 19, 58, &
@@ -3014,7 +3013,7 @@ module scientific_colour_maps
             235,251,217,     237,252,218,     238,252,220,     239,252,221  &
             ], shape(tokyo), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: tokyoS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: tokyoS=reshape( [ &
              28, 14, 52,     239,252,221,     116,111, 83,     135,182,102, &
             107, 70, 79,     121,139, 86,     113, 93, 82,     184,232,161, &
              81, 36, 70,      55, 22, 61,     153,208,125,     216,247,197, &
@@ -3042,7 +3041,7 @@ module scientific_colour_maps
             108, 72, 80,     237,252,218,     115,107, 83,     130,173, 96  &
             ], shape(tokyoS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: turku=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: turku=reshape( [ &
               0,  0,  0,       2,  2,  2,       4,  4,  3,       6,  6,  5, &
               7,  7,  7,       9,  9,  8,      11, 11, 10,      13, 13, 12, &
              14, 14, 13,      16, 16, 14,      17, 17, 16,      18, 18, 17, &
@@ -3109,7 +3108,7 @@ module scientific_colour_maps
             255,227,226,     255,228,227,     255,229,229,     255,230,230  &
             ], shape(turku), order=[2, 1] )
 
-    integer, dimension(0:99, 1:3) :: turkuS=reshape( [ &
+    integer, dimension(0:99, 1:3), public :: turkuS=reshape( [ &
               7,  7,  7,     255,230,230,     150,142, 92,      77, 76, 59, &
             229,170,144,      44, 44, 39,     109,108, 74,     196,164,116, &
             251,195,189,      28, 28, 25,     254,212,211,     127,125, 82, &
@@ -3137,7 +3136,7 @@ module scientific_colour_maps
             246,185,174,     207,166,124,     199,164,118,     125,123, 81  &
             ], shape(turkuS), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: vanimo=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: vanimo=reshape( [ &
             255,205,253,     253,202,251,     252,199,249,     250,196,247, &
             249,193,244,     247,190,242,     246,187,240,     244,185,238, &
             243,182,236,     241,179,234,     240,176,232,     238,173,230, &
@@ -3204,7 +3203,7 @@ module scientific_colour_maps
             183,245,153,     186,247,157,     188,250,161,     190,253,165  &
             ], shape(vanimo), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: vik=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: vik=reshape( [ &
               0, 18, 97,       1, 20, 98,       1, 21, 99,       1, 23,100, &
               1, 24,101,       1, 26,102,       2, 28,103,       2, 29,104, &
               2, 31,105,       2, 32,106,       2, 34,107,       2, 35,108, &
@@ -3271,7 +3270,7 @@ module scientific_colour_maps
              94,  3,  8,      93,  2,  8,      91,  1,  8,      89,  0,  8  &
             ], shape(vik), order=[2, 1] )
 
-    integer, dimension(0:255, 1:3) :: vikO=reshape( [ &
+    integer, dimension(0:255, 1:3), public :: vikO=reshape( [ &
              79, 26, 61,      78, 26, 62,      78, 27, 63,      77, 27, 65, &
              76, 28, 66,      75, 29, 67,      75, 29, 68,      74, 30, 70, &
              73, 31, 71,      72, 32, 73,      72, 33, 74,      71, 33, 75, &

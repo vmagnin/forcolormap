@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-10-13
-! Last modification: vmagnin 2023-10-23
+! Last modification: vmagnin 2023-10-31
 !-------------------------------------------------------------------------------
 ! Run with the command:
 ! gfortran generate_scmap.f90 && ./a.out
@@ -34,7 +34,7 @@ program generate_scientific_colour_maps
         [character(colormap_name_length) :: &
         "acton", "actonS", "bamako", "bamakoS", "bam", &
         "bamO", "batlowK", "batlowKS", "batlow", "batlowS",&
-        "batlowW", "batlowWS", "berlin", "bilbsrc/scientific_colourmaps.f90ao", "bilbaoS",&
+        "batlowW", "batlowWS", "berlin", "bilbao", "bilbaoS",&
         "broc", "brocO", "buda", "budaS", "bukavu",&
         "cork", "corkO", "davos", "davosS", "devon",&
         "devonS", "fes", "glasgow", "glasgowS", "grayC",&
@@ -83,14 +83,13 @@ program generate_scientific_colour_maps
     write(out1, '(A)') "!-------------------------------------------------------------------------------"
     write(out1, '()')
     write(out1, '(A)') "module scientific_colour_maps"
+    write(out1, '(4x, A)') "use colormap_parameters, only: colormap_name_length"
     write(out1, '(4x, A)') "implicit none"
-    write(out1, '(4x, A)') "public"
-    write(out1, '()')
-    write(out1, '(4x, A, I2)') "integer, parameter :: colormap_name_length = ", colormap_name_length
+    write(out1, '(4x, A)') "private"
     write(out1, '()')
 
     ! Generating the colormaps list:
-    write(out1, '(4x, A)') "character(*), dimension(*), parameter :: scientific_colour_maps_list = &"
+    write(out1, '(4x, A)') "character(*), dimension(*), parameter, public :: scientific_colour_maps_list = &"
     write(out1, '(8x, A)') "[character(colormap_name_length) :: &"
     write(out1, '(8x)', advance='no')
     do i = 1, size(scientific_colour_maps_list)-1
@@ -134,7 +133,8 @@ program generate_scientific_colour_maps
             ! Second scan: we can now read the n triplets and put them in a Fortran array
             rewind(input_file)
             write(out1, '()')
-            write(out1, '(4x, A, I0, 3A)') "integer, dimension(0:", n-1, ", 1:3) :: ", trim(cmap_name), "=reshape( [ &"
+            write(out1, '(4x, A, I0, 3A)') "integer, dimension(0:", n-1, &
+                        &", 1:3), public :: ", trim(cmap_name), "=reshape( [ &"
             write(out1, '(8x)', advance='no')
             do i = 0, n-1
                 read(input_file, *, iostat=ios) red, green, blue
