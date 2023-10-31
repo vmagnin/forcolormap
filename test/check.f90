@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-10-19
-! Last modification: vmagnin 2023-10-20
+! Last modification: vmagnin 2023-10-30
 !-------------------------------------------------------------------------------
 
 program check
@@ -46,7 +46,7 @@ program check
     if (cmap%get_levels() /= 7)    stop "ERROR: colormap%get_levels()"
     if (cmap%get_zmin() /= 0.0_wp) stop "ERROR: colormap%get_zmin()"
     if (cmap%get_zmax() /= 2.0_wp) stop "ERROR: colormap%get_zmax()"
-    if (trim(cmap%get_current()) /= "discrete") stop "ERROR: colormap%get_current()"
+    if (trim(cmap%get_name()) /= "discrete") stop "ERROR: colormap%get_current()"
 
     do i = 0, size(test_colormap(:, 1))-1
         call cmap%get_RGB(i, red, green, blue)
