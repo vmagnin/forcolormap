@@ -2,7 +2,11 @@
 
 This small Fortran colormap fpm library is independent of any graphical toolkit: it just converts a real value to RGB values, that you can use with any toolkit offering bitmap drawing.
 
-It includes a few basic colormaps, plus the Dave Green's [cubehelix](https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/) colormap, plus 62 colormaps of the *Scientific colour maps* collection v8.0.1 by Fabio Crameri (the discrete palettes were not imported). See Fabio Crameri's poster ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) for more information and my [No Bijection!](NO_BIJECTION.md) text about the mysteries and wonders of colors.
+It includes:
+* a few basic colormaps: "grey", "inverted_grey", "fire", "rainbow", "inverted_rainbow", "zebra",
+* the Dave Green's [cubehelix](https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/) colormap,
+* the "magma", "inferno","plasma", "viridis" [matplotlib colormaps](https://bids.github.io/colormap/),
+* 62 colormaps of the *Scientific colour maps* collection v8.0.1 by Fabio Crameri (the discrete palettes were not imported). See Fabio Crameri's poster ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) for more information and my [No Bijection!](NO_BIJECTION.md) text about the mysteries and wonders of colors.
 
 
 ## Basic usage
@@ -10,7 +14,7 @@ It includes a few basic colormaps, plus the Dave Green's [cubehelix](https://www
 Assuming your graphical library has a `setpixelgb()`-like function and z is in the [0, 2] range, you can write something like:
 
 ```fortran
-use forcolormap
+use forcolormap, only: Colormap, colormaps_list, wp
 ...
 type(Colormap) :: cmap
 integer  :: red, green, blue
@@ -63,14 +67,16 @@ forcolormap = {git = "https://github.com/vmagnin/forcolormap.git" }
 
 ## TODO / ideas for further developments
 
-* [ ] Create a logo: inspired by Newton/Dark Side of the Moon? Or a rainbow? And using Fortran purple.
+* [ ] Create a logo: inspired by Newton/Dark Side of the Moon? Or a rainbow? And using Fortran purple. Or a colored marble?
 * [ ] Improve the documentation.
-* [ ] Include a few images in the README.md file.
+  * [ ] Include a few images in the README.md file.
+  * [ ] A table with the characteristics of the colormaps: which are colorblind friendly, perceptually uniform, B&W print safe, etc.
 * [ ] In the *Scientific colour maps,* the discrete colormaps were not imported for the time being because there is no `.lut` file.
 * [ ] The `set()` method could have an optional `reverse` option to reverse the color order in a palette.
 * [ ] Colormaps could have an option for logscale.
 * [ ] A `get_colorbar()` function could return an `array(:,:,1:3)` containing the RGB image of the colorbar. The arguments could be the width and height, the direction (horizontal/vertical), etc.
 * [ ] A `save()` method could save a colormap as RGB values separated by spaces in a `.lut` text file.
+* [ ] Adding functions to create colormaps, for example defined by their two extremes colors: `create_linear(color1, color2)`.
 
 
 ## License
@@ -80,10 +86,11 @@ This project is under MIT license.
 
 ## Citing colormaps
 
-* If you use one of the *Scientific colour maps,* please cite these two items:
+* For *Scientific colour maps,* please cite these two items:
   * Crameri, F. (2018a), Scientific colour maps. Zenodo. http://doi.org/10.5281/zenodo.1243862
   * Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. “The Misuse of Colour in Science Communication.” Nature Communications 11, no. 1 (October 28, 2020): 5444. https://doi.org/10.1038/s41467-020-19160-7.
-* If you use the *cubehelix* colormap, please cite:
+* For the matplotlib colormaps, you can cite this webpage https://bids.github.io/colormap/
+* For the *cubehelix* colormap, please cite:
   * Green, D. A. “A Colour Scheme for the Display of Astronomical Intensity Images.” arXiv, August 30, 2011. http://arxiv.org/abs/1108.5083.
 
 ## References
@@ -105,10 +112,14 @@ This project is under MIT license.
 * "In Search of a Perfect Colormap", http://inversed.ru/Blog_2.htm
 
 #### Specific colormaps
-* https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/
-* Scientific colour maps (Fabio Crameri):
+* Cubehelix (Dave Green, public domain):
+  * https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/
+* Scientific colour maps (Fabio Crameri, MIT license):
   * https://www.fabiocrameri.ch/colourmaps/
   * https://s-ink.org/colour-map-guideline
   * https://s-ink.org/scientific-colour-maps
+* Matplotlib colormaps (CC0 license / public domain):
+  * https://bids.github.io/colormap/
+  * Python version: https://github.com/BIDS/colormap/blob/master/colormaps.py
+  * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  https://www.youtube.com/watch?v=xAoljeRJ3lU
 * [Colors for data scientists. Generate and refine palettes of optimally distinct colors.](https://medialab.github.io/iwanthue/)
-* Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  https://www.youtube.com/watch?v=xAoljeRJ3lU
