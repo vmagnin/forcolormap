@@ -3,7 +3,16 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 
 ## [forcolormap dev]
 
+### Added
+* The "magma", "inferno","plasma", "viridis" matplotlib colormaps in a `matplotlib_colormaps` module.
+* A `colormap_parameters` module.
+* A `miscellaneous_colormaps` module.
+* A `colorbar()` type-bound procedure to write a PPM file with the colorbar.
+
 ### Changed
+* Code refactoring.
+* Moved 'test' subroutine to demo and example1.
+* Renamed 'get_current()' to 'get_name()'.
 * For writing PPM files, the project [ForImage](https://github.com/gha3mi/forimage) by @gha3mi is now used as a fpm dependency. The related example must now be launched with `fpm run --example example1` and the ForColormap demo by `fpm run --example demo`.
 * `src/colormap_class.f90`: `private` statement is now the default.
 
