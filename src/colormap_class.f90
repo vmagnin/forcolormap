@@ -1,6 +1,6 @@
 ! The MIT License (MIT)
 !
-! Copyright (c) 2023 Vincent Magnin
+! Copyright (c) 2023 Vincent Magnin, gha3mi
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: vmagnin 2023-10-26
+! Last modification: gha3mi 2023-10-31
 !-------------------------------------------------------------------------------
 
 

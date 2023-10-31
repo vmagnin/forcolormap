@@ -1,12 +1,44 @@
+! The MIT License (MIT)
+!
+! Copyright (c) 2023, AliG (gha3mi) for the Fortran translation
+!
+! New matplotlib colormaps by Nathaniel J. Smith, Stefan van der Walt,
+! and (in the case of viridis) Eric Firing, released under
+! the CC0 license / public domain dedication.
+! See http://creativecommons.org/publicdomain/zero/1.0/
+! and https://github.com/BIDS/colormap/blob/master/colormaps.py
+!
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+!
+! The above copyright notice and this permission notice shall be included in all
+! copies or substantial portions of the Software.
+!
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+! SOFTWARE.
+!-------------------------------------------------------------------------------
+! Contributed by gha3mi: 2023-10-30
+! Last modification: gha3mi 2023-10-30
+!-------------------------------------------------------------------------------
+
 module matplotlib_colormaps
     use colormap_parameters, only: colormap_name_length
     implicit none
     private
- 
+
     character(*), dimension(*), parameter, public :: matplotlib_colormaps_list = &
         [character(colormap_name_length) :: &
         "magma", "inferno","plasma", "viridis"]
- 
+
     integer, dimension(0:255, 1:3), public :: magma=reshape( [ &
               0,      0,      4,&
               1,      0,      5,&
@@ -265,7 +297,7 @@ module matplotlib_colormaps
             252,    251,    189,&
             252,    253,    191&
             ], shape(magma), order=[2, 1] )
- 
+
     integer, dimension(0:255, 1:3), public :: inferno=reshape( [ &
               0,      0,      4,&
               1,      0,      5,&
@@ -524,7 +556,7 @@ module matplotlib_colormaps
             250,    253,    161,&
             252,    255,    164&
             ], shape(inferno), order=[2, 1] )
- 
+
     integer, dimension(0:255, 1:3), public :: plasma=reshape( [ &
            13,      8,    135,&
            16,      7,    136,&
@@ -783,7 +815,7 @@ module matplotlib_colormaps
           240,    247,     36,&
           240,    249,     33&
           ], shape(plasma), order=[2, 1] )
- 
+
     integer, dimension(0:255, 1:3), public :: viridis=reshape( [ &
             68,       1,     84,&
             68,       2,     86,&

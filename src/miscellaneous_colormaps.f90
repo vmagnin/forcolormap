@@ -1,3 +1,29 @@
+! The MIT License (MIT)
+!
+! Copyright (c) 2023 Vincent Magnin, gha3mi
+!
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+!
+! The above copyright notice and this permission notice shall be included in all
+! copies or substantial portions of the Software.
+!
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+! SOFTWARE.
+!-------------------------------------------------------------------------------
+! Contributed by vmagnin: 2023-09-26
+! Last modification: gha3mi 2023-10-31
+!-------------------------------------------------------------------------------
+
 module miscellaneous_colormaps
     use colormap_parameters, only: colormap_name_length, wp, pi
     implicit none
@@ -6,7 +32,7 @@ module miscellaneous_colormaps
     public :: grey_colormap, inverted_grey_colormap, fire_colormap,&
               rainbow_colormap, inverted_rainbow_colormap, zebra_colormap,&
               cubehelix_colormap
-    
+
     character(*), dimension(*), parameter, public :: miscellaneous_colormaps_list = &
         [character(colormap_name_length) :: &
         "grey", "inverted_grey", "fire", "rainbow", "inverted_rainbow", "zebra", "cubehelix"]
