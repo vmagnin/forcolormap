@@ -1,8 +1,7 @@
 module matplotlib_colormaps
+    use colormap_parameters, only: colormap_name_length
     implicit none
     private
- 
-    integer, parameter :: colormap_name_length = 30
  
     character(*), dimension(*), parameter, public :: matplotlib_colormaps_list = &
         [character(colormap_name_length) :: &

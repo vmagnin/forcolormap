@@ -35,8 +35,9 @@ program example1
     type(format_pnm) :: ex1_colormap, ex1_colorbar
 
     ! Create ppm files
-    call custom_cmap%load("test_map_to_load.txt", 0.0_wp, 2.0_wp)
-    call custom_cmap%test("a_loaded_colormap_ascii", 'ascii')
+    call custom_cmap%load('test_map_to_load.txt', 0.0_wp, 2.0_wp)
+    call custom_cmap%colorbar('a_loaded_colormap_ascii_test', encoding='ascii')
+    call test_colormap(custom_cmap, 'a_loaded_colormap_ascii_colorbar', encoding='ascii')
     call custom_cmap%print()
 
     ! Import ascii ppm files
@@ -54,4 +55,41 @@ program example1
     ! Deallocate
     call ex1_colormap%finalize()
     call ex1_colorbar%finalize()
+
+    contains
+
+    subroutine test_colormap(self, filename, encoding)
+        use forimage, only: format_pnm
+        type(Colormap), intent(inout) :: self
+        character(*), intent(in) :: filename
+        integer :: k, j     ! Pixbuffer coordinates
+        integer, parameter :: pixwidth  = 600
+        integer, parameter :: pixheight = 600
+        integer, dimension(pixheight,pixwidth*3) :: rgb_image
+        integer  :: red, green, blue
+        real(wp) :: z
+        type(format_pnm) :: ppm
+        character(*), intent(in) :: encoding
+
+        do k = 0, pixwidth-1
+            do j = 0, pixheight-1
+                ! Computing a z=f(x,y) function:
+                z = 1.0_wp + sin(k*j/10000.0_wp) * cos(j/100.0_wp)
+                ! The corresponding RGB values in our colormap:
+                call self%compute_RGB(z, red, green, blue)
+                rgb_image(pixheight-j, 3*(k+1)-2) = red
+                rgb_image(pixheight-j, 3*(k+1)-1) = green
+                rgb_image(pixheight-j, 3*(k+1))   = blue  
+            end do
+        end do
+
+        call ppm%set_pnm(encoding    = encoding,&
+                        file_format = 'ppm',&
+                        width       = pixwidth,&
+                        height      = pixheight,&
+                        max_color   = 255,&
+                        comment     = 'comment',&
+                        pixels      = rgb_image)
+        call ppm%export_pnm(filename)
+    end subroutine test_colormap
 end program example1

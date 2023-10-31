@@ -23,10 +23,9 @@
 !-------------------------------------------------------------------------------
 
 module scientific_colour_maps
+    use colormap_parameters, only: colormap_name_length
     implicit none
     private
-
-    integer, parameter :: colormap_name_length = 30
 
     character(*), dimension(*), parameter, public :: scientific_colour_maps_list = &
         [character(colormap_name_length) :: &
