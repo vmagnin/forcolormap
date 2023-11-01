@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2023-10-31
+! Last modification: gha3mi 2023-11-01
 !-------------------------------------------------------------------------------
 
 
@@ -62,21 +62,23 @@ module forcolormap
         procedure :: get_zmax
         procedure :: print
         procedure :: colorbar => write_ppm_colorbar
+        procedure, private :: reverse_map
     end type Colormap
 
 
 contains
 
-    pure subroutine set(self, name, zmin, zmax, levels, varargs)
+    pure subroutine set(self, name, zmin, zmax, levels, varargs, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         integer, intent(in), optional :: levels
         real(wp), dimension(:), intent(in), optional :: varargs
+        logical, intent(in), optional :: reverse
         integer :: last
         integer :: i
 
-        self%name = name
+        self%name = trim(name)
         self%zmin = zmin
         self%zmax = zmax
 
@@ -95,7 +97,7 @@ contains
         ! The second dimension is for RGB: 1=Red, 2=Green, 3=Blue
         allocate(self%map(0:last, 1:3))
 
-        select case(name)
+        select case(self%name)
         ! Miscellaneous colormaps collection
         case("grey")
             ! The user can not choose the number of levels:
@@ -264,17 +266,23 @@ contains
         case default
             error stop "Unknown colormap!"
         end select
+
+        ! Reverse the colormap if requested
+        if (present(reverse)) then
+            if (reverse) call self%reverse_map()
+        end if
     end subroutine set
 
     ! You can create a custom colormap:
-    pure subroutine create(self, name, zmin, zmax, map)
+    pure subroutine create(self, name, zmin, zmax, map, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
+        logical, intent(in), optional :: reverse
         integer, dimension(:, :), intent(in) :: map
         integer :: last
 
-        self%name   = name
+        self%name   = trim(name)
         self%levels = size(map(:, 1))
         last  = self%levels - 1
         self%zmin   = zmin
@@ -288,16 +296,22 @@ contains
         allocate(self%map(0:last, 1:3))
 
         self%map = map
+
+        ! Reverse the colormap if requested
+        if (present(reverse)) then
+            if (reverse) call self%reverse_map()
+        end if
     end subroutine
 
 
     ! Load a .txt colormap with RGB integers separated by spaces on each line.
     ! Remark: if no path is indicated in filename, the .txt must be present
     ! at the root of the fpm project of the user.
-    impure subroutine load(self, filename, zmin, zmax)
+    impure subroutine load(self, filename, zmin, zmax, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: filename
         real(wp), intent(in) :: zmin, zmax
+        logical, intent(in), optional :: reverse
         integer :: i, n
         integer :: red, green, blue
         logical :: file_found
@@ -332,10 +346,15 @@ contains
             end do
             close(file_unit)
 
-            self%name   = filename
+            self%name   = trim(filename)
             self%zmin   = zmin
             self%zmax   = zmax
             self%levels = n
+
+            ! Reverse the colormap if requested
+            if (present(reverse)) then
+                if (reverse) call self%reverse_map()
+            end if
         else
             stop "ERROR: COLORMAP FILE NOT FOUND!"
         end if
@@ -475,4 +494,15 @@ contains
         call ppm%export_pnm(filename)
     end subroutine write_ppm_colorbar
 
+    ! Reverse the colormap
+    pure subroutine reverse_map(self, name)
+        class(Colormap), intent(inout) :: self
+        character(*), intent(in), optional :: name
+        self%map(:,:) = self%map(size(self%map,1)-1:0:-1, :)
+        if (present(name)) then
+            self%name = trim(name)
+        else
+            self%name = trim(self%name)//'_reverse'
+        end if
+    end subroutine reverse_map
 end module forcolormap
