@@ -1,6 +1,6 @@
 # ForColormap
 
-This small Fortran colormap fpm library is independent of any graphical toolkit: it just converts a real value to RGB values, that you can use with any toolkit offering bitmap drawing.
+This small Fortran colormap fpm library is independent of any graphical toolkit: its main functionnality is converting a real value to RGB values, that you can use with any toolkit offering bitmap drawing. And it offers various methods and options to manage colormaps.
 
 It includes:
 * a few basic colormaps: "grey", "inverted_grey", "fire", "rainbow", "inverted_rainbow", "zebra",
@@ -27,9 +27,9 @@ call cmap%compute_RGB(z, red, green, blue)
 call setpixelrgb(x, y, red, green, blue)
 ```
 
-Look into the `example/demo.f90` file for more usage examples: you can create your own colormap, download a colormap from a text file, etc.
+Look into the `example/demo.f90` file for more usage examples: you can create your own colormap, download a colormap from a text file, etc. The `example/demo_reverse.f90` file shows how to use the `reverse` option to reverse the direction of a colormap.
 
-Note that **there is no default colormap** as we consider that each user must choose a colormap adapted to the properties of its data.
+Note that **there is no default colormap** as we consider that each user must choose a colormap adapted to the properties of its data. This [guideline](https://s-ink.org/colour-map-guideline) can help you choosing the right kind of colormap.
 
 
 ## Installation
@@ -53,7 +53,7 @@ $ cd forcolormap
 $ fpm run --example demo
 ```
 
-The demo is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps.
+The `demo` is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps. Other examples are `demo_reverse` and `example1`.
 
 ### Using ForColormap as a fpm dependency
 
@@ -71,7 +71,7 @@ forcolormap = {git = "https://github.com/vmagnin/forcolormap.git" }
 * [ ] Improve the documentation.
   * [ ] Include a few images in the README.md file.
   * [ ] A table with the characteristics of the colormaps: which are colorblind friendly, perceptually uniform, B&W print safe, etc.
-* [ ] In the *Scientific colour maps,* the discrete colormaps were not imported for the time being because there is no `.lut` file.
+* [ ] In the *Scientific colour maps,* the discrete colormaps were not imported for the time being because there is no `.lut` file. F. Crameri could add them in a future version.
 * [ ] Colormaps could have an option for logscale.
 * [ ] A `get_colorbar()` function could return an `array(:,:,1:3)` containing the RGB image of the colorbar. The arguments could be the width and height, the direction (horizontal/vertical), etc.
 * [ ] A `save()` method could save a colormap as RGB values separated by spaces in a `.lut` text file.
