@@ -18,6 +18,11 @@ source-dir = "example"
 main = "demo.f90"
 
 [[example]]
+name = "demo_reverse"
+source-dir = "example"
+main = "demo_reverse.f90"
+
+[[example]]
 name = "example1"
 source-dir = "example"
 main = "example1.f90"
