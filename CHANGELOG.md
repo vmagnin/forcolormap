@@ -4,6 +4,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 ## [forcolormap dev]
 
 ### Added
+* The discrete colormaps of the *Scientific Colour Maps* collection, thanks to the `scripts/gpl_to_lut.f90` program.
 * A `reverse` boolean option was added to the methods `set`, `create`, and `load` to reverse a colormap.
   * An `example/demo_reverse.f90` example.
 * The "magma", "inferno","plasma", "viridis" matplotlib colormaps in a `matplotlib_colormaps` module.
