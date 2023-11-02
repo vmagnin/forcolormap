@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2023-10-31
+! Last modifications: gha3mi 2023-10-31, vmagnin 2023-11-02
 !-------------------------------------------------------------------------------
 
 module miscellaneous_colormaps
@@ -29,13 +29,12 @@ module miscellaneous_colormaps
     implicit none
     private
 
-    public :: grey_colormap, inverted_grey_colormap, fire_colormap,&
-              rainbow_colormap, inverted_rainbow_colormap, zebra_colormap,&
-              cubehelix_colormap
+    public :: grey_colormap, fire_colormap, rainbow_colormap, &
+              inverted_rainbow_colormap, zebra_colormap, cubehelix_colormap
 
     character(*), dimension(*), parameter, public :: miscellaneous_colormaps_list = &
         [character(colormap_name_length) :: &
-        "grey", "inverted_grey", "fire", "rainbow", "inverted_rainbow", "zebra", "cubehelix"]
+        "grey", "fire", "rainbow", "inverted_rainbow", "zebra", "cubehelix"]
 
     contains
 
@@ -51,19 +50,6 @@ module miscellaneous_colormaps
             map(i, :) = i
         end do
     end subroutine grey_colormap
-
-    pure subroutine inverted_grey_colormap(map)
-        integer, dimension(:,:), allocatable, intent(out) :: map
-        integer :: levels, last, i
-
-        ! The user can not choose the number of levels:
-        levels = 256
-        last = levels - 1
-        allocate(map(0:last, 1:3))
-        do concurrent(i = 0:last)
-            map(i, :) = last - i
-        end do
-    end subroutine inverted_grey_colormap
 
     pure subroutine fire_colormap(levels, map)
         integer, intent(in) :: levels

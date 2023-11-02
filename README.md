@@ -3,7 +3,7 @@
 This small Fortran colormap fpm library is independent of any graphical toolkit: its main functionnality is converting a real value to RGB values, that you can use with any toolkit offering bitmap drawing. And it offers various methods and options to manage colormaps.
 
 It includes:
-* a few basic colormaps: "grey", "inverted_grey", "fire", "rainbow", "inverted_rainbow", "zebra",
+* a few basic colormaps: "grey", "fire", "rainbow", "inverted_rainbow", "zebra",
 * the Dave Green's [cubehelix](https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/) colormap,
 * the "magma", "inferno","plasma", "viridis" [matplotlib colormaps](https://bids.github.io/colormap/),
 * the 222 colormaps of the *Scientific colour maps* collection v8.0.1 by Fabio Crameri. See Fabio Crameri's poster ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) for more information and my [No Bijection!](NO_BIJECTION.md) text about the mysteries and wonders of colors.

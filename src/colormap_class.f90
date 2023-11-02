@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2023-11-02
+! Last modification: gha3mi 2023-11-02, vmagnin 2023-11-02
 !-------------------------------------------------------------------------------
 
 
@@ -103,10 +103,6 @@ contains
             ! The user can not choose the number of levels:
             self%levels = 256
             call grey_colormap(self%map)
-        case("inverted_grey")
-            ! The user can not choose the number of levels:
-            self%levels = 256
-            call inverted_grey_colormap(self%map)
         case("fire")
             ! Best with 256 levels but you can try other numbers:
             call fire_colormap(self%levels, self%map)
