@@ -71,7 +71,6 @@ forcolormap = {git = "https://github.com/vmagnin/forcolormap.git" }
 * [ ] Improve the documentation.
   * [ ] Include a few images in the README.md file.
   * [ ] A table with the characteristics of the colormaps: which are colorblind friendly, perceptually uniform, B&W print safe, etc.
-* [ ] In the *Scientific colour maps,* the discrete colormaps were not imported for the time being because there is no `.lut` file. F. Crameri could add them in a future version.
 * [ ] Colormaps could have an option for logscale.
 * [ ] A `get_colorbar()` function could return an `array(:,:,1:3)` containing the RGB image of the colorbar. The arguments could be the width and height, the direction (horizontal/vertical), etc.
 * [ ] A `save()` method could save a colormap as RGB values separated by spaces in a `.lut` text file.
