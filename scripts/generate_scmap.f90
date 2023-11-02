@@ -32,19 +32,228 @@ program generate_scientific_colour_maps
     ! List of the Scientific coulour maps:
     character(*), dimension(*), parameter :: scientific_colour_maps_list = &
         [character(colormap_name_length) :: &
-        "acton", "actonS", "bamako", "bamakoS", "bam", &
-        "bamO", "batlowK", "batlowKS", "batlow", "batlowS",&
-        "batlowW", "batlowWS", "berlin", "bilbao", "bilbaoS",&
-        "broc", "brocO", "buda", "budaS", "bukavu",&
-        "cork", "corkO", "davos", "davosS", "devon",&
-        "devonS", "fes", "glasgow", "glasgowS", "grayC",&
-        "grayCS", "hawaii", "hawaiiS", "imola", "imolaS",&
-        "lajolla", "lajollaS", "lapaz", "lapazS", "lipari",&
-        "lipariS", "lisbon", "managua", "navia", "naviaS", &
-        "naviaW", "naviaWS", "nuuk", "nuukS", "oleron",&
-        "oslo", "osloS", "roma", "romaO", "tofino", &
-        "tokyo", "tokyoS", "turku", "turkuS", "vanimo", &
-        "vik", "vikO" ]
+        "acton",&
+        "acton10",&
+        "acton100",&
+        "acton25",&
+        "acton50",&
+        "actonS",&
+        "bam",&
+        "bam10",&
+        "bam100",&
+        "bam25",&
+        "bam50",&
+        "bamako",&
+        "bamako10",&
+        "bamako100",&
+        "bamako25",&
+        "bamako50",&
+        "bamakoS",&
+        "bamO",&
+        "bamO10",&
+        "bamO100",&
+        "bamO25",&
+        "bamO50",&
+        "batlow",&
+        "batlow10",&
+        "batlow100",&
+        "batlow25",&
+        "batlow50",&
+        "batlowK",&
+        "batlowK10",&
+        "batlowK100",&
+        "batlowK25",&
+        "batlowK50",&
+        "batlowKS",&
+        "batlowS",&
+        "batlowW",&
+        "batlowW10",&
+        "batlowW100",&
+        "batlowW25",&
+        "batlowW50",&
+        "batlowWS",&
+        "berlin",&
+        "berlin10",&
+        "berlin100",&
+        "berlin25",&
+        "berlin50",&
+        "bilbao",&
+        "bilbao10",&
+        "bilbao100",&
+        "bilbao25",&
+        "bilbao50",&
+        "bilbaoS",&
+        "broc",&
+        "broc10",&
+        "broc100",&
+        "broc25",&
+        "broc50",&
+        "brocO",&
+        "brocO10",&
+        "brocO100",&
+        "brocO25",&
+        "brocO50",&
+        "buda",&
+        "buda10",&
+        "buda100",&
+        "buda25",&
+        "buda50",&
+        "budaS",&
+        "bukavu",&
+        "bukavu10",&
+        "bukavu100",&
+        "bukavu25",&
+        "bukavu50",&
+        "cork",&
+        "cork10",&
+        "cork100",&
+        "cork25",&
+        "cork50",&
+        "corkO",&
+        "corkO10",&
+        "corkO100",&
+        "corkO25",&
+        "corkO50",&
+        "davos",&
+        "davos10",&
+        "davos100",&
+        "davos25",&
+        "davos50",&
+        "davosS",&
+        "devon",&
+        "devon10",&
+        "devon100",&
+        "devon25",&
+        "devon50",&
+        "devonS",&
+        "fes",&
+        "fes10",&
+        "fes100",&
+        "fes25",&
+        "fes50",&
+        "glasgow",&
+        "glasgow10",&
+        "glasgow100",&
+        "glasgow25",&
+        "glasgow50",&
+        "glasgowS",&
+        "grayC",&
+        "grayC10",&
+        "grayC100",&
+        "grayC25",&
+        "grayC50",&
+        "grayCS",&
+        "hawaii",&
+        "hawaii10",&
+        "hawaii100",&
+        "hawaii25",&
+        "hawaii50",&
+        "hawaiiS",&
+        "imola",&
+        "imola10",&
+        "imola100",&
+        "imola25",&
+        "imola50",&
+        "imolaS",&
+        "lajolla",&
+        "lajolla10",&
+        "lajolla100",&
+        "lajolla25",&
+        "lajolla50",&
+        "lajollaS",&
+        "lapaz",&
+        "lapaz10",&
+        "lapaz100",&
+        "lapaz25",&
+        "lapaz50",&
+        "lapazS",&
+        "lipari",&
+        "lipari10",&
+        "lipari100",&
+        "lipari25",&
+        "lipari50",&
+        "lipariS",&
+        "lisbon",&
+        "lisbon10",&
+        "lisbon100",&
+        "lisbon25",&
+        "lisbon50",&
+        "managua",&
+        "managua10",&
+        "managua100",&
+        "managua25",&
+        "managua50",&
+        "navia",&
+        "navia10",&
+        "navia100",&
+        "navia25",&
+        "navia50",&
+        "naviaS",&
+        "naviaW",&
+        "naviaW10",&
+        "naviaW100",&
+        "naviaW25",&
+        "naviaW50",&
+        "naviaWS",&
+        "nuuk",&
+        "nuuk10",&
+        "nuuk100",&
+        "nuuk25",&
+        "nuuk50",&
+        "nuukS",&
+        "oleron",&
+        "oleron10",&
+        "oleron100",&
+        "oleron25",&
+        "oleron50",&
+        "oslo",&
+        "oslo10",&
+        "oslo100",&
+        "oslo25",&
+        "oslo50",&
+        "osloS",&
+        "roma",&
+        "roma10",&
+        "roma100",&
+        "roma25",&
+        "roma50",&
+        "romaO",&
+        "romaO10",&
+        "romaO100",&
+        "romaO25",&
+        "romaO50",&
+        "tofino",&
+        "tofino10",&
+        "tofino100",&
+        "tofino25",&
+        "tofino50",&
+        "tokyo",&
+        "tokyo10",&
+        "tokyo100",&
+        "tokyo25",&
+        "tokyo50",&
+        "tokyoS",&
+        "turku",&
+        "turku10",&
+        "turku100",&
+        "turku25",&
+        "turku50",&
+        "turkuS",&
+        "vanimo",&
+        "vanimo10",&
+        "vanimo100",&
+        "vanimo25",&
+        "vanimo50",&
+        "vik",&
+        "vik10",&
+        "vik100",&
+        "vik25",&
+        "vik50",&
+        "vikO",&
+        "vikO10",&
+        "vikO100",&
+        "vikO25",&
+        "vikO50"]
     character(colormap_name_length)   :: cmap_name
     character(colormap_name_length+4) :: filename
     integer :: i, k, n
@@ -111,7 +320,7 @@ program generate_scientific_colour_maps
 
         ! That code must be copied/pasted in the colormap_class.f90 file:
         write(out2, '( 8x, A, A, A)') 'case("', trim(cmap_name), '")'
-        write(out2, '(12x, 5A)') 'call self%create("', trim(cmap_name), '", &
+        write(out2, '(12x, 5A)') 'call self%create(self%name,&
                                 & self%zmin, self%zmax, ', trim(cmap_name), ")"
 
         ! We use the .lut files (ImageJ format) from the Scientific coulour maps (https://www.fabiocrameri.ch/colourmaps/):
