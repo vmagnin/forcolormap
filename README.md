@@ -116,6 +116,7 @@ This project is under MIT license.
   * https://www.fabiocrameri.ch/colourmaps/
   * https://s-ink.org/colour-map-guideline
   * https://s-ink.org/scientific-colour-maps
+  * Seminar talk by Fabio Crameri about the scientific use of colour in science communication for the University of Oslo GeoHyd seminar: https://www.youtube.com/watch?v=iDPzWARbFrs
 * Matplotlib colormaps (CC0 license / public domain):
   * https://bids.github.io/colormap/
   * Python version: https://github.com/BIDS/colormap/blob/master/colormaps.py
