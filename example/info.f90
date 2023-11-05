@@ -54,11 +54,11 @@ program write_info
 
 
     !! Write colormap information to a file
-    call info%write(gradient='Sequential', file_name='COLORMAPS_LIST.md')
-    call info%write(gradient='Multi-Sequential', file_name='COLORMAPS_LIST.md')
-    call info%write(gradient='Diverging', file_name='COLORMAPS_LIST.md')
-    call info%write(gradient='Categorical', file_name='COLORMAPS_LIST.md')
-    call info%write(gradient='Cyclic', file_name='COLORMAPS_LIST.md')
+    call info%write(gradient='Sequential', file_name='COLORMAPS_LIST.md', verbose=4)
+    call info%write(gradient='Multi-Sequential', file_name='COLORMAPS_LIST.md', verbose=4)
+    call info%write(gradient='Diverging', file_name='COLORMAPS_LIST.md', verbose=4)
+    call info%write(gradient='Categorical', file_name='COLORMAPS_LIST.md', verbose=4)
+    call info%write(gradient='Cyclic', file_name='COLORMAPS_LIST.md', verbose=4)
     
 
     ! Deallocate all colormap information
