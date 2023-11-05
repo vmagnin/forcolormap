@@ -46,7 +46,7 @@ module forcolormap_info
       integer                      , private :: levels      ! Number of discrete levels in the colormap
    contains
       procedure :: set_info   ! Procedure to set information for the colormap
-      procedure :: print_info ! Procedure to print information about the colormap
+      procedure :: write_info ! Procedure to print information about the colormap
       procedure :: finalize => deallocate_table ! Procedure to finalize the derived type
    end type table
 
@@ -55,7 +55,7 @@ module forcolormap_info
       type(table), private :: colormaps(222) ! Array of 'table' type to store multiple colormaps
    contains
       procedure :: set_all ! Procedure to set information for all colormaps in the array
-      procedure :: print   ! Procedure to filter and print information about the colormaps
+      procedure :: write   ! Procedure to filter and write information about the colormaps
       procedure :: finalize => deallocate_Colormaps_info ! Procedure to finalize the derived type
    end type Colormaps_info
 
@@ -79,10 +79,11 @@ contains
    end subroutine set_info
 
    ! print information about the colormap
-   impure subroutine print_info(this, verbose)
+   impure subroutine write_info(this, verbose, file_name)
       class(table), intent(inout) :: this
       integer, intent(in), optional :: verbose
-      integer :: verbose_
+      character(*), intent(in), optional :: file_name
+      integer :: verbose_, nunit
       character(len=256) :: format_table
 
       if (present(verbose)) then
@@ -118,44 +119,87 @@ contains
             'a', len_trim(this%license),',',13-len_trim(this%license)+2,'x',',',&
             'a', len_trim(this%url),',',30-len_trim(this%url)+2,'x',&
             ')'
-         print (format_table),&
-            this%name,&
-            this%family,&
-            this%gradient,&
-            this%palette,&
-            this%levels,&
-            this%colorbar,&
-            this%package,&
-            this%author,&
-            this%license,&
-            this%url
-       case (2)
-         print'(a)'    ,''
-         print'(a)'    ,'**********************************************'
-         print'(a,a)'  , 'Name    : ', this%name
-         print'(a,a)'  , 'Family  : ', this%family
-         print'(a,a)'  , 'Gradient: ', this%gradient
-         print'(a,a)'  , 'Palette : ', this%palette
-         print'(a,I3)' , 'Levels  : ', this%levels
-         print'(a,a)'  , 'Colorbar: ', this%colorbar
-         print'(a,a)'  , 'Package : ', this%package
-         print'(a,a)'  , 'Author  : ', this%author
-         print'(a,a)'  , 'Licence : ', this%license
-         print'(a,a)'  , 'URL     : ', this%url
-         print'(a)'    , '**********************************************'
-         print'(a)'    ,''
-       case (3)
-         print'(a)'    ,  this%name
-      end select
-   end subroutine print_info
 
-   ! filter the array of colormaps based on the given criteria and print information about the filtered colormaps
-   impure subroutine print(this, verbose, name, family, gradient, palette, author, license, levels)
+         if (present(file_name)) then
+            open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            write (nunit,format_table)&
+               this%name,&
+               this%family,&
+               this%gradient,&
+               this%palette,&
+               this%levels,&
+               this%colorbar,&
+               this%package,&
+               this%author,&
+               this%license,&
+               this%url
+            close (nunit)
+         else
+            print (format_table),&
+               this%name,&
+               this%family,&
+               this%gradient,&
+               this%palette,&
+               this%levels,&
+               this%colorbar,&
+               this%package,&
+               this%author,&
+               this%license,&
+               this%url
+         end if
+       case (2)
+         if (present(file_name)) then
+            open (newunit=nunit, file=trim(file_name), access='append', status = 'unknown', action = 'write')
+            write(nunit,'(a)')    ''
+            write(nunit,'(a)')    '**********************************************'
+            write(nunit,'(a,a)')  'Name    : ', this%name
+            write(nunit,'(a,a)')  'Family  : ', this%family
+            write(nunit,'(a,a)')  'Gradient: ', this%gradient
+            write(nunit,'(a,a)')  'Palette : ', this%palette
+            write(nunit,'(a,I3)') 'Levels  : ', this%levels
+            write(nunit,'(a,a)')  'Colorbar: ', this%colorbar
+            write(nunit,'(a,a)')  'Package : ', this%package
+            write(nunit,'(a,a)')  'Author  : ', this%author
+            write(nunit,'(a,a)')  'Licence : ', this%license
+            write(nunit,'(a,a)')  'URL     : ', this%url
+            write(nunit,'(a)')    '**********************************************'
+            write(nunit,'(a)')    ''
+            close(nunit)
+         else
+            print'(a)'    ,''
+            print'(a)'    ,'**********************************************'
+            print'(a,a)'  , 'Name    : ', this%name
+            print'(a,a)'  , 'Family  : ', this%family
+            print'(a,a)'  , 'Gradient: ', this%gradient
+            print'(a,a)'  , 'Palette : ', this%palette
+            print'(a,I3)' , 'Levels  : ', this%levels
+            print'(a,a)'  , 'Colorbar: ', this%colorbar
+            print'(a,a)'  , 'Package : ', this%package
+            print'(a,a)'  , 'Author  : ', this%author
+            print'(a,a)'  , 'Licence : ', this%license
+            print'(a,a)'  , 'URL     : ', this%url
+            print'(a)'    , '**********************************************'
+            print'(a)'    ,''
+         end if
+       case (3)
+         if (present(file_name)) then
+            open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            write(nunit,'(a)') this%name
+            close(nunit)
+         else
+            print'(a)',  this%name
+         end if
+      end select
+   end subroutine write_info
+
+   ! filter the array of colormaps based on the given criteria and write information about the filtered colormaps
+   impure subroutine write(this, verbose, name, family, gradient, palette, author, license, levels, file_name)
       class(Colormaps_info), intent(inout) :: this
       integer, intent(in), optional :: verbose
       character(*), intent(in), optional :: name, family, gradient, palette, author, license
       integer, intent(in), optional :: levels
-      integer :: i, k, verbose_
+      character(*), intent(in), optional :: file_name
+      integer :: i, k, verbose_, nunit
       integer :: ind(size(this%colormaps),8) ! 1: index, 2: name, 3: family, 4: gradient, 5: palette, 6: author, 7: license, 8: levels
       integer, allocatable :: inter_ind(:)
 
@@ -168,11 +212,21 @@ contains
 
       ! Print header for verbose = 1
       if (verbose_ == 1) then
-         print*,'' ! Print empty line
-         print '(g0,8x,g0,6x,g0,12x,g0,5x,g0,2x,g0,17x,g0,20x,g0,11x,g0,8x,g0)', &
-            'Name', 'Family', 'Gradient', 'Palette', 'Levels', 'Colorbar', 'Package', 'Author', 'Licence', 'URL'
-         print'(a)', '**********************************************************************************************&
-         &*********************************************************************************'
+         if (present(file_name)) then
+            open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            write(nunit,'(a)')'' ! Print empty line
+            write(nunit,'(g0,8x,g0,6x,g0,12x,g0,5x,g0,2x,g0,17x,g0,20x,g0,11x,g0,8x,g0)') &
+               'Name', 'Family', 'Gradient', 'Palette', 'Levels', 'Colorbar', 'Package', 'Author', 'Licence', 'URL'
+            write(nunit,'(a)') '**********************************************************************************************&
+            &*********************************************************************************'
+            close(nunit)
+         else
+            print*,'' ! Print empty line
+            print '(g0,8x,g0,6x,g0,12x,g0,5x,g0,2x,g0,17x,g0,20x,g0,11x,g0,8x,g0)', &
+               'Name', 'Family', 'Gradient', 'Palette', 'Levels', 'Colorbar', 'Package', 'Author', 'Licence', 'URL'
+            print'(a)', '**********************************************************************************************&
+            &*********************************************************************************'
+         end if
       end if
 
       if (present(name) .or.&
@@ -256,20 +310,33 @@ contains
          do i = 1, size(this%colormaps)
             do k = 1, size(inter_ind)
                if (inter_ind(k) == i) then
-                  call this%colormaps(i)%print_info(verbose)
+                  call this%colormaps(i)%write_info(verbose,file_name)
                end if
             end do
          end do
-         print*,'' ! Print empty line
+
+         if (present(file_name)) then
+            open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            write(nunit,'(a)')'' ! Print empty line
+            close(nunit)
+         else
+            print*,'' ! Print empty line
+         end if
 
       else
          do i = 1, size(this%colormaps)
-            call this%colormaps(i)%print_info(verbose)
+            call this%colormaps(i)%write_info(verbose,file_name)
          end do
-         print*,'' ! Print empty line
+         if (present(file_name)) then
+            open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            write(nunit,'(a)')'' ! Print empty line
+            close(nunit)
+         else
+            print*,'' ! Print empty line
+         end if
       end if
 
-   end subroutine print
+   end subroutine write
 
    ! set information for all colormaps
    pure elemental subroutine set_all(this)
@@ -435,7 +502,7 @@ contains
       call this%colormaps(i)%set_info(&
          name       = "bamako",&
          family     = "bamako",&
-         gradient   = "sequential",&
+         gradient   = "Sequential",&
          palette    = "Continuous",&
          levels     = 256, &
          colorbar   = "bamako_colorbar.ppm",&

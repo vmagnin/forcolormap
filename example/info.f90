@@ -24,7 +24,7 @@
 ! Last modification: gha3mi 2023-11-05
 !-------------------------------------------------------------------------------
 
-program print_info
+program write_info
     use forcolormap_info, only: Colormaps_info
     implicit none
  
@@ -35,25 +35,34 @@ program print_info
  
     !! Print all colormap information using default verbosity (level 1)
     ! verbose: 1 (default) prints a table , 2 prints a box, 3 prints the name
-    call info%print()
+    call info%write()
     
  
 
-    !! Filter and print colormap information
+    !! Filter and write colormap information
     !! Available filters: name, family, gradient, palette, author, license, levels
 
     ! Filter by gradient using default verbosity (level 1)
-    call info%print(gradient='Sequential', palette='Continuous')
+    call info%write(gradient='Sequential', palette='Continuous')
  
     ! Filter by gradient and palette using default verbosity (level 1)
-    call info%print(gradient='Sequential', palette='Continuous')
+    call info%write(gradient='Sequential', palette='Continuous')
  
     ! Filter by family and palette using verbosity level 2
-    call info%print(family='vik', gradient='Diverging', palette='Continuous', verbose=2)
+    call info%write(family='vik', gradient='Diverging', palette='Continuous', verbose=2)
  
+
+
+    !! Write colormap information to a file
+    call info%write(gradient='Sequential', file_name='COLORMAPS_LIST.md')
+    call info%write(gradient='Multi-Sequential', file_name='COLORMAPS_LIST.md')
+    call info%write(gradient='Diverging', file_name='COLORMAPS_LIST.md')
+    call info%write(gradient='Categorical', file_name='COLORMAPS_LIST.md')
+    call info%write(gradient='Cyclic', file_name='COLORMAPS_LIST.md')
+    
 
     ! Deallocate all colormap information
     call info%finalize()
 
- end program print_info
+ end program write_info
 
