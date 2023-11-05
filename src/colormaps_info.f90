@@ -94,47 +94,71 @@ contains
 
       select case (verbose_)
        case (1)
-         write(format_table,&
-            '(a,&
-         &a,g0,a,g0,a,a,&
-         &a,g0,a,g0,a,a,&
-         &a,g0,a,g0,a,a,&
-         &a,g0,a,g0,a,a,&
-         &a,a,g0,a,a,&
-         &a,g0,a,g0,a,a,&
-         &a,g0,a,g0,a,a,&
-         &a,g0,a,g0,a,a,&
-         &a,g0,a,g0,a,a,&
-         &a,g0,a,g0,a,a,&
-         &a)')&
-            '(',&
-            'a', len_trim(this%name),',',10-len_trim(this%name)+2,'x',',',&
-            'a', len_trim(this%family),',',10-len_trim(this%family)+2,'x',',',&
-            'a', len_trim(this%gradient),',',18-len_trim(this%gradient)+2,'x',',',&
-            'a', len_trim(this%palette),',',12-len_trim(this%palette)+2,'x',',',&
-            'I3',',',3,'x',',',&
-            'a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',',&
-            'a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
-            'a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
-            'a', len_trim(this%license),',',13-len_trim(this%license)+2,'x',',',&
-            'a', len_trim(this%url),',',30-len_trim(this%url)+2,'x',&
-            ')'
-
          if (present(file_name)) then
+            write(format_table,&
+               '(a,&
+            &a,a,g0,a,g0,a,a,&
+            &a,a,g0,a,g0,a,a,&
+            &a,a,g0,a,g0,a,a,&
+            &a,a,g0,a,g0,a,a,&
+            &a,a,a,g0,a,a,&
+            &a,a,g0,a,g0,a,a,&
+            &a,a,g0,a,g0,a,a,&
+            &a,a,g0,a,g0,a,a,&
+            &a,a,g0,a,g0,a,a,&
+            &a,a,g0,a,g0,a,a,a,&
+            &a)')&
+               '(',&
+               'a,','a', len_trim(this%name),',',10-len_trim(this%name)+2,'x',',',&
+               'a,','a', len_trim(this%family),',',10-len_trim(this%family)+2,'x',',',&
+               'a,','a', len_trim(this%gradient),',',18-len_trim(this%gradient)+2,'x',',',&
+               'a,','a', len_trim(this%palette),',',12-len_trim(this%palette)+2,'x',',',&
+               'a,','I3',',',3,'x',',',&
+               'a,','a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',',&
+               'a,','a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
+               'a,','a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
+               'a,','a', len_trim(this%license),',',13-len_trim(this%license)+2,'x',',',&
+               'a,','a', len_trim(this%url),',',30-len_trim(this%url)+2,'x',',a',&
+               ')'
             open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
             write (nunit,format_table)&
-               this%name,&
-               this%family,&
-               this%gradient,&
-               this%palette,&
-               this%levels,&
-               this%colorbar,&
-               this%package,&
-               this%author,&
-               this%license,&
-               this%url
+               '|',this%name,&
+               '|',this%family,&
+               '|',this%gradient,&
+               '|',this%palette,&
+               '|',this%levels,&
+               '|',this%colorbar,&
+               '|',this%package,&
+               '|',this%author,&
+               '|',this%license,&
+               '|',this%url,'|'
             close (nunit)
          else
+            write(format_table,&
+               '(a,&
+            &a,g0,a,g0,a,a,&
+            &a,g0,a,g0,a,a,&
+            &a,g0,a,g0,a,a,&
+            &a,g0,a,g0,a,a,&
+            &a,a,g0,a,a,&
+            &a,g0,a,g0,a,a,&
+            &a,g0,a,g0,a,a,&
+            &a,g0,a,g0,a,a,&
+            &a,g0,a,g0,a,a,&
+            &a,g0,a,g0,a,a,&
+            &a)')&
+               '(',&
+               'a', len_trim(this%name),',',10-len_trim(this%name)+2,'x',',',&
+               'a', len_trim(this%family),',',10-len_trim(this%family)+2,'x',',',&
+               'a', len_trim(this%gradient),',',18-len_trim(this%gradient)+2,'x',',',&
+               'a', len_trim(this%palette),',',12-len_trim(this%palette)+2,'x',',',&
+               'I3',',',3,'x',',',&
+               'a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',',&
+               'a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
+               'a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
+               'a', len_trim(this%license),',',13-len_trim(this%license)+2,'x',',',&
+               'a', len_trim(this%url),',',30-len_trim(this%url)+2,'x',&
+               ')'
             print (format_table),&
                this%name,&
                this%family,&
@@ -216,9 +240,8 @@ contains
             open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
             write(nunit,'(a)')'' ! Print empty line
             write(nunit,'(g0,8x,g0,6x,g0,12x,g0,5x,g0,2x,g0,17x,g0,20x,g0,11x,g0,8x,g0)') &
-               'Name', 'Family', 'Gradient', 'Palette', 'Levels', 'Colorbar', 'Package', 'Author', 'Licence', 'URL'
-            write(nunit,'(a)') '**********************************************************************************************&
-            &*********************************************************************************'
+               '|Name', '|Family', '|Gradient', '|Palette', '|Levels', '|Colorbar', '|Package', '|Author', '|Licence', '|URL|'
+            write(nunit,'(a)') '|---|---|---|---|-----|---|---|---|---|---|'
             close(nunit)
          else
             print*,'' ! Print empty line
