@@ -53,7 +53,7 @@ $ cd forcolormap
 $ fpm run --example demo
 ```
 
-The `demo` is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps. Other examples are `demo_reverse` and `example1`.
+The `demo` is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps. Other examples are `demo_reverse`, `info` and `example1`.
 
 ### Using ForColormap as a fpm dependency
 
@@ -67,10 +67,11 @@ forcolormap = {git = "https://github.com/vmagnin/forcolormap.git" }
 
 ## TODO / ideas for further developments
 
-* [ ] Create a logo: inspired by Newton/Dark Side of the Moon? Or a rainbow? And using Fortran purple. Or a colored marble?
+* [ ] Create a logo: a colored marble?
 * [ ] Improve the documentation.
   * [ ] Include a few images in the README.md file.
-  * [ ] A table with the characteristics of the colormaps: which are colorblind friendly, perceptually uniform, B&W print safe, etc.
+  * [ ] Which colormaps are colorblind friendly, perceptually uniform, B&W print safe, etc.
+  * [ ] Add in `src/colormaps_info.f90` and `COLORMAPS_LIST.md` the Matplotlib and miscellaneous colormaps.
 * [ ] Colormaps could have an option for logscale.
 * [ ] A `get_colorbar()` function could return an `array(:,:,1:3)` containing the RGB image of the colorbar. The arguments could be the width and height, the direction (horizontal/vertical), etc.
 * [ ] A `save()` method could save a colormap as RGB values separated by spaces in a `.lut` text file.
