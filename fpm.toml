@@ -27,6 +27,11 @@ name = "example1"
 source-dir = "example"
 main = "example1.f90"
 
+[[example]]
+name = "info"
+source-dir = "example"
+main = "info.f90"
+
 [build]
 auto-executables = true
 auto-tests = true
