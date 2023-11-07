@@ -1,6 +1,6 @@
 # ForColormap
 
-This small Fortran colormap fpm library is independent of any graphical toolkit: its main functionnality is converting a real value to RGB values, that you can use with any toolkit offering bitmap drawing. And it offers various methods and options to manage colormaps.
+This Fortran colormap fpm library is independent of any graphical toolkit: its main functionnality is converting a real value to RGB values, that you can use with any toolkit offering bitmap drawing. And it offers various methods and options to manage colormaps.
 
 It includes:
 * a few basic colormaps: "grey", "fire", "rainbow", "inverted_rainbow", "zebra",
@@ -53,7 +53,7 @@ $ cd forcolormap
 $ fpm run --example demo
 ```
 
-The `demo` is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps. Other examples are `demo_reverse`, `info` and `example1`.
+The `demo` is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps. Other examples are `demo_reverse`, `info`, `extract` and `example1`.
 
 ### Using ForColormap as a fpm dependency
 
