@@ -37,12 +37,12 @@ program extract
    ! Initialize the colormap
    call cmap%set('fes', 0.0_wp, 2.0_wp)
 
-   ! Extract 100 colors from the colormap (extractedLevels=100)
+   ! Extract 10 colors from the colormap (extractedLevels=10)
    ! Optional arguments: 'name', 'zmin', 'zmax', and 'reverse' can be provided
    ! The extracted colormap will overwrite the existing colormap type (cmap)
-   call cmap%extract(100)
+   call cmap%extract(10)
 
    ! Generate a color bar for the extracted colormap with binary encoding
-   call cmap%colorbar('fes100_ex_colorbar', encoding='binary')
+   call cmap%colorbar('fes10_ex_colorbar', encoding='binary')
    
 end program extract
