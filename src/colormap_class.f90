@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2023-11-02, vmagnin 2023-11-02
+! Last modification: gha3mi 2023-11-07
 !-------------------------------------------------------------------------------
 
 
@@ -63,6 +63,7 @@ module forcolormap
         procedure :: print
         procedure :: colorbar => write_ppm_colorbar
         procedure, private :: reverse_map
+        procedure :: extract
     end type Colormap
 
 
@@ -821,4 +822,106 @@ contains
             self%name = trim(self%name)//'_reverse'
         end if
     end subroutine reverse_map
+
+    ! Normalize the input real array to the range [0, 1]
+    pure function scale_real_real(real_array,a,b) result(real_scaled_array)
+        real(wp), dimension(:), intent(in) :: real_array
+        real(wp), intent(in) :: a, b
+        real(wp), dimension(size(real_array)) :: real_scaled_array
+        real(wp) :: minValue, maxValue
+        real(wp), parameter :: tolerance = 1.0e-12_wp
+
+        ! Find minimum and maximum values in the input real array
+        minValue = minval(real_array)
+        maxValue = maxval(real_array)
+
+        if (abs(maxValue-minValue) < tolerance) then
+            real_scaled_array = b
+        else
+            real_scaled_array = a + (b - a) * (real_array - minValue) / (maxValue - minValue)
+        end if
+    end function scale_real_real
+
+    ! Scale the input real array to the integer RGB range [a, b]
+    pure function scale_real_int(real_array,a,b) result(int_scaled_array)
+        real(wp), dimension(:), intent(in) :: real_array
+        integer, intent(in) :: a, b
+        real(wp), dimension(size(real_array)) :: normalizedArray
+        integer, dimension(size(real_array)) :: int_scaled_array
+
+        ! Normalize the real array elements to the range [0, 1]
+        normalizedArray = scale_real_real(real_array, 0.0_wp, 1.0_wp)
+
+        ! Scale the real array elements between a and b
+        int_scaled_array = a + nint((b - a) * normalizedArray)
+    end function scale_real_int
+
+    ! Extracts colors from the colormap based on specified number of levels (nl)
+    pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse)
+        class(Colormap), intent(inout) :: self
+        integer, intent(in) :: extractedLevels
+        character(*), intent(in), optional :: name
+        real(wp), intent(in), optional :: zmin, zmax
+        logical, intent(in), optional :: reverse
+        integer :: extracted_map(extractedLevels,3)
+        integer :: ind(extractedLevels,3)
+        real(wp) :: ind_rel(extractedLevels,3), array_rel(self%levels,3), step(3), current_element(3)
+        integer :: i
+        integer, dimension(self%levels,3) :: array
+        character(3) :: extractedLevels_char
+
+        ! Initialize array with indices
+        do concurrent (i = 1: self%levels)
+            array(i,:) = i-1
+        end do
+
+        ! Normalize array elements to the range [0, 1]
+        do concurrent (i = 1: 3)
+            array_rel(:,i) = array(:,i)/ maxval(array(:,i))
+        end do
+  
+        ! Check if the number of extractedLevels is valid
+        if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
+            error stop "Error: Invalid number of extractedLevels. Must be > 1 and <= levels"
+        end if
+
+        step(:) = array_rel(self%levels,:) / real(extractedLevels-1, kind=wp)
+
+        current_element(:) = array_rel(1,:)
+
+        do i = 1, extractedLevels
+            ind_rel(i,:) = current_element
+            current_element = current_element + step
+        end do
+
+        ! Scale interpolated indices to integers between 0 and self%levels - 1
+        do concurrent (i = 1:3)
+            ind(:,i) = scale_real_int(ind_rel(:,i), 0, self%levels-1)
+        end do
+
+        ! Extract colors from the colormap based on interpolated indices
+        do concurrent (i = 1: 3)
+            extracted_map(:,i) = self%map(ind(:,i),i)
+        end do
+
+        ! Set colormap name if provided, otherwise use the number of levels as part of the name
+        if (present(name)) then
+            self%name = name
+        else
+            write(extractedLevels_char, '(I3)') extractedLevels
+            self%name = self%name//trim(extractedLevels_char)
+        end if
+
+        ! Set zmin and zmax if provided
+        if (present(zmin)) self%zmin = zmin
+        if (present(zmax)) self%zmax = zmax
+
+        ! Create the extracted colormap with the specified parameters
+        call self%create(self%name, self%zmin, self%zmax, extracted_map)
+
+        if (present(reverse)) then
+            if (reverse) call self%reverse_map()
+        end if
+    end subroutine extract
+
 end module forcolormap
