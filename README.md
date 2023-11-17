@@ -1,17 +1,19 @@
 # ForColormap
 
-This Fortran colormap fpm library is independent of any graphical toolkit: its main functionnality is converting a real value to RGB values, that you can use with any toolkit offering bitmap drawing. And it offers various methods and options to manage colormaps.
+This Fortran fpm library is independent of any graphical toolkit: its main functionnality is converting a real value to RGB values, that you can use with any toolkit offering bitmap drawing. And it offers various methods and options to manage colormaps.
 
 It includes:
+
 * a few basic colormaps: "grey", "fire", "rainbow", "inverted_rainbow", "zebra",
 * the Dave Green's [cubehelix](https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/) colormap,
 * the "magma", "inferno","plasma", "viridis" [matplotlib colormaps](https://bids.github.io/colormap/),
 * the 222 colormaps of the *Scientific colour maps* collection v8.0.1 by Fabio Crameri. See Fabio Crameri's poster ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) for more information and my [No Bijection!](NO_BIJECTION.md) text about the mysteries and wonders of colors.
 
+Note that **there is no default colormap** as we consider that the user must choose a colormap adapted to the properties of its data. This [guideline](https://s-ink.org/colour-map-guideline) can help you choosing the right kind of colormap.
 
 ## Basic usage
 
-Assuming your graphical library has a `setpixelgb()`-like function and z is in the [0, 2] range, you can write something like:
+Assuming your graphical library has a `setpixelgb()`-like function and you know your `z` values will be in the [0, 2] range, you can write something like:
 
 ```fortran
 use forcolormap, only: Colormap, colormaps_list, wp
@@ -20,6 +22,7 @@ type(Colormap) :: cmap
 integer  :: red, green, blue
 real(wp) :: z, x, y
 ...
+! Let's use the glasgow colormap:
 call cmap%set("glasgow", 0.0_wp, 2.0_wp)
 ...
 z = f(x,y)
@@ -27,9 +30,9 @@ call cmap%compute_RGB(z, red, green, blue)
 call setpixelrgb(x, y, red, green, blue)
 ```
 
-Look into the `example/demo.f90` file for more usage examples: you can create your own colormap, download a colormap from a text file, etc. The `example/demo_reverse.f90` file shows how to use the `reverse` option to reverse the direction of a colormap.
+The library is using the precision `wp=>real64` defined in the module `iso_fortran_env`.
 
-Note that **there is no default colormap** as we consider that each user must choose a colormap adapted to the properties of its data. This [guideline](https://s-ink.org/colour-map-guideline) can help you choosing the right kind of colormap.
+Look into the `example/demo.f90` file for more usage examples: you can create your own colormap, download a colormap from a text file, etc. The `example/demo_reverse.f90` file shows how to use the `reverse` option to reverse the direction of a colormap.
 
 
 ## Installation
@@ -45,7 +48,7 @@ You need:
 
 ### Testing the project
 
-If you have a GitHub account, just clone the repository and launch the demo example:
+If you have a GitHub account, just clone the repository and launch the demo example, which is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps:
 
 ```bash
 $ git clone git@github.com:vmagnin/forcolormap.git
@@ -53,7 +56,13 @@ $ cd forcolormap
 $ fpm run --example demo
 ```
 
-The `demo` is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps. Other examples are `demo_reverse`, `info`, `extract` and `example1`.
+Other examples/demos are available:
+ 
+* `demo_reverse.f90` demonstrates the usage of the `reverse=.true.` option to reverse the direction of a colormap.
+* `example1.f90` demonstrates how ForImage can be used to import/export PPM files.
+* `extract.f90` demonstrates how to create a specific colormap by extracting a specified number of colors of a colormap.
+* `info.f90` demonstrates how to obtain information about a colormap using the `Colormaps_info` class.
+
 
 ### Using ForColormap as a fpm dependency
 
@@ -86,19 +95,19 @@ This project is under MIT license.
 ## Citing colormaps
 
 * For *Scientific colour maps,* please cite these two items:
-  * Crameri, F. (2018a), Scientific colour maps. Zenodo. http://doi.org/10.5281/zenodo.1243862
-  * Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. “The Misuse of Colour in Science Communication.” Nature Communications 11, no. 1 (October 28, 2020): 5444. https://doi.org/10.1038/s41467-020-19160-7.
+  * Crameri, F. (2018a), Scientific colour maps. *Zenodo.* http://doi.org/10.5281/zenodo.1243862
+  * Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. “The Misuse of Colour in Science Communication.” *Nature Communications* 11, no. 1 (October 28, 2020): 5444. https://doi.org/10.1038/s41467-020-19160-7.
 * For the matplotlib colormaps, you can cite this webpage https://bids.github.io/colormap/
 * For the *cubehelix* colormap, please cite:
-  * Green, D. A. “A Colour Scheme for the Display of Astronomical Intensity Images.” arXiv, August 30, 2011. http://arxiv.org/abs/1108.5083.
+  * Green, D. A. “A Colour Scheme for the Display of Astronomical Intensity Images.” *arXiv,* August 30, 2011. http://arxiv.org/abs/1108.5083.
 
 ## References
 
 ### Articles and books
 
-* Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. “Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.” Edited by Jesús Malo. PLOS ONE 13, no. 7 (August 1, 2018): e0199239. https://doi.org/10.1371/journal.pone.0199239.
+* Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. “Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.” Edited by Jesús Malo. *PLOS ONE* 13, no. 7 (August 1, 2018): e0199239. https://doi.org/10.1371/journal.pone.0199239.
 * Rogowitz, Bernice E, and Lloyd A Treinish. [“Why Should Engineers and Scientists Be Worried About Color?”](https://github.com/amadeusine/interesting-reads/blob/master/ibm-research__why-should-engineers-and-scientists-be-worried-about-color.pdf)
-* Thyng, Kristen, Chad Greene, Robert Hetland, Heather Zimmerle, and Steven DiMarco. “True Colors of Oceanography: Guidelines for Effective and Accurate Colormap Selection.” Oceanography 29, no. 3 (September 1, 2016): 9–13. https://doi.org/10.5670/oceanog.2016.66.
+* Thyng, Kristen, Chad Greene, Robert Hetland, Heather Zimmerle, and Steven DiMarco. “True Colors of Oceanography: Guidelines for Effective and Accurate Colormap Selection.” *Oceanography* 29, no. 3 (September 1, 2016): 9–13. https://doi.org/10.5670/oceanog.2016.66.
 * Valeur, Bernard. *La couleur dans tous ses éclats.* Bibliothèque scientifique. Paris: Belin-"Pour la science", 2011, ISBN 9782701158761.
 * Valeur, Bernard. *Lumière et luminescence - Ces phénomènes lumineux qui nous entourent.* Bibliothèque scientifique. Paris: Belin-"Pour la science", 2005, ISBN 9782701136035.
 
