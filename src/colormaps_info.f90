@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-11-05
-! Last modification: gha3mi 2023-11-05
+! Last modification: gha3mi 2024-01-06
 !-------------------------------------------------------------------------------
 
 module forcolormap_info
@@ -52,7 +52,7 @@ module forcolormap_info
 
    ! Define a derived type named 'Colormaps_info' to store an array of 'table' type
    type :: Colormaps_info
-      type(table), private :: colormaps(222) ! Array of 'table' type to store multiple colormaps
+      type(table), private :: colormaps(223) ! Array of 'table' type to store multiple colormaps
    contains
       procedure :: set_all ! Procedure to set information for all colormaps in the array
       procedure :: write   ! Procedure to filter and write information about the colormaps
@@ -113,11 +113,11 @@ contains
                'a,','a', len_trim(this%family),',',10-len_trim(this%family)+2,'x',',',&
                'a,','a', len_trim(this%gradient),',',18-len_trim(this%gradient)+2,'x',',',&
                'a,','a', len_trim(this%palette),',',12-len_trim(this%palette)+2,'x',',',&
-               'a,','I3',',',3,'x',',',&
+               'a,','I4',',',3,'x',',',&
                'a,','a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',',&
                'a,','a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
                'a,','a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
-               'a,','a', len_trim(this%license),',',13-len_trim(this%license)+2,'x',',',&
+               'a,','a', len_trim(this%license),',',18-len_trim(this%license)+2,'x',',',&
                'a,','a', len_trim(this%url),',',30-len_trim(this%url)+2,'x',',a',&
                ')'
             open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
@@ -152,11 +152,11 @@ contains
                'a', len_trim(this%family),',',10-len_trim(this%family)+2,'x',',',&
                'a', len_trim(this%gradient),',',18-len_trim(this%gradient)+2,'x',',',&
                'a', len_trim(this%palette),',',12-len_trim(this%palette)+2,'x',',',&
-               'I3',',',3,'x',',',&
+               'I4',',',3,'x',',',&
                'a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',',&
                'a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
                'a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
-               'a', len_trim(this%license),',',13-len_trim(this%license)+2,'x',',',&
+               'a', len_trim(this%license),',',18-len_trim(this%license)+2,'x',',',&
                'a', len_trim(this%url),',',30-len_trim(this%url)+2,'x',&
                ')'
             print (format_table),&
@@ -180,7 +180,7 @@ contains
             write(nunit,'(a,a)')  'Family  : ', this%family
             write(nunit,'(a,a)')  'Gradient: ', this%gradient
             write(nunit,'(a,a)')  'Palette : ', this%palette
-            write(nunit,'(a,I3)') 'Levels  : ', this%levels
+            write(nunit,'(a,I4)') 'Levels  : ', this%levels
             write(nunit,'(a,a)')  'Colorbar: ', this%colorbar
             write(nunit,'(a,a)')  'Package : ', this%package
             write(nunit,'(a,a)')  'Author  : ', this%author
@@ -196,7 +196,7 @@ contains
             print'(a,a)'  , 'Family  : ', this%family
             print'(a,a)'  , 'Gradient: ', this%gradient
             print'(a,a)'  , 'Palette : ', this%palette
-            print'(a,I3)' , 'Levels  : ', this%levels
+            print'(a,I4)' , 'Levels  : ', this%levels
             print'(a,a)'  , 'Colorbar: ', this%colorbar
             print'(a,a)'  , 'Package : ', this%package
             print'(a,a)'  , 'Author  : ', this%author
@@ -229,7 +229,7 @@ contains
                'a,','a', len_trim(this%family),',',10-len_trim(this%family)+2,'x',',',&
                'a,','a', len_trim(this%gradient),',',18-len_trim(this%gradient)+2,'x',',',&
                'a,','a', len_trim(this%palette),',',12-len_trim(this%palette)+2,'x',',',&
-               'a,','I3',',',3,'x',',',&
+               'a,','I4',',',3,'x',',',&
                'a,','a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',a',&
                ')'
             open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
@@ -256,7 +256,7 @@ contains
                'a', len_trim(this%family),',',10-len_trim(this%family)+2,'x',',',&
                'a', len_trim(this%gradient),',',18-len_trim(this%gradient)+2,'x',',',&
                'a', len_trim(this%palette),',',12-len_trim(this%palette)+2,'x',',',&
-               'I3',',',3,'x',',',&
+               'I4',',',3,'x',',',&
                'a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',&
                ')'
             print (format_table),&
@@ -293,16 +293,16 @@ contains
          if (present(file_name)) then
             open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
             write(nunit,'(a)')'' ! Print empty line
-            write(nunit,'(g0,8x,g0,6x,g0,12x,g0,5x,g0,2x,g0,17x,g0,20x,g0,11x,g0,8x,g0)') &
+            write(nunit,'(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,13x,g0)') &
                '|Name', '|Family', '|Gradient', '|Palette', '|Levels', '|Colorbar', '|Package', '|Author', '|Licence', '|URL|'
-            write(nunit,'(a)') '|---|---|---|---|-----|---|---|---|---|---|'
+            write(nunit,'(a)') '|---|---|---|---|---|---|---|---|---|---|'
             close(nunit)
          else
             print*,'' ! Print empty line
-            print '(g0,8x,g0,6x,g0,12x,g0,5x,g0,2x,g0,17x,g0,20x,g0,11x,g0,8x,g0)', &
+            print '(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,13x,g0)', &
                'Name', 'Family', 'Gradient', 'Palette', 'Levels', 'Colorbar', 'Package', 'Author', 'Licence', 'URL'
             print'(a)', '**********************************************************************************************&
-            &*********************************************************************************'
+            &*******************************************************************************************'
          end if
       end if
 
@@ -311,15 +311,15 @@ contains
          if (present(file_name)) then
             open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
             write(nunit,'(a)')'' ! Print empty line
-            write(nunit,'(g0,8x,g0,6x,g0,12x,g0,5x,g0,2x,g0,17x,g0,20x,g0,11x,g0,8x,g0)') &
-               '|Name', '|Family', '|Gradient', '|Palette', '|Levels', '|Colorbar|'
-            write(nunit,'(a)') '|---|---|---|---|-----|---|'
+            write(nunit,'(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,8x,g0)') &
+               '|Name', '|Family', '|Gradient', '|Palette', '|Levels', '|Colorbar                 |'
+            write(nunit,'(a)') '|------------|------------|--------------------|--------------|-------|-------------------------|'
             close(nunit)
          else
             print*,'' ! Print empty line
-            print '(g0,8x,g0,6x,g0,12x,g0,5x,g0,2x,g0)', &
+            print '(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0)', &
                'Name', 'Family', 'Gradient', 'Palette', 'Levels', 'Colorbar'
-            print'(a)', '**********************************************************************************************'
+            print'(a)', '**************************************************************************************************'
          end if
       end if
 
@@ -3544,6 +3544,20 @@ contains
          author     = "Fabio Crameri",&
          license    = "MIT license",&
          url        = "https://www.fabiocrameri.ch")
+
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "black_body",&
+         family     = "black_body",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = 1024, &
+         colorbar   = "black_body_colorbar.ppm",&
+         package    = "Miscellaneous",&
+         author     = "Kenneth Moreland",&
+         license    = "Public Domain (CC0)",&
+         url        = "https://www.kennethmoreland.com")
 
    end subroutine set_all
 
