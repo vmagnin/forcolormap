@@ -2,7 +2,7 @@
 
 This Fortran fpm library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It offers various methods and options to manage colormaps. It includes:
 
-* a few basic colormaps: "grey", "fire", "rainbow", "inverted_rainbow", "zebra",
+* a few basic colormaps: "grey", "fire", "rainbow", "inverted_rainbow", "zebra", "black_body"
 * the Dave Green's [cubehelix](https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/) colormap,
 * the "magma", "inferno","plasma", "viridis" [matplotlib colormaps](https://bids.github.io/colormap/),
 * the 222 colormaps of the *Scientific colour maps* collection v8.0.1 by Fabio Crameri. See Fabio Crameri's poster ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) for more information and my [No Bijection!](NO_BIJECTION.md) text about the mysteries and wonders of colors.
@@ -132,4 +132,5 @@ As any work, a colormap should be cited:
   * https://bids.github.io/colormap/
   * Python version: https://github.com/BIDS/colormap/blob/master/colormaps.py
   * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  https://www.youtube.com/watch?v=xAoljeRJ3lU
+* Black Body colormap (CC0 license / public domain) by Kenneth Moreland: ["Color Map Advice for Scientific Visualization"](https://www.kennethmoreland.com/color-advice/).
 * [Colors for data scientists. Generate and refine palettes of optimally distinct colors.](https://medialab.github.io/iwanthue/)

@@ -4,6 +4,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 ## [forcolormap dev]
 
 ### Added
+* A `black_body` colormap (`miscellaneous_colormaps` module).
 * An `extract()` type-bound procedure to the Colormap type to extract colors from a colormap. The extracted number should be within the range [2, levels].
   * `example/extract.f90`
 * Two private functions: `scale_real_real` and `scale_real_int`.
