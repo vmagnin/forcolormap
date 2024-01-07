@@ -87,9 +87,9 @@ They can be launched with the command `fpm run --example name_of_the_example` (w
 * [ ] Adding functions to create colormaps, for example defined by their two extremes colors: `create_linear(color1, color2)`.
 
 
-## License
+## Licenses
 
-This project is under MIT license.
+This project is under MIT license. The logo files are under [license CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
 
 ## Citing colormaps
