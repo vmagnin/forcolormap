@@ -1,3 +1,5 @@
+![Logo ForColormap](logo/logo_forcolormap-roma_8.svg)
+
 # ForColormap
 
 This Fortran fpm library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It offers various methods and options to manage colormaps. It includes:
@@ -74,7 +76,6 @@ They can be launched with the command `fpm run --example name_of_the_example` (w
 
 ## TODO / ideas for further developments
 
-* [ ] Create a logo: a coloured marble?
 * [ ] Improve the documentation.
   * [ ] Include a few images in the README.md file.
   * [ ] Which colormaps are colorblind friendly, perceptually uniform, B&W print safe, etc.
