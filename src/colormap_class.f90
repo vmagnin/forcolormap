@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2023-11-07
+! Last modification: gha3mi 2024-01-06
 !-------------------------------------------------------------------------------
 
 
@@ -580,6 +580,9 @@ contains
             call self%create(self%name, self%zmin, self%zmax, plasma) 
         case("viridis")
             call self%create(self%name, self%zmin, self%zmax, viridis) 
+        ! 
+        case("black_body")
+            call self%create(self%name, self%zmin, self%zmax, black_body)
         case default
             error stop "Unknown colormap!"
         end select
@@ -754,7 +757,7 @@ contains
         print '(a,g0)', "zmax: ", self%zmax
         print '(a,g0)', "Number of levels: ", self%levels
         do i = 0, self%levels-1
-            print '(I3,2x,I3,2x,I3)', self%map(i, 1:3)
+            print '(I3,2x,I3,2x,I3)', self%map(i, 1), self%map(i, 2), self%map(i, 3)
         end do
     end subroutine
 

@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-10-26
-! Last modification: gha3mi 2023-10-26
+! Last modification: gha3mi 2024-01-06
 !-------------------------------------------------------------------------------
 
 ! This example demonstrates how ForImage can be used to import/export PPM files.
@@ -64,11 +64,13 @@ program example1
         integer :: k, j     ! Pixbuffer coordinates
         integer, parameter :: pixwidth  = 600
         integer, parameter :: pixheight = 600
-        integer, dimension(pixheight,pixwidth*3) :: rgb_image
+        integer, dimension(:,:), allocatable :: rgb_image
         integer  :: red, green, blue
         real(wp) :: z
         type(format_pnm) :: ppm
         character(*), intent(in) :: encoding
+
+        allocate(rgb_image(pixheight,pixwidth*3))
 
         do k = 0, pixwidth-1
             do j = 0, pixheight-1
