@@ -2,7 +2,7 @@
 
 # ForColormap
 
-This Fortran fpm library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It offers various methods and options to manage colormaps. It includes:
+This Fortran library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It offers various methods and options to manage colormaps. It includes:
 
 * a few basic colormaps: "grey", "fire", "rainbow", "inverted_rainbow", "zebra", "black_body"
 * the Dave Green's [cubehelix](https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/) colormap,
@@ -39,10 +39,10 @@ Note that **there is no default colormap** as we consider that the user must cho
 You need, whatever your operating system:
 
 * a modern Fortran compiler, for example GFortran or the Intel ifort/ifx compilers. See the [Fortran-lang.org compilers page](https://fortran-lang.org/compilers/) for other compilers.
-* The Fortran Package Manager [fpm](https://fpm.fortran-lang.org/).
-  * For writing PPM files, the library [ForImage](https://github.com/gha3mi/forimage) is used as a fpm dependency.
+* The Fortran Package Manager [fpm](https://fpm.fortran-lang.org/) or CMake (>=3.24) for building the project.
+  * For writing PPM files, the library [ForImage](https://github.com/gha3mi/forimage) is used as a fpm or CMake dependency (automatically downloaded).
 
-### Testing the project
+### Testing the project with fpm
 
 If you have a GitHub account, just clone the repository. Then launch the demo example, which is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps:
 
@@ -60,6 +60,34 @@ To use ForColormap within your own `fpm` project, add the following lines to you
 [dependencies]
 forcolormap = {git = "https://github.com/vmagnin/forcolormap.git" }
 ```
+
+### Using CMake
+
+You can also build the project with CMake:
+```bash
+$ git clone git@github.com:vmagnin/forcolormap.git
+$ cd forcolormap
+$ mkdir build && cd build
+$ cmake ..
+$ make
+$ sudo make install
+```
+
+You can build the examples with:
+```bash
+$ cmake -D BUILD_FORCOLORMAP_EXAMPLES=true ..
+$ make
+$ cd example
+```
+
+The automatic tests can be run with:
+```bash
+$ cmake -D BUILD_TESTING=true ..
+$ make
+$ ctest
+```
+
+See [CMake basics](https://github.com/vmagnin/gtk-fortran/wiki/CMake-basics) for more information.
 
 ## Learning
 
@@ -81,6 +109,7 @@ They can be launched with the command `fpm run --example name_of_the_example` (w
   * [ ] Which colormaps are colorblind friendly, perceptually uniform, B&W print safe, etc.
   * [ ] Add in `src/colormaps_info.f90` and `COLORMAPS_LIST.md` the Matplotlib and miscellaneous colormaps.
 * [ ] Add more colormaps.
+* [ ] Add more automatic tests in `test/check.f90`.
 * [ ] Colormaps could have an option for logscale.
 * [ ] A `get_colorbar()` function could return an `array(:,:,1:3)` containing the RGB image of the colorbar. The arguments could be the width and height, the direction (horizontal/vertical), etc.
 * [ ] A `save()` method could save a colormap as RGB values separated by spaces in a `.lut` text file.
