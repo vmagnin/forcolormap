@@ -1,23 +1,14 @@
+# Get the macros and functions we'll need
+include("${PROJECT_SOURCE_DIR}/cmake/helper.cmake")
 include(CMakePackageConfigHelpers)
 
 # Install the library and necessary include files
-install(
-    TARGETS ${PROJECT_NAME}
-    EXPORT ${PROJECT_NAME}Targets
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    INCLUDES DESTINATION ${CMAKE_INSTALL_PREFIX}/include
-)
-install(
-    DIRECTORY ${PROJECT_INCLUDE_DIR}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
-)
-
-# Install the C API headers
-install(
-    DIRECTORY ${PROJECT_SOURCE_DIR}/include
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
+install_library(
+    ${PROJECT_NAME}
+    ${CMAKE_INSTALL_LIBDIR}
+    ${CMAKE_INSTALL_BINDIR}
+    ${PROJECT_INCLUDE_DIR}
+    ${CMAKE_INSTALL_PREFIX}
 )
 
 # Define the version file
