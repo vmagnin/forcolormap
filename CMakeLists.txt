@@ -5,6 +5,9 @@ project(
     VERSION 0.0.0
 )
 
+# Get useful macros
+include("${PROJECT_SOURCE_DIR}/cmake/helper.cmake")
+
 # Set a default build type if none was specified
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   message(STATUS "Setting build type to 'Release' as none was specified.")
@@ -30,24 +33,15 @@ add_subdirectory(dependencies)
 
 # Build
 add_subdirectory(src)
-add_library(${PROJECT_NAME} ${FORCOLORMAP_SOURCES})
-set_target_properties(
-    ${PROJECT_NAME}
-    PROPERTIES
-        POSITION_INDEPENDENT_CODE TRUE
-        OUTPUT_NAME ${PROJECT_NAME}
-        VERSION ${PROJECT_VERSION}
-        SOVERSION ${PROJECT_VERSION_MAJOR}
-        Fortran_MODULE_DIRECTORY ${CMAKE_INSTALL_INCLUDEDIR}
+add_fortran_library(
+  ${PROJECT_NAME}
+  ${PROJECT_INCLUDE_DIR}
+  ${CMAKE_INSTALL_INCLUDEDIR}
+  ${PROJECT_VERSION}
+  ${PROJECT_VERSION_MAJOR}
+  ${FORCOLORMAP_SOURCES}
 )
-target_include_directories(
-    ${PROJECT_NAME}
-    PUBLIC
-        $<BUILD_INTERFACE:${PROJECT_INCLUDE_DIR}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-)
-target_link_libraries(${PROJECT_NAME} ${forimage_LIBRARY})
-target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${forimage_INCLUDE_DIR}>)
+link_library(${PROJECT_NAME} ${forimage_LIBRARY} ${forimage_INCLUDE_DIR})
 
 # Installation
 add_subdirectory(install)
