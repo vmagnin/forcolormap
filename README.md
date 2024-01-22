@@ -101,21 +101,6 @@ In the `example` directory, you will find these commented demos:
 
 They can be launched with the command `fpm run --example name_of_the_example` (without the `.f90` extension).
 
-
-## TODO / ideas for further developments
-
-* [ ] Improve the documentation.
-  * [ ] Include a few images in the README.md file.
-  * [ ] Which colormaps are colorblind friendly, perceptually uniform, B&W print safe, etc.
-  * [ ] Add in `src/colormaps_info.f90` and `COLORMAPS_LIST.md` the Matplotlib and miscellaneous colormaps.
-* [ ] Add more colormaps.
-* [ ] Add more automatic tests in `test/check.f90`.
-* [ ] Colormaps could have an option for logscale.
-* [ ] A `get_colorbar()` function could return an `array(:,:,1:3)` containing the RGB image of the colorbar. The arguments could be the width and height, the direction (horizontal/vertical), etc.
-* [ ] A `save()` method could save a colormap as RGB values separated by spaces in a `.lut` text file.
-* [ ] Adding functions to create colormaps, for example defined by their two extremes colors: `create_linear(color1, color2)`.
-
-
 ## Licenses
 
 This project is under MIT license. The logo files are under [license CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
