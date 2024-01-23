@@ -1,9 +1,9 @@
 prefix = @CMAKE_INSTALL_PREFIX@
-libdir = ${prefix}/@CMAKE_INSTALL_FULL_LIBDIR@
+libdir = ${prefix}/@CMAKE_INSTALL_LIBDIR@
 includedir = ${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
 
 Name: @PROJECT_NAME@
-Description: FORCOLORMAP is a Fortran fpm library for colormaps.
+Description: FORCOLORMAP is a Fortran library for colormaps.
 Version: @PROJECT_VERSION@
 URL: https://github.com/vmagnin/forcolormap
 Libs: -L${libdir} -l@PROJECT_NAME@
