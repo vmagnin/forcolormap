@@ -73,6 +73,11 @@ $ make
 $ sudo make install
 ```
 
+By default, ForColormap is built as a static library by CMake, but there is an option to obtain a shared library:
+```bash
+$ cmake -D BUILD_SHARED_LIBS=true ..
+```
+
 You can build the examples with:
 ```bash
 $ cmake -D BUILD_FORCOLORMAP_EXAMPLES=true ..
