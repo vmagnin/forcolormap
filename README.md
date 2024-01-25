@@ -39,7 +39,7 @@ Note that **there is no default colormap** as we consider that the user must cho
 You need, whatever your operating system:
 
 * a modern Fortran compiler, for example GFortran or the Intel ifort/ifx compilers. See the [Fortran-lang.org compilers page](https://fortran-lang.org/compilers/) for other compilers.
-* The Fortran Package Manager [fpm](https://fpm.fortran-lang.org/) or CMake (>=3.24) for building the project.
+* The Fortran Package Manager [fpm](https://fpm.fortran-lang.org/) or CMake (>=3.24) & pkg-config for building the project.
   * For writing PPM files, the library [ForImage](https://github.com/gha3mi/forimage) is used as a fpm or CMake dependency (automatically downloaded).
 
 ### Testing the project with fpm
@@ -77,6 +77,12 @@ By default, ForColormap is built as a static library by CMake, but there is an o
 ```bash
 $ cmake -D BUILD_SHARED_LIBS=true ..
 ```
+
+You can compile your program like this:
+```bash
+$ gfortran my_program.f90 $(pkg-config --cflags --libs forcolormap)
+```
+If you encounter linking problems, you should verify the content of your `PKG_CONFIG_PATH` and `LD_LIBRARY_PATH` environment variables. For example, in Ubuntu the `.pc` files will be installed in `/usr/local/lib/pkgconfig/` and the libraries in `/usr/local/lib/`.
 
 You can build the examples with:
 ```bash
