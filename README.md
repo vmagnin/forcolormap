@@ -32,6 +32,8 @@ The library is using the precision `wp=>real64` defined in the module `iso_fortr
 
 Note that **there is no default colormap** as we consider that the user must choose a colormap adapted to the properties of its data. This [guideline](https://s-ink.org/colour-map-guideline) can help you choosing the right kind of colormap.
 
+You can visually choose the available colormaps on this page (under development): https://github.com/gha3mi/forcolormap/tree/dev
+
 ## Installation
 
 ### Requirements
