@@ -75,7 +75,15 @@ $ make
 $ sudo make install
 ```
 
-By default, ForColormap is built as a static library by CMake, but there is an option to obtain a shared library:
+#### Static linking
+By default, ForColormap is built as a static library by CMake. You can compile your program with the `-static` option:
+```bash
+$ gfortran -static my_program.f90 $(pkg-config --cflags --libs forcolormap forimage)
+```
+Note that ForColormap is depending on ForImage, and for linking you must respect that order.
+
+#### Dynamic linking
+There is a CMake option to obtain a shared library:
 ```bash
 $ cmake -D BUILD_SHARED_LIBS=true ..
 ```
@@ -85,6 +93,8 @@ You can compile your program like this:
 $ gfortran my_program.f90 $(pkg-config --cflags --libs forcolormap)
 ```
 If you encounter linking problems, you should verify the content of your `PKG_CONFIG_PATH` and `LD_LIBRARY_PATH` environment variables. For example, in Ubuntu the `.pc` files will be installed in `/usr/local/lib/pkgconfig/` and the libraries in `/usr/local/lib/`.
+
+#### Building examples and tests
 
 You can build the examples with:
 ```bash
