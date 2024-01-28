@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-01-06
+! Last modification: gha3mi 2024-01-28
 !-------------------------------------------------------------------------------
 
 
@@ -34,7 +34,7 @@ module forcolormap
     implicit none
     private
 
-    public :: wp
+    public :: wp, bezier
 
     ! List of built-in colormaps:
     character(*), dimension(*), public, parameter :: colormaps_list = &
@@ -927,4 +927,44 @@ contains
         end if
     end subroutine extract
 
+    ! Create colormap from continuous Bezier interpolation of control colors
+    pure function bezier(colors, levels) result(map)
+        integer, dimension(:,:), intent(in) :: colors
+        integer, intent(in), optional :: levels
+        integer, dimension(:,:), allocatable :: map
+        real(wp), dimension(:,:), allocatable :: map_r
+        integer :: order, i, j, levels_
+        real(wp) :: t
+
+        ! Set default value for levels
+        if (present(levels)) then
+            levels_ = levels
+        else
+            levels_ = 256
+        end if
+
+        ! Order of the Bezier curve
+        order = size(colors, 1) - 1
+
+        allocate(map_r(levels_,3), map(levels_,3)) ! 3 for RGB
+        do i = 1,levels_
+            t = real(i-1, wp) / real(levels_-1, wp)
+            map_r(i,:) = 0.0_wp
+            do j = 0, order
+                map_r(i,:) = map_r(i,:) + real(colors(j+1,:), wp)*&
+                real(factorial(order), wp)/(real(factorial(j), wp)*real(factorial(order-j), wp)) * t**j * (1.0_wp-t)**(order-j)
+            end do
+            map(i,:) = scale_real_int(map_r(i,:), 0, 255) ! Scale to integer RGB range
+        end do
+    end function bezier
+
+    ! Factorial function used for Bezier interpolation
+    pure function factorial(n) result(result)
+        integer, intent(in) :: n
+        integer :: result, i
+        result = 1
+        do concurrent (i = 2:n)
+            result = result * i
+        end do
+    end function factorial
 end module forcolormap
