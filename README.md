@@ -110,7 +110,7 @@ $ make
 $ ctest
 ```
 
-#### Uninstalling ForColomap
+#### Uninstalling ForColormap
 
 From the `build` directory:
 ```bash
