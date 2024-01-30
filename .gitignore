@@ -4,6 +4,10 @@
 # Images
 *.ppm
 
+# Backups
+*.backup
+.gitignore~
+
 # Prerequisites
 *.d
 
