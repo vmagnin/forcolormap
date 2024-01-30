@@ -29,7 +29,7 @@ include(GNUInstallDirs)
 set(PROJECT_INCLUDE_DIR ${PROJECT_BINARY_DIR}/include)
 
 # Dependencies
-add_subdirectory(dependencies)
+add_subdirectory(cmake/dependencies)
 
 # Build
 add_subdirectory(src)
@@ -44,7 +44,7 @@ add_fortran_library(
 link_library(${PROJECT_NAME} ${forimage_LIBRARY} ${forimage_INCLUDE_DIR})
 
 # Installation
-add_subdirectory(install)
+add_subdirectory(cmake/install)
 
 #===============================================================================
 # Uninstall target:
