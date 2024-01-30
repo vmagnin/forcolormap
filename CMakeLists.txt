@@ -46,6 +46,24 @@ link_library(${PROJECT_NAME} ${forimage_LIBRARY} ${forimage_INCLUDE_DIR})
 # Installation
 add_subdirectory(install)
 
+#===============================================================================
+# Uninstall target:
+# Generic code adapted from
+# https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake
+#===============================================================================
+if(NOT TARGET uninstall_forcolormap)
+    # configure_file() copies a file and substitutes @VAR@ or ${VAR}
+    # @ONLY means only @VAR@ will be sustituted
+    # https://cmake.org/cmake/help/latest/command/configure_file.html
+    configure_file(
+        "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+        @ONLY)
+
+    add_custom_target(uninstall_forcolormap
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+endif()
+
 # Testing
 option(BUILD_TESTING "Build tests")
 include(CTest)

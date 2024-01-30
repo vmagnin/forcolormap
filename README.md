@@ -110,6 +110,17 @@ $ make
 $ ctest
 ```
 
+#### Uninstalling ForColomap
+
+From the `build` directory:
+```bash
+$ sudo make uninstall_forcolormap
+```
+
+Note that its dependency ForImage will also be uninstalled! You will have to reinstall it if needed.
+
+You can also choose and remove files listed in `build/install_manifest.txt` one by one.
+
 See [CMake basics](https://github.com/vmagnin/gtk-fortran/wiki/CMake-basics) for more information.
 
 ## Learning
