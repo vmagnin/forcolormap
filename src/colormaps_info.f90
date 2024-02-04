@@ -26,6 +26,8 @@
 
 module forcolormap_info
 
+   use colormap_parameters, only: colormap_name_length
+
    implicit none
 
    private
@@ -52,14 +54,37 @@ module forcolormap_info
 
    ! Define a derived type named 'Colormaps_info' to store an array of 'table' type
    type :: Colormaps_info
-      type(table), private :: colormaps(223) ! Array of 'table' type to store multiple colormaps
+      type(table), private :: colormaps(225) ! Array of 'table' type to store multiple colormaps
    contains
       procedure :: set_all ! Procedure to set information for all colormaps in the array
       procedure :: write   ! Procedure to filter and write information about the colormaps
       procedure :: finalize => deallocate_Colormaps_info ! Procedure to finalize the derived type
+      procedure :: get_ncolormaps ! Procedure to get the number of colormaps
+      procedure :: get_name       ! Procedure to get the name of a colormap
+      procedure :: get_levels     ! Procedure to get the number of levels in a colormap
    end type Colormaps_info
 
 contains
+
+   pure elemental function get_ncolormaps(this) result(ncolormaps)
+      class(Colormaps_info), intent(in) :: this
+      integer :: ncolormaps
+      ncolormaps = size(this%colormaps)
+   end function get_ncolormaps
+
+   pure elemental function get_name(this, index) result(name)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: index
+      character(colormap_name_length) :: name
+      name = trim(this%colormaps(index)%name)
+   end function get_name
+
+   pure function get_levels(this, index) result(levels)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: index
+      integer :: levels
+      levels = this%colormaps(index)%levels
+   end function get_levels
 
    ! set information about the colormap
    pure elemental subroutine set_info(this, package, family, name, gradient, palette, author, license, url, colorbar, levels)
@@ -278,7 +303,7 @@ contains
       integer, intent(in), optional :: levels
       character(*), intent(in), optional :: file_name
       integer :: i, k, verbose_, nunit
-      integer :: ind(size(this%colormaps),8) ! 1: index, 2: name, 3: family, 4: gradient, 5: palette, 6: author, 7: license, 8: levels
+      integer :: ind(this%get_ncolormaps(),8) ! 1: index, 2: name, 3: family, 4: gradient, 5: palette, 6: author, 7: license, 8: levels
       integer, allocatable :: inter_ind(:)
 
       ! Set default values
@@ -332,13 +357,13 @@ contains
          present(levels)) then
 
          ind = 0
-         do i = 1, size(this%colormaps)
+         do i = 1, this%get_ncolormaps()
             ind(i, 1) = i
          end do
 
          if (present(name)) then
             k = 1
-            do i = 1, size(this%colormaps)
+            do i = 1, this%get_ncolormaps()
                if (this%colormaps(i)%name == name) then
                   ind(k,2) = i
                   k = k + 1
@@ -347,7 +372,7 @@ contains
          end if
          if (present(family)) then
             k = 1
-            do i = 1, size(this%colormaps)
+            do i = 1, this%get_ncolormaps()
                if (this%colormaps(i)%family == family) then
                   ind(k,3) = i
                   k = k + 1
@@ -356,7 +381,7 @@ contains
          end if
          if (present(gradient)) then
             k = 1
-            do i = 1, size(this%colormaps)
+            do i = 1, this%get_ncolormaps()
                if (this%colormaps(i)%gradient == gradient) then
                   ind(k,4) = i
                   k = k + 1
@@ -365,7 +390,7 @@ contains
          end if
          if (present(palette)) then
             k = 1
-            do i = 1, size(this%colormaps)
+            do i = 1, this%get_ncolormaps()
                if (this%colormaps(i)%palette == palette) then
                   ind(k,5) = i
                   k = k + 1
@@ -374,7 +399,7 @@ contains
          end if
          if (present(author)) then
             k = 1
-            do i = 1, size(this%colormaps)
+            do i = 1, this%get_ncolormaps()
                if (this%colormaps(i)%author == author) then
                   ind(k,6) = i
                   k = k + 1
@@ -383,7 +408,7 @@ contains
          end if
          if (present(license)) then
             k = 1
-            do i = 1, size(this%colormaps)
+            do i = 1, this%get_ncolormaps()
                if (this%colormaps(i)%license == license) then
                   ind(k,7) = i
                   k = k + 1
@@ -392,7 +417,7 @@ contains
          end if
          if (present(levels)) then
             k = 1
-            do i = 1, size(this%colormaps)
+            do i = 1, this%get_ncolormaps()
                if (this%colormaps(i)%levels == levels) then
                   ind(k,8) = i
                   k = k + 1
@@ -401,7 +426,7 @@ contains
          end if
 
          inter_ind = findColumnIntersections(ind(:,:))
-         do i = 1, size(this%colormaps)
+         do i = 1, this%get_ncolormaps()
             do k = 1, size(inter_ind)
                if (inter_ind(k) == i) then
                   call this%colormaps(i)%write_info(verbose,file_name)
@@ -418,7 +443,7 @@ contains
          end if
 
       else
-         do i = 1, size(this%colormaps)
+         do i = 1, this%get_ncolormaps()
             call this%colormaps(i)%write_info(verbose,file_name)
          end do
          if (present(file_name)) then
@@ -3559,6 +3584,34 @@ contains
          license    = "Public Domain (CC0)",&
          url        = "https://www.kennethmoreland.com")
 
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "fire",&
+         family     = "fire",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = -1, & ! -1 means that the number of levels is not fixed
+         colorbar   = "fire_colorbar.ppm",&
+         package    = "Miscellaneous",&
+         author     = "TODO",&
+         license    = "TODO",&
+         url        = "TODO")
+
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "cubehelix",&
+         family     = "cubehelix",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = -1, & ! -1 means that the number of levels is not fixed
+         colorbar   = "cubehelix_colorbar.ppm",&
+         package    = "Miscellaneous",&
+         author     = "Dave Green",&
+         license    = "TODO",&
+         url        = "https://people.phy.cam.ac.uk/dag9/CUBEHELIX")
+
    end subroutine set_all
 
    pure elemental subroutine deallocate_table(this)
@@ -3577,7 +3630,7 @@ contains
    pure elemental subroutine deallocate_Colormaps_info(this)
       class(Colormaps_info), intent(inout) :: this
       ! integer :: i
-      ! do i = 1, size(this%colormaps)
+      ! do i = 1, this%get_ncolormaps()
       !    call this%colormaps(i)%deallocate_table()
       ! end do
       call this%colormaps(:)%finalize()
