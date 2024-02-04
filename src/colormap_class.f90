@@ -100,10 +100,6 @@ contains
 
         select case(self%name)
         ! Miscellaneous colormaps collection
-        case("grey")
-            ! The user can not choose the number of levels:
-            self%levels = 256
-            call grey_colormap(self%map)
         case("fire")
             ! Best with 256 levels but you can try other numbers:
             call fire_colormap(self%levels, self%map)

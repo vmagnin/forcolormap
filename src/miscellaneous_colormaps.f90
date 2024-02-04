@@ -29,12 +29,12 @@ module miscellaneous_colormaps
     implicit none
     private
 
-    public :: grey_colormap, fire_colormap, rainbow_colormap, &
+    public :: fire_colormap, rainbow_colormap, &
               inverted_rainbow_colormap, zebra_colormap, cubehelix_colormap
 
     character(*), dimension(*), parameter, public :: miscellaneous_colormaps_list = &
         [character(colormap_name_length) :: &
-        "grey", "fire", "rainbow", "inverted_rainbow", "zebra", "cubehelix", &
+        "fire", "rainbow", "inverted_rainbow", "zebra", "cubehelix", &
         "black_body"]
 
     integer, dimension(0:1023, 1:3), public :: black_body=reshape( [ &
@@ -297,19 +297,6 @@ module miscellaneous_colormaps
             ], shape(black_body), order=[2, 1] )
 
     contains
-
-    pure subroutine grey_colormap(map)
-        integer, dimension(:,:), allocatable, intent(out) :: map
-        integer :: levels, last, i
-
-        ! The user can not choose the number of levels:
-        levels = 256
-        last = levels - 1
-        allocate(map(0:last, 1:3))
-        do concurrent(i = 0:last)
-            map(i, :) = i
-        end do
-    end subroutine grey_colormap
 
     pure subroutine fire_colormap(levels, map)
         integer, intent(in) :: levels
