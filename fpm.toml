@@ -33,6 +33,11 @@ source-dir = "example"
 main = "info.f90"
 
 [[example]]
+name = "colormaps_list"
+source-dir = "example"
+main = "colormaps_list.f90"
+
+[[example]]
 name = "extract"
 source-dir = "example"
 main = "extract.f90"

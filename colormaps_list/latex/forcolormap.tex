@@ -1,0 +1,122 @@
+\documentclass[a4paper]{article}
+\usepackage{listings}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{verbatim}
+\usepackage{fancyhdr}
+\usepackage{svg}
+\svgpath{{figures/}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\setlength{\headheight}{29.37688pt}
+
+\fancyhead[L]{\includesvg[inkscapelatex=false,width=3cm]{../../logo/logo_forcolormap-roma_8.svg}}
+\fancyhead[C]{
+	\centering
+	\textbf{\LARGE ForColormap}\\
+	\textit{Explore the world of colors}
+}
+\fancyhead[R]{
+	\flushright
+	\footnotesize{}
+}
+
+\fancyfoot[L]{\small \href{https://github.com/vmagnin/forcolormap}{github.com/vmagnin/forcolormap}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\small Last updated: \today}
+
+\lstdefinestyle{fortran}{
+	language=Fortran,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{blue},
+	commentstyle=\color{green!50!black},
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=5pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=single,
+	backgroundcolor=\color{gray!10},
+	tabsize=4,
+	captionpos=b
+}
+
+
+\begin{document}
+\begin{titlepage}
+	\centering
+	\includesvg[inkscapelatex=false,width=8cm]{../../logo/logo_forcolormap-roma_8.svg}\\
+	\vspace{1cm}
+	{\scshape\LARGE ForColormap}\\
+	\vspace{1.5cm}
+	{\scshape\Large Explore the world of colors}\\
+	\vfill
+	{\large \today}\\
+\end{titlepage}
+\newpage
+\tableofcontents
+\listoftables
+\newpage
+\section{Tables}
+\renewcommand{\arraystretch}{2}
+\begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
+	\caption{Categorical Gradients} \label{tab:cat}                                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
+	\caption*{Table \ref{tab:seq} Continued: Categorical Gradients}                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
+	\input{contents/categorical.tex}
+\end{longtable}
+\newpage
+\renewcommand{\arraystretch}{2}
+\begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
+	\caption{Cyclic Gradients} \label{tab:cyc}                                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
+	\caption*{Table \ref{tab:seq} Continued: Cyclic Gradients}                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
+	\input{contents/cyclic.tex}
+\end{longtable}
+\newpage
+\renewcommand{\arraystretch}{2}
+\begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
+	\caption{Diverging Gradients} \label{tab:div}                                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
+	\caption*{Table \ref{tab:seq} Continued: Diverging Gradients}                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
+	\input{contents/diverging.tex}
+\end{longtable}
+\newpage
+\renewcommand{\arraystretch}{2}
+\begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
+	\caption{Multi Sequential Gradients} \label{tab:msq}                                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
+	\caption*{Table \ref{tab:seq} Continued: Multi Sequential Gradients}                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
+	\input{contents/multi_sequential.tex}
+\end{longtable}
+\newpage
+\renewcommand{\arraystretch}{2}
+\begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
+	\caption{Sequential Gradients} \label{tab:seq}                                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
+	\caption*{Table \ref{tab:seq} Continued: Sequential Gradients}                             \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
+	\input{contents/sequential.tex}
+\end{longtable}
+\newpage
+\verbatiminput{../../LICENSE}
+\end{document}
