@@ -64,6 +64,7 @@ module forcolormap
         procedure :: colorbar => write_ppm_colorbar
         procedure, private :: reverse_map
         procedure :: extract
+        procedure, private :: check
     end type Colormap
 
 
@@ -76,8 +77,6 @@ contains
         integer, intent(in), optional :: levels
         real(wp), dimension(:), intent(in), optional :: varargs
         logical, intent(in), optional :: reverse
-        integer :: last
-        integer :: i
 
         self%name = trim(name)
         self%zmin = zmin
@@ -86,17 +85,11 @@ contains
         if (present(levels)) then
             self%levels = levels
         else
-            self%levels = 256       ! Default value
+            self%levels = -256 ! This value will be fixed in the check() procedure
         end if
-        ! The last level is:
-        last = self%levels - 1
 
-        ! Is the current colormap reseted?
-        if (allocated(self%map)) then
-            deallocate(self%map)
-        end if
-        ! The second dimension is for RGB: 1=Red, 2=Green, 3=Blue
-        allocate(self%map(0:last, 1:3))
+        ! Check validity of the colormap and fix it if necessary
+        call self%check(check_name=.true., check_zmin=.true., check_zmax=.true., check_levels=.true.)
 
         select case(self%name)
         ! Miscellaneous colormaps collection
@@ -580,7 +573,8 @@ contains
         case("black_body")
             call self%create(self%name, self%zmin, self%zmax, black_body)
         case default
-            error stop "Unknown colormap!"
+            self%name = "grayC"
+            call self%create(self%name, self%zmin, self%zmax, grayC)
         end select
 
         ! Reverse the colormap if requested
@@ -603,6 +597,8 @@ contains
         last  = self%levels - 1
         self%zmin   = zmin
         self%zmax   = zmax
+
+        call self%check(check_zmin=.true., check_zmax=.true., check_levels=.true.)
 
         ! Is the colormap reseted?
         if (allocated(self%map)) then
@@ -666,6 +662,8 @@ contains
             self%zmin   = zmin
             self%zmax   = zmax
             self%levels = n
+
+            call self%check(check_zmin=.true., check_zmax=.true.)
 
             ! Reverse the colormap if requested
             if (present(reverse)) then
@@ -790,7 +788,7 @@ contains
                 call self%compute_RGB(z, red, green, blue)
                 rgb_image(pixheight-j, 3*(i+1)-2) = red
                 rgb_image(pixheight-j, 3*(i+1)-1) = green
-                rgb_image(pixheight-j, 3*(i+1))   = blue  
+                rgb_image(pixheight-j, 3*(i+1))   = blue
             end do
         end do
 
@@ -801,12 +799,12 @@ contains
         end if
 
         call ppm%set_pnm(encoding    = encoding,&
-                         file_format = 'ppm',&
-                         width       = pixwidth,&
-                         height      = pixheight,&
-                         max_color   = 255,&
-                         comment     = 'comment',&
-                         pixels      = rgb_image)
+            file_format = 'ppm',&
+            width       = pixwidth,&
+            height      = pixheight,&
+            max_color   = 255,&
+            comment     = 'comment',&
+            pixels      = rgb_image)
         call ppm%export_pnm(filename)
     end subroutine write_ppm_colorbar
 
@@ -878,7 +876,7 @@ contains
         do concurrent (i = 1: 3)
             array_rel(:,i) = array(:,i)/ maxval(array(:,i))
         end do
-  
+
         ! Check if the number of extractedLevels is valid
         if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
             error stop "Error: Invalid number of extractedLevels. Must be > 1 and <= levels"
@@ -948,7 +946,7 @@ contains
             map_r(i,:) = 0.0_wp
             do j = 0, order
                 map_r(i,:) = map_r(i,:) + real(colors(j+1,:), wp)*&
-                real(factorial(order), wp)/(real(factorial(j), wp)*real(factorial(order-j), wp)) * t**j * (1.0_wp-t)**(order-j)
+                    real(factorial(order), wp)/(real(factorial(j), wp)*real(factorial(order-j), wp)) * t**j * (1.0_wp-t)**(order-j)
             end do
             map(i,:) = scale_real_int(map_r(i,:), 0, 255) ! Scale to integer RGB range
         end do
@@ -963,4 +961,138 @@ contains
             result = result * i
         end do
     end function factorial
+
+    ! Check validity of the colormap and fix it if necessary
+    pure subroutine check(self,check_name, check_zmin, check_zmax, check_levels)
+        use forcolormap_info, only: Colormaps_info
+
+        class(Colormap), intent(inout) :: self
+        logical, dimension(4) :: status
+        logical, intent(in), optional :: check_name, check_zmin, check_zmax, check_levels
+        real(wp) :: temp
+        type(Colormaps_info) :: cmap_info
+        integer :: input_levels, i, levels
+        real(wp) :: input_zmin, input_zmax
+        character(:), allocatable :: input_name
+
+        interface
+            pure subroutine error(status, input_name, input_zmin, input_zmax, input_levels)
+                import wp
+                logical, dimension(:), intent(in) :: status
+                character(*), intent(in) :: input_name
+                real(wp), intent(in) :: input_zmin, input_zmax
+                integer, intent(in) :: input_levels
+            end subroutine error
+        end interface
+
+        ! Save input parameters for error message
+        input_levels = self%levels
+        input_zmin = self%zmin
+        input_zmax = self%zmax
+        input_name = self%name
+
+        ! Initialize status array
+        status = .true.
+
+        call cmap_info%set_all()
+
+        if (present(check_name)) then
+            if (check_name) then
+
+                ! Check if the colormap is valid
+                if (.not. any(self%name == colormaps_list)) status(1) = .false.
+
+                ! Fix the colormap if it is not valid
+                if (status(1) .eqv. .false.) self%name = "grayC"
+
+                ! Find the number of levels of the colormap
+                do i = 1, cmap_info%get_ncolormaps()
+                    if (self%name == trim(cmap_info%get_name(i))) then
+                        levels = cmap_info%get_levels(i)
+                        exit
+                    end if
+                end do
+
+                ! Check if the number of levels is valid
+                if (levels /= self%levels .or. self%levels < 1) then
+                    if (self%levels /= -256) then
+                        if (levels /= -1) then
+                            status(3) = .false.
+                            self%levels = levels
+                        end if
+                    else
+                        self%levels = 256
+                    end if
+                end if
+
+                ! Fix the number of levels if it is not valid
+                if (status(3) .eqv. .false.) then
+                    self%levels = levels
+                end if
+
+            end if
+        end if
+
+        if (present(check_zmin)) then
+            if (check_zmin) then
+
+                ! Check validity of zmin and zmax
+                if (self%zmin > self%zmax) status(2) = .false.
+
+                ! Fix zmin and zmax if they are not valid
+                if (status(2) .eqv. .false.) then
+                    temp = self%zmin
+                    self%zmin = self%zmax
+                    self%zmax = temp
+                end if
+
+            end if
+        end if
+
+
+        if (present(check_levels)) then
+            if (check_levels) then
+                ! Check if the number of levels is valid
+                if (self%levels < 1) then
+                    status(4) = .false.
+                    self%levels = 256
+                end if
+            end if
+        end if
+
+        ! Call error subroutine if any status is false
+        if (any(status .eqv. .false.))&
+            call error(status, input_name, input_zmin, input_zmax, input_levels)
+
+    end subroutine check
 end module forcolormap
+
+impure subroutine error(status, input_name, input_zmin, input_zmax, input_levels)
+    use colormap_parameters, only: wp
+    logical, dimension(:), intent(in) :: status
+    character(*), intent(in) :: input_name
+    real(wp), intent(in) :: input_zmin, input_zmax
+    integer, intent(in) :: input_levels
+    integer :: i
+
+    do i = 1, size(status)
+        if (.not. status(i)) then
+            select case (i)
+              case (1)
+                print'(a,a,a)',&
+                    "Error 1: Colormap name '"//trim(input_name)//"' not found! 'grayC' is set by default."
+              case (2)
+                print'(a,f6.4,a,f6.4,a)',&
+                    "Error 2: Min value (zmin=",input_zmin,") exceeds Max value (zmax=",input_zmax,")! zmin and zmax are swapped."
+              case (3)
+                print'(a,g0,a)',&
+                    "Error 3: Number of Levels (levels=",input_levels,") doesn't match colormap! Levels adjusted to colormap."
+              case (4)
+                print'(a,g0,a)',&
+                    "Error 4: Number of Levels (levels=",input_levels,") is less than 1! Levels adjusted to 256."
+              case default
+                print '(a)', "Unknown error!"
+            end select
+        end if
+    end do
+end subroutine error

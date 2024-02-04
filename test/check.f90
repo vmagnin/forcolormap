@@ -64,8 +64,24 @@ program check
     if ((red /= test_colormap(6, 1)).or.(green /= test_colormap(6, 2)) &
             & .or.(blue /= test_colormap(6, 3))) error stop "ERROR: colormap%compute_RGB()"
 
-    call cmap%set("grey", 0.0_wp, 2.0_wp)
-    call cmap%get_RGB(123, red, green, blue)
-    if ((red /= 123).or.(green /= 123) &
-            & .or.(blue /= 123)) error stop "ERROR: 'grey' colormap"
+
+    !! Test check() procedure within set() procedure
+    ! Name is not in the list
+    call cmap%set('actom10', 0.0_wp, 2.0_wp)
+    if (cmap%get_name() /= 'grayC') error stop "ERROR: colormap%check() name"
+    
+    ! Maximum value is less than minimum value
+    call cmap%set('acton10', 2.0_wp, 0.0_wp)
+    if (cmap%get_zmin() /= 0.0_wp .or. cmap%get_zmax() /= 2.0_wp) error stop "ERROR: colormap%check() zmin > zmax"
+    
+    ! Number of levels is not equal to predefined number of levels
+    call cmap%set('acton10', 0.0_wp, 2.0_wp, 256)
+    if (cmap%get_levels() /= 10) error stop "ERROR: colormap%check() levels /= predefined levels"
+
+
+    !! Test check() procedure within create() procedure
+    ! Maximum value is less than minimum value
+    call cmap%create("discrete", 2.0_wp, 0.0_wp, test_colormap)
+    if (cmap%get_zmin() /= 0.0_wp .or. cmap%get_zmax() /= 2.0_wp) error stop "ERROR: colormap%check() zmin > zmax"
+
 end program check
