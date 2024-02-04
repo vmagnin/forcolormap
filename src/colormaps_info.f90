@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-11-05
-! Last modification: gha3mi 2024-01-06
+! Last modification: gha3mi 2024-01-06, vmagnin 2024-02-04
 !-------------------------------------------------------------------------------
 
 module forcolormap_info
@@ -635,7 +635,7 @@ contains
       call this%colormaps(i)%set_info(&
          name       = "bamako10",&
          family     = "bamako",&
-         gradient   = "Diverging",&
+         gradient   = "Sequential",&
          palette    = "Discrete",&
          levels     = 10, &
          colorbar   = "bamako10_colorbar.ppm",&
@@ -649,7 +649,7 @@ contains
       call this%colormaps(i)%set_info(&
          name       = "bamako100",&
          family     = "bamako",&
-         gradient   = "Diverging",&
+         gradient   = "Sequential",&
          palette    = "Discrete",&
          levels     = 100, &
          colorbar   = "bamako100_colorbar.ppm",&
@@ -663,7 +663,7 @@ contains
       call this%colormaps(i)%set_info(&
          name       = "bamako25",&
          family     = "bamako",&
-         gradient   = "Diverging",&
+         gradient   = "Sequential",&
          palette    = "Discrete",&
          levels     = 25, &
          colorbar   = "bamako25_colorbar.ppm",&
@@ -677,7 +677,7 @@ contains
       call this%colormaps(i)%set_info(&
          name       = "bamako50",&
          family     = "bamako",&
-         gradient   = "Diverging",&
+         gradient   = "Sequential",&
          palette    = "Discrete",&
          levels     = 50, &
          colorbar   = "bamako50_colorbar.ppm",&
