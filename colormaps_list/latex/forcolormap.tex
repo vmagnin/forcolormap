@@ -62,51 +62,77 @@
 \tableofcontents
 \listoftables
 \newpage
-\section{Tables}
+\section{Citing Colormaps}
+ForColormap includes 222 colormaps from the Scientific coloor maps collection v8.0.1, developed by Fabio Crameri\cite{crameri_2023_8409685}. The colormaps acton*, bam*, bamako*, batlow*, berlin*, bilbao*, broc*, buda*, bukavu*, cork*, davos*, devon*, fes*, glasgow*, grayc*, hawaii*, imola*, lajolla*, lapaz*, lipari*, lisbon*, managua*, navia*, nuuk*, oleron*, oslo*, roma*, tofino*, tokyo*, turku*, vanimo*, and vik*, are part of the Scientific Colormap Collection. If you use any of these colormaps, please cite this paper \cite{Crameri2020}. Additionally, the colormaps magma, inferno, plasma, and viridis are sourced from the matplotlib colormaps. When employing these colormaps, please cite this webpage\cite{mpl_colormaps}. For the cubehelix colormap, please cite\cite{green2011colour}. For the black\_body colormap, please cite\cite{color_advice}.
+
+\newpage
+\section{Basic Usage}
+Assuming your graphical library has a \texttt{setpixelgb()}-like function and you know your $z$ values will be for example in the $[0, 2]$ range, you can write something like:
+\begin{lstlisting}[style=fortran]
+use forcolormap, only: Colormap, colormaps_list, wp
+...
+type(Colormap) :: cmap
+integer  :: red, green, blue
+real(wp) :: z, x, y
+...
+! Let's use the glasgow colormap:
+call cmap%set("glasgow", 0.0_wp, 2.0_wp)
+...
+z = f(x,y)
+call cmap%compute_RGB(z, red, green, blue)
+call setpixelrgb(x, y, red, green, blue)
+\end{lstlisting}
+\newpage
+\section{Colormaps}
+\subsection{Categorical Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
-	\caption{Categorical Gradients} \label{tab:cat}                                             \\
+	\caption{Categorical Gradients} \label{tab:cat}                                            \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
-	\caption*{Table \ref{tab:seq} Continued: Categorical Gradients}                             \\
+	\caption*{Table \ref{tab:seq} Continued: Categorical Gradients}                            \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
 	\input{contents/categorical.tex}
 \end{longtable}
 \newpage
+\subsection{Cyclic Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
-	\caption{Cyclic Gradients} \label{tab:cyc}                                             \\
+	\caption{Cyclic Gradients} \label{tab:cyc}                                                 \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
-	\caption*{Table \ref{tab:seq} Continued: Cyclic Gradients}                             \\
+	\caption*{Table \ref{tab:seq} Continued: Cyclic Gradients}                                 \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
 	\input{contents/cyclic.tex}
 \end{longtable}
 \newpage
+\subsection{Diverging Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
-	\caption{Diverging Gradients} \label{tab:div}                                             \\
+	\caption{Diverging Gradients} \label{tab:div}                                              \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
-	\caption*{Table \ref{tab:seq} Continued: Diverging Gradients}                             \\
+	\caption*{Table \ref{tab:seq} Continued: Diverging Gradients}                              \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
 	\input{contents/diverging.tex}
 \end{longtable}
 \newpage
+\subsection{Multi-Sequential Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
-	\caption{Multi Sequential Gradients} \label{tab:msq}                                             \\
+	\caption{Multi-Sequential Gradients} \label{tab:msq}                                       \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
-	\caption*{Table \ref{tab:seq} Continued: Multi Sequential Gradients}                             \\
+	\caption*{Table \ref{tab:seq} Continued: Multi Sequential Gradients}                       \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
 	\input{contents/multi_sequential.tex}
 \end{longtable}
 \newpage
+\subsection{Sequential Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
 	\caption{Sequential Gradients} \label{tab:seq}                                             \\
@@ -118,5 +144,9 @@
 	\input{contents/sequential.tex}
 \end{longtable}
 \newpage
+\section{License}
 \verbatiminput{../../LICENSE}
+\newpage
+\bibliographystyle{plain}
+\bibliography{references}
 \end{document}
