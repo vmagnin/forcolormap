@@ -3610,7 +3610,7 @@ contains
          package    = "Miscellaneous",&
          author     = "Dave Green",&
          license    = "TODO",&
-         url        = "TODO")
+         url        = "https://people.phy.cam.ac.uk/dag9/CUBEHELIX")
 
    end subroutine set_all
 
