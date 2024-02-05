@@ -84,28 +84,16 @@ call setpixelrgb(x, y, red, green, blue)
 \end{lstlisting}
 \newpage
 \section{Colormaps}
-\subsection{Categorical Gradients}
+\subsection{Sequential Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
-	\caption{Categorical Gradients} \label{tab:cat}                                            \\
+	\caption{Sequential Gradients} \label{tab:seq}                                             \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
-	\caption*{Table \ref{tab:seq} Continued: Categorical Gradients}                            \\
+	\caption*{Table \ref{tab:seq} Continued: Sequential Gradients}                             \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
-	\input{contents/categorical.tex}
-\end{longtable}
-\newpage
-\subsection{Cyclic Gradients}
-\renewcommand{\arraystretch}{2}
-\begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
-	\caption{Cyclic Gradients} \label{tab:cyc}                                                 \\
-	\hline
-	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
-	\caption*{Table \ref{tab:seq} Continued: Cyclic Gradients}                                 \\
-	\hline
-	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
-	\input{contents/cyclic.tex}
+	\input{contents/sequential.tex}
 \end{longtable}
 \newpage
 \subsection{Diverging Gradients}
@@ -120,6 +108,18 @@ call setpixelrgb(x, y, red, green, blue)
 	\input{contents/diverging.tex}
 \end{longtable}
 \newpage
+\subsection{Cyclic Gradients}
+\renewcommand{\arraystretch}{2}
+\begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
+	\caption{Cyclic Gradients} \label{tab:cyc}                                                 \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
+	\caption*{Table \ref{tab:seq} Continued: Cyclic Gradients}                                 \\
+	\hline
+	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
+	\input{contents/cyclic.tex}
+\end{longtable}
+\newpage
 \subsection{Multi-Sequential Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
@@ -132,16 +132,16 @@ call setpixelrgb(x, y, red, green, blue)
 	\input{contents/multi_sequential.tex}
 \end{longtable}
 \newpage
-\subsection{Sequential Gradients}
+\subsection{Categorical Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
-	\caption{Sequential Gradients} \label{tab:seq}                                             \\
+	\caption{Categorical Gradients} \label{tab:cat}                                            \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endfirsthead
-	\caption*{Table \ref{tab:seq} Continued: Sequential Gradients}                             \\
+	\caption*{Table \ref{tab:seq} Continued: Categorical Gradients}                            \\
 	\hline
 	\textbf{Name} & \textbf{Gradient} & \textbf{Palette} & \textbf{Levels} & \textbf{Colorbar} \\ \hline \endhead
-	\input{contents/sequential.tex}
+	\input{contents/categorical.tex}
 \end{longtable}
 \newpage
 \section{License}
