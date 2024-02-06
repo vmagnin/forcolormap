@@ -143,7 +143,7 @@ contains
                'a,','a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
                'a,','a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
                'a,','a', len_trim(this%license),',',18-len_trim(this%license)+2,'x',',',&
-               'a,','a', len_trim(this%url),',',30-len_trim(this%url)+2,'x',',a',&
+               'a,','a', len_trim(this%url),',',42-len_trim(this%url)+2,'x',',a',&
                ')'
             open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
             write (nunit,format_table)&
@@ -182,7 +182,7 @@ contains
                'a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
                'a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
                'a', len_trim(this%license),',',18-len_trim(this%license)+2,'x',',',&
-               'a', len_trim(this%url),',',30-len_trim(this%url)+2,'x',&
+               'a', len_trim(this%url),',',42-len_trim(this%url)+2,'x',&
                ')'
             print (format_table),&
                this%name,&
