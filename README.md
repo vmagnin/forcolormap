@@ -128,7 +128,7 @@ In the `example` directory, you will find these commented demos:
  
 * `demo.f90` creates demo PPM files for each built-in colormap, plus a PPM file with the corresponding colorbars. It also demonstrates how to create your own colormap defined in an array and how to download a colormap from a `.txt` file.
 * `demo_reverse.f90` demonstrates the usage of the `reverse=.true.` option to reverse the direction of a colormap.
-* `colormaps_list.f90`generates the `colormaps_list/COLORMAPS_LIST_*.md` files.
+* `colormaps_list.f90` generates the `colormaps_list/COLORMAPS_LIST_*.md` files.
 * `example1.f90` demonstrates how ForImage can be used to import/export PPM files.
 * `extract.f90` demonstrates how to create a specific colormap by extracting a specified number of colors of a colormap.
 * `info.f90` demonstrates how to obtain information about a colormap using the `Colormaps_info` class.
