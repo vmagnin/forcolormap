@@ -62,14 +62,10 @@
 \tableofcontents
 \listoftables
 \newpage
-\section{Citing Colormaps}
-ForColormap includes 222 colormaps from the Scientific coloor maps collection v8.0.1, developed by Fabio Crameri\cite{crameri_2023_8409685}. The colormaps acton*, bam*, bamako*, batlow*, berlin*, bilbao*, broc*, buda*, bukavu*, cork*, davos*, devon*, fes*, glasgow*, grayc*, hawaii*, imola*, lajolla*, lapaz*, lipari*, lisbon*, managua*, navia*, nuuk*, oleron*, oslo*, roma*, tofino*, tokyo*, turku*, vanimo*, and vik*, are part of the Scientific Colormap Collection. If you use any of these colormaps, please cite this paper \cite{Crameri2020}. Additionally, the colormaps magma, inferno, plasma, and viridis are sourced from the matplotlib colormaps. When employing these colormaps, please cite this webpage\cite{mpl_colormaps}. For the cubehelix colormap, please cite\cite{green2011colour}. For the black\_body colormap, please cite\cite{color_advice}.
-
-\newpage
 \section{Basic Usage}
 Assuming your graphical library has a \texttt{setpixelgb()}-like function and you know your $z$ values will be for example in the $[0, 2]$ range, you can write something like:
 \begin{lstlisting}[style=fortran]
-use forcolormap, only: Colormap, colormaps_list, wp
+use forcolormap, only: Colormap, wp
 ...
 type(Colormap) :: cmap
 integer  :: red, green, blue
@@ -82,8 +78,24 @@ z = f(x,y)
 call cmap%compute_RGB(z, red, green, blue)
 call setpixelrgb(x, y, red, green, blue)
 \end{lstlisting}
+
+The library is using the precision \texttt{wp=>real64} defined in the module \texttt{iso\_fortran\_env}. And depending on the integers expected by your graphical library, you may need to convert the kinds of red, green, blue variables by writing for example \texttt{int(red, kind=int16)} if you need 16 bit integers.
+
+
+\section{Citing Colormaps}
+ForColormap includes 222 colormaps from the Scientific Colormap Collection v8.0.1, developed by Fabio Crameri \cite{crameri_2023_8409685}. They are grouped in families: acton*, bam*, bamako*, batlow*, berlin*, bilbao*, broc*, buda*, bukavu*, cork*, davos*, devon*, fes*, glasgow*, grayc*, hawaii*, imola*, lajolla*, lapaz*, lipari*, lisbon*, managua*, navia*, nuuk*, oleron*, oslo*, roma*, tofino*, tokyo*, turku*, vanimo*, and vik*. If you use any of these colormaps, please cite this paper  \cite{Crameri2020}.
+
+Additionally, the colormaps magma, inferno, plasma, and viridis are sourced from the matplotlib colormaps. When employing these colormaps, please cite this webpage \cite{mpl_colormaps}.
+
+For the cubehelix colormap, please cite\cite{green2011colour}.
+
+For the black\_body colormap, please cite\cite{color_advice}.
+
 \newpage
 \section{Colormaps}
+
+The colormaps are divided into five categories: sequential, diverging, cyclic, multi-sequential and categorical. That guideline can help you choose a colormap appropriate to your data: \url{https://s-ink.org/colour-map-guideline}
+
 \subsection{Sequential Gradients}
 \renewcommand{\arraystretch}{2}
 \begin{longtable}{p{0.15\textwidth}p{0.15\textwidth}p{0.1\textwidth}p{0.1\textwidth}p{0.35\textwidth}}
