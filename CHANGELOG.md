@@ -4,6 +4,8 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 ## [forcolormap dev]
 
 ### Added
+* A private `check()` method in the Colormap class. It checks the validity of the colormap and its parameters, prints warnings, and fixes problems if necessary.
+* A `colormaps_list/ForColormap.pdf` manual listing all the available colormaps.
 * A function `bezier(colors, levels)` to create a colormap from continuous Bezier interpolation of control colors, in `src/colormap_class.f90`. The corresponding demo was added in `example/demo.f90`.
 * A link toward the page *ForColormap Collection Categories* was added in the `README.md` to help users choose a colormap.
 * A GitHub workflow for the CMake build by @jchristopherson.
@@ -35,7 +37,8 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 
 ### Removed
 * `scripts/cp_lut_files.sh` since its functionality is now included in the `scripts/gpl_to_lut.f90` program.
-* The "inverted_grey" colormap can now be obtained from "grey" with the `reverse=.true.` option.
+* The naive "grey" colormap: you should use "grayC" instead.
+* And the "inverted_grey" colormap which can now be obtained from "grayC" with the `reverse=.true.` option.
 
 ## [forcolormap 0.8] 2023-10-23
 
