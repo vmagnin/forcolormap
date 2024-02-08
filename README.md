@@ -14,7 +14,7 @@ This Fortran library is independent of any graphical toolkit: its main functiona
 Assuming your graphical library has a `setpixelgb()`-like function and you know your `z` values will be for example in the [0, 2] range, you can write something like:
 
 ```fortran
-use forcolormap, only: Colormap, colormaps_list, wp
+use forcolormap, only: Colormap, wp
 ...
 type(Colormap) :: cmap
 integer  :: red, green, blue
@@ -28,11 +28,10 @@ call cmap%compute_RGB(z, red, green, blue)
 call setpixelrgb(x, y, red, green, blue)
 ```
 
-The library is using the precision `wp=>real64` defined in the module `iso_fortran_env`.
+The library is using the precision `wp=>real64` defined in the module `iso_fortran_env`. And depending on the integers expected by your graphical library, you may need to convert the kinds of red, green, blue variables by writing for example `int(red, kind=int16)` if you need 16 bit integers.
 
-Note that **there is no default colormap** as we consider that the user must choose a colormap adapted to the properties of its data. This [guideline](https://s-ink.org/colour-map-guideline) can help you choosing the right kind of colormap.
+This [guideline](https://s-ink.org/colour-map-guideline) can help you choose the right kind of colormap. And you can visually choose the available colormaps in the `colormaps_list/ForColormap.pdf` manual or on this page (under development): https://github.com/gha3mi/forcolormap/tree/dev
 
-You can visually choose the available colormaps on this page (under development): https://github.com/gha3mi/forcolormap/tree/dev
 
 ## Installation
 
@@ -129,6 +128,7 @@ In the `example` directory, you will find these commented demos:
  
 * `demo.f90` creates demo PPM files for each built-in colormap, plus a PPM file with the corresponding colorbars. It also demonstrates how to create your own colormap defined in an array and how to download a colormap from a `.txt` file.
 * `demo_reverse.f90` demonstrates the usage of the `reverse=.true.` option to reverse the direction of a colormap.
+* `colormaps_list.f90`generates the `colormaps_list/COLORMAPS_LIST_*.md` files.
 * `example1.f90` demonstrates how ForImage can be used to import/export PPM files.
 * `extract.f90` demonstrates how to create a specific colormap by extracting a specified number of colors of a colormap.
 * `info.f90` demonstrates how to obtain information about a colormap using the `Colormaps_info` class.
