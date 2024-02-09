@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-11-05
-! Last modification: gha3mi 2024-01-06, vmagnin 2024-02-04
+! Last modification: gha3mi 2024-01-06, vmagnin 2024-02-09
 !-------------------------------------------------------------------------------
 
 module forcolormap_info
@@ -3594,9 +3594,9 @@ contains
          levels     = -1, & ! -1 means that the number of levels is not fixed
          colorbar   = "fire_colorbar.ppm",&
          package    = "Miscellaneous",&
-         author     = "TODO",&
-         license    = "TODO",&
-         url        = "TODO")
+         author     = "Vincent Magnin",&
+         license    = "Public Domain (CC0)",&
+         url        = "")
 
       i = i + 1
 
@@ -3609,7 +3609,7 @@ contains
          colorbar   = "cubehelix_colorbar.ppm",&
          package    = "Miscellaneous",&
          author     = "Dave Green",&
-         license    = "TODO",&
+         license    = "Public Domain (Unlicense license)",&
          url        = "https://people.phy.cam.ac.uk/dag9/CUBEHELIX")
 
    end subroutine set_all
