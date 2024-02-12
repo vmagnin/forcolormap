@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-01-28
+! Last modification: gha3mi 2024-02-12
 !-------------------------------------------------------------------------------
 
 
@@ -63,6 +63,7 @@ module forcolormap
         procedure :: print
         procedure :: colorbar => write_ppm_colorbar
         procedure, private :: reverse_map
+        procedure :: shift
         procedure :: extract
         procedure, private :: check
     end type Colormap
@@ -819,6 +820,14 @@ contains
             self%name = trim(self%name)//'_reverse'
         end if
     end subroutine reverse_map
+
+    !> Apply a circular shift to the colormap (left is +, right is -)
+    pure subroutine shift(self, sh)
+        class(Colormap), intent(inout) :: self
+        integer, intent(in) :: sh   !! The shift
+
+        self%map(:,:) = cshift(self%map(:,:), sh)
+    end subroutine shift
 
     ! Normalize the input real array to the range [0, 1]
     pure function scale_real_real(real_array,a,b) result(real_scaled_array)
