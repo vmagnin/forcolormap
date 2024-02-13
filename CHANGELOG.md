@@ -29,6 +29,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 * A `colorbar()` type-bound procedure to write a PPM file with the colorbar.
 
 ### Changed
+* `TODO.md` was refactored and renamed `ROADMAP.md`.
 * Code refactoring.
 * Moved `test` subroutine to demo and example1.
 * Renamed `get_current()` to `get_name()`.
