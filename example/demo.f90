@@ -21,11 +21,11 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-01-28
+! Last modification: gha3mi 2024-02-13
 !-------------------------------------------------------------------------------
 
 program demo
-    use forcolormap, only: Colormap, colormaps_list, wp, bezier
+    use forcolormap, only: Colormap, colormaps_list, wp, bezier, lagrange
     implicit none
 
     integer :: i
@@ -78,6 +78,11 @@ program demo
     call custom_cmap%create('custom_bezier', 0.0_wp, 2.0_wp, bezier(colors, levels=1024)) ! levels is optional, default is 256
     call custom_cmap%colorbar('custom_colorbar_bezier', encoding='binary')
     call test_colormap(custom_cmap, 'custom_test_bezier', encoding='binary') 
+
+    ! You can also create your own colormap using lagrange interpolation:    
+    call custom_cmap%create('custom_lagrange', 0.0_wp, 2.0_wp, lagrange(colors, levels=1024)) ! levels is optional, default is 256
+    call custom_cmap%colorbar('custom_colorbar_lagrange', encoding='binary')
+    call test_colormap(custom_cmap, 'custom_test_lagrange', encoding='binary') 
 
     contains
 
