@@ -949,7 +949,9 @@ contains
                 map_r(i,:) = map_r(i,:) + real(colors(j+1,:), wp)*&
                     real(factorial(order), wp)/(real(factorial(j), wp)*real(factorial(order-j), wp)) * t**j * (1.0_wp-t)**(order-j)
             end do
-            map(i,:) = scale_real_int(map_r(i,:), 0, 255) ! Scale to integer RGB range
+            map(i,1) = min(255, max(0, nint(map_r(i,1))))
+            map(i,2) = min(255, max(0, nint(map_r(i,2))))
+            map(i,3) = min(255, max(0, nint(map_r(i,3))))
         end do
     end function bezier
 
@@ -992,7 +994,9 @@ contains
                 map_r(i,2) = dot_product(lagrange_poly(t,order+1), real(colors(:,2), wp))
                 map_r(i,3) = dot_product(lagrange_poly(t,order+1), real(colors(:,3), wp))
             end do
-            map(i,:) = scale_real_int(map_r(i,:), 0, 255) ! Scale to integer RGB range
+            map(i,1) = min(255, max(0, nint(map_r(i,1))))
+            map(i,2) = min(255, max(0, nint(map_r(i,2))))
+            map(i,3) = min(255, max(0, nint(map_r(i,3))))
         end do
     end function lagrange
 
