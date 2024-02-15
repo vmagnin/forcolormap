@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-02-12
+! Last modification: gha3mi 2024-02-12, vmagnin 2024-02-15
 !-------------------------------------------------------------------------------
 
 
@@ -799,7 +799,7 @@ contains
             call ppm%set_format('binary')
         end if
 
-        call ppm%set_pnm(encoding    = encoding,&
+        call ppm%set_pnm(encoding = ppm%get_format(),&
             file_format = 'ppm',&
             width       = pixwidth,&
             height      = pixheight,&
