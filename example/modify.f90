@@ -36,26 +36,26 @@ program modify
     !> bright part in the middle. But we can shift the dark part towards the
     !> center.
     call cmap%set("bamO", 0.0_wp, 2.0_wp)
-    call cmap%colorbar("bamO", encoding='binary')
+    call cmap%colorbar("bamO")
     call cmap%shift(cmap%get_levels() / 2)
-    call cmap%colorbar("bamO_shifted", encoding='binary')
+    call cmap%colorbar("bamO_shifted")
     print *, "See the bamO.ppm and bamO_shifted.ppm colorbars"
 
     !> In the Scientific colour maps collection, all categorical colormaps
     !> begin with a dark colour, but a shift can be applied to begin with a
     !> brighter colour.
     call cmap%set("actonS", 0.0_wp, 2.0_wp)
-    call cmap%colorbar("actonS", encoding='binary')
+    call cmap%colorbar("actonS")
     call cmap%shift(+2)   !! Two levels towards left
-    call cmap%colorbar("actonS_shifted", encoding='binary')
+    call cmap%colorbar("actonS_shifted")
     print *, "See the actonS.ppm and actonS_shifted.ppm colorbars"
 
     !> Starting from a diverging colormap, we can obtain what could be called
     !> a diverging multi-sequential colormap.
     call cmap%set("bam", 0.0_wp, 2.0_wp)
-    call cmap%colorbar("bam", encoding='binary')
+    call cmap%colorbar("bam")
     call cmap%shift(cmap%get_levels() / 2)
-    call cmap%colorbar("bam_shifted", encoding='binary')
+    call cmap%colorbar("bam_shifted")
     print *, "See the bam.ppm and bam_shifted.ppm colorbars"
 
 end program modify
