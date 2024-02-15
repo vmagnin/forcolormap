@@ -4,6 +4,8 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 ## [forcolormap dev]
 
 ### Added
+* A `shift()` method to apply a circular shift to a colormap (left is +, right is -).
+  * `example/modify.f90` demonstrates how you can modify a colormap with methods like shift(), in concrete cases.
 * A private `check()` method in the Colormap class. It checks the validity of the colormap and its parameters, prints warnings, and fixes problems if necessary.
 * A `colormaps_list/ForColormap.pdf` manual listing all the available colormaps.
 * A function `bezier(colors, levels)` to create a colormap from continuous Bezier interpolation of control colors, in `src/colormap_class.f90`. The corresponding demo was added in `example/demo.f90`.

@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-11-07
-! Last modification: gha3mi 2023-11-07
+! Last modification: gha3mi 2023-11-07, vmagnin 2024-02-15
 !-------------------------------------------------------------------------------
 
 ! This example demonstrates the process of extracting a specified number of colors.
@@ -42,7 +42,7 @@ program extract
    ! The extracted colormap will overwrite the existing colormap type (cmap)
    call cmap%extract(10)
 
-   ! Generate a color bar for the extracted colormap with binary encoding
-   call cmap%colorbar('fes10_ex_colorbar', encoding='binary')
-   
+   ! Generate a color bar for the extracted colormap
+   call cmap%colorbar('fes10_ex_colorbar')
+
 end program extract
