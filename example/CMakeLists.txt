@@ -17,3 +17,7 @@ target_link_libraries(extract ${PROJECT_NAME})
 # INFO
 add_executable(info info.f90)
 target_link_libraries(info ${PROJECT_NAME})
+
+# MODIFY
+add_executable(modify modify.f90)
+target_link_libraries(modify ${PROJECT_NAME})
