@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2023-11-01
+! Last modification: gha3mi 2023-11-01, vmagnin 2024-02-15
 !-------------------------------------------------------------------------------
 
 program demo_reverse
@@ -46,7 +46,7 @@ program demo_reverse
     ! The built-in z=f(x,y) test function is in the [0, 2] range:
     do i = 1, size(colormaps_list)
         call cmap%set(trim(colormaps_list(i)), 0.0_wp, 2.0_wp, reverse=.true.)
-        call cmap%colorbar(trim(colormaps_list(i))//'_reverse_colorbar', encoding='binary')
+        call cmap%colorbar(trim(colormaps_list(i))//'_reverse_colorbar')
         call test_colormap(cmap, trim(colormaps_list(i))//'_reverse_test', encoding='binary')
         print '("Colormap ", A30, " has ", I0, " levels")', trim(cmap%get_name()), cmap%get_levels()
     end do
@@ -54,17 +54,17 @@ program demo_reverse
     ! Cubehelix can also accept other parameters (varargs array):
     call cmap%set("cubehelix", 0.0_wp, 2.0_wp, 1024, [0.5_wp, -1.0_wp, 1.0_wp, 1.0_wp], reverse=.true.)
     ! We change the name for the output test files:
-    call cmap%colorbar('cubehelix_customized_reverse_colorbar', encoding='binary')
+    call cmap%colorbar('cubehelix_customized_reverse_colorbar')
     call test_colormap(cmap, 'cubehelix_customized_reverse_test', encoding='binary')
 
     ! You can create your own colormap defined in an array:
     call custom_cmap%create('discrete', 0.0_wp, 2.0_wp, my_colormap, reverse=.true.)
-    call custom_cmap%colorbar('discrete_reverse_colorbar', encoding='binary')
+    call custom_cmap%colorbar('discrete_reverse_colorbar')
     call test_colormap(custom_cmap, 'discrete_reverse_test', encoding='binary')
 
     ! Or you can download it from a .txt file:
     call custom_cmap%load("test_map_to_load.txt", 0.0_wp, 2.0_wp, reverse=.true.)
-    call custom_cmap%colorbar('a_loaded_reverse_colorbar', encoding='binary')
+    call custom_cmap%colorbar('a_loaded_reverse_colorbar')
     call test_colormap(custom_cmap, 'a_loaded_reverse_colormap_test', encoding='binary')
     call custom_cmap%print()
 

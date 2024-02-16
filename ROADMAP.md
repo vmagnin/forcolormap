@@ -16,11 +16,12 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 - [ ] Add Interpolation functions.
   - [ ] Lagrange
   - [x] Bezier
+- [ ] Add a `Colormap_test` class where the subroutine `test_colormap()` will be moved.
 
 ### Examples
 
-- [ ] Create a `modify` example:
-  - [ ] For the `shift()` method.
+- [x] Create a `modify` example:
+  - [x] For the `shift()` method.
 
 ### Documentation
 
