@@ -54,7 +54,7 @@ module forcolormap_info
 
    ! Define a derived type named 'Colormaps_info' to store an array of 'table' type
    type :: Colormaps_info
-      type(table), private :: colormaps(225) ! Array of 'table' type to store multiple colormaps
+      type(table), private :: colormaps(228) ! Array of 'table' type to store multiple colormaps
    contains
       procedure :: set_all ! Procedure to set information for all colormaps in the array
       procedure :: write   ! Procedure to filter and write information about the colormaps
@@ -3588,6 +3588,20 @@ contains
       i = i + 1
 
       call this%colormaps(i)%set_info( &
+         name       = "cubehelix",&
+         family     = "cubehelix",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = -1, & ! -1 means that the number of levels is not fixed
+         colorbar   = "cubehelix_colorbar.ppm",&
+         package    = "Miscellaneous",&
+         author     = "Dave Green",&
+         license    = "Public Domain (Unlicense license)",&
+         url        = "https://people.phy.cam.ac.uk/dag9/CUBEHELIX")
+
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
          name       = "fire",&
          family     = "fire",&
          gradient   = "Sequential",&
@@ -3602,16 +3616,44 @@ contains
       i = i + 1
 
       call this%colormaps(i)%set_info( &
-         name       = "cubehelix",&
-         family     = "cubehelix",&
+         name       = "rainbow",&
+         family     = "rainbow",&
          gradient   = "Sequential",&
          palette    = "Continuous",&
-         levels     = -1, & ! -1 means that the number of levels is not fixed
-         colorbar   = "cubehelix_colorbar.ppm",&
+         levels     = 256, &
+         colorbar   = "rainbow_colorbar.ppm",&
          package    = "Miscellaneous",&
-         author     = "Dave Green",&
-         license    = "Public Domain (Unlicense license)",&
-         url        = "https://people.phy.cam.ac.uk/dag9/CUBEHELIX")
+         author     = "Vincent Magnin",&
+         license    = "Public Domain (CC0)",&
+         url        = "")
+
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "inverted_rainbow",&
+         family     = "rainbow",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = 256, &
+         colorbar   = "inverted_rainbow_colorbar.ppm",&
+         package    = "Miscellaneous",&
+         author     = "Vincent Magnin",&
+         license    = "Public Domain (CC0)",&
+         url        = "")
+
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "zebra",&
+         family     = "zebra",&
+         gradient   = "Categorical",&
+         palette    = "Discrete",&
+         levels     = 256, &
+         colorbar   = "zebra_colorbar.ppm",&
+         package    = "Miscellaneous",&
+         author     = "Vincent Magnin",&
+         license    = "Public Domain (CC0)",&
+         url        = "")
 
    end subroutine set_all
 
