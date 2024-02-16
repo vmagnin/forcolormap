@@ -1,6 +1,6 @@
 project:             ForColormap
 summary:             A Fortran library for colormaps 
-version:             dev
+version:             0.8.0
 license:             MIT
 year:                2023-2024
 project_github:      https://github.com/vmagnin/forcolormap
@@ -8,7 +8,6 @@ author:              Vincent Magnin,
                      Seyed Ali Ghasemi
 src_dir:             ./src
                      ./example
-page_dir:            ./ford-pages
 md_base_dir:         ./
 output_dir:          ./doc
 source:              true
