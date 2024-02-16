@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-11-05
-! Last modification: gha3mi 2024-01-06, vmagnin 2024-02-09
+! Last modification: gha3mi 2024-02-16, vmagnin 2024-02-16
 !-------------------------------------------------------------------------------
 
 module forcolormap_info
@@ -142,8 +142,8 @@ contains
                'a,','a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',',&
                'a,','a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
                'a,','a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
-               'a,','a', len_trim(this%license),',',18-len_trim(this%license)+2,'x',',',&
-               'a,','a', len_trim(this%url),',',42-len_trim(this%url)+2,'x',',a',&
+               'a,','a', len_trim(this%license),',',33-len_trim(this%license)+2,'x',',',&
+               'a,','a', max(1, len_trim(this%url)),',',42-max(1, len_trim(this%url))+2,'x',',a',&
                ')'
             open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
             write (nunit,format_table)&
@@ -181,8 +181,8 @@ contains
                'a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',',&
                'a', len_trim(this%package),',',25-len_trim(this%package)+2,'x',',',&
                'a', len_trim(this%author),',',15-len_trim(this%author)+2,'x',',',&
-               'a', len_trim(this%license),',',18-len_trim(this%license)+2,'x',',',&
-               'a', len_trim(this%url),',',42-len_trim(this%url)+2,'x',&
+               'a', len_trim(this%license),',',33-len_trim(this%license)+2,'x',',',&
+               'a', max(1, len_trim(this%url)),',',42-max(1, len_trim(this%url))+2,'x',&
                ')'
             print (format_table),&
                this%name,&
@@ -318,16 +318,17 @@ contains
          if (present(file_name)) then
             open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
             write(nunit,'(a)')'' ! Print empty line
-            write(nunit,'(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,13x,g0)') &
+            write(nunit,'(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,28x,g0)') &
                '|Name', '|Family', '|Gradient', '|Palette', '|Levels', '|Colorbar', '|Package', '|Author', '|Licence', '|URL|'
             write(nunit,'(a)') '|---|---|---|---|---|---|---|---|---|---|'
             close(nunit)
          else
             print*,'' ! Print empty line
-            print '(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,13x,g0)', &
+            print '(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,28x,g0)', &
                'Name', 'Family', 'Gradient', 'Palette', 'Levels', 'Colorbar', 'Package', 'Author', 'Licence', 'URL'
-            print'(a)', '**********************************************************************************************&
-            &*******************************************************************************************'
+            print'(a)', '*****************************************************************************************&
+            &*****************************************************************************************************&
+            &**********************'
          end if
       end if
 
@@ -539,7 +540,7 @@ contains
          family     = "acton",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "actonS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -693,7 +694,7 @@ contains
          family     = "bamako",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "bamakoS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -917,7 +918,7 @@ contains
          family     = "batlow",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "batlowKS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -931,7 +932,7 @@ contains
          family     = "batlow",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "batlowS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -1015,7 +1016,7 @@ contains
          family     = "batlow",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "batlowWS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -1169,7 +1170,7 @@ contains
          family     = "bilbao",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "bilbaoS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -1393,7 +1394,7 @@ contains
          family     = "buda",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "budaS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -1687,7 +1688,7 @@ contains
          family     = "davos",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "davosS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -1771,7 +1772,7 @@ contains
          family     = "devon",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "devonS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -1925,7 +1926,7 @@ contains
          family     = "glasgow",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "glasgowS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2009,7 +2010,7 @@ contains
          family     = "grayC",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "grayCS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2093,7 +2094,7 @@ contains
          family     = "hawaii",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "hawaiiS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2177,7 +2178,7 @@ contains
          family     = "imola",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "imolaS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2261,7 +2262,7 @@ contains
          family     = "lajolla",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "lajollaS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2345,7 +2346,7 @@ contains
          family     = "lapaz",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "lapazS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2359,7 +2360,7 @@ contains
          family     = "lipari",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "lipariS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2653,7 +2654,7 @@ contains
          family     = "navia",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "naviaS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2681,7 +2682,7 @@ contains
          family     = "navia",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "naviaWS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2821,7 +2822,7 @@ contains
          family     = "nuuk",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "nuukS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -2975,7 +2976,7 @@ contains
          family     = "oslo",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "osloS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -3269,7 +3270,7 @@ contains
          family     = "tokyo",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "tokyoS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&
@@ -3353,7 +3354,7 @@ contains
          family     = "turku",&
          gradient   = "Categorical",&
          palette    = "Continuous",&
-         levels     = 256, &
+         levels     = 100, &
          colorbar   = "turkuS_colorbar.ppm",&
          package    = "Scientific Colour Map",&
          author     = "Fabio Crameri",&

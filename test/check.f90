@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-10-19
-! Last modification: vmagnin 2024-01-11
+! Last modification: vmagnin 2024-02-12
 !-------------------------------------------------------------------------------
 
 program check
@@ -39,9 +39,11 @@ program check
         6, 5, 4, &
         3, 2, 1 ], &
         shape(test_colormap), order = [2, 1] )
+    integer, dimension(0:6, 3) :: copy_colormap
     integer :: i
 
     call cmap%create("discrete", 0.0_wp, 2.0_wp, test_colormap)
+    copy_colormap = test_colormap
 
     if (cmap%get_levels() /= 7)    error stop "ERROR: colormap%get_levels()"
     if (cmap%get_zmin() /= 0.0_wp) error stop "ERROR: colormap%get_zmin()"
@@ -64,6 +66,15 @@ program check
     if ((red /= test_colormap(6, 1)).or.(green /= test_colormap(6, 2)) &
             & .or.(blue /= test_colormap(6, 3))) error stop "ERROR: colormap%compute_RGB()"
 
+    !! Test the shift() method:
+    call cmap%shift(+2)         ! Toward left
+    call cmap%get_RGB(0, red, green, blue)
+    if ((red /= copy_colormap(2, 1)).or.(green /= copy_colormap(2, 2)) &
+        & .or.(blue /= copy_colormap(2, 3))) error stop "ERROR: colormap%shift()"
+    call cmap%shift(-1)         ! Toward right
+    call cmap%get_RGB(6, red, green, blue)
+    if ((red /= copy_colormap(0, 1)).or.(green /= copy_colormap(0, 2)) &
+        & .or.(blue /= copy_colormap(0, 3))) error stop "ERROR: colormap%shift()"
 
     !! Test check() procedure within set() procedure
     ! Name is not in the list
