@@ -21,3 +21,7 @@ target_link_libraries(info ${PROJECT_NAME})
 # MODIFY
 add_executable(modify modify.f90)
 target_link_libraries(modify ${PROJECT_NAME})
+
+# CREATE
+add_executable(create create.f90)
+target_link_libraries(create ${PROJECT_NAME})

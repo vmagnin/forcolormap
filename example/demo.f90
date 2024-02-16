@@ -25,7 +25,7 @@
 !-------------------------------------------------------------------------------
 
 program demo
-    use forcolormap, only: Colormap, colormaps_list, wp, bezier, lagrange
+    use forcolormap, only: Colormap, colormaps_list, wp
     implicit none
 
     integer :: i
@@ -68,21 +68,6 @@ program demo
     call custom_cmap%colorbar('a_loaded_colorbar')
     call test_colormap(custom_cmap, 'a_loaded_colormap_test', encoding='binary')
     call custom_cmap%print()
-
-    ! You can also create your own colormap using bezier interpolation:
-    ! Define control colors.
-    allocate(colors(3,3))
-    colors(1,:) = [255, 0, 0] ! Red
-    colors(2,:) = [0, 255, 0] ! Green
-    colors(3,:) = [0, 0, 255] ! Blue
-    call custom_cmap%create('custom_bezier', 0.0_wp, 2.0_wp, bezier(colors, levels=1024)) ! levels is optional, default is 256
-    call custom_cmap%colorbar('custom_colorbar_bezier')
-    call test_colormap(custom_cmap, 'custom_test_bezier', encoding='binary') 
-
-    ! You can also create your own colormap using lagrange interpolation:    
-    call custom_cmap%create('custom_lagrange', 0.0_wp, 2.0_wp, lagrange(colors, levels=1024)) ! levels is optional, default is 256
-    call custom_cmap%colorbar('custom_colorbar_lagrange', encoding='binary')
-    call test_colormap(custom_cmap, 'custom_test_lagrange', encoding='binary') 
 
     contains
 

@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-02-12, vmagnin 2024-02-15
+! Last modification: gha3mi 2024-02-16, vmagnin 2024-02-15
 !-------------------------------------------------------------------------------
 
 
@@ -34,7 +34,7 @@ module forcolormap
     implicit none
     private
 
-    public :: wp, bezier, lagrange
+    public :: wp
 
     ! List of built-in colormaps:
     character(*), dimension(*), public, parameter :: colormaps_list = &
@@ -53,6 +53,8 @@ module forcolormap
     contains
         procedure :: set
         procedure :: create
+        procedure :: create_lagrange
+        procedure :: create_bezier
         procedure :: load
         procedure :: get_RGB
         procedure :: compute_RGB
@@ -62,7 +64,7 @@ module forcolormap
         procedure :: get_zmax
         procedure :: print
         procedure :: colorbar => write_ppm_colorbar
-        procedure, private :: reverse_map
+        procedure :: reverse
         procedure :: shift
         procedure :: extract
         procedure, private :: check
@@ -580,7 +582,7 @@ contains
 
         ! Reverse the colormap if requested
         if (present(reverse)) then
-            if (reverse) call self%reverse_map()
+            if (reverse) call self%reverse()
         end if
     end subroutine set
 
@@ -612,10 +614,76 @@ contains
 
         ! Reverse the colormap if requested
         if (present(reverse)) then
-            if (reverse) call self%reverse_map()
+            if (reverse) call self%reverse()
         end if
     end subroutine
 
+
+    ! You can create a custom colormap:
+    pure subroutine create_lagrange(self, name, zmin, zmax, colors, levels, reverse)
+        class(Colormap), intent(inout) :: self
+        character(*), intent(in) :: name
+        real(wp), intent(in) :: zmin, zmax
+        integer, dimension(:, :), intent(in) :: colors
+        integer, intent(in) :: levels
+        logical, intent(in), optional :: reverse
+        integer :: last
+
+        self%name   = trim(name)
+        self%levels = levels
+        last  = self%levels - 1
+        self%zmin   = zmin
+        self%zmax   = zmax
+
+        call self%check(check_zmin=.true., check_zmax=.true., check_levels=.true.)
+
+        ! Is the colormap reseted?
+        if (allocated(self%map)) then
+            deallocate(self%map)
+        end if
+        ! The second dimension is for RGB: 1=Red, 2=Green, 3=Blue
+        allocate(self%map(0:last, 1:3))
+
+        self%map = lagrange(colors, self%levels)
+
+        ! Reverse the colormap if requested
+        if (present(reverse)) then
+            if (reverse) call self%reverse()
+        end if
+    end subroutine
+
+        ! You can create a custom colormap:
+    pure subroutine create_bezier(self, name, zmin, zmax, colors, levels, reverse)
+        class(Colormap), intent(inout) :: self
+        character(*), intent(in) :: name
+        real(wp), intent(in) :: zmin, zmax
+        integer, dimension(:, :), intent(in) :: colors
+        integer, intent(in) :: levels
+        logical, intent(in), optional :: reverse
+        integer :: last
+
+        self%name   = trim(name)
+        self%levels = levels
+        last  = self%levels - 1
+        self%zmin   = zmin
+        self%zmax   = zmax
+
+        call self%check(check_zmin=.true., check_zmax=.true., check_levels=.true.)
+
+        ! Is the colormap reseted?
+        if (allocated(self%map)) then
+            deallocate(self%map)
+        end if
+        ! The second dimension is for RGB: 1=Red, 2=Green, 3=Blue
+        allocate(self%map(0:last, 1:3))
+
+        self%map = bezier(colors, self%levels)
+
+        ! Reverse the colormap if requested
+        if (present(reverse)) then
+            if (reverse) call self%reverse()
+        end if
+    end subroutine
 
     ! Load a .txt colormap with RGB integers separated by spaces on each line.
     ! Remark: if no path is indicated in filename, the .txt must be present
@@ -668,7 +736,7 @@ contains
 
             ! Reverse the colormap if requested
             if (present(reverse)) then
-                if (reverse) call self%reverse_map()
+                if (reverse) call self%reverse()
             end if
         else
             stop "ERROR: COLORMAP FILE NOT FOUND!"
@@ -810,7 +878,7 @@ contains
     end subroutine write_ppm_colorbar
 
     ! Reverse the colormap
-    pure subroutine reverse_map(self, name)
+    pure subroutine reverse(self, name)
         class(Colormap), intent(inout) :: self
         character(*), intent(in), optional :: name
         self%map(:,:) = self%map(size(self%map,1)-1:0:-1, :)
@@ -819,7 +887,7 @@ contains
         else
             self%name = trim(self%name)//'_reverse'
         end if
-    end subroutine reverse_map
+    end subroutine reverse
 
     !> Apply a circular shift to the colormap (left is +, right is -)
     pure subroutine shift(self, sh)
@@ -926,7 +994,7 @@ contains
         call self%create(self%name, self%zmin, self%zmax, extracted_map)
 
         if (present(reverse)) then
-            if (reverse) call self%reverse_map()
+            if (reverse) call self%reverse()
         end if
     end subroutine extract
 
