@@ -31,6 +31,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 * A `colorbar()` type-bound procedure to write a PPM file with the colorbar.
 
 ### Changed
+* The colormap `inverted_rainbow` was renamed `inv_rainbow`.
 * `TODO.md` was refactored and renamed `ROADMAP.md`.
 * Code refactoring.
 * Moved `test` subroutine to demo and example1.

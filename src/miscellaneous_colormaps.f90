@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modifications: gha3mi 2024-01-06
+! Last modifications: gha3mi 2024-01-06, vmagnin 2024-02-16
 !-------------------------------------------------------------------------------
 
 module miscellaneous_colormaps
@@ -30,11 +30,11 @@ module miscellaneous_colormaps
     private
 
     public :: fire_colormap, rainbow_colormap, &
-              inverted_rainbow_colormap, zebra_colormap, cubehelix_colormap
+              inv_rainbow_colormap, zebra_colormap, cubehelix_colormap
 
     character(*), dimension(*), parameter, public :: miscellaneous_colormaps_list = &
         [character(colormap_name_length) :: &
-        "fire", "rainbow", "inverted_rainbow", "zebra", "cubehelix", &
+        "fire", "rainbow", "inv_rainbow", "zebra", "cubehelix", &
         "black_body"]
 
     integer, dimension(0:1023, 1:3), public :: black_body=reshape( [ &
@@ -329,7 +329,7 @@ module miscellaneous_colormaps
         end do
     end subroutine rainbow_colormap
 
-    pure subroutine inverted_rainbow_colormap(map)
+    pure subroutine inv_rainbow_colormap(map)
         integer, dimension(:,:), allocatable, intent(out) :: map
         integer :: levels, last, i
 
@@ -343,7 +343,7 @@ module miscellaneous_colormaps
             map(i, 2) = nint(last * exp(-((156-i) / 70.0_wp)**2.0_wp))
             map(i, 3) = nint(last * exp(-((206-i) / 70.0_wp)**2.0_wp))
         end do
-    end subroutine inverted_rainbow_colormap
+    end subroutine inv_rainbow_colormap
 
     pure subroutine zebra_colormap(map)
         integer, dimension(:,:), allocatable, intent(out) :: map

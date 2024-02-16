@@ -7,7 +7,7 @@ This Fortran library is independent of any graphical toolkit: its main functiona
 * the 222 colormaps of the *Scientific colour maps* collection v8.0.1 by Fabio Crameri. See Fabio Crameri's poster ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) for more information and my [No Bijection!](NO_BIJECTION.md) text about the mysteries and wonders of colors,
 * the "magma", "inferno","plasma", "viridis" [matplotlib colormaps](https://bids.github.io/colormap/),
 * the Dave Green's [cubehelix](https://people.phy.cam.ac.uk/dag9/CUBEHELIX/) colormap,
-* a few basic colormaps: "black_body", "fire", "rainbow", "inverted_rainbow", "zebra".
+* a few basic colormaps: "black_body", "fire", "rainbow", "inv_rainbow", "zebra".
 
 ## Basic usage
 
@@ -179,7 +179,7 @@ As any work, a colormap should be cited:
   * https://s-ink.org/scientific-colour-maps
   * Seminar talk by Fabio Crameri about the scientific use of colour in science communication for the University of Oslo GeoHyd seminar: https://www.youtube.com/watch?v=iDPzWARbFrs
 * Matplotlib colormaps (CC0 license / public domain):
-  * https://bids.github.io/colormap/
+  * Stéfan van der Walt and Nathaniel Smith: https://bids.github.io/colormap/
   * Python version: https://github.com/BIDS/colormap/blob/master/colormaps.py
   * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  https://www.youtube.com/watch?v=xAoljeRJ3lU
 * Black Body colormap (CC0 license / public domain) by Kenneth Moreland: ["Color Map Advice for Scientific Visualization"](https://www.kennethmoreland.com/color-advice/).

@@ -12,7 +12,7 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 - [ ] Add facilities to pass 8 or 16-bit integers to C graphical libraries.
     - [ ] Test with gtk-fortran and other libraries.
 - [x] Introspection (Colormap_info)
-    - [ ] Include all available colormaps.
+    - [x] Include all available colormaps.
 - [ ] Add Interpolation functions.
   - [ ] Lagrange
   - [x] Bezier

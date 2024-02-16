@@ -54,7 +54,7 @@ module forcolormap_info
 
    ! Define a derived type named 'Colormaps_info' to store an array of 'table' type
    type :: Colormaps_info
-      type(table), private :: colormaps(228) ! Array of 'table' type to store multiple colormaps
+      type(table), private :: colormaps(232) ! Array of 'table' type to store multiple colormaps
    contains
       procedure :: set_all ! Procedure to set information for all colormaps in the array
       procedure :: write   ! Procedure to filter and write information about the colormaps
@@ -3571,6 +3571,7 @@ contains
          license    = "MIT license",&
          url        = "https://www.fabiocrameri.ch")
 
+      ! Miscellaneous colormaps:
       i = i + 1
 
       call this%colormaps(i)%set_info( &
@@ -3630,12 +3631,12 @@ contains
       i = i + 1
 
       call this%colormaps(i)%set_info( &
-         name       = "inverted_rainbow",&
+         name       = "inv_rainbow",&
          family     = "rainbow",&
          gradient   = "Sequential",&
          palette    = "Continuous",&
          levels     = 256, &
-         colorbar   = "inverted_rainbow_colorbar.ppm",&
+         colorbar   = "inv_rainbow_colorbar.ppm",&
          package    = "Miscellaneous",&
          author     = "Vincent Magnin",&
          license    = "Public Domain (CC0)",&
@@ -3654,6 +3655,63 @@ contains
          author     = "Vincent Magnin",&
          license    = "Public Domain (CC0)",&
          url        = "")
+
+      ! Matplotlib colormaps:
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "magma",&
+         family     = "magma",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = 256, &
+         colorbar   = "magma_colorbar.ppm",&
+         package    = "Matplotlib",&
+         author     = "N. Smith et al.",&
+         license    = "Public Domain (CC0)",&
+         url        = "https://bids.github.io/colormap/")
+
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "inferno",&
+         family     = "inferno",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = 256, &
+         colorbar   = "inferno_colorbar.ppm",&
+         package    = "Matplotlib",&
+         author     = "N. Smith et al.",&
+         license    = "Public Domain (CC0)",&
+         url        = "https://bids.github.io/colormap/")
+
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "plasma",&
+         family     = "plasma",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = 256, &
+         colorbar   = "plasma_colorbar.ppm",&
+         package    = "Matplotlib",&
+         author     = "N. Smith et al.",&
+         license    = "Public Domain (CC0)",&
+         url        = "https://bids.github.io/colormap/")
+
+      i = i + 1
+
+      call this%colormaps(i)%set_info( &
+         name       = "viridis",&
+         family     = "viridis",&
+         gradient   = "Sequential",&
+         palette    = "Continuous",&
+         levels     = 256, &
+         colorbar   = "viridis_colorbar.ppm",&
+         package    = "Matplotlib",&
+         author     = "N. Smith et al.",&
+         license    = "Public Domain (CC0)",&
+         url        = "https://bids.github.io/colormap/")
 
    end subroutine set_all
 

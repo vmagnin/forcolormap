@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-02-12, vmagnin 2024-02-15
+! Last modification: gha3mi 2024-02-12, vmagnin 2024-02-16
 !-------------------------------------------------------------------------------
 
 
@@ -101,10 +101,10 @@ contains
             ! The user can not choose the number of levels:
             self%levels = 256
             call rainbow_colormap(self%map)
-        case("inverted_rainbow")
+        case("inv_rainbow")
             ! The user can not choose the number of levels:
             self%levels = 256
-            call inverted_rainbow_colormap(self%map)
+            call inv_rainbow_colormap(self%map)
         case("zebra")
             ! The user can not choose the number of levels:
             self%levels = 256
