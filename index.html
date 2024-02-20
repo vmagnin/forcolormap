@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A Fortran library for colormaps">
+    <meta name="author" content="Vincent Magnin,
+Seyed Ali Ghasemi" >
+    <link rel="icon" href="./favicon.png">
+
+    <title> ForColormap </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="./css/pygments.css" rel="stylesheet">
+    <link href="./css/font-awesome.min.css" rel="stylesheet">
+    <link href="./css/local.css" rel="stylesheet">
+      <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="./index.html">ForColormap <small>0.8.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="./search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="p-5 mb-4 bg-light border rounded-3" id="jumbotron">
+        <p>A Fortran library for colormaps</p>
+	<p> Find us on&hellip;</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="https://github.com/vmagnin/forcolormap" role="button">GitHub</a>
+        </p>
+      </div>
+
+      <div class="row" id='text'>
+        <div class=col-md-8>
+          <h1>ForColormap</h1>
+          <p><img alt="Logo ForColormap" src="logo/logo_forcolormap-roma_8.svg"></p>
+<h1>ForColormap</h1>
+<p>This Fortran library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It offers various methods and options to manage colormaps. It includes:</p>
+<ul>
+<li>the 222 colormaps of the <em>Scientific colour maps</em> collection v8.0.1 by Fabio Crameri. See Fabio Crameri's poster <a href="https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf">"Scientific Colour Maps"</a> for more information and my <a href="NO_BIJECTION.md">No Bijection!</a> text about the mysteries and wonders of colors,</li>
+<li>the "magma", "inferno","plasma", "viridis" <a href="https://bids.github.io/colormap/">matplotlib colormaps</a>,</li>
+<li>the Dave Green's <a href="https://people.phy.cam.ac.uk/dag9/CUBEHELIX/">cubehelix</a> colormap,</li>
+<li>a few basic colormaps: "black_body", "fire", "rainbow", "inv_rainbow", "zebra".</li>
+</ul>
+<h2>Basic usage</h2>
+<p>Assuming your graphical library has a <code>setpixelgb()</code>-like function and you know your <code>z</code> values will be for example in the [0, 2] range, you can write something like:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">forcolormap</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">Colormap</span><span class="p">,</span><span class="w"> </span><span class="n">wp</span>
+<span class="p">...</span>
+<span class="k">type</span><span class="p">(</span><span class="n">Colormap</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmap</span>
+<span class="kt">integer</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>
+<span class="p">...</span>
+<span class="c">! Let&#39;s use the glasgow colormap:</span>
+<span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;glasgow&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">compute_RGB</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span><span class="p">)</span>
+<span class="k">call </span><span class="n">setpixelrgb</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The library is using the precision <code>wp=&gt;real64</code> defined in the module <code>iso_fortran_env</code>. And depending on the integers expected by your graphical library, you may need to convert the kinds of red, green, blue variables by writing for example <code>int(red, kind=int16)</code> if you need 16 bit integers.</p>
+<p>This <a href="https://s-ink.org/colour-map-guideline">guideline</a> can help you choose the right kind of colormap. And you can visually choose the available colormaps in the <code>colormaps_list/ForColormap.pdf</code> manual or on this page (under development): https://github.com/gha3mi/forcolormap/tree/dev</p>
+<h2>Installation</h2>
+<h3>Requirements</h3>
+<p>You need, whatever your operating system:</p>
+<ul>
+<li>a modern Fortran compiler, for example GFortran or the Intel ifort/ifx compilers. See the <a href="https://fortran-lang.org/compilers/">Fortran-lang.org compilers page</a> for other compilers.</li>
+<li>The Fortran Package Manager <a href="https://fpm.fortran-lang.org/">fpm</a> or CMake (&gt;=3.24) &amp; pkg-config for building the project.</li>
+<li>For writing PPM files, the library <a href="https://github.com/gha3mi/forimage">ForImage</a> is used as a fpm or CMake dependency (automatically downloaded).</li>
+</ul>
+<h3>Testing the project with fpm</h3>
+<p>If you have a GitHub account, just clone the repository. Then launch the demo example, which is creating <a href="https://en.wikipedia.org/wiki/Netpbm#File_formats">PPM files</a> with colormaps and colorbars for all the available colormaps:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:vmagnin/forcolormap.git
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>forcolormap
+$<span class="w"> </span>fpm<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>demo
+</code></pre></div>
+
+<h3>Using ForColormap as a fpm dependency</h3>
+<p>To use ForColormap within your own <code>fpm</code> project, add the following lines to your <code>fpm.toml</code> manifest file:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[dependencies]</span>
+<span class="n">forcolormap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/vmagnin/forcolormap.git&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+
+<h3>Using CMake</h3>
+<p>You can also build the project with CMake:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:vmagnin/forcolormap.git
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>forcolormap
+$<span class="w"> </span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+$<span class="w"> </span>cmake<span class="w"> </span>..
+$<span class="w"> </span>make
+$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+</code></pre></div>
+
+<h4>Static linking</h4>
+<p>By default, ForColormap is built as a static library by CMake. You can compile your program with the <code>-static</code> option:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>gfortran<span class="w"> </span>-static<span class="w"> </span>my_program.f90<span class="w"> </span><span class="k">$(</span>pkg-config<span class="w"> </span>--cflags<span class="w"> </span>--libs<span class="w"> </span>forcolormap<span class="w"> </span>forimage<span class="k">)</span>
+</code></pre></div>
+
+<p>Note that ForColormap is depending on ForImage, and for linking you must respect that order.</p>
+<h4>Dynamic linking</h4>
+<p>There is a CMake option to obtain a shared library:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cmake<span class="w"> </span>-D<span class="w"> </span><span class="nv">BUILD_SHARED_LIBS</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>..
+</code></pre></div>
+
+<p>You can compile your program like this:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>gfortran<span class="w"> </span>my_program.f90<span class="w"> </span><span class="k">$(</span>pkg-config<span class="w"> </span>--cflags<span class="w"> </span>--libs<span class="w"> </span>forcolormap<span class="k">)</span>
+</code></pre></div>
+
+<p>If you encounter linking problems, you should verify the content of your <code>PKG_CONFIG_PATH</code> and <code>LD_LIBRARY_PATH</code> environment variables. For example, in Ubuntu the <code>.pc</code> files will be installed in <code>/usr/local/lib/pkgconfig/</code> and the libraries in <code>/usr/local/lib/</code>.</p>
+<h4>Building examples and tests</h4>
+<p>You can build the examples with:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cmake<span class="w"> </span>-D<span class="w"> </span><span class="nv">BUILD_FORCOLORMAP_EXAMPLES</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>..
+$<span class="w"> </span>make
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>example
+</code></pre></div>
+
+<p>The automatic tests can be run with:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cmake<span class="w"> </span>-D<span class="w"> </span><span class="nv">BUILD_TESTING</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>..
+$<span class="w"> </span>make
+$<span class="w"> </span>ctest
+</code></pre></div>
+
+<h4>Uninstalling ForColormap</h4>
+<p>From the <code>build</code> directory:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>uninstall_forcolormap
+</code></pre></div>
+
+<p>Note that its dependency ForImage will also be uninstalled! You will have to reinstall it if needed.</p>
+<p>You can also choose and remove files listed in <code>build/install_manifest.txt</code> one by one.</p>
+<p>See <a href="https://github.com/vmagnin/gtk-fortran/wiki/CMake-basics">CMake basics</a> for more information.</p>
+<h2>Learning</h2>
+<p>In the <code>example</code> directory, you will find these commented demos:</p>
+<ul>
+<li><code>demo.f90</code> creates demo PPM files for each built-in colormap, plus a PPM file with the corresponding colorbars. It also demonstrates how to create your own colormap defined in an array and how to download a colormap from a <code>.txt</code> file.</li>
+<li><code>demo_reverse.f90</code> demonstrates the usage of the <code>reverse=.true.</code> option to reverse the direction of a colormap.</li>
+<li><code>colormaps_list.f90</code> generates the <code>colormaps_list/COLORMAPS_LIST_*.md</code> files.</li>
+<li><code>example1.f90</code> demonstrates how ForImage can be used to import/export PPM files.</li>
+<li><code>extract.f90</code> demonstrates how to create a specific colormap by extracting a specified number of colors of a colormap.</li>
+<li><code>info.f90</code> demonstrates how to obtain information about a colormap using the <code>Colormaps_info</code> class.</li>
+<li><code>modify.f90</code> demonstrates how you can modify a colormap with methods like <code>shift()</code>, in concrete cases.</li>
+</ul>
+<p>They can be launched with the command <code>fpm run --example name_of_the_example</code> (without the <code>.f90</code> extension).</p>
+<h2>Licenses</h2>
+<p>This project is under MIT license. The logo files are under <a href="https://creativecommons.org/licenses/by-sa/4.0/">license CC BY-SA 4.0</a>.</p>
+<h2>Citing colormaps</h2>
+<p>As any work, a colormap should be cited:</p>
+<ul>
+<li>For <em>Scientific colour maps,</em> please cite these two items:</li>
+<li>Crameri, F. (2018a), Scientific colour maps. <em>Zenodo.</em> http://doi.org/10.5281/zenodo.1243862</li>
+<li>Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. “The Misuse of Colour in Science Communication.” <em>Nature Communications</em> 11, no. 1 (October 28, 2020): 5444. https://doi.org/10.1038/s41467-020-19160-7.</li>
+<li>For the matplotlib colormaps, you can cite this webpage https://bids.github.io/colormap/</li>
+<li>For the <em>cubehelix</em> colormap, please cite:</li>
+<li>Green, D. A. “A Colour Scheme for the Display of Astronomical Intensity Images.” <em>arXiv,</em> August 30, 2011. http://arxiv.org/abs/1108.5083.</li>
+</ul>
+<h2>References</h2>
+<h3>Articles and books</h3>
+<ul>
+<li>Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. “Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.” Edited by Jesús Malo. <em>PLOS ONE</em> 13, no. 7, August 1, 2018, e0199239. https://doi.org/10.1371/journal.pone.0199239.</li>
+<li>Rogowitz, Bernice E, and Lloyd A Treinish. <a href="https://github.com/amadeusine/interesting-reads/blob/master/ibm-research__why-should-engineers-and-scientists-be-worried-about-color.pdf">“Why Should Engineers and Scientists Be Worried About Color?”</a></li>
+<li>Thyng, Kristen, Chad Greene, Robert Hetland, Heather Zimmerle, and Steven DiMarco. “True Colors of Oceanography: Guidelines for Effective and Accurate Colormap Selection.” <em>Oceanography</em> 29, no. 3, September 1, 2016, pp. 9–13. https://doi.org/10.5670/oceanog.2016.66.</li>
+<li>Valeur, Bernard. <em>La couleur dans tous ses éclats.</em> Bibliothèque scientifique. Paris: Belin-"Pour la science", 2011, ISBN 9782701158761.</li>
+<li>Valeur, Bernard. <em>Lumière et luminescence - Ces phénomènes lumineux qui nous entourent.</em> Bibliothèque scientifique. Paris: Belin-"Pour la science", 2005, ISBN 9782701136035.</li>
+</ul>
+<h3>Web pages</h3>
+<h4>About colormaps</h4>
+<ul>
+<li>https://en.wikipedia.org/wiki/Color_gradient</li>
+<li>https://en.wikipedia.org/wiki/Heat_map</li>
+<li>Ken Hughes, <a href="https://brushingupscience.com/2019/10/01/default-colormaps-are-parula-and-viridis-really-an-improvement-over-jet/">"Default colormaps: Are Parula and Viridis really an improvement over Jet?"</a>, posted on October 1, 2019.</li>
+<li>"In Search of a Perfect Colormap", http://inversed.ru/Blog_2.htm</li>
+</ul>
+<h4>Specific colormaps</h4>
+<ul>
+<li>Cubehelix (Dave Green, public domain): https://people.phy.cam.ac.uk/dag9/CUBEHELIX/</li>
+<li>Scientific colour maps (Fabio Crameri, MIT license):</li>
+<li>https://www.fabiocrameri.ch/colourmaps/</li>
+<li>https://s-ink.org/colour-map-guideline</li>
+<li>https://s-ink.org/scientific-colour-maps</li>
+<li>Seminar talk by Fabio Crameri about the scientific use of colour in science communication for the University of Oslo GeoHyd seminar: https://www.youtube.com/watch?v=iDPzWARbFrs</li>
+<li>Matplotlib colormaps (CC0 license / public domain):</li>
+<li>Stéfan van der Walt and Nathaniel Smith: https://bids.github.io/colormap/</li>
+<li>Python version: https://github.com/BIDS/colormap/blob/master/colormaps.py</li>
+<li>Nathaniel Smith and Stéfan van der Walt, <em>A Better Default Colormap for Matplotlib,</em> SciPy 2015:  https://www.youtube.com/watch?v=xAoljeRJ3lU</li>
+<li>Black Body colormap (CC0 license / public domain) by Kenneth Moreland: <a href="https://www.kennethmoreland.com/color-advice/">"Color Map Advice for Scientific Visualization"</a>.</li>
+<li><a href="https://medialab.github.io/iwanthue/">Colors for data scientists. Generate and refine palettes of optimally distinct colors.</a></li>
+</ul>
+        </div>
+          <div class="col-md-4">
+	        <div class="card card-body bg-light">
+              <h2 class="card-title">Developer Info</h2>
+              <h4 class="card-text">Vincent Magnin,
+Seyed Ali Ghasemi</h4>
+              <p class="card-text"></p>
+            </div>
+          </div>
+      </div>
+        <div class="row">
+          <hr>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Source Files</h3>
+              <ul><li><a href='sourcefile/colormap_class.f90.html'>colormap_class.f90</a></li><li><a href='sourcefile/colormap_parameters.f90.html'>colormap_parameters.f90</a></li><li><a href='sourcefile/colormaps_info.f90.html'>colormaps_info.f90</a></li><li><a href='sourcefile/colormaps_list.f90.html'>colormaps_list.f90</a></li><li><a href='sourcefile/create.f90.html'>create.f90</a></li><li><a href='sourcefile/demo.f90.html'>demo.f90</a></li><li><a href='sourcefile/demo_reverse.f90.html'>demo_reverse.f90</a></li><li><a href='sourcefile/example1.f90.html'>example1.f90</a></li><li><a href='sourcefile/extract.f90.html'>extract.f90</a></li><li><a href='sourcefile/info.f90.html'>info.f90</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Modules</h3>
+              <ul><li><a href='module/colormap_parameters.html'>colormap_parameters</a></li><li><a href='module/forcolormap.html'>forcolormap</a></li><li><a href='module/forcolormap_info.html'>forcolormap_info</a></li><li><a href='module/matplotlib_colormaps.html'>matplotlib_colormaps</a></li><li><a href='module/miscellaneous_colormaps.html'>miscellaneous_colormaps</a></li><li><a href='module/scientific_colour_maps.html'>scientific_colour_maps</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Procedures</h3>
+              <ul><li><a href='proc/bezier.html'>bezier</a></li><li><a href='proc/check.html'>check</a></li><li><a href='proc/compute_rgb.html'>compute_RGB</a></li><li><a href='proc/create.html'>create</a></li><li><a href='proc/create_bezier.html'>create_bezier</a></li><li><a href='proc/create_lagrange.html'>create_lagrange</a></li><li><a href='proc/cubehelix_colormap.html'>cubehelix_colormap</a></li><li><a href='proc/deallocate_colormaps_info.html'>deallocate_Colormaps_info</a></li><li><a href='proc/deallocate_table.html'>deallocate_table</a></li><li><a href='proc/error.html'>error</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Derived Types</h3>
+              <ul><li><a href='type/colormap.html'>Colormap</a></li><li><a href='type/colormaps_info.html'>Colormaps_info</a></li><li><a href='type/table.html'>table</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/types.html"><em>All derived types&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col"><p>ForColormap was developed by Vincent Magnin,
+Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-02-20T15:27:57.070390             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="./tipuesearch/tipuesearch_content.js"></script>
+          <script src="./tipuesearch/tipuesearch_set.js"></script>
+          <script src="./tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

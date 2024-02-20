@@ -1,0 +1,654 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A Fortran library for colormaps">
+    <meta name="author" content="Vincent Magnin,
+Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>matplotlib_colormaps &ndash; ForColormap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForColormap <small>0.8.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>matplotlib_colormaps
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a></li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip"
+                 data-bs-placement="bottom" data-html="true"
+                 title=" 0.5% of total for modules and submodules.">10 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/matplotlib_colormaps.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/matplotlib_colormaps.f90.html'>matplotlib_colormaps.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">matplotlib_colormaps</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/matplotlib_colormaps.html#variable-inferno">inferno</a>
+            <a class="list-group-item" href="../module/matplotlib_colormaps.html#variable-magma">magma</a>
+            <a class="list-group-item" href="../module/matplotlib_colormaps.html#variable-matplotlib_colormaps_list">matplotlib_colormaps_list</a>
+            <a class="list-group-item" href="../module/matplotlib_colormaps.html#variable-plasma">plasma</a>
+            <a class="list-group-item" href="../module/matplotlib_colormaps.html#variable-viridis">viridis</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='colormap_parameters.html'>colormap_parameters</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~matplotlib_colormaps~~UsesGraph Pages: 1 -->
+<svg id="modulematplotlib_colormapsUsesGraph" width="433pt" height="32pt"
+ viewBox="0.00 0.00 433.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~matplotlib_colormaps~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>module~~matplotlib_colormaps~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 429,-28 429,4 -4,4"/>
+<!-- module~matplotlib_colormaps -->
+<g id="module~~matplotlib_colormaps~~UsesGraph_node1" class="node">
+<title>module~matplotlib_colormaps</title>
+<polygon fill="none" stroke="black" points="425,-24 297,-24 297,0 425,0 425,-24"/>
+<text text-anchor="middle" x="361" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">matplotlib_colormaps</text>
+</g>
+<!-- module~colormap_parameters -->
+<g id="module~~matplotlib_colormaps~~UsesGraph_node2" class="node">
+<title>module~colormap_parameters</title>
+<g id="a_module~~matplotlib_colormaps~~UsesGraph_node2"><a xlink:href="../module/colormap_parameters.html" xlink:title="colormap_parameters">
+<polygon fill="#337ab7" stroke="#337ab7" points="261,-24 130,-24 130,0 261,0 261,-24"/>
+<text text-anchor="middle" x="195.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">colormap_parameters</text>
+</a>
+</g>
+</g>
+<!-- module~matplotlib_colormaps&#45;&gt;module~colormap_parameters -->
+<g id="module~~matplotlib_colormaps~~UsesGraph_edge1" class="edge">
+<title>module~matplotlib_colormaps&#45;&gt;module~colormap_parameters</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M296.79,-12C288.48,-12 279.91,-12 271.43,-12"/>
+<polygon fill="#255000" stroke="#255000" points="271.17,-8.5 261.17,-12 271.17,-15.5 271.17,-8.5"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~matplotlib_colormaps~~UsesGraph_node3" class="node">
+<title>iso_fortran_env</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="94,-24 0,-24 0,0 94,0 94,-24"/>
+<text text-anchor="middle" x="47" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</g>
+<!-- module~colormap_parameters&#45;&gt;iso_fortran_env -->
+<g id="module~~matplotlib_colormaps~~UsesGraph_edge2" class="edge">
+<title>module~colormap_parameters&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M129.82,-12C121.41,-12 112.85,-12 104.59,-12"/>
+<polygon fill="#255000" stroke="#255000" points="104.32,-8.5 94.32,-12 104.32,-15.5 104.32,-8.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~matplotlib_colormaps~~UsedByGraph Pages: 1 -->
+<svg id="modulematplotlib_colormapsUsedByGraph" width="374pt" height="242pt"
+ viewBox="0.00 0.00 374.00 242.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~matplotlib_colormaps~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 238)">
+<title>module~~matplotlib_colormaps~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-238 370,-238 370,4 -4,4"/>
+<!-- module~matplotlib_colormaps -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_node1" class="node">
+<title>module~matplotlib_colormaps</title>
+<polygon fill="none" stroke="black" points="128,-129 0,-129 0,-105 128,-105 128,-129"/>
+<text text-anchor="middle" x="64" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50">matplotlib_colormaps</text>
+</g>
+<!-- module~forcolormap -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_node2" class="node">
+<title>module~forcolormap</title>
+<g id="a_module~~matplotlib_colormaps~~UsedByGraph_node2"><a xlink:href="../module/forcolormap.html" xlink:title="forcolormap">
+<polygon fill="#337ab7" stroke="#337ab7" points="242,-129 164,-129 164,-105 242,-105 242,-129"/>
+<text text-anchor="middle" x="203" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap</text>
+</a>
+</g>
+</g>
+<!-- module~forcolormap&#45;&gt;module~matplotlib_colormaps -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_edge1" class="edge">
+<title>module~forcolormap&#45;&gt;module~matplotlib_colormaps</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M163.84,-117C155.78,-117 147.03,-117 138.17,-117"/>
+<polygon fill="#255000" stroke="#255000" points="138.16,-113.5 128.16,-117 138.16,-120.5 138.16,-113.5"/>
+</g>
+<!-- program~create -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_node3" class="node">
+<title>program~create</title>
+<g id="a_module~~matplotlib_colormaps~~UsedByGraph_node3"><a xlink:href="../program/create.html" xlink:title="create">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="349,-234 295,-234 295,-210 349,-210 349,-234"/>
+<text text-anchor="middle" x="322" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">create</text>
+</a>
+</g>
+</g>
+<!-- program~create&#45;&gt;module~forcolormap -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_edge2" class="edge">
+<title>program~create&#45;&gt;module~forcolormap</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M294.57,-211.13C288.85,-208.23 283.02,-204.83 278,-201 254.09,-182.77 232.06,-155.9 218.36,-137.49"/>
+<polygon fill="#255000" stroke="#255000" points="221.05,-135.23 212.34,-129.21 215.39,-139.35 221.05,-135.23"/>
+</g>
+<!-- program~demo -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_node4" class="node">
+<title>program~demo</title>
+<g id="a_module~~matplotlib_colormaps~~UsedByGraph_node4"><a xlink:href="../program/demo.html" xlink:title="demo">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="349,-192 295,-192 295,-168 349,-168 349,-192"/>
+<text text-anchor="middle" x="322" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo</text>
+</a>
+</g>
+</g>
+<!-- program~demo&#45;&gt;module~forcolormap -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_edge3" class="edge">
+<title>program~demo&#45;&gt;module~forcolormap</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M295.4,-167.82C289.64,-164.99 283.59,-161.95 278,-159 263.14,-151.16 246.87,-142 233.39,-134.23"/>
+<polygon fill="#255000" stroke="#255000" points="234.95,-131.09 224.54,-129.11 231.44,-137.15 234.95,-131.09"/>
+</g>
+<!-- program~demo_reverse -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_node5" class="node">
+<title>program~demo_reverse</title>
+<g id="a_module~~matplotlib_colormaps~~UsedByGraph_node5"><a xlink:href="../program/demo_reverse.html" xlink:title="demo_reverse">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="366,-150 278,-150 278,-126 366,-126 366,-150"/>
+<text text-anchor="middle" x="322" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo_reverse</text>
+</a>
+</g>
+</g>
+<!-- program~demo_reverse&#45;&gt;module~forcolormap -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_edge4" class="edge">
+<title>program~demo_reverse&#45;&gt;module~forcolormap</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M277.77,-130.24C269.34,-128.73 260.47,-127.14 251.91,-125.6"/>
+<polygon fill="#255000" stroke="#255000" points="252.51,-122.15 242.04,-123.83 251.27,-129.04 252.51,-122.15"/>
+</g>
+<!-- program~example1 -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_node6" class="node">
+<title>program~example1</title>
+<g id="a_module~~matplotlib_colormaps~~UsedByGraph_node6"><a xlink:href="../program/example1.html" xlink:title="example1">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="354.5,-108 289.5,-108 289.5,-84 354.5,-84 354.5,-108"/>
+<text text-anchor="middle" x="322" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
+</a>
+</g>
+</g>
+<!-- program~example1&#45;&gt;module~forcolormap -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_edge5" class="edge">
+<title>program~example1&#45;&gt;module~forcolormap</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M289.34,-101.68C277.91,-103.73 264.74,-106.1 252.22,-108.35"/>
+<polygon fill="#255000" stroke="#255000" points="251.58,-104.9 242.36,-110.12 252.82,-111.79 251.58,-104.9"/>
+</g>
+<!-- program~extract -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_node7" class="node">
+<title>program~extract</title>
+<g id="a_module~~matplotlib_colormaps~~UsedByGraph_node7"><a xlink:href="../program/extract.html" xlink:title="extract">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="349,-66 295,-66 295,-42 349,-42 349,-66"/>
+<text text-anchor="middle" x="322" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extract</text>
+</a>
+</g>
+</g>
+<!-- program~extract&#45;&gt;module~forcolormap -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_edge6" class="edge">
+<title>program~extract&#45;&gt;module~forcolormap</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M295.4,-66.18C289.64,-69.01 283.59,-72.05 278,-75 263.14,-82.84 246.87,-92 233.39,-99.77"/>
+<polygon fill="#255000" stroke="#255000" points="231.44,-96.85 224.54,-104.89 234.95,-102.91 231.44,-96.85"/>
+</g>
+<!-- program~modify -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_node8" class="node">
+<title>program~modify</title>
+<g id="a_module~~matplotlib_colormaps~~UsedByGraph_node8"><a xlink:href="../program/modify.html" xlink:title="modify">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="349,-24 295,-24 295,0 349,0 349,-24"/>
+<text text-anchor="middle" x="322" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">modify</text>
+</a>
+</g>
+</g>
+<!-- program~modify&#45;&gt;module~forcolormap -->
+<g id="module~~matplotlib_colormaps~~UsedByGraph_edge7" class="edge">
+<title>program~modify&#45;&gt;module~forcolormap</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M294.57,-22.87C288.85,-25.77 283.02,-29.17 278,-33 254.09,-51.23 232.06,-78.1 218.36,-96.51"/>
+<polygon fill="#255000" stroke="#255000" points="215.39,-94.65 212.34,-104.79 221.05,-98.77 215.39,-94.65"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-inferno"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(0:255, 1:3)
+            </td>
+            <td>::</td>
+            <td><strong>inferno</strong></td>
+<td> =</td>
+                <td>reshape([0, 0, 4, 1, 0, 5, 1, 1, 6, 1, 1, 8, 2, 1, 10, 2, 2, 12, 2, 2, 14, 3, 2, 16, 4, 3, 18, 4, 3, 20, 5, 4, 23, 6, 4, 25, 7, 5, 27, 8, 5, 29, 9, 6, 31, 10, 7, 34, 11, 7, 36, 12, 8, 38, 13, 8, 41, 14, 9, 43, 16, 9, 45, 17, 10, 48, 18, 10, 50, 20, 11, 52, 21, 11, 55, 22, 11, 57, 24, 12, 60, 25, 12, 62, 27, 12, 65, 28, 12, 67, 30, 12, 69, 31, 12, 72, 33, 12, 74, 35, 12, 76, 36, 12, 79, 38, 12, 81, 40, 11, 83, 41, 11, 85, 43, 11, 87, 45, 11, 89, 47, 10, 91, 49, 10, 92, 50, 10, 94, 52, 10, 95, 54, 9, 97, 56, 9, 98, 57, 9, 99, 59, 9, 100, 61, 9, 101, 62, 9, 102, 64, 10, 103, 66, 10, 104, 68, 10, 104, 69, 10, 105, 71, 11, 106, 73, 11, 106, 74, 12, 107, 76, 12, 107, 77, 13, 108, 79, 13, 108, 81, 14, 108, 82, 14, 109, 84, 15, 109, 85, 15, 109, 87, 16, 110, 89, 16, 110, 90, 17, 110, 92, 18, 110, 93, 18, 110, 95, 19, 110, 97, 19, 110, 98, 20, 110, 100, 21, 110, 101, 21, 110, 103, 22, 110, 105, 22, 110, 106, 23, 110, 108, 24, 110, 109, 24, 110, 111, 25, 110, 113, 25, 110, 114, 26, 110, 116, 26, 110, 117, 27, 110, 119, 28, 109, 120, 28, 109, 122, 29, 109, 124, 29, 109, 125, 30, 109, 127, 30, 108, 128, 31, 108, 130, 32, 108, 132, 32, 107, 133, 33, 107, 135, 33, 107, 136, 34, 106, 138, 34, 106, 140, 35, 105, 141, 35, 105, 143, 36, 105, 144, 37, 104, 146, 37, 104, 147, 38, 103, 149, 38, 103, 151, 39, 102, 152, 39, 102, 154, 40, 101, 155, 41, 100, 157, 41, 100, 159, 42, 99, 160, 42, 99, 162, 43, 98, 163, 44, 97, 165, 44, 96, 166, 45, 96, 168, 46, 95, 169, 46, 94, 171, 47, 94, 173, 48, 93, 174, 48, 92, 176, 49, 91, 177, 50, 90, 179, 50, 90, 180, 51, 89, 182, 52, 88, 183, 53, 87, 185, 53, 86, 186, 54, 85, 188, 55, 84, 189, 56, 83, 191, 57, 82, 192, 58, 81, 193, 58, 80, 195, 59, 79, 196, 60, 78, 198, 61, 77, 199, 62, 76, 200, 63, 75, 202, 64, 74, 203, 65, 73, 204, 66, 72, 206, 67, 71, 207, 68, 70, 208, 69, 69, 210, 70, 68, 211, 71, 67, 212, 72, 66, 213, 74, 65, 215, 75, 63, 216, 76, 62, 217, 77, 61, 218, 78, 60, 219, 80, 59, 221, 81, 58, 222, 82, 56, 223, 83, 55, 224, 85, 54, 225, 86, 53, 226, 87, 52, 227, 89, 51, 228, 90, 49, 229, 92, 48, 230, 93, 47, 231, 94, 46, 232, 96, 45, 233, 97, 43, 234, 99, 42, 235, 100, 41, 235, 102, 40, 236, 103, 38, 237, 105, 37, 238, 106, 36, 239, 108, 35, 239, 110, 33, 240, 111, 32, 241, 113, 31, 241, 115, 29, 242, 116, 28, 243, 118, 27, 243, 120, 25, 244, 121, 24, 245, 123, 23, 245, 125, 21, 246, 126, 20, 246, 128, 19, 247, 130, 18, 247, 132, 16, 248, 133, 15, 248, 135, 14, 248, 137, 12, 249, 139, 11, 249, 140, 10, 249, 142, 9, 250, 144, 8, 250, 146, 7, 250, 148, 7, 251, 150, 6, 251, 151, 6, 251, 153, 6, 251, 155, 6, 251, 157, 7, 252, 159, 7, 252, 161, 8, 252, 163, 9, 252, 165, 10, 252, 166, 12, 252, 168, 13, 252, 170, 15, 252, 172, 17, 252, 174, 18, 252, 176, 20, 252, 178, 22, 252, 180, 24, 251, 182, 26, 251, 184, 29, 251, 186, 31, 251, 188, 33, 251, 190, 35, 250, 192, 38, 250, 194, 40, 250, 196, 42, 250, 198, 45, 249, 199, 47, 249, 201, 50, 249, 203, 53, 248, 205, 55, 248, 207, 58, 247, 209, 61, 247, 211, 64, 246, 213, 67, 246, 215, 70, 245, 217, 73, 245, 219, 76, 244, 221, 79, 244, 223, 83, 244, 225, 86, 243, 227, 90, 243, 229, 93, 242, 230, 97, 242, 232, 101, 242, 234, 105, 241, 236, 109, 241, 237, 113, 241, 239, 117, 241, 241, 121, 242, 242, 125, 242, 244, 130, 243, 245, 134, 243, 246, 138, 244, 248, 142, 245, 249, 146, 246, 250, 150, 248, 251, 154, 249, 252, 157, 250, 253, 161, 252, 255, 164], shape(inferno), order=[2, 1])</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-magma"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(0:255, 1:3)
+            </td>
+            <td>::</td>
+            <td><strong>magma</strong></td>
+<td> =</td>
+                <td>reshape([0, 0, 4, 1, 0, 5, 1, 1, 6, 1, 1, 8, 2, 1, 9, 2, 2, 11, 2, 2, 13, 3, 3, 15, 3, 3, 18, 4, 4, 20, 5, 4, 22, 6, 5, 24, 6, 5, 26, 7, 6, 28, 8, 7, 30, 9, 7, 32, 10, 8, 34, 11, 9, 36, 12, 9, 38, 13, 10, 41, 14, 11, 43, 16, 11, 45, 17, 12, 47, 18, 13, 49, 19, 13, 52, 20, 14, 54, 21, 14, 56, 22, 15, 59, 24, 15, 61, 25, 16, 63, 26, 16, 66, 28, 16, 68, 29, 17, 71, 30, 17, 73, 32, 17, 75, 33, 17, 78, 34, 17, 80, 36, 18, 83, 37, 18, 85, 39, 18, 88, 41, 17, 90, 42, 17, 92, 44, 17, 95, 45, 17, 97, 47, 17, 99, 49, 17, 101, 51, 16, 103, 52, 16, 105, 54, 16, 107, 56, 16, 108, 57, 15, 110, 59, 15, 112, 61, 15, 113, 63, 15, 114, 64, 15, 116, 66, 15, 117, 68, 15, 118, 69, 16, 119, 71, 16, 120, 73, 16, 120, 74, 16, 121, 76, 17, 122, 78, 17, 123, 79, 18, 123, 81, 18, 124, 82, 19, 124, 84, 19, 125, 86, 20, 125, 87, 21, 126, 89, 21, 126, 90, 22, 126, 92, 22, 127, 93, 23, 127, 95, 24, 127, 96, 24, 128, 98, 25, 128, 100, 26, 128, 101, 26, 128, 103, 27, 128, 104, 28, 129, 106, 28, 129, 107, 29, 129, 109, 29, 129, 110, 30, 129, 112, 31, 129, 114, 31, 129, 115, 32, 129, 117, 33, 129, 118, 33, 129, 120, 34, 129, 121, 34, 130, 123, 35, 130, 124, 35, 130, 126, 36, 130, 128, 37, 130, 129, 37, 129, 131, 38, 129, 132, 38, 129, 134, 39, 129, 136, 39, 129, 137, 40, 129, 139, 41, 129, 140, 41, 129, 142, 42, 129, 144, 42, 129, 145, 43, 129, 147, 43, 128, 148, 44, 128, 150, 44, 128, 152, 45, 128, 153, 45, 128, 155, 46, 127, 156, 46, 127, 158, 47, 127, 160, 47, 127, 161, 48, 126, 163, 48, 126, 165, 49, 126, 166, 49, 125, 168, 50, 125, 170, 51, 125, 171, 51, 124, 173, 52, 124, 174, 52, 123, 176, 53, 123, 178, 53, 123, 179, 54, 122, 181, 54, 122, 183, 55, 121, 184, 55, 121, 186, 56, 120, 188, 57, 120, 189, 57, 119, 191, 58, 119, 192, 58, 118, 194, 59, 117, 196, 60, 117, 197, 60, 116, 199, 61, 115, 200, 62, 115, 202, 62, 114, 204, 63, 113, 205, 64, 113, 207, 64, 112, 208, 65, 111, 210, 66, 111, 211, 67, 110, 213, 68, 109, 214, 69, 108, 216, 69, 108, 217, 70, 107, 219, 71, 106, 220, 72, 105, 222, 73, 104, 223, 74, 104, 224, 76, 103, 226, 77, 102, 227, 78, 101, 228, 79, 100, 229, 80, 100, 231, 82, 99, 232, 83, 98, 233, 84, 98, 234, 86, 97, 235, 87, 96, 236, 88, 96, 237, 90, 95, 238, 91, 94, 239, 93, 94, 240, 95, 94, 241, 96, 93, 242, 98, 93, 242, 100, 92, 243, 101, 92, 244, 103, 92, 244, 105, 92, 245, 107, 92, 246, 108, 92, 246, 110, 92, 247, 112, 92, 247, 114, 92, 248, 116, 92, 248, 118, 92, 249, 120, 93, 249, 121, 93, 249, 123, 93, 250, 125, 94, 250, 127, 94, 250, 129, 95, 251, 131, 95, 251, 133, 96, 251, 135, 97, 252, 137, 97, 252, 138, 98, 252, 140, 99, 252, 142, 100, 252, 144, 101, 253, 146, 102, 253, 148, 103, 253, 150, 104, 253, 152, 105, 253, 154, 106, 253, 155, 107, 254, 157, 108, 254, 159, 109, 254, 161, 110, 254, 163, 111, 254, 165, 113, 254, 167, 114, 254, 169, 115, 254, 170, 116, 254, 172, 118, 254, 174, 119, 254, 176, 120, 254, 178, 122, 254, 180, 123, 254, 182, 124, 254, 183, 126, 254, 185, 127, 254, 187, 129, 254, 189, 130, 254, 191, 132, 254, 193, 133, 254, 194, 135, 254, 196, 136, 254, 198, 138, 254, 200, 140, 254, 202, 141, 254, 204, 143, 254, 205, 144, 254, 207, 146, 254, 209, 148, 254, 211, 149, 254, 213, 151, 254, 215, 153, 254, 216, 154, 253, 218, 156, 253, 220, 158, 253, 222, 160, 253, 224, 161, 253, 226, 163, 253, 227, 165, 253, 229, 167, 253, 231, 169, 253, 233, 170, 253, 235, 172, 252, 236, 174, 252, 238, 176, 252, 240, 178, 252, 242, 180, 252, 244, 182, 252, 246, 184, 252, 247, 185, 252, 249, 187, 252, 251, 189, 252, 253, 191], shape(magma), order=[2, 1])</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-matplotlib_colormaps_list"></span>
+              character(len=*),
+            </td>
+              <td>public,</td>
+            <td>
+parameter,               dimension(*)
+            </td>
+            <td>::</td>
+            <td><strong>matplotlib_colormaps_list</strong></td>
+<td> =</td>
+                <td>[character(colormap_name_length)::&#34;magma&#34;, &#34;inferno&#34;, &#34;plasma&#34;, &#34;viridis&#34;]</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-plasma"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(0:255, 1:3)
+            </td>
+            <td>::</td>
+            <td><strong>plasma</strong></td>
+<td> =</td>
+                <td>reshape([13, 8, 135, 16, 7, 136, 19, 7, 137, 22, 7, 138, 25, 6, 140, 27, 6, 141, 29, 6, 142, 32, 6, 143, 34, 6, 144, 36, 6, 145, 38, 5, 145, 40, 5, 146, 42, 5, 147, 44, 5, 148, 46, 5, 149, 47, 5, 150, 49, 5, 151, 51, 5, 151, 53, 4, 152, 55, 4, 153, 56, 4, 154, 58, 4, 154, 60, 4, 155, 62, 4, 156, 63, 4, 156, 65, 4, 157, 67, 3, 158, 68, 3, 158, 70, 3, 159, 72, 3, 159, 73, 3, 160, 75, 3, 161, 76, 2, 161, 78, 2, 162, 80, 2, 162, 81, 2, 163, 83, 2, 163, 85, 2, 164, 86, 1, 164, 88, 1, 164, 89, 1, 165, 91, 1, 165, 92, 1, 166, 94, 1, 166, 96, 1, 166, 97, 0, 167, 99, 0, 167, 100, 0, 167, 102, 0, 167, 103, 0, 168, 105, 0, 168, 106, 0, 168, 108, 0, 168, 110, 0, 168, 111, 0, 168, 113, 0, 168, 114, 1, 168, 116, 1, 168, 117, 1, 168, 119, 1, 168, 120, 1, 168, 122, 2, 168, 123, 2, 168, 125, 3, 168, 126, 3, 168, 128, 4, 168, 129, 4, 167, 131, 5, 167, 132, 5, 167, 134, 6, 166, 135, 7, 166, 136, 8, 166, 138, 9, 165, 139, 10, 165, 141, 11, 165, 142, 12, 164, 143, 13, 164, 145, 14, 163, 146, 15, 163, 148, 16, 162, 149, 17, 161, 150, 19, 161, 152, 20, 160, 153, 21, 159, 154, 22, 159, 156, 23, 158, 157, 24, 157, 158, 25, 157, 160, 26, 156, 161, 27, 155, 162, 29, 154, 163, 30, 154, 165, 31, 153, 166, 32, 152, 167, 33, 151, 168, 34, 150, 170, 35, 149, 171, 36, 148, 172, 38, 148, 173, 39, 147, 174, 40, 146, 176, 41, 145, 177, 42, 144, 178, 43, 143, 179, 44, 142, 180, 46, 141, 181, 47, 140, 182, 48, 139, 183, 49, 138, 184, 50, 137, 186, 51, 136, 187, 52, 136, 188, 53, 135, 189, 55, 134, 190, 56, 133, 191, 57, 132, 192, 58, 131, 193, 59, 130, 194, 60, 129, 195, 61, 128, 196, 62, 127, 197, 64, 126, 198, 65, 125, 199, 66, 124, 200, 67, 123, 201, 68, 122, 202, 69, 122, 203, 70, 121, 204, 71, 120, 204, 73, 119, 205, 74, 118, 206, 75, 117, 207, 76, 116, 208, 77, 115, 209, 78, 114, 210, 79, 113, 211, 81, 113, 212, 82, 112, 213, 83, 111, 213, 84, 110, 214, 85, 109, 215, 86, 108, 216, 87, 107, 217, 88, 106, 218, 90, 106, 218, 91, 105, 219, 92, 104, 220, 93, 103, 221, 94, 102, 222, 95, 101, 222, 97, 100, 223, 98, 99, 224, 99, 99, 225, 100, 98, 226, 101, 97, 226, 102, 96, 227, 104, 95, 228, 105, 94, 229, 106, 93, 229, 107, 93, 230, 108, 92, 231, 110, 91, 231, 111, 90, 232, 112, 89, 233, 113, 88, 233, 114, 87, 234, 116, 87, 235, 117, 86, 235, 118, 85, 236, 119, 84, 237, 121, 83, 237, 122, 82, 238, 123, 81, 239, 124, 81, 239, 126, 80, 240, 127, 79, 240, 128, 78, 241, 129, 77, 241, 131, 76, 242, 132, 75, 243, 133, 75, 243, 135, 74, 244, 136, 73, 244, 137, 72, 245, 139, 71, 245, 140, 70, 246, 141, 69, 246, 143, 68, 247, 144, 68, 247, 145, 67, 247, 147, 66, 248, 148, 65, 248, 149, 64, 249, 151, 63, 249, 152, 62, 249, 154, 62, 250, 155, 61, 250, 156, 60, 250, 158, 59, 251, 159, 58, 251, 161, 57, 251, 162, 56, 252, 163, 56, 252, 165, 55, 252, 166, 54, 252, 168, 53, 252, 169, 52, 253, 171, 51, 253, 172, 51, 253, 174, 50, 253, 175, 49, 253, 177, 48, 253, 178, 47, 253, 180, 47, 253, 181, 46, 254, 183, 45, 254, 184, 44, 254, 186, 44, 254, 187, 43, 254, 189, 42, 254, 190, 42, 254, 192, 41, 253, 194, 41, 253, 195, 40, 253, 197, 39, 253, 198, 39, 253, 200, 39, 253, 202, 38, 253, 203, 38, 252, 205, 37, 252, 206, 37, 252, 208, 37, 252, 210, 37, 251, 211, 36, 251, 213, 36, 251, 215, 36, 250, 216, 36, 250, 218, 36, 249, 220, 36, 249, 221, 37, 248, 223, 37, 248, 225, 37, 247, 226, 37, 247, 228, 37, 246, 230, 38, 246, 232, 38, 245, 233, 38, 245, 235, 39, 244, 237, 39, 243, 238, 39, 243, 240, 39, 242, 242, 39, 241, 244, 38, 241, 245, 37, 240, 247, 36, 240, 249, 33], shape(plasma), order=[2, 1])</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-viridis"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+              dimension(0:255, 1:3)
+            </td>
+            <td>::</td>
+            <td><strong>viridis</strong></td>
+<td> =</td>
+                <td>reshape([68, 1, 84, 68, 2, 86, 69, 4, 87, 69, 5, 89, 70, 7, 90, 70, 8, 92, 70, 10, 93, 70, 11, 94, 71, 13, 96, 71, 14, 97, 71, 16, 99, 71, 17, 100, 71, 19, 101, 72, 20, 103, 72, 22, 104, 72, 23, 105, 72, 24, 106, 72, 26, 108, 72, 27, 109, 72, 28, 110, 72, 29, 111, 72, 31, 112, 72, 32, 113, 72, 33, 115, 72, 35, 116, 72, 36, 117, 72, 37, 118, 72, 38, 119, 72, 40, 120, 72, 41, 121, 71, 42, 122, 71, 44, 122, 71, 45, 123, 71, 46, 124, 71, 47, 125, 70, 48, 126, 70, 50, 126, 70, 51, 127, 70, 52, 128, 69, 53, 129, 69, 55, 129, 69, 56, 130, 68, 57, 131, 68, 58, 131, 68, 59, 132, 67, 61, 132, 67, 62, 133, 66, 63, 133, 66, 64, 134, 66, 65, 134, 65, 66, 135, 65, 68, 135, 64, 69, 136, 64, 70, 136, 63, 71, 136, 63, 72, 137, 62, 73, 137, 62, 74, 137, 62, 76, 138, 61, 77, 138, 61, 78, 138, 60, 79, 138, 60, 80, 139, 59, 81, 139, 59, 82, 139, 58, 83, 139, 58, 84, 140, 57, 85, 140, 57, 86, 140, 56, 88, 140, 56, 89, 140, 55, 90, 140, 55, 91, 141, 54, 92, 141, 54, 93, 141, 53, 94, 141, 53, 95, 141, 52, 96, 141, 52, 97, 141, 51, 98, 141, 51, 99, 141, 50, 100, 142, 50, 101, 142, 49, 102, 142, 49, 103, 142, 49, 104, 142, 48, 105, 142, 48, 106, 142, 47, 107, 142, 47, 108, 142, 46, 109, 142, 46, 110, 142, 46, 111, 142, 45, 112, 142, 45, 113, 142, 44, 113, 142, 44, 114, 142, 44, 115, 142, 43, 116, 142, 43, 117, 142, 42, 118, 142, 42, 119, 142, 42, 120, 142, 41, 121, 142, 41, 122, 142, 41, 123, 142, 40, 124, 142, 40, 125, 142, 39, 126, 142, 39, 127, 142, 39, 128, 142, 38, 129, 142, 38, 130, 142, 38, 130, 142, 37, 131, 142, 37, 132, 142, 37, 133, 142, 36, 134, 142, 36, 135, 142, 35, 136, 142, 35, 137, 142, 35, 138, 141, 34, 139, 141, 34, 140, 141, 34, 141, 141, 33, 142, 141, 33, 143, 141, 33, 144, 141, 33, 145, 140, 32, 146, 140, 32, 146, 140, 32, 147, 140, 31, 148, 140, 31, 149, 139, 31, 150, 139, 31, 151, 139, 31, 152, 139, 31, 153, 138, 31, 154, 138, 30, 155, 138, 30, 156, 137, 30, 157, 137, 31, 158, 137, 31, 159, 136, 31, 160, 136, 31, 161, 136, 31, 161, 135, 31, 162, 135, 32, 163, 134, 32, 164, 134, 33, 165, 133, 33, 166, 133, 34, 167, 133, 34, 168, 132, 35, 169, 131, 36, 170, 131, 37, 171, 130, 37, 172, 130, 38, 173, 129, 39, 173, 129, 40, 174, 128, 41, 175, 127, 42, 176, 127, 44, 177, 126, 45, 178, 125, 46, 179, 124, 47, 180, 124, 49, 181, 123, 50, 182, 122, 52, 182, 121, 53, 183, 121, 55, 184, 120, 56, 185, 119, 58, 186, 118, 59, 187, 117, 61, 188, 116, 63, 188, 115, 64, 189, 114, 66, 190, 113, 68, 191, 112, 70, 192, 111, 72, 193, 110, 74, 193, 109, 76, 194, 108, 78, 195, 107, 80, 196, 106, 82, 197, 105, 84, 197, 104, 86, 198, 103, 88, 199, 101, 90, 200, 100, 92, 200, 99, 94, 201, 98, 96, 202, 96, 99, 203, 95, 101, 203, 94, 103, 204, 92, 105, 205, 91, 108, 205, 90, 110, 206, 88, 112, 207, 87, 115, 208, 86, 117, 208, 84, 119, 209, 83, 122, 209, 81, 124, 210, 80, 127, 211, 78, 129, 211, 77, 132, 212, 75, 134, 213, 73, 137, 213, 72, 139, 214, 70, 142, 214, 69, 144, 215, 67, 147, 215, 65, 149, 216, 64, 152, 216, 62, 155, 217, 60, 157, 217, 59, 160, 218, 57, 162, 218, 55, 165, 219, 54, 168, 219, 52, 170, 220, 50, 173, 220, 48, 176, 221, 47, 178, 221, 45, 181, 222, 43, 184, 222, 41, 186, 222, 40, 189, 223, 38, 192, 223, 37, 194, 223, 35, 197, 224, 33, 200, 224, 32, 202, 225, 31, 205, 225, 29, 208, 225, 28, 210, 226, 27, 213, 226, 26, 216, 226, 25, 218, 227, 25, 221, 227, 24, 223, 227, 24, 226, 228, 24, 229, 228, 25, 231, 228, 25, 234, 229, 26, 236, 229, 27, 239, 229, 28, 241, 229, 29, 244, 230, 30, 246, 230, 32, 248, 230, 33, 251, 231, 35, 253, 231, 37], shape(viridis), order=[2, 1])</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col"><p>ForColormap was developed by Vincent Magnin,
+Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-02-20T15:27:57.070390             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

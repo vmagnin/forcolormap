@@ -1,0 +1,890 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A Fortran library for colormaps">
+    <meta name="author" content="Vincent Magnin,
+Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>write_ppm_colorbar &ndash; ForColormap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForColormap <small>0.8.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>write_ppm_colorbar
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a></li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip"
+                 data-bs-placement="bottom" data-html="true"
+                 title=" 2.2% of total for procedures.">40 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/colormap_class.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/colormap_class.f90.html'>colormap_class.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/forcolormap.html'>forcolormap</a></li>
+            <li class="breadcrumb-item active" aria-current="page">write_ppm_colorbar</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/write_ppm_colorbar.html#src">write_ppm_colorbar</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private impure subroutine write_ppm_colorbar(self, filename, width, height, encoding)  
+</h2>
+        <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item">forimage</li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~write_ppm_colorbar~~UsesGraph Pages: 1 -->
+<svg id="procwrite_ppm_colorbarUsesGraph" width="358pt" height="32pt"
+ viewBox="0.00 0.00 358.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~write_ppm_colorbar~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~write_ppm_colorbar~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 354,-28 354,4 -4,4"/>
+<!-- proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~UsesGraph_node1" class="node">
+<title>proc~write_ppm_colorbar</title>
+<polygon fill="none" stroke="black" points="350,-24 97,-24 97,0 350,0 350,-24"/>
+<text text-anchor="middle" x="223.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">forcolormap::Colormap%write_ppm_colorbar</text>
+</g>
+<!-- forimage -->
+<g id="proc~~write_ppm_colorbar~~UsesGraph_node2" class="node">
+<title>forimage</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="61,-24 0,-24 0,0 61,0 61,-24"/>
+<text text-anchor="middle" x="30.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forimage</text>
+</g>
+<!-- proc~write_ppm_colorbar&#45;&gt;forimage -->
+<g id="proc~~write_ppm_colorbar~~UsesGraph_edge1" class="edge">
+<title>proc~write_ppm_colorbar&#45;&gt;forimage</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M96.96,-12C87.91,-12 79.25,-12 71.37,-12"/>
+<polygon fill="#255000" stroke="#255000" points="71.14,-8.5 61.14,-12 71.14,-15.5 71.14,-8.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <h3>Type Bound</h3>
+    <p><a href='../type/colormap.html'>Colormap</a></p>
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-self~13"></span>
+              class(<a href='../type/colormap.html'>Colormap</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-filename~2"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>filename</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-width"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>width</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-height"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>height</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-encoding"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>encoding</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~write_ppm_colorbar~~CallsGraph Pages: 1 -->
+<svg id="procwrite_ppm_colorbarCallsGraph" width="641pt" height="243pt"
+ viewBox="0.00 0.00 641.00 243.05" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~write_ppm_colorbar~~CallsGraph" class="graph" transform="scale(1.17 1.17) rotate(0) translate(4 280)">
+<title>proc~~write_ppm_colorbar~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-280 745,-280 745,4 -4,4"/>
+<!-- proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node1" class="node">
+<title>proc~write_ppm_colorbar</title>
+<polygon fill="none" stroke="black" points="253,-150 0,-150 0,-126 253,-126 253,-150"/>
+<text text-anchor="middle" x="126.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50">forcolormap::Colormap%write_ppm_colorbar</text>
+</g>
+<!-- export_pnm -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node2" class="node">
+<title>export_pnm</title>
+<polygon fill="#777777" stroke="#777777" points="438.5,-276 362.5,-276 362.5,-252 438.5,-252 438.5,-276"/>
+<text text-anchor="middle" x="400.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">export_pnm</text>
+</g>
+<!-- proc~write_ppm_colorbar&#45;&gt;export_pnm -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_edge1" class="edge">
+<title>proc~write_ppm_colorbar&#45;&gt;export_pnm</title>
+<path fill="none" stroke="#255000" d="M141.98,-150.26C169,-172.45 229.73,-219.18 289,-243 308.98,-251.03 332.25,-256.04 352.27,-259.14"/>
+<polygon fill="#255000" stroke="#255000" points="352.01,-262.64 362.41,-260.59 353.01,-255.71 352.01,-262.64"/>
+</g>
+<!-- get_format -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node3" class="node">
+<title>get_format</title>
+<polygon fill="#777777" stroke="#777777" points="436,-234 365,-234 365,-210 436,-210 436,-234"/>
+<text text-anchor="middle" x="400.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_format</text>
+</g>
+<!-- proc~write_ppm_colorbar&#45;&gt;get_format -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_edge2" class="edge">
+<title>proc~write_ppm_colorbar&#45;&gt;get_format</title>
+<path fill="none" stroke="#255000" d="M153.84,-150.01C185.39,-163.99 240.12,-186.95 289,-201 310.35,-207.14 334.55,-211.97 354.85,-215.44"/>
+<polygon fill="#255000" stroke="#255000" points="354.33,-218.9 364.77,-217.08 355.48,-212 354.33,-218.9"/>
+</g>
+<!-- proc~compute_rgb -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node4" class="node">
+<title>proc~compute_rgb</title>
+<g id="a_proc~~write_ppm_colorbar~~CallsGraph_node4"><a xlink:href="../proc/compute_rgb.html" xlink:title="forcolormap::Colormap%compute_RGB">
+<polygon fill="#d9534f" stroke="#d9534f" points="512,-192 289,-192 289,-168 512,-168 512,-192"/>
+<text text-anchor="middle" x="400.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap::Colormap%compute_RGB</text>
+</a>
+</g>
+</g>
+<!-- proc~write_ppm_colorbar&#45;&gt;proc~compute_rgb -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_edge3" class="edge">
+<title>proc~write_ppm_colorbar&#45;&gt;proc~compute_rgb</title>
+<path fill="none" stroke="#255000" d="M205.44,-150.04C238.59,-155.15 277.4,-161.15 311.57,-166.42"/>
+<polygon fill="#255000" stroke="#255000" points="311.13,-169.9 321.54,-167.96 312.2,-162.98 311.13,-169.9"/>
+</g>
+<!-- proc~get_zmax -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node5" class="node">
+<title>proc~get_zmax</title>
+<g id="a_proc~~write_ppm_colorbar~~CallsGraph_node5"><a xlink:href="../proc/get_zmax.html" xlink:title="forcolormap::Colormap%get_zmax">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="500,-150 301,-150 301,-126 500,-126 500,-150"/>
+<text text-anchor="middle" x="400.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap::Colormap%get_zmax</text>
+</a>
+</g>
+</g>
+<!-- proc~write_ppm_colorbar&#45;&gt;proc~get_zmax -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_edge4" class="edge">
+<title>proc~write_ppm_colorbar&#45;&gt;proc~get_zmax</title>
+<path fill="none" stroke="#255000" d="M253.15,-138C265.66,-138 278.28,-138 290.59,-138"/>
+<polygon fill="#255000" stroke="#255000" points="290.86,-141.5 300.86,-138 290.86,-134.5 290.86,-141.5"/>
+</g>
+<!-- proc~get_zmin -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node6" class="node">
+<title>proc~get_zmin</title>
+<g id="a_proc~~write_ppm_colorbar~~CallsGraph_node6"><a xlink:href="../proc/get_zmin.html" xlink:title="forcolormap::Colormap%get_zmin">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="498.5,-108 302.5,-108 302.5,-84 498.5,-84 498.5,-108"/>
+<text text-anchor="middle" x="400.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap::Colormap%get_zmin</text>
+</a>
+</g>
+</g>
+<!-- proc~write_ppm_colorbar&#45;&gt;proc~get_zmin -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_edge5" class="edge">
+<title>proc~write_ppm_colorbar&#45;&gt;proc~get_zmin</title>
+<path fill="none" stroke="#255000" d="M205.44,-125.96C238.59,-120.85 277.4,-114.85 311.57,-109.58"/>
+<polygon fill="#255000" stroke="#255000" points="312.2,-113.02 321.54,-108.04 311.13,-106.1 312.2,-113.02"/>
+</g>
+<!-- set_format -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node7" class="node">
+<title>set_format</title>
+<polygon fill="#777777" stroke="#777777" points="435.5,-66 365.5,-66 365.5,-42 435.5,-42 435.5,-66"/>
+<text text-anchor="middle" x="400.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_format</text>
+</g>
+<!-- proc~write_ppm_colorbar&#45;&gt;set_format -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_edge6" class="edge">
+<title>proc~write_ppm_colorbar&#45;&gt;set_format</title>
+<path fill="none" stroke="#255000" d="M153.84,-125.99C185.39,-112.01 240.12,-89.05 289,-75 310.51,-68.82 334.92,-63.96 355.31,-60.48"/>
+<polygon fill="#255000" stroke="#255000" points="355.97,-63.92 365.27,-58.84 354.83,-57.01 355.97,-63.92"/>
+</g>
+<!-- set_pnm -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node8" class="node">
+<title>set_pnm</title>
+<polygon fill="#777777" stroke="#777777" points="429.5,-24 371.5,-24 371.5,0 429.5,0 429.5,-24"/>
+<text text-anchor="middle" x="400.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">set_pnm</text>
+</g>
+<!-- proc~write_ppm_colorbar&#45;&gt;set_pnm -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_edge7" class="edge">
+<title>proc~write_ppm_colorbar&#45;&gt;set_pnm</title>
+<path fill="none" stroke="#255000" d="M141.98,-125.74C169,-103.55 229.73,-56.82 289,-33 312.04,-23.74 339.47,-18.5 361.23,-15.57"/>
+<polygon fill="#255000" stroke="#255000" points="361.92,-19.01 371.41,-14.3 361.06,-12.06 361.92,-19.01"/>
+</g>
+<!-- proc~get_rgb -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_node9" class="node">
+<title>proc~get_rgb</title>
+<g id="a_proc~~write_ppm_colorbar~~CallsGraph_node9"><a xlink:href="../proc/get_rgb.html" xlink:title="forcolormap::Colormap%get_RGB">
+<polygon fill="#d9534f" stroke="#d9534f" points="741,-192 548,-192 548,-168 741,-168 741,-192"/>
+<text text-anchor="middle" x="644.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap::Colormap%get_RGB</text>
+</a>
+</g>
+</g>
+<!-- proc~compute_rgb&#45;&gt;proc~get_rgb -->
+<g id="proc~~write_ppm_colorbar~~CallsGraph_edge8" class="edge">
+<title>proc~compute_rgb&#45;&gt;proc~get_rgb</title>
+<path fill="none" stroke="#722550" d="M512.23,-180C520.64,-180 529.11,-180 537.48,-180"/>
+<polygon fill="#722550" stroke="#722550" points="537.64,-183.5 547.64,-180 537.64,-176.5 537.64,-183.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocwrite_ppm_colorbarCallsGraph = svgPanZoom('#procwrite_ppm_colorbarCallsGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~write_ppm_colorbar~~CalledByGraph Pages: 1 -->
+<svg id="procwrite_ppm_colorbarCalledByGraph" width="385pt" height="242pt"
+ viewBox="0.00 0.00 385.00 242.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~write_ppm_colorbar~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 238)">
+<title>proc~~write_ppm_colorbar~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-238 381,-238 381,4 -4,4"/>
+<!-- proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_node1" class="node">
+<title>proc~write_ppm_colorbar</title>
+<polygon fill="none" stroke="black" points="377,-129 124,-129 124,-105 377,-105 377,-129"/>
+<text text-anchor="middle" x="250.5" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50">forcolormap::Colormap%write_ppm_colorbar</text>
+</g>
+<!-- program~create -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_node2" class="node">
+<title>program~create</title>
+<g id="a_proc~~write_ppm_colorbar~~CalledByGraph_node2"><a xlink:href="../program/create.html" xlink:title="create">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-234 17,-234 17,-210 71,-210 71,-234"/>
+<text text-anchor="middle" x="44" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">create</text>
+</a>
+</g>
+</g>
+<!-- program~create&#45;&gt;proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_edge1" class="edge">
+<title>program~create&#45;&gt;proc~write_ppm_colorbar</title>
+<path fill="none" stroke="#255000" d="M70.06,-209.89C75.96,-207.01 82.21,-203.92 88,-201 133.33,-178.14 185.37,-150.9 217.84,-133.77"/>
+<polygon fill="#255000" stroke="#255000" points="219.65,-136.77 226.86,-129.01 216.38,-130.58 219.65,-136.77"/>
+</g>
+<!-- program~demo -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_node3" class="node">
+<title>program~demo</title>
+<g id="a_proc~~write_ppm_colorbar~~CalledByGraph_node3"><a xlink:href="../program/demo.html" xlink:title="demo">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-192 17,-192 17,-168 71,-168 71,-192"/>
+<text text-anchor="middle" x="44" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo</text>
+</a>
+</g>
+</g>
+<!-- program~demo&#45;&gt;proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_edge2" class="edge">
+<title>program~demo&#45;&gt;proc~write_ppm_colorbar</title>
+<path fill="none" stroke="#255000" d="M71.32,-171.89C103.9,-161.85 160.07,-144.55 200.64,-132.05"/>
+<polygon fill="#255000" stroke="#255000" points="201.81,-135.35 210.34,-129.06 199.75,-128.66 201.81,-135.35"/>
+</g>
+<!-- program~demo_reverse -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_node4" class="node">
+<title>program~demo_reverse</title>
+<g id="a_proc~~write_ppm_colorbar~~CalledByGraph_node4"><a xlink:href="../program/demo_reverse.html" xlink:title="demo_reverse">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="88,-150 0,-150 0,-126 88,-126 88,-150"/>
+<text text-anchor="middle" x="44" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo_reverse</text>
+</a>
+</g>
+</g>
+<!-- program~demo_reverse&#45;&gt;proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_edge3" class="edge">
+<title>program~demo_reverse&#45;&gt;proc~write_ppm_colorbar</title>
+<path fill="none" stroke="#255000" d="M88.37,-133.55C98.72,-132.48 110.29,-131.3 122.36,-130.06"/>
+<polygon fill="#255000" stroke="#255000" points="123,-133.51 132.59,-129.01 122.28,-126.55 123,-133.51"/>
+</g>
+<!-- program~example1 -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_node5" class="node">
+<title>program~example1</title>
+<g id="a_proc~~write_ppm_colorbar~~CalledByGraph_node5"><a xlink:href="../program/example1.html" xlink:title="example1">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="76.5,-108 11.5,-108 11.5,-84 76.5,-84 76.5,-108"/>
+<text text-anchor="middle" x="44" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
+</a>
+</g>
+</g>
+<!-- program~example1&#45;&gt;proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_edge4" class="edge">
+<title>program~example1&#45;&gt;proc~write_ppm_colorbar</title>
+<path fill="none" stroke="#255000" d="M76.5,-99.24C89.52,-100.57 105.54,-102.22 122.53,-103.96"/>
+<polygon fill="#255000" stroke="#255000" points="122.32,-107.46 132.63,-105 123.04,-100.5 122.32,-107.46"/>
+</g>
+<!-- program~extract -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_node6" class="node">
+<title>program~extract</title>
+<g id="a_proc~~write_ppm_colorbar~~CalledByGraph_node6"><a xlink:href="../program/extract.html" xlink:title="extract">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-66 17,-66 17,-42 71,-42 71,-66"/>
+<text text-anchor="middle" x="44" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extract</text>
+</a>
+</g>
+</g>
+<!-- program~extract&#45;&gt;proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_edge5" class="edge">
+<title>program~extract&#45;&gt;proc~write_ppm_colorbar</title>
+<path fill="none" stroke="#255000" d="M71.32,-62.11C103.9,-72.15 160.07,-89.45 200.64,-101.95"/>
+<polygon fill="#255000" stroke="#255000" points="199.75,-105.34 210.34,-104.94 201.81,-98.65 199.75,-105.34"/>
+</g>
+<!-- program~modify -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_node7" class="node">
+<title>program~modify</title>
+<g id="a_proc~~write_ppm_colorbar~~CalledByGraph_node7"><a xlink:href="../program/modify.html" xlink:title="modify">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-24 17,-24 17,0 71,0 71,-24"/>
+<text text-anchor="middle" x="44" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">modify</text>
+</a>
+</g>
+</g>
+<!-- program~modify&#45;&gt;proc~write_ppm_colorbar -->
+<g id="proc~~write_ppm_colorbar~~CalledByGraph_edge6" class="edge">
+<title>program~modify&#45;&gt;proc~write_ppm_colorbar</title>
+<path fill="none" stroke="#255000" d="M70.06,-24.11C75.96,-26.99 82.21,-30.08 88,-33 133.33,-55.86 185.37,-83.1 217.84,-100.23"/>
+<polygon fill="#255000" stroke="#255000" points="216.38,-103.42 226.86,-104.99 219.65,-97.23 216.38,-103.42"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">impure subroutine </span><span class="n">write_ppm_colorbar</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">encoding</span><span class="p">)</span>
+<span class="w">        </span><span class="k">use </span><span class="n">forimage</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">format_pnm</span>
+<span class="w">        </span><span class="k">class</span><span class="p">(</span><span class="n">Colormap</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">filename</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w">     </span><span class="c">! Pixbuffer coordinates</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pixwidth</span><span class="p">,</span><span class="w"> </span><span class="n">pixheight</span>
+<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rgb_image</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">z</span>
+<span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">format_pnm</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ppm</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">encoding</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">width</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            </span><span class="n">pixwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">width</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="k">            </span><span class="n">pixwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">600</span>
+<span class="w">        </span><span class="k">end if</span>
+
+<span class="k">        if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">height</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            </span><span class="n">pixheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">height</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="k">            </span><span class="n">pixheight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span>
+<span class="w">        </span><span class="k">end if</span>
+
+<span class="k">        allocate</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">(</span><span class="n">pixheight</span><span class="p">,</span><span class="n">pixwidth</span><span class="o">*</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="w">        </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">pixwidth</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">            </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">pixheight</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">                </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">get_zmin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">pixwidth</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="o">=</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">get_zmax</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">get_zmin</span><span class="p">())</span>
+<span class="w">                </span><span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">compute_RGB</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span><span class="p">)</span>
+<span class="w">                </span><span class="n">rgb_image</span><span class="p">(</span><span class="n">pixheight</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">red</span>
+<span class="w">                </span><span class="n">rgb_image</span><span class="p">(</span><span class="n">pixheight</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">green</span>
+<span class="w">                </span><span class="n">rgb_image</span><span class="p">(</span><span class="n">pixheight</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">blue</span>
+<span class="w">            </span><span class="k">end do</span>
+<span class="k">        end do</span>
+
+<span class="k">        if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">encoding</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            call </span><span class="n">ppm</span><span class="p">%</span><span class="n">set_format</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="k">            call </span><span class="n">ppm</span><span class="p">%</span><span class="n">set_format</span><span class="p">(</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">end if</span>
+
+<span class="k">        call </span><span class="n">ppm</span><span class="p">%</span><span class="n">set_pnm</span><span class="p">(</span><span class="n">encoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ppm</span><span class="p">%</span><span class="n">get_format</span><span class="p">(),&amp;</span>
+<span class="w">            </span><span class="n">file_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ppm&#39;</span><span class="p">,&amp;</span>
+<span class="w">            </span><span class="n">width</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">pixwidth</span><span class="p">,&amp;</span>
+<span class="w">            </span><span class="n">height</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">pixheight</span><span class="p">,&amp;</span>
+<span class="w">            </span><span class="n">max_color</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">255</span><span class="p">,&amp;</span>
+<span class="w">            </span><span class="n">comment</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;comment&#39;</span><span class="p">,&amp;</span>
+<span class="w">            </span><span class="n">pixels</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">rgb_image</span><span class="p">)</span>
+<span class="w">        </span><span class="k">call </span><span class="n">ppm</span><span class="p">%</span><span class="n">export_pnm</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end subroutine </span><span class="n">write_ppm_colorbar</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col"><p>ForColormap was developed by Vincent Magnin,
+Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-02-20T15:27:57.070390             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

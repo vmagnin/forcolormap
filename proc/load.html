@@ -1,0 +1,727 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A Fortran library for colormaps">
+    <meta name="author" content="Vincent Magnin,
+Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>load &ndash; ForColormap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForColormap <small>0.8.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>load
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a></li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip"
+                 data-bs-placement="bottom" data-html="true"
+                 title=" 2.3% of total for procedures.">42 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/colormap_class.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/colormap_class.f90.html'>colormap_class.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/forcolormap.html'>forcolormap</a></li>
+            <li class="breadcrumb-item active" aria-current="page">load</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/load.html#src">load</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private impure subroutine load(self, filename, zmin, zmax, reverse)  
+</h2>
+    
+
+
+    <h3>Type Bound</h3>
+    <p><a href='../type/colormap.html'>Colormap</a></p>
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-self~5"></span>
+              class(<a href='../type/colormap.html'>Colormap</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-filename"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>filename</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-zmin~6"></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>zmin</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-zmax~6"></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>zmax</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-reverse~6"></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>reverse</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~load~~CallsGraph Pages: 1 -->
+<svg id="procloadCallsGraph" width="641pt" height="106pt"
+ viewBox="0.00 0.00 641.00 106.38" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~load~~CallsGraph" class="graph" transform="scale(1.49 1.49) rotate(0) translate(4 154)">
+<title>proc~~load~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 948,-154 948,4 -4,4"/>
+<!-- proc~load -->
+<g id="proc~~load~~CallsGraph_node1" class="node">
+<title>proc~load</title>
+<polygon fill="none" stroke="black" points="171,-66 0,-66 0,-42 171,-42 171,-66"/>
+<text text-anchor="middle" x="85.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">forcolormap::Colormap%load</text>
+</g>
+<!-- proc~check -->
+<g id="proc~~load~~CallsGraph_node2" class="node">
+<title>proc~check</title>
+<g id="a_proc~~load~~CallsGraph_node2"><a xlink:href="../proc/check.html" xlink:title="forcolormap::Colormap%check">
+<polygon fill="#d9534f" stroke="#d9534f" points="390,-87 211,-87 211,-63 390,-63 390,-87"/>
+<text text-anchor="middle" x="300.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap::Colormap%check</text>
+</a>
+</g>
+</g>
+<!-- proc~load&#45;&gt;proc~check -->
+<g id="proc~~load~~CallsGraph_edge1" class="edge">
+<title>proc~load&#45;&gt;proc~check</title>
+<path fill="none" stroke="#255000" d="M171.3,-62.36C180.94,-63.31 190.83,-64.29 200.64,-65.25"/>
+<polygon fill="#255000" stroke="#255000" points="200.51,-68.76 210.81,-66.26 201.2,-61.79 200.51,-68.76"/>
+</g>
+<!-- proc~reverse -->
+<g id="proc~~load~~CallsGraph_node3" class="node">
+<title>proc~reverse</title>
+<g id="a_proc~~load~~CallsGraph_node3"><a xlink:href="../proc/reverse.html" xlink:title="forcolormap::Colormap%reverse">
+<polygon fill="#d9534f" stroke="#d9534f" points="394,-45 207,-45 207,-21 394,-21 394,-45"/>
+<text text-anchor="middle" x="300.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap::Colormap%reverse</text>
+</a>
+</g>
+</g>
+<!-- proc~load&#45;&gt;proc~reverse -->
+<g id="proc~~load~~CallsGraph_edge2" class="edge">
+<title>proc~load&#45;&gt;proc~reverse</title>
+<path fill="none" stroke="#255000" d="M171.3,-45.64C179.72,-44.81 188.33,-43.96 196.91,-43.11"/>
+<polygon fill="#255000" stroke="#255000" points="197.34,-46.59 206.95,-42.13 196.65,-39.62 197.34,-46.59"/>
+</g>
+<!-- proc~get_levels -->
+<g id="proc~~load~~CallsGraph_node4" class="node">
+<title>proc~get_levels</title>
+<g id="a_proc~~load~~CallsGraph_node4"><a xlink:href="../proc/get_levels.html" xlink:title="forcolormap_info::Colormaps_info%get_levels">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="703,-150 446,-150 446,-126 703,-126 703,-150"/>
+<text text-anchor="middle" x="574.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::Colormaps_info%get_levels</text>
+</a>
+</g>
+</g>
+<!-- proc~check&#45;&gt;proc~get_levels -->
+<g id="proc~~load~~CallsGraph_edge3" class="edge">
+<title>proc~check&#45;&gt;proc~get_levels</title>
+<path fill="none" stroke="#255000" d="M333.28,-87.07C359.03,-96.44 396.41,-109.11 430,-117 441.49,-119.7 453.58,-122.11 465.67,-124.25"/>
+<polygon fill="#255000" stroke="#255000" points="465.37,-127.75 475.82,-125.99 466.55,-120.85 465.37,-127.75"/>
+</g>
+<!-- proc~get_name -->
+<g id="proc~~load~~CallsGraph_node5" class="node">
+<title>proc~get_name</title>
+<g id="a_proc~~load~~CallsGraph_node5"><a xlink:href="../proc/get_name.html" xlink:title="forcolormap_info::Colormaps_info%get_name">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="703,-108 446,-108 446,-84 703,-84 703,-108"/>
+<text text-anchor="middle" x="574.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::Colormaps_info%get_name</text>
+</a>
+</g>
+</g>
+<!-- proc~check&#45;&gt;proc~get_name -->
+<g id="proc~~load~~CallsGraph_edge4" class="edge">
+<title>proc~check&#45;&gt;proc~get_name</title>
+<path fill="none" stroke="#255000" d="M390.19,-81.85C404.81,-82.98 420.27,-84.17 435.76,-85.37"/>
+<polygon fill="#255000" stroke="#255000" points="435.69,-88.87 445.93,-86.15 436.23,-81.89 435.69,-88.87"/>
+</g>
+<!-- proc~get_ncolormaps -->
+<g id="proc~~load~~CallsGraph_node6" class="node">
+<title>proc~get_ncolormaps</title>
+<g id="a_proc~~load~~CallsGraph_node6"><a xlink:href="../proc/get_ncolormaps.html" xlink:title="forcolormap_info::Colormaps_info%get_ncolormaps">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="719,-66 430,-66 430,-42 719,-42 719,-66"/>
+<text text-anchor="middle" x="574.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::Colormaps_info%get_ncolormaps</text>
+</a>
+</g>
+</g>
+<!-- proc~check&#45;&gt;proc~get_ncolormaps -->
+<g id="proc~~load~~CallsGraph_edge5" class="edge">
+<title>proc~check&#45;&gt;proc~get_ncolormaps</title>
+<path fill="none" stroke="#255000" d="M390.19,-68.15C399.72,-67.42 409.61,-66.65 419.63,-65.88"/>
+<polygon fill="#255000" stroke="#255000" points="419.99,-69.36 429.69,-65.1 419.45,-62.38 419.99,-69.36"/>
+</g>
+<!-- proc~set_all -->
+<g id="proc~~load~~CallsGraph_node7" class="node">
+<title>proc~set_all</title>
+<g id="a_proc~~load~~CallsGraph_node7"><a xlink:href="../proc/set_all.html" xlink:title="forcolormap_info::Colormaps_info%set_all">
+<polygon fill="#d9534f" stroke="#d9534f" points="693.5,-24 455.5,-24 455.5,0 693.5,0 693.5,-24"/>
+<text text-anchor="middle" x="574.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::Colormaps_info%set_all</text>
+</a>
+</g>
+</g>
+<!-- proc~check&#45;&gt;proc~set_all -->
+<g id="proc~~load~~CallsGraph_edge6" class="edge">
+<title>proc~check&#45;&gt;proc~set_all</title>
+<path fill="none" stroke="#255000" d="M366.46,-62.9C375.84,-60.4 385.27,-57.44 394,-54 411.23,-47.2 412.52,-39.12 430,-33 437.02,-30.54 444.34,-28.37 451.78,-26.46"/>
+<polygon fill="#255000" stroke="#255000" points="452.73,-29.83 461.63,-24.08 451.08,-23.02 452.73,-29.83"/>
+</g>
+<!-- proc~set_info -->
+<g id="proc~~load~~CallsGraph_node8" class="node">
+<title>proc~set_info</title>
+<g id="a_proc~~load~~CallsGraph_node8"><a xlink:href="../proc/set_info.html" xlink:title="forcolormap_info::table%set_info">
+<polygon fill="#d9534f" stroke="#d9534f" points="944,-24 755,-24 755,0 944,0 944,-24"/>
+<text text-anchor="middle" x="849.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::table%set_info</text>
+</a>
+</g>
+</g>
+<!-- proc~set_all&#45;&gt;proc~set_info -->
+<g id="proc~~load~~CallsGraph_edge7" class="edge">
+<title>proc~set_all&#45;&gt;proc~set_info</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M693.65,-12C710.6,-12 727.93,-12 744.57,-12"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="744.84,-15.5 754.84,-12 744.84,-8.5 744.84,-15.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocloadCallsGraph = svgPanZoom('#procloadCallsGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~load~~CalledByGraph Pages: 1 -->
+<svg id="procloadCalledByGraph" width="303pt" height="116pt"
+ viewBox="0.00 0.00 303.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~load~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>proc~~load~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 299,-112 299,4 -4,4"/>
+<!-- proc~load -->
+<g id="proc~~load~~CalledByGraph_node1" class="node">
+<title>proc~load</title>
+<polygon fill="none" stroke="black" points="295,-66 124,-66 124,-42 295,-42 295,-66"/>
+<text text-anchor="middle" x="209.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">forcolormap::Colormap%load</text>
+</g>
+<!-- program~demo -->
+<g id="proc~~load~~CalledByGraph_node2" class="node">
+<title>program~demo</title>
+<g id="a_proc~~load~~CalledByGraph_node2"><a xlink:href="../program/demo.html" xlink:title="demo">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-108 17,-108 17,-84 71,-84 71,-108"/>
+<text text-anchor="middle" x="44" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo</text>
+</a>
+</g>
+</g>
+<!-- program~demo&#45;&gt;proc~load -->
+<g id="proc~~load~~CalledByGraph_edge1" class="edge">
+<title>program~demo&#45;&gt;proc~load</title>
+<path fill="none" stroke="#255000" d="M71.27,-89.25C92.9,-83.7 124.33,-75.62 151.66,-68.6"/>
+<polygon fill="#255000" stroke="#255000" points="152.7,-71.95 161.52,-66.07 150.96,-65.17 152.7,-71.95"/>
+</g>
+<!-- program~demo_reverse -->
+<g id="proc~~load~~CalledByGraph_node3" class="node">
+<title>program~demo_reverse</title>
+<g id="a_proc~~load~~CalledByGraph_node3"><a xlink:href="../program/demo_reverse.html" xlink:title="demo_reverse">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="88,-66 0,-66 0,-42 88,-42 88,-66"/>
+<text text-anchor="middle" x="44" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo_reverse</text>
+</a>
+</g>
+</g>
+<!-- program~demo_reverse&#45;&gt;proc~load -->
+<g id="proc~~load~~CalledByGraph_edge2" class="edge">
+<title>program~demo_reverse&#45;&gt;proc~load</title>
+<path fill="none" stroke="#255000" d="M88.39,-54C96.36,-54 104.96,-54 113.77,-54"/>
+<polygon fill="#255000" stroke="#255000" points="113.78,-57.5 123.78,-54 113.78,-50.5 113.78,-57.5"/>
+</g>
+<!-- program~example1 -->
+<g id="proc~~load~~CalledByGraph_node4" class="node">
+<title>program~example1</title>
+<g id="a_proc~~load~~CalledByGraph_node4"><a xlink:href="../program/example1.html" xlink:title="example1">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="76.5,-24 11.5,-24 11.5,0 76.5,0 76.5,-24"/>
+<text text-anchor="middle" x="44" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
+</a>
+</g>
+</g>
+<!-- program~example1&#45;&gt;proc~load -->
+<g id="proc~~load~~CalledByGraph_edge3" class="edge">
+<title>program~example1&#45;&gt;proc~load</title>
+<path fill="none" stroke="#255000" d="M76.52,-20.1C97.82,-25.57 126.55,-32.95 151.76,-39.43"/>
+<polygon fill="#255000" stroke="#255000" points="151.04,-42.85 161.59,-41.95 152.78,-36.07 151.04,-42.85"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">impure subroutine </span><span class="n">load</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">zmin</span><span class="p">,</span><span class="w"> </span><span class="n">zmax</span><span class="p">,</span><span class="w"> </span><span class="n">reverse</span><span class="p">)</span>
+<span class="w">        </span><span class="k">class</span><span class="p">(</span><span class="n">Colormap</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span>
+<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">filename</span>
+<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">zmin</span><span class="p">,</span><span class="w"> </span><span class="n">zmax</span>
+<span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">reverse</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">n</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span>
+<span class="w">        </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">file_found</span>
+<span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">file_unit</span><span class="p">,</span><span class="w"> </span><span class="n">ios</span>
+
+<span class="w">        </span><span class="k">inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">exist</span><span class="o">=</span><span class="n">file_found</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file_found</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span><span class="c">! We first count the number of lines (RGB triplets):</span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">            </span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">file_unit</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+<span class="w">            </span><span class="k">do</span>
+<span class="k">                read</span><span class="p">(</span><span class="n">file_unit</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(3I3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">exit</span>
+<span class="k">                </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="k">end do</span>
+<span class="k">            close</span><span class="p">(</span><span class="n">file_unit</span><span class="p">)</span>
+
+<span class="w">            </span><span class="c">! Is the colormap reseted?</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">map</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                deallocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">map</span><span class="p">)</span>
+<span class="w">            </span><span class="k">end if</span>
+<span class="k">            allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">map</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="w">            </span><span class="c">! Then we read them and put them in the map:</span>
+<span class="w">            </span><span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">file_unit</span><span class="p">,</span><span class="w">  </span><span class="k">file</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+<span class="w">            </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+<span class="w">                </span><span class="k">read</span><span class="p">(</span><span class="n">file_unit</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span>
+<span class="w">                </span><span class="n">self</span><span class="p">%</span><span class="n">map</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span><span class="p">]</span>
+<span class="w">                </span><span class="c">! Should not happen:</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">exit</span>
+<span class="k">            end do</span>
+<span class="k">            close</span><span class="p">(</span><span class="n">file_unit</span><span class="p">)</span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">%</span><span class="n">name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="w">            </span><span class="n">self</span><span class="p">%</span><span class="n">zmin</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">zmin</span>
+<span class="w">            </span><span class="n">self</span><span class="p">%</span><span class="n">zmax</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">zmax</span>
+<span class="w">            </span><span class="n">self</span><span class="p">%</span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span>
+
+<span class="w">            </span><span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">check</span><span class="p">(</span><span class="n">check_zmin</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span><span class="w"> </span><span class="n">check_zmax</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+
+<span class="w">            </span><span class="c">! Reverse the colormap if requested</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">reverse</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">                if</span><span class="w"> </span><span class="p">(</span><span class="n">reverse</span><span class="p">)</span><span class="w"> </span><span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">reverse</span><span class="p">()</span>
+<span class="w">            </span><span class="k">end if</span>
+<span class="k">        else</span>
+<span class="k">            stop</span><span class="w"> </span><span class="s2">&quot;ERROR: COLORMAP FILE NOT FOUND!&quot;</span>
+<span class="w">        </span><span class="k">end if</span>
+<span class="k">    end subroutine </span><span class="n">load</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col"><p>ForColormap was developed by Vincent Magnin,
+Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-02-20T15:27:57.070390             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

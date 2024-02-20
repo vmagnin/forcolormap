@@ -1,0 +1,456 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A Fortran library for colormaps">
+    <meta name="author" content="Vincent Magnin,
+Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>modify.f90 &ndash; ForColormap</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForColormap <small>0.8.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>modify.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a></li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip"
+                 data-bs-placement="bottom" data-html="true"
+                 title=" 0.9% of total for source files.">20 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/modify.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">modify.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#progs-0"
+         aria-expanded="false" aria-controls="progs-0">
+         <h4 class="card-header bg-primary text-white">Programs</h4>
+      </a>
+      <div id="progs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../program/modify.html">modify</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/modify.f90.html#src">modify.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">This file depends on</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~modify.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefilemodifyf90EfferentGraph" width="621pt" height="183pt"
+ viewBox="0.00 0.00 621.00 182.88" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~modify.f90~~EfferentGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 178.88)">
+<title>sourcefile~~modify.f90~~EfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-178.88 617,-178.88 617,4 -4,4"/>
+<!-- sourcefile~modify.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~modify.f90</title>
+<polygon fill="none" stroke="black" points="613,-108 545,-108 545,-84 613,-84 613,-108"/>
+<text text-anchor="middle" x="579" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50">modify.f90</text>
+</g>
+<!-- sourcefile~colormap_class.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~colormap_class.f90</title>
+<g id="a_sourcefile~~modify.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/colormap_class.f90.html" xlink:title="colormap_class.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="509,-108 394,-108 394,-84 509,-84 509,-108"/>
+<text text-anchor="middle" x="451.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">colormap_class.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~modify.f90&#45;&gt;sourcefile~colormap_class.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~modify.f90&#45;&gt;sourcefile~colormap_class.f90</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M544.7,-96C536.87,-96 528.25,-96 519.52,-96"/>
+<polygon fill="#255000" stroke="#255000" points="519.26,-92.5 509.26,-96 519.26,-99.5 519.26,-92.5"/>
+</g>
+<!-- sourcefile~colormap_parameters.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_node3" class="node">
+<title>sourcefile~colormap_parameters.f90</title>
+<g id="a_sourcefile~~modify.f90~~EfferentGraph_node3"><a xlink:href="../sourcefile/colormap_parameters.f90.html" xlink:title="colormap_parameters.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="151,-108 0,-108 0,-84 151,-84 151,-108"/>
+<text text-anchor="middle" x="75.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">colormap_parameters.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~colormap_class.f90&#45;&gt;sourcefile~colormap_parameters.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge2" class="edge">
+<title>sourcefile~colormap_class.f90&#45;&gt;sourcefile~colormap_parameters.f90</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M438.05,-108.19C421.43,-123.52 390.31,-149.04 358,-159 285.37,-181.38 260.46,-178.47 187,-159 154.36,-150.35 121.28,-129.55 99.94,-114.21"/>
+<polygon fill="#255000" stroke="#255000" points="101.94,-111.34 91.82,-108.22 97.79,-116.97 101.94,-111.34"/>
+</g>
+<!-- sourcefile~colormaps_info.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_node4" class="node">
+<title>sourcefile~colormaps_info.f90</title>
+<g id="a_sourcefile~~modify.f90~~EfferentGraph_node4"><a xlink:href="../sourcefile/colormaps_info.f90.html" xlink:title="colormaps_info.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="329.5,-150 215.5,-150 215.5,-126 329.5,-126 329.5,-150"/>
+<text text-anchor="middle" x="272.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">colormaps_info.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~colormap_class.f90&#45;&gt;sourcefile~colormaps_info.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge3" class="edge">
+<title>sourcefile~colormap_class.f90&#45;&gt;sourcefile~colormaps_info.f90</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M399.78,-108.04C379.32,-112.89 355.54,-118.53 334.18,-123.6"/>
+<polygon fill="#255000" stroke="#255000" points="333.15,-120.25 324.23,-125.96 334.77,-127.06 333.15,-120.25"/>
+</g>
+<!-- sourcefile~matplotlib_colormaps.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_node5" class="node">
+<title>sourcefile~matplotlib_colormaps.f90</title>
+<g id="a_sourcefile~~modify.f90~~EfferentGraph_node5"><a xlink:href="../sourcefile/matplotlib_colormaps.f90.html" xlink:title="matplotlib_colormaps.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="346.5,-108 198.5,-108 198.5,-84 346.5,-84 346.5,-108"/>
+<text text-anchor="middle" x="272.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">matplotlib_colormaps.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~colormap_class.f90&#45;&gt;sourcefile~matplotlib_colormaps.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge4" class="edge">
+<title>sourcefile~colormap_class.f90&#45;&gt;sourcefile~matplotlib_colormaps.f90</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M393.52,-96C381.84,-96 369.31,-96 356.91,-96"/>
+<polygon fill="#255000" stroke="#255000" points="356.55,-92.5 346.55,-96 356.55,-99.5 356.55,-92.5"/>
+</g>
+<!-- sourcefile~miscellaneous_colormaps.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_node6" class="node">
+<title>sourcefile~miscellaneous_colormaps.f90</title>
+<g id="a_sourcefile~~modify.f90~~EfferentGraph_node6"><a xlink:href="../sourcefile/miscellaneous_colormaps.f90.html" xlink:title="miscellaneous_colormaps.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="358,-66 187,-66 187,-42 358,-42 358,-66"/>
+<text text-anchor="middle" x="272.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">miscellaneous_colormaps.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~colormap_class.f90&#45;&gt;sourcefile~miscellaneous_colormaps.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge5" class="edge">
+<title>sourcefile~colormap_class.f90&#45;&gt;sourcefile~miscellaneous_colormaps.f90</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M399.78,-83.96C379.32,-79.11 355.54,-73.47 334.18,-68.4"/>
+<polygon fill="#255000" stroke="#255000" points="334.77,-64.94 324.23,-66.04 333.15,-71.75 334.77,-64.94"/>
+</g>
+<!-- sourcefile~scientific_colour_maps.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_node7" class="node">
+<title>sourcefile~scientific_colour_maps.f90</title>
+<g id="a_sourcefile~~modify.f90~~EfferentGraph_node7"><a xlink:href="../sourcefile/scientific_colour_maps.f90.html" xlink:title="scientific_colour_maps.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="349.5,-24 195.5,-24 195.5,0 349.5,0 349.5,-24"/>
+<text text-anchor="middle" x="272.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">scientific_colour_maps.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~colormap_class.f90&#45;&gt;sourcefile~scientific_colour_maps.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge6" class="edge">
+<title>sourcefile~colormap_class.f90&#45;&gt;sourcefile~scientific_colour_maps.f90</title>
+<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M436.1,-83.76C418.68,-69.57 387.97,-46.41 358,-33 353.29,-30.89 348.34,-28.97 343.29,-27.23"/>
+<polygon fill="#255000" stroke="#255000" points="344.08,-23.81 333.49,-24.09 341.95,-30.48 344.08,-23.81"/>
+</g>
+<!-- sourcefile~colormaps_info.f90&#45;&gt;sourcefile~colormap_parameters.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge7" class="edge">
+<title>sourcefile~colormaps_info.f90&#45;&gt;sourcefile~colormap_parameters.f90</title>
+<path fill="none" stroke="transparent" stroke-dasharray="5,2" d="M215.62,-125.96C192.77,-121.04 166.17,-115.31 142.39,-110.19"/>
+<polygon fill="transparent" stroke="transparent" points="142.9,-106.72 132.39,-108.04 141.43,-113.56 142.9,-106.72"/>
+</g>
+<!-- sourcefile~matplotlib_colormaps.f90&#45;&gt;sourcefile~colormap_parameters.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge8" class="edge">
+<title>sourcefile~matplotlib_colormaps.f90&#45;&gt;sourcefile~colormap_parameters.f90</title>
+<path fill="none" stroke="#025510" stroke-dasharray="5,2" stroke-opacity="0.007843" d="M198.33,-96C186.26,-96 173.66,-96 161.33,-96"/>
+<polygon fill="#025510" fill-opacity="0.007843" stroke="#025510" stroke-opacity="0.007843" points="161.05,-92.5 151.05,-96 161.05,-99.5 161.05,-92.5"/>
+</g>
+<!-- sourcefile~miscellaneous_colormaps.f90&#45;&gt;sourcefile~colormap_parameters.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge9" class="edge">
+<title>sourcefile~miscellaneous_colormaps.f90&#45;&gt;sourcefile~colormap_parameters.f90</title>
+<path fill="none" stroke="#010225" stroke-dasharray="5,2" stroke-opacity="0.019608" d="M215.62,-66.04C192.77,-70.96 166.17,-76.69 142.39,-81.81"/>
+<polygon fill="#010225" fill-opacity="0.019608" stroke="#010225" stroke-opacity="0.019608" points="141.43,-78.44 132.39,-83.96 142.9,-85.28 141.43,-78.44"/>
+</g>
+<!-- sourcefile~scientific_colour_maps.f90&#45;&gt;sourcefile~colormap_parameters.f90 -->
+<g id="sourcefile~~modify.f90~~EfferentGraph_edge10" class="edge">
+<title>sourcefile~scientific_colour_maps.f90&#45;&gt;sourcefile~colormap_parameters.f90</title>
+<path fill="none" stroke="#204025" stroke-dasharray="5,2" stroke-opacity="0.019608" d="M214.01,-24.02C204.84,-26.59 195.56,-29.57 187,-33 156.68,-45.14 124.52,-64.28 102.76,-78.27"/>
+<polygon fill="#204025" fill-opacity="0.019608" stroke="#204025" stroke-opacity="0.019608" points="100.57,-75.53 94.11,-83.92 104.39,-81.39 100.57,-75.53"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#EfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="EfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="c">! The MIT License (MIT)</span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a><span class="c">!</span>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="c">! Copyright (c) 2024 Vincent Magnin</span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="c">!</span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="c">! Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="c">! of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<a id="ln-7" name="ln-7" href="#ln-7"></a><span class="c">! in the Software without restriction, including without limitation the rights</span>
+<a id="ln-8" name="ln-8" href="#ln-8"></a><span class="c">! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="c">! copies of the Software, and to permit persons to whom the Software is</span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="c">! furnished to do so, subject to the following conditions:</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="c">!</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="c">! The above copyright notice and this permission notice shall be included in all</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="c">! copies or substantial portions of the Software.</span>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="c">!</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="c">! THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="c">! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="c">! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="c">! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="c">! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="c">! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="c">! SOFTWARE.</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="c">!-------------------------------------------------------------------------------</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="c">! Contributed by vmagnin: 2024-02-14</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="c">! Last modification: vmagnin 2024-02-15</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="c">!-------------------------------------------------------------------------------</span>
+<a id="ln-26" name="ln-26" href="#ln-26"></a>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="c">!&gt; This example shows how you can modify a colormap with methods like shift(),</span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="c">!&gt; in concrete cases.</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="k">program </span><span class="n">modify</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="w">    </span><span class="k">use </span><span class="n">forcolormap</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">Colormap</span><span class="p">,</span><span class="w"> </span><span class="n">wp</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a>
+<a id="ln-32" name="ln-32" href="#ln-32"></a><span class="w">    </span><span class="k">implicit none</span>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="k">    type</span><span class="p">(</span><span class="n">Colormap</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmap</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a>
+<a id="ln-35" name="ln-35" href="#ln-35"></a><span class="w">    </span><span class="c">!&gt; In the Scientific colour maps collection, all cyclic colormaps have their</span>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="w">    </span><span class="c">!&gt; bright part in the middle. But we can shift the dark part towards the</span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="w">    </span><span class="c">!&gt; center.</span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;bamO&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">)</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s2">&quot;bamO&quot;</span><span class="p">)</span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">shift</span><span class="p">(</span><span class="n">cmap</span><span class="p">%</span><span class="n">get_levels</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s2">&quot;bamO_shifted&quot;</span><span class="p">)</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;See the bamO.ppm and bamO_shifted.ppm colorbars&quot;</span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="w">    </span><span class="c">!&gt; In the Scientific colour maps collection, all categorical colormaps</span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a><span class="w">    </span><span class="c">!&gt; begin with a dark colour, but a shift can be applied to begin with a</span>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="w">    </span><span class="c">!&gt; brighter colour.</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;actonS&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">)</span>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s2">&quot;actonS&quot;</span><span class="p">)</span>
+<a id="ln-49" name="ln-49" href="#ln-49"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">shift</span><span class="p">(</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="w">   </span><span class="c">!! Two levels towards left</span>
+<a id="ln-50" name="ln-50" href="#ln-50"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s2">&quot;actonS_shifted&quot;</span><span class="p">)</span>
+<a id="ln-51" name="ln-51" href="#ln-51"></a><span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;See the actonS.ppm and actonS_shifted.ppm colorbars&quot;</span>
+<a id="ln-52" name="ln-52" href="#ln-52"></a>
+<a id="ln-53" name="ln-53" href="#ln-53"></a><span class="w">    </span><span class="c">!&gt; Starting from a diverging colormap, we can obtain what could be called</span>
+<a id="ln-54" name="ln-54" href="#ln-54"></a><span class="w">    </span><span class="c">!&gt; a diverging multi-sequential colormap.</span>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;bam&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">)</span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s2">&quot;bam&quot;</span><span class="p">)</span>
+<a id="ln-57" name="ln-57" href="#ln-57"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">shift</span><span class="p">(</span><span class="n">cmap</span><span class="p">%</span><span class="n">get_levels</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<a id="ln-58" name="ln-58" href="#ln-58"></a><span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s2">&quot;bam_shifted&quot;</span><span class="p">)</span>
+<a id="ln-59" name="ln-59" href="#ln-59"></a><span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;See the bam.ppm and bam_shifted.ppm colorbars&quot;</span>
+<a id="ln-60" name="ln-60" href="#ln-60"></a>
+<a id="ln-61" name="ln-61" href="#ln-61"></a><span class="k">end program </span><span class="n">modify</span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col"><p>ForColormap was developed by Vincent Magnin,
+Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-02-20T15:27:57.070390             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>
