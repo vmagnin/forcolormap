@@ -47,6 +47,11 @@ name = "modify"
 source-dir = "example"
 main = "modify.f90"
 
+[[example]]
+name = "create"
+source-dir = "example"
+main = "create.f90"
+
 [build]
 auto-executables = true
 auto-tests = true
