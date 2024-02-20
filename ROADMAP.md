@@ -13,10 +13,10 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
     - [ ] Test with gtk-fortran and other libraries.
 - [x] Introspection (Colormap_info)
     - [x] Include all available colormaps.
-- [ ] Add Interpolation functions.
-  - [ ] Lagrange
+- [x] Add Interpolation functions.
+  - [x] Lagrange
   - [x] Bezier
-- [ ] Add a `Colormap_test` class where the subroutine `test_colormap()` will be moved.
+- [ ] Add a `colormap_utils.f90` module where the subroutine `test_colormap()` will be moved.
 
 ### Examples
 
@@ -27,12 +27,12 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 
 - [x] Develop a PDF guide with all colorbars to aid in choosing a colormap.
 - [x] Develop a web version guide with all colorbars to aid in choosing a colormap.
-- [ ] Create a simple documentation generated with FORD.
+- [x] Create a simple documentation generated with FORD.
 
 ### Continuous Integration (CI)
 
 - [ ] Integrate fpm tests.
-- [ ] Integrate FORD documentation.
+- [x] Integrate FORD documentation.
 
 ### Building System
 
