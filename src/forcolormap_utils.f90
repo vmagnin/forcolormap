@@ -1,6 +1,6 @@
 ! The MIT License (MIT)
 !
-! Copyright (c) 2024 vmagnin
+! Copyright (c) 2024 vmagnin, gha3mi
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,7 @@
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
-! Contributed by vmagnin: 2024-02-21
+! Contributed by vmagnin & gha3mi: 2024-02-21
 ! Last modification: vmagnin 2024-02-21
 !-------------------------------------------------------------------------------
 
