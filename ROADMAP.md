@@ -16,7 +16,7 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 - [x] Add Interpolation functions.
   - [x] Lagrange
   - [x] Bezier
-- [ ] Add a `colormap_utils.f90` module where the subroutine `test_colormap()` will be moved.
+- [x] Add a `src/forcolormap_utils.f90` module where the subroutine `test_colormap()` will be moved.
 
 ### Examples
 
