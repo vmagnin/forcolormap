@@ -30,12 +30,12 @@ jobs:
         submodules: recursive
 
     - name: Setup Fortran Package Manager (fpm)
-      uses: fortran-lang/setup-fpm@main
+      uses: fortran-lang/setup-fpm@v5
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Setup Fortran Compiler
-      uses: fortran-lang/setup-fortran@v1
+      uses: fortran-lang/setup-fortran@main
       id: setup-fortran
       with:
         compiler: ${{ matrix.toolchain.compiler }}
