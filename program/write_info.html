@@ -524,31 +524,27 @@ large graphs.</div>
     <div class="hl codehilite"><pre><span></span><span class="k">program </span><span class="n">write_info</span>
 <span class="w">    </span><span class="k">use </span><span class="n">forcolormap_info</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">Colormaps_info</span>
 <span class="w">    </span><span class="k">implicit none</span>
-<span class="k"> </span>
+
 <span class="k">    type</span><span class="p">(</span><span class="n">Colormaps_info</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">info</span>
-<span class="w"> </span>
+
 <span class="w">    </span><span class="c">! Set all colormap information</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="n">set_all</span><span class="p">()</span>
-<span class="w"> </span>
+
 <span class="w">    </span><span class="c">!! Print all colormap information using default verbosity (level 1)</span>
 <span class="w">    </span><span class="c">! verbose: 1 (default) prints a table , 2 prints a box, 3 prints the name</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">()</span>
-<span class="w">    </span>
-<span class="w"> </span>
 
 <span class="w">    </span><span class="c">!! Filter and write colormap information</span>
 <span class="w">    </span><span class="c">!! Available filters: name, family, gradient, palette, author, license, levels</span>
 
 <span class="w">    </span><span class="c">! Filter by gradient using default verbosity (level 1)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Sequential&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Continuous&#39;</span><span class="p">)</span>
-<span class="w"> </span>
+
 <span class="w">    </span><span class="c">! Filter by gradient and palette using default verbosity (level 1)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Sequential&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Continuous&#39;</span><span class="p">)</span>
-<span class="w"> </span>
+
 <span class="w">    </span><span class="c">! Filter by family and palette using verbosity level 2</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;vik&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Diverging&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Continuous&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="w"> </span>
-
 
 <span class="w">    </span><span class="c">!! Write colormap information to a file</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Sequential&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;COLORMAPS_LIST.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
@@ -556,7 +552,6 @@ large graphs.</div>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Diverging&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;COLORMAPS_LIST.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Categorical&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;COLORMAPS_LIST.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Cyclic&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;COLORMAPS_LIST.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="w">    </span>
 
 <span class="w">    </span><span class="c">! Deallocate all colormap information</span>
 <span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="n">finalize</span><span class="p">()</span>
@@ -582,7 +577,7 @@ Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-02-24T11:42:25.267219             </p>
+ on 2024-02-25T19:15:56.421698             </p>
           </div>
         </div>
         <br>
