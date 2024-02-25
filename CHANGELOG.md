@@ -5,6 +5,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 
 ### Added
 * A FORD documentation with a CI workflow, generating https://vmagnin.github.io/forcolormap/
+* A fpm workflow for testing.
 * Methods `create_lagrange()` and `create_bezier()` in `src/colormap_class.f90` to create a colormap from continuous interpolation of control colors.
   * `example/create.f90` demonstrates creating a custom colormap using methods like `create_lagrange()` and `create_bezier()`.
 * A `reverse()` method to reverse a colormap.
@@ -12,6 +13,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
   * `example/modify.f90` demonstrates how you can modify a colormap with methods like shift(), in concrete cases.
 * A private `check()` method in the Colormap class. It checks the validity of the colormap and its parameters, prints warnings, and fixes problems if necessary.
 * A `colormaps_list/ForColormap.pdf` manual listing all the available colormaps.
+* `example/colormaps_list.f90` is creating the `colormaps_list/COLORMAPS_LIST_*.md` files using the `Colormaps_info` class.
 * A link toward the page *ForColormap Collection Categories* was added in the `README.md` to help users choose a colormap.
 * A GitHub workflow for the CMake build by @jchristopherson.
 * CMake support by @jchristopherson.

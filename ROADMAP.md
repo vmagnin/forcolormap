@@ -6,7 +6,7 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 
 ### Features
 
-- [ ] Methods
+- [x] Methods
   - [x] Implement a `check()` method to fix colormap parameters if needed.
   - [x] Include a few minimalist methods to create or manipulate colormaps. More will be added in subsequent releases.
 - [ ] Add facilities to pass 8 or 16-bit integers to C graphical libraries.
@@ -31,7 +31,7 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 
 ### Continuous Integration (CI)
 
-- [ ] Integrate fpm tests.
+- [x] Integrate fpm tests.
 - [x] Integrate FORD documentation.
 
 ### Building System
