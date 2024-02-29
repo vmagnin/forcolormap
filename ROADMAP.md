@@ -9,8 +9,6 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 - [x] Methods
   - [x] Implement a `check()` method to fix colormap parameters if needed.
   - [x] Include a few minimalist methods to create or manipulate colormaps. More will be added in subsequent releases.
-- [ ] Add facilities to pass 8 or 16-bit integers to C graphical libraries.
-    - [ ] Test with gtk-fortran and other libraries.
 - [x] Introspection (Colormap_info)
     - [x] Include all available colormaps.
 - [x] Add Interpolation functions.
@@ -22,6 +20,8 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 
 - [x] Create a `modify` example:
   - [x] For the `shift()` method.
+- [x] A gtk-fortran example using ForColormap
+  - [ ] to put in https://github.com/vmagnin/gtk-fortran-extra
 
 ### Documentation
 
@@ -36,6 +36,7 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 
 ### Building System
 
+- [x] Test with a gtk-fortran fpm project.
 - [x] Implement a CMake building system, allowing installation of a `.so`
     - [x] Test on Linux.
     - [ ] Test on FreeBSD.
@@ -78,7 +79,8 @@ The main goal of v1.1 is to offer more features and to evolve the Diataxis docum
 These concepts are open for implementation or consideration. They may or may not be implemented.
 
 ### Features
-
+- [ ] Add facilities to pass 8 or 16-bit integers to C graphical libraries.
+    - [ ] Test with gtk-fortran and other graphical libraries.
 - [ ] Methods
   - [ ] Colormaps could have an option for logscale.
   - [ ] A `get_colorbar()` function could return an `array(:,:,1:3)` containing the RGB image of the colorbar. The arguments could be the width and height, the direction (horizontal/vertical), etc.
@@ -103,7 +105,7 @@ These concepts are open for implementation or consideration. They may or may not
 
 ### Examples
 
-- [ ] An example mixing gtk-fortran and ForColormap (to put in https://github.com/vmagnin/gtk-fortran-extra).
+- [ ] ...
 
 ### Continuous Integration (CI)
 
