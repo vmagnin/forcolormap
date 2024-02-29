@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-11-05
-! Last modification: gha3mi 2024-02-16, vmagnin 2024-02-16
+! Last modification: gha3mi 2024-02-16, vmagnin 2024-02-29
 !-------------------------------------------------------------------------------
 
 module forcolormap_info
@@ -145,7 +145,7 @@ contains
                'a,','a', len_trim(this%license),',',33-len_trim(this%license)+2,'x',',',&
                'a,','a', max(1, len_trim(this%url)),',',42-max(1, len_trim(this%url))+2,'x',',a',&
                ')'
-            open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            open (newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
             write (nunit,format_table)&
                '|',this%name,&
                '|',this%family,&
@@ -198,7 +198,7 @@ contains
          end if
        case (2)
          if (present(file_name)) then
-            open (newunit=nunit, file=trim(file_name), access='append', status = 'unknown', action = 'write')
+            open (newunit=nunit, file=trim(file_name), position='append', status = 'unknown', action = 'write')
             write(nunit,'(a)')    ''
             write(nunit,'(a)')    '**********************************************'
             write(nunit,'(a,a)')  'Name    : ', this%name
@@ -232,7 +232,7 @@ contains
          end if
        case (3)
          if (present(file_name)) then
-            open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            open (newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
             write(nunit,'(a)') this%name
             close(nunit)
          else
@@ -257,7 +257,7 @@ contains
                'a,','I4',',',3,'x',',',&
                'a,','a', len_trim(this%colorbar),',',23-len_trim(this%colorbar)+2,'x',',a',&
                ')'
-            open (newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            open (newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
             write (nunit,format_table)&
                '|',this%name,&
                '|',this%family,&
@@ -316,7 +316,7 @@ contains
       ! Print header for verbose = 1
       if (verbose_ == 1) then
          if (present(file_name)) then
-            open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            open(newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
             write(nunit,'(a)')'' ! Print empty line
             write(nunit,'(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,28x,g0)') &
                '|Name', '|Family', '|Gradient', '|Palette', '|Levels', '|Colorbar', '|Package', '|Author', '|Licence', '|URL|'
@@ -335,7 +335,7 @@ contains
       ! Print header for verbose = 4
       if (verbose_ == 4) then
          if (present(file_name)) then
-            open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            open(newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
             write(nunit,'(a)')'' ! Print empty line
             write(nunit,'(g0,8x,g0,6x,g0,12x,g0,7x,g0,1x,g0,17x,g0,20x,g0,11x,g0,8x,g0)') &
                '|Name', '|Family', '|Gradient', '|Palette', '|Levels', '|Colorbar                 |'
@@ -436,7 +436,7 @@ contains
          end do
 
          if (present(file_name)) then
-            open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            open(newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
             write(nunit,'(a)')'' ! Print empty line
             close(nunit)
          else
@@ -448,7 +448,7 @@ contains
             call this%colormaps(i)%write_info(verbose,file_name)
          end do
          if (present(file_name)) then
-            open(newunit=nunit, file=trim(file_name), access='append', status='unknown', action='write')
+            open(newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
             write(nunit,'(a)')'' ! Print empty line
             close(nunit)
          else
