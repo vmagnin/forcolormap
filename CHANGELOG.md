@@ -17,7 +17,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 * A link toward the page *ForColormap Collection Categories* was added in the `README.md` to help users choose a colormap.
 * A GitHub workflow for the CMake build by @jchristopherson.
 * CMake support by @jchristopherson.
-* A `logo` directory with SVG files by @aslozada.
+* A `logo` directory with SVG files by @alozada.
 * A `black_body` colormap (`miscellaneous_colormaps` module).
 * An `extract()` type-bound procedure to the Colormap type to extract colors from a colormap. The extracted number should be within the range [2, levels].
   * `example/extract.f90`
@@ -37,6 +37,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 * A `colorbar()` type-bound procedure to write a PPM file with the colorbar.
 
 ### Changed
+* In  `example/demo.f90` and `example/demo_reverse.f90`, the discrete colormap created from an array is now a colormap designed by @alozada resembling the color changes in red cabbage (containing Anthocyanins) with pH.
 * Subroutine `test_colormap()`: the `encoding` argument is now optional (binary by default).
 * The colormap `inverted_rainbow` was renamed `inv_rainbow`.
 * `TODO.md` was refactored and renamed `ROADMAP.md`.
