@@ -117,11 +117,11 @@ Seyed Ali Ghasemi" >
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../program/demo.html#variable-cmap">cmap</a>
-            <a class="list-group-item" href="../program/demo.html#variable-colors~5">colors</a>
-            <a class="list-group-item" href="../program/demo.html#variable-custom_cmap">custom_cmap</a>
-            <a class="list-group-item" href="../program/demo.html#variable-i~11">i</a>
-            <a class="list-group-item" href="../program/demo.html#variable-my_colormap">my_colormap</a>
+            <a class="list-group-item" href="../program/demo.html#variable-cmap~4">cmap</a>
+            <a class="list-group-item" href="../program/demo.html#variable-colors~6">colors</a>
+            <a class="list-group-item" href="../program/demo.html#variable-custom_cmap~3">custom_cmap</a>
+            <a class="list-group-item" href="../program/demo.html#variable-i~20">i</a>
+            <a class="list-group-item" href="../program/demo.html#variable-my_colormap~2">my_colormap</a>
         </div>
       </div>
     </div>
@@ -163,8 +163,8 @@ Seyed Ali Ghasemi" >
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item">forcolormap_utils</li>
                   <li class="list-inline-item"><a href='../module/forcolormap.html'>forcolormap</a></li>
+                  <li class="list-inline-item">forcolormap_utils</li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -385,7 +385,12 @@ large graphs.</div>
       </div>
     </div>
 
-    <p>We create PPM files (binary encoded by default) for each built-in colormap.
+    <p>This example will create colorbar files for each available colormap and
+the corresponding test images. It also demonstrates how you can create your
+own colormap defined in an array, or import it from a text file.
+You can create your own colormap using that array. The name of your
+colormap must conform to the max length defined in colormap_parameters.f90
+We create PPM files (binary encoded by default) for each built-in colormap.
 The built-in z=f(x,y) test function is in the [0, 2] range:</p>
     <br>
     <div class="card">
@@ -425,33 +430,33 @@ The built-in z=f(x,y) test function is in the [0, 2] range:</p>
 <path fill="none" stroke="#255000" d="M37.14,-423.46C48.17,-437.64 67.99,-460.58 90,-474 191.74,-536.05 326.74,-566.21 417.47,-580.36"/>
 <polygon fill="#255000" stroke="#255000" points="417.07,-583.84 427.49,-581.88 418.13,-576.92 417.07,-583.84"/>
 </g>
-<!-- proc~get_levels -->
+<!-- proc~get_levels~2 -->
 <g id="program~~demo~~CallsGraph_node3" class="node">
-<title>proc~get_levels</title>
-<g id="a_program~~demo~~CallsGraph_node3"><a xlink:href="../proc/get_levels.html" xlink:title="forcolormap::Colormap%get_levels">
+<title>proc~get_levels~2</title>
+<g id="a_program~~demo~~CallsGraph_node3"><a xlink:href="../proc/get_levels~2.html" xlink:title="forcolormap::Colormap%get_levels">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="317,-423 116,-423 116,-399 317,-399 317,-423"/>
 <text text-anchor="middle" x="216.5" y="-408.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap::Colormap%get_levels</text>
 </a>
 </g>
 </g>
-<!-- program~demo&#45;&gt;proc~get_levels -->
+<!-- program~demo&#45;&gt;proc~get_levels~2 -->
 <g id="program~~demo~~CallsGraph_edge2" class="edge">
-<title>program~demo&#45;&gt;proc~get_levels</title>
+<title>program~demo&#45;&gt;proc~get_levels~2</title>
 <path fill="none" stroke="#255000" d="M54.07,-411C68.04,-411 86.3,-411 105.49,-411"/>
 <polygon fill="#255000" stroke="#255000" points="105.6,-414.5 115.6,-411 105.6,-407.5 105.6,-414.5"/>
 </g>
-<!-- proc~get_name -->
+<!-- proc~get_name~2 -->
 <g id="program~~demo~~CallsGraph_node4" class="node">
-<title>proc~get_name</title>
-<g id="a_program~~demo~~CallsGraph_node4"><a xlink:href="../proc/get_name.html" xlink:title="forcolormap::Colormap%get_name">
+<title>proc~get_name~2</title>
+<g id="a_program~~demo~~CallsGraph_node4"><a xlink:href="../proc/get_name~2.html" xlink:title="forcolormap::Colormap%get_name">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="317,-381 116,-381 116,-357 317,-357 317,-381"/>
 <text text-anchor="middle" x="216.5" y="-366.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap::Colormap%get_name</text>
 </a>
 </g>
 </g>
-<!-- program~demo&#45;&gt;proc~get_name -->
+<!-- program~demo&#45;&gt;proc~get_name~2 -->
 <g id="program~~demo~~CallsGraph_edge3" class="edge">
-<title>program~demo&#45;&gt;proc~get_name</title>
+<title>program~demo&#45;&gt;proc~get_name~2</title>
 <path fill="none" stroke="#255000" d="M54.27,-401.06C65.2,-397.2 78.1,-392.99 90,-390 100.33,-387.4 111.23,-385.04 122.11,-382.91"/>
 <polygon fill="#255000" stroke="#255000" points="122.9,-386.33 132.08,-381.03 121.6,-379.45 122.9,-386.33"/>
 </g>
@@ -740,33 +745,33 @@ The built-in z=f(x,y) test function is in the [0, 2] range:</p>
 <path fill="none" stroke="#720255" d="M329.03,-167.9C333.97,-165.36 338.66,-162.41 343,-159 374.94,-133.91 346.87,-99.85 379,-75 407.21,-53.18 448.58,-49.51 478.67,-50.33"/>
 <polygon fill="#720255" stroke="#720255" points="478.65,-53.83 488.8,-50.78 478.97,-46.84 478.65,-53.83"/>
 </g>
-<!-- proc~get_levels~2 -->
+<!-- proc~get_levels -->
 <g id="program~~demo~~CallsGraph_node23" class="node">
-<title>proc~get_levels~2</title>
-<g id="a_program~~demo~~CallsGraph_node23"><a xlink:href="../proc/get_levels~2.html" xlink:title="forcolormap_info::Colormaps_info%get_levels">
+<title>proc~get_levels</title>
+<g id="a_program~~demo~~CallsGraph_node23"><a xlink:href="../proc/get_levels.html" xlink:title="forcolormap_info::Colormaps_info%get_levels">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="1195,-688 938,-688 938,-664 1195,-664 1195,-688"/>
 <text text-anchor="middle" x="1066.5" y="-673.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::Colormaps_info%get_levels</text>
 </a>
 </g>
 </g>
-<!-- proc~check&#45;&gt;proc~get_levels~2 -->
+<!-- proc~check&#45;&gt;proc~get_levels -->
 <g id="program~~demo~~CallsGraph_edge27" class="edge">
-<title>proc~check&#45;&gt;proc~get_levels~2</title>
+<title>proc~check&#45;&gt;proc~get_levels</title>
 <path fill="none" stroke="transparent" d="M823.05,-625.04C849.41,-634.39 887.68,-647.06 922,-655 933.71,-657.71 946.04,-660.14 958.36,-662.29"/>
 <polygon fill="transparent" stroke="transparent" points="957.78,-665.75 968.22,-663.97 958.95,-658.84 957.78,-665.75"/>
 </g>
-<!-- proc~get_name~2 -->
+<!-- proc~get_name -->
 <g id="program~~demo~~CallsGraph_node24" class="node">
-<title>proc~get_name~2</title>
-<g id="a_program~~demo~~CallsGraph_node24"><a xlink:href="../proc/get_name~2.html" xlink:title="forcolormap_info::Colormaps_info%get_name">
+<title>proc~get_name</title>
+<g id="a_program~~demo~~CallsGraph_node24"><a xlink:href="../proc/get_name.html" xlink:title="forcolormap_info::Colormaps_info%get_name">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="1195,-646 938,-646 938,-622 1195,-622 1195,-646"/>
 <text text-anchor="middle" x="1066.5" y="-631.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::Colormaps_info%get_name</text>
 </a>
 </g>
 </g>
-<!-- proc~check&#45;&gt;proc~get_name~2 -->
+<!-- proc~check&#45;&gt;proc~get_name -->
 <g id="program~~demo~~CallsGraph_edge28" class="edge">
-<title>proc~check&#45;&gt;proc~get_name~2</title>
+<title>proc~check&#45;&gt;proc~get_name</title>
 <path fill="none" stroke="transparent" d="M879.03,-619.76C894.5,-620.94 910.92,-622.2 927.36,-623.45"/>
 <polygon fill="transparent" stroke="transparent" points="927.35,-626.96 937.59,-624.23 927.88,-619.98 927.35,-626.96"/>
 </g>
@@ -933,7 +938,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-cmap"></span>
+              <span class="anchor" id="variable-cmap~4"></span>
               type(<a href='../type/colormap.html'>Colormap</a>)
             </td>
             <td>
@@ -949,7 +954,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-colors~5"></span>
+              <span class="anchor" id="variable-colors~6"></span>
               integer,
             </td>
             <td>
@@ -965,7 +970,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-custom_cmap"></span>
+              <span class="anchor" id="variable-custom_cmap~3"></span>
               type(<a href='../type/colormap.html'>Colormap</a>)
             </td>
             <td>
@@ -981,7 +986,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-i~11"></span>
+              <span class="anchor" id="variable-i~20"></span>
               integer
             </td>
             <td>
@@ -997,7 +1002,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-my_colormap"></span>
+              <span class="anchor" id="variable-my_colormap~2"></span>
               integer,
             </td>
             <td>
@@ -1006,9 +1011,10 @@ large graphs.</div>
             <td>::</td>
             <td><strong>my_colormap</strong></td>
 <td> =</td>
-                <td>reshape([0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255, 255, 255, 0, 0, 255, 255, 255, 0, 255, 255, 255, 255], shape(my_colormap), order=[2, 1])</td>
+                <td>reshape([198, 29, 32, 189, 21, 56, 171, 82, 150, 102, 81, 156, 38, 53, 108, 5, 65, 40, 221, 199, 44, 237, 191, 44], shape(my_colormap), order=[2, 1])</td>
             <td>
-                
+                <p>A discrete colormap with 8 levels, by @alozada, resembling the color
+changes in red cabbage (containing Anthocyanins) with pH:</p>
             </td>
         </tr>
     </tbody>
@@ -1035,17 +1041,24 @@ large graphs.</div>
 <span class="k">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 <span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">Colormap</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmap</span><span class="p">,</span><span class="w"> </span><span class="n">custom_cmap</span>
 <span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">colors</span><span class="p">(:,:)</span>
-<span class="w">    </span><span class="c">! A discrete colormap with 8 levels, from black to white:</span>
+
+<span class="w">    </span><span class="c">!&gt; A discrete colormap with 8 levels, by @alozada, resembling the color</span>
+<span class="w">    </span><span class="c">!&gt; changes in red cabbage (containing Anthocyanins) with pH:</span>
 <span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_colormap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">&amp;</span>
-<span class="w">          </span><span class="mi">0</span><span class="p">,</span><span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
-<span class="w">        </span><span class="mi">255</span><span class="p">,</span><span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
-<span class="w">          </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
-<span class="w">          </span><span class="mi">0</span><span class="p">,</span><span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
-<span class="w">        </span><span class="mi">255</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
-<span class="w">          </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
-<span class="w">        </span><span class="mi">255</span><span class="p">,</span><span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
-<span class="w">        </span><span class="mi">255</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">        </span><span class="mi">198</span><span class="p">,</span><span class="w">    </span><span class="mi">29</span><span class="p">,</span><span class="w">    </span><span class="mi">32</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<span class="w">        </span><span class="mi">189</span><span class="p">,</span><span class="w">    </span><span class="mi">21</span><span class="p">,</span><span class="w">    </span><span class="mi">56</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<span class="w">        </span><span class="mi">171</span><span class="p">,</span><span class="w">    </span><span class="mi">82</span><span class="p">,</span><span class="w">   </span><span class="mi">150</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<span class="w">        </span><span class="mi">102</span><span class="p">,</span><span class="w">    </span><span class="mi">81</span><span class="p">,</span><span class="w">   </span><span class="mi">156</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<span class="w">         </span><span class="mi">38</span><span class="p">,</span><span class="w">    </span><span class="mi">53</span><span class="p">,</span><span class="w">   </span><span class="mi">108</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<span class="w">          </span><span class="mi">5</span><span class="p">,</span><span class="w">    </span><span class="mi">65</span><span class="p">,</span><span class="w">    </span><span class="mi">40</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<span class="w">        </span><span class="mi">221</span><span class="p">,</span><span class="w">   </span><span class="mi">199</span><span class="p">,</span><span class="w">    </span><span class="mi">44</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<span class="w">        </span><span class="mi">237</span><span class="p">,</span><span class="w">   </span><span class="mi">191</span><span class="p">,</span><span class="w">    </span><span class="mi">44</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">&amp;</span>
 <span class="w">        </span><span class="nb">shape</span><span class="p">(</span><span class="n">my_colormap</span><span class="p">),</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="c">!&gt; You can create your own colormap using that array. The name of your</span>
+<span class="w">    </span><span class="c">!&gt; colormap must conform to the max length defined in colormap_parameters.f90</span>
+<span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;red_cabbage&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">my_colormap</span><span class="p">)</span>
+<span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s1">&#39;red_cabbage_colorbar&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">call </span><span class="n">test_colormap</span><span class="p">(</span><span class="n">custom_cmap</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;red_cabbage_test&#39;</span><span class="p">)</span>
 
 <span class="w">    </span><span class="c">!&gt; We create PPM files (binary encoded by default) for each built-in colormap.</span>
 <span class="w">    </span><span class="c">!&gt; The built-in z=f(x,y) test function is in the [0, 2] range:</span>
@@ -1061,11 +1074,6 @@ large graphs.</div>
 <span class="w">    </span><span class="c">! We change the name for the output test files:</span>
 <span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s1">&#39;cubehelix_customized_colorbar&#39;</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">test_colormap</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cubehelix_customized_test&#39;</span><span class="p">)</span>
-
-<span class="w">    </span><span class="c">! You can create your own colormap defined in an array:</span>
-<span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;discrete&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">my_colormap</span><span class="p">)</span>
-<span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s1">&#39;discrete_colorbar&#39;</span><span class="p">)</span>
-<span class="w">    </span><span class="k">call </span><span class="n">test_colormap</span><span class="p">(</span><span class="n">custom_cmap</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;discrete_test&#39;</span><span class="p">)</span>
 
 <span class="w">    </span><span class="c">! Or you can download it from a .txt file:</span>
 <span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;test_map_to_load.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">)</span>
@@ -1094,7 +1102,7 @@ Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-02-29T19:09:19.911392             </p>
+ on 2024-03-01T18:12:10.000183             </p>
           </div>
         </div>
         <br>

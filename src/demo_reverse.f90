@@ -21,9 +21,11 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2023-11-01, vmagnin 2024-02-22
+! Last modification: gha3mi 2023-11-01, vmagnin 2024-03-01
 !-------------------------------------------------------------------------------
 
+!> This example demonstrates the use of the 'reverse' optional argument to
+!> reverse the order of a colormap.
 program demo_reverse
     use forcolormap, only: Colormap, colormaps_list, wp
     use forcolormap_utils, only: test_colormap
@@ -31,17 +33,24 @@ program demo_reverse
 
     integer :: i
     type(Colormap) :: cmap, custom_cmap
-    ! A discrete colormap with 8 levels, from black to white:
+
+    !> A discrete colormap with 8 levels, by @alozada, resembling the color
+    !> changes in red cabbage (containing Anthocyanins) with pH:
     integer, dimension(0:7, 3) :: my_colormap = reshape( [ &
-          0,     0,     0,   &
-        255,     0,     0,   &
-          0,   255,     0,   &
-          0,     0,   255,   &
-        255,   255,     0,   &
-          0,   255,   255,   &
-        255,     0,   255,   &
-        255,   255,   255 ], &
+        198,    29,    32,   &
+        189,    21,    56,   &
+        171,    82,   150,   &
+        102,    81,   156,   &
+         38,    53,   108,   &
+          5,    65,    40,   &
+        221,   199,    44,   &
+        237,   191,    44 ], &
         shape(my_colormap), order = [2, 1] )
+    !> You can create your own colormap using that array. The name of your
+    !> colormap must conform to the max length defined in colormap_parameters.f90
+    call custom_cmap%create('red_cabbage_reverse', 0.0_wp, 2.0_wp, my_colormap, reverse=.true.)
+    call custom_cmap%colorbar('red_cabbage_reverse_colorbar')
+    call test_colormap(custom_cmap, 'red_cabbage_reverse_test')
 
     !> We create PPM files (binary encoded by default) for each built-in colormap.
     !> The built-in z=f(x,y) test function is in the [0, 2] range:
@@ -57,11 +66,6 @@ program demo_reverse
     ! We change the name for the output test files:
     call cmap%colorbar('cubehelix_customized_reverse_colorbar')
     call test_colormap(cmap, 'cubehelix_customized_reverse_test')
-
-    ! You can create your own colormap defined in an array:
-    call custom_cmap%create('discrete', 0.0_wp, 2.0_wp, my_colormap, reverse=.true.)
-    call custom_cmap%colorbar('discrete_reverse_colorbar')
-    call test_colormap(custom_cmap, 'discrete_reverse_test')
 
     ! Or you can download it from a .txt file:
     call custom_cmap%load("test_map_to_load.txt", 0.0_wp, 2.0_wp, reverse=.true.)
