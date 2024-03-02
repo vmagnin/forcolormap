@@ -50,6 +50,7 @@ program demo
         shape(my_colormap), order = [2, 1] )
     !> You can create your own colormap using that array. The name of your
     !> colormap must conform to the max length defined in colormap_parameters.f90
+    !> Use the create() method instead of the set() method.
     call custom_cmap%create('red_cabbage', 0.0_wp, 2.0_wp, my_colormap)
     call custom_cmap%colorbar('red_cabbage_colorbar')
     call test_colormap(custom_cmap, 'red_cabbage_test')
@@ -63,13 +64,14 @@ program demo
         print '("Colormap ", A30, " has ", I0, " levels")', trim(cmap%get_name()), cmap%get_levels()
     end do
 
-    ! Cubehelix can also accept other parameters (varargs array):
+    !> Cubehelix can also accept other parameters (varargs array):
     call cmap%set("cubehelix", 0.0_wp, 2.0_wp, 1024, [0.5_wp, -1.0_wp, 1.0_wp, 1.0_wp])
     ! We change the name for the output test files:
     call cmap%colorbar('cubehelix_customized_colorbar')
     call test_colormap(cmap, 'cubehelix_customized_test')
 
-    ! Or you can download it from a .txt file:
+    !> Or you can download it from a .txt file.
+    !> Use the load() method instead of the set() method.
     call custom_cmap%load("test_map_to_load.txt", 0.0_wp, 2.0_wp)
     call custom_cmap%colorbar('a_loaded_colorbar')
     call test_colormap(custom_cmap, 'a_loaded_colormap_test')
