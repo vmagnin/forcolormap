@@ -91,7 +91,11 @@ You can compile your program like this:
 ```bash
 $ gfortran my_program.f90 $(pkg-config --cflags --libs forcolormap)
 ```
-If you encounter linking problems, you should verify the content of your `PKG_CONFIG_PATH` and `LD_LIBRARY_PATH` environment variables. For example, in Ubuntu the `.pc` files will be installed in `/usr/local/lib/pkgconfig/` and the libraries in `/usr/local/lib/`.
+If you encounter linking problems, you should verify the content of your `PKG_CONFIG_PATH` and `` environment variables. For example, in Ubuntu or FreeBSD the `.pc` files will be installed in `/usr/local/lib/pkgconfig/` and the libraries in `/usr/local/lib/`.
+
+```bash
+$ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+```
 
 #### Building examples and tests
 
