@@ -171,6 +171,7 @@ As any work, a colormap should be cited:
 * https://en.wikipedia.org/wiki/Heat_map
 * Ken Hughes, ["Default colormaps: Are Parula and Viridis really an improvement over Jet?"](https://brushingupscience.com/2019/10/01/default-colormaps-are-parula-and-viridis-really-an-improvement-over-jet/), posted on October 1, 2019.
 * "In Search of a Perfect Colormap", http://inversed.ru/Blog_2.htm
+* The [Data Visualisation Guide section about colours](https://data.europa.eu/apps/data-visualisation-guide/tag/colour)
 
 #### Specific colormaps
 * Cubehelix (Dave Green, public domain): https://people.phy.cam.ac.uk/dag9/CUBEHELIX/
