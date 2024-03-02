@@ -117,10 +117,10 @@ Seyed Ali Ghasemi" >
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../program/demo.html#variable-cmap~4">cmap</a>
-            <a class="list-group-item" href="../program/demo.html#variable-colors~6">colors</a>
+            <a class="list-group-item" href="../program/demo.html#variable-cmap~3">cmap</a>
+            <a class="list-group-item" href="../program/demo.html#variable-colors">colors</a>
             <a class="list-group-item" href="../program/demo.html#variable-custom_cmap~3">custom_cmap</a>
-            <a class="list-group-item" href="../program/demo.html#variable-i~20">i</a>
+            <a class="list-group-item" href="../program/demo.html#variable-i~10">i</a>
             <a class="list-group-item" href="../program/demo.html#variable-my_colormap~2">my_colormap</a>
         </div>
       </div>
@@ -163,8 +163,8 @@ Seyed Ali Ghasemi" >
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='../module/forcolormap.html'>forcolormap</a></li>
                   <li class="list-inline-item">forcolormap_utils</li>
+                  <li class="list-inline-item"><a href='../module/forcolormap.html'>forcolormap</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -390,8 +390,12 @@ the corresponding test images. It also demonstrates how you can create your
 own colormap defined in an array, or import it from a text file.
 You can create your own colormap using that array. The name of your
 colormap must conform to the max length defined in colormap_parameters.f90
+Use the create() method instead of the set() method.
 We create PPM files (binary encoded by default) for each built-in colormap.
-The built-in z=f(x,y) test function is in the [0, 2] range:</p>
+The built-in z=f(x,y) test function is in the [0, 2] range:
+Cubehelix can also accept other parameters (varargs array):</p>
+<p>Or you can download it from a .txt file.
+Use the load() method instead of the set() method.</p>
     <br>
     <div class="card">
       <div class="card-header">
@@ -938,7 +942,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-cmap~4"></span>
+              <span class="anchor" id="variable-cmap~3"></span>
               type(<a href='../type/colormap.html'>Colormap</a>)
             </td>
             <td>
@@ -954,7 +958,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-colors~6"></span>
+              <span class="anchor" id="variable-colors"></span>
               integer,
             </td>
             <td>
@@ -986,7 +990,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-i~20"></span>
+              <span class="anchor" id="variable-i~10"></span>
               integer
             </td>
             <td>
@@ -1056,6 +1060,7 @@ changes in red cabbage (containing Anthocyanins) with pH:</p>
 <span class="w">        </span><span class="nb">shape</span><span class="p">(</span><span class="n">my_colormap</span><span class="p">),</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
 <span class="w">    </span><span class="c">!&gt; You can create your own colormap using that array. The name of your</span>
 <span class="w">    </span><span class="c">!&gt; colormap must conform to the max length defined in colormap_parameters.f90</span>
+<span class="w">    </span><span class="c">!&gt; Use the create() method instead of the set() method.</span>
 <span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;red_cabbage&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">my_colormap</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s1">&#39;red_cabbage_colorbar&#39;</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">test_colormap</span><span class="p">(</span><span class="n">custom_cmap</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;red_cabbage_test&#39;</span><span class="p">)</span>
@@ -1069,13 +1074,14 @@ changes in red cabbage (containing Anthocyanins) with pH:</p>
 <span class="w">        </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(&quot;Colormap &quot;, A30, &quot; has &quot;, I0, &quot; levels&quot;)&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">cmap</span><span class="p">%</span><span class="n">get_name</span><span class="p">()),</span><span class="w"> </span><span class="n">cmap</span><span class="p">%</span><span class="n">get_levels</span><span class="p">()</span>
 <span class="w">    </span><span class="k">end do</span>
 
-<span class="w">    </span><span class="c">! Cubehelix can also accept other parameters (varargs array):</span>
+<span class="w">    </span><span class="c">!&gt; Cubehelix can also accept other parameters (varargs array):</span>
 <span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;cubehelix&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5_wp</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0_wp</span><span class="p">])</span>
 <span class="w">    </span><span class="c">! We change the name for the output test files:</span>
 <span class="w">    </span><span class="k">call </span><span class="n">cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s1">&#39;cubehelix_customized_colorbar&#39;</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">test_colormap</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cubehelix_customized_test&#39;</span><span class="p">)</span>
 
-<span class="w">    </span><span class="c">! Or you can download it from a .txt file:</span>
+<span class="w">    </span><span class="c">!&gt; Or you can download it from a .txt file.</span>
+<span class="w">    </span><span class="c">!&gt; Use the load() method instead of the set() method.</span>
 <span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;test_map_to_load.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0_wp</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">custom_cmap</span><span class="p">%</span><span class="n">colorbar</span><span class="p">(</span><span class="s1">&#39;a_loaded_colorbar&#39;</span><span class="p">)</span>
 <span class="w">    </span><span class="k">call </span><span class="n">test_colormap</span><span class="p">(</span><span class="n">custom_cmap</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;a_loaded_colormap_test&#39;</span><span class="p">)</span>
@@ -1102,7 +1108,7 @@ Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-03-01T18:12:10.000183             </p>
+ on 2024-03-02T18:15:53.678842             </p>
           </div>
         </div>
         <br>

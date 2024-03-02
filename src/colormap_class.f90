@@ -586,7 +586,7 @@ contains
         end if
     end subroutine set
 
-    ! You can create a custom colormap:
+    !> You can create a custom colormap from a "map" array.
     pure subroutine create(self, name, zmin, zmax, map, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
@@ -618,8 +618,7 @@ contains
         end if
     end subroutine
 
-
-    ! You can create a custom colormap:
+    !> You can create a custom colormap using Lagrange interpolation:
     pure subroutine create_lagrange(self, name, zmin, zmax, colors, levels, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
@@ -652,7 +651,7 @@ contains
         end if
     end subroutine
 
-        ! You can create a custom colormap:
+    !> You can create a custom colormap using Bezier interpolation:
     pure subroutine create_bezier(self, name, zmin, zmax, colors, levels, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name

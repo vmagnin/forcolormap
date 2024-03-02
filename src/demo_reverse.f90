@@ -48,6 +48,7 @@ program demo_reverse
         shape(my_colormap), order = [2, 1] )
     !> You can create your own colormap using that array. The name of your
     !> colormap must conform to the max length defined in colormap_parameters.f90
+    !> Use the create() method instead of the set() method.
     call custom_cmap%create('red_cabbage_reverse', 0.0_wp, 2.0_wp, my_colormap, reverse=.true.)
     call custom_cmap%colorbar('red_cabbage_reverse_colorbar')
     call test_colormap(custom_cmap, 'red_cabbage_reverse_test')
@@ -61,13 +62,14 @@ program demo_reverse
         print '("Colormap ", A30, " has ", I0, " levels")', trim(cmap%get_name()), cmap%get_levels()
     end do
 
-    ! Cubehelix can also accept other parameters (varargs array):
+    !> Cubehelix can also accept other parameters (varargs array):
     call cmap%set("cubehelix", 0.0_wp, 2.0_wp, 1024, [0.5_wp, -1.0_wp, 1.0_wp, 1.0_wp], reverse=.true.)
     ! We change the name for the output test files:
     call cmap%colorbar('cubehelix_customized_reverse_colorbar')
     call test_colormap(cmap, 'cubehelix_customized_reverse_test')
 
-    ! Or you can download it from a .txt file:
+    !> Or you can download it from a .txt file.
+    !> Use the load() method instead of the set() method.
     call custom_cmap%load("test_map_to_load.txt", 0.0_wp, 2.0_wp, reverse=.true.)
     call custom_cmap%colorbar('a_loaded_reverse_colorbar')
     call test_colormap(custom_cmap, 'a_loaded_reverse_colormap_test')
