@@ -141,6 +141,10 @@ In the `example` directory, you will find these commented demos:
 
 They can be launched with the command `fpm run --example name_of_the_example` (without the `.f90` extension).
 
+In the gtk-fortran-extra repository, you will also find a [physical model](https://github.com/vmagnin/gtk-fortran-extra/tree/main/reaction_diffusion) demonstrating the use of ForColormap. It creates a movie with Turing patterns, displayed with various colormaps:
+
+https://www.youtube.com/watch?v=cVHLCVVvZ4U
+
 ## Licenses
 
 This project is under MIT license. The logo files are under [license CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
