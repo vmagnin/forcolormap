@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-01-28, vmagnin 2024-03-01
+! Last modification: gha3mi 2024-01-28, vmagnin 2024-03-05
 !-------------------------------------------------------------------------------
 
 !> This example will create colorbar files for each available colormap and
@@ -34,7 +34,6 @@ program demo
 
     integer :: i
     type(Colormap) :: cmap, custom_cmap
-    integer, allocatable :: colors(:,:)
 
     !> A discrete colormap with 8 levels, by @alozada, resembling the color
     !> changes in red cabbage (containing Anthocyanins) with pH:
