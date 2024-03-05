@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-10-26
-! Last modification: gha3mi 2024-01-06, vmagnin 2024-02-21
+! Last modification: gha3mi 2024-01-06, vmagnin 2024-03-05
 !-------------------------------------------------------------------------------
 
 !> This example demonstrates how ForImage can be used to import/export PPM files.
@@ -45,8 +45,8 @@ program example1
     call ex1_colorbar%import_pnm('a_loaded_colormap_ascii_colorbar','ppm', 'ascii')
 
     ! Change colormap and colorbar colors
-    ex1_colormap%pixels = ex1_colormap%pixels * (1.6)
-    ex1_colorbar%pixels = ex1_colorbar%pixels * (1.6)
+    ex1_colormap%pixels = int(ex1_colormap%pixels * 1.6)
+    ex1_colorbar%pixels = int(ex1_colorbar%pixels * 1.6)
 
     ! Export binary ppm files
     call ex1_colormap%export_pnm('a_loaded_colormap_binary_test_m', 'binary')
