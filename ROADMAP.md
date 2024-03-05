@@ -21,7 +21,7 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 - [x] Create a `modify` example:
   - [x] For the `shift()` method.
 - [x] A gtk-fortran example using ForColormap
-  - [ ] to put in https://github.com/vmagnin/gtk-fortran-extra
+  - [x] to put in https://github.com/vmagnin/gtk-fortran-extra/tree/main/reaction_diffusion
 
 ### Documentation
 
@@ -39,9 +39,9 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 - [x] Test with a gtk-fortran fpm project.
 - [x] Implement a CMake building system, allowing installation of a `.so`
     - [x] Test on Linux.
-    - [ ] Test on FreeBSD.
+    - [x] Test on FreeBSD.
     - [ ] Test on Windows (MSYS2).
-    - [ ] Test on macOS.
+    - [x] Test on macOS.
 
 ### Others
 
