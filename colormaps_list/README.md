@@ -6,6 +6,7 @@ In the `example/demo.f90` file, comment temporarily all the colormaps that are o
 
 Then from the root directory of the project type these commands:
 ```bash
+$ rm colormaps_list/COLORMAPS_LIST_*.md
 $ fpm run --example colormaps_list
 $ fpm run --example demo
 $ mkdir colormaps_list/ppm/
