@@ -41,7 +41,7 @@ You need, whatever your operating system:
 
 * a modern Fortran compiler, for example GFortran or the Intel ifort/ifx compilers. See the [Fortran-lang.org compilers page](https://fortran-lang.org/compilers/) for other compilers.
 * The Fortran Package Manager [fpm](https://fpm.fortran-lang.org/) or CMake (>=3.24) & pkg-config for building the project.
-  * For writing PPM files, the library [ForImage](https://github.com/gha3mi/forimage) is used as a fpm or CMake dependency (automatically downloaded).
+    * For writing PPM files, the library [ForImage](https://github.com/gha3mi/forimage) is used as a fpm or CMake dependency (automatically downloaded).
 
 ### Testing the project with fpm
 
@@ -155,11 +155,11 @@ This project is under MIT license. The logo files are under [license CC BY-SA 4.
 As any work, a colormap should be cited:
 
 * For *Scientific colour maps,* please cite these two items:
-  * Crameri, F. (2018a), Scientific colour maps. *Zenodo.* [http://doi.org/10.5281/zenodo.1243862]()
-  * Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. “The Misuse of Colour in Science Communication.” *Nature Communications* 11, no. 1 (October 28, 2020): 5444. [https://doi.org/10.1038/s41467-020-19160-7]().
+    * Crameri, F. (2018a), Scientific colour maps. *Zenodo.* [http://doi.org/10.5281/zenodo.1243862]()
+    * Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. “The Misuse of Colour in Science Communication.” *Nature Communications* 11, no. 1 (October 28, 2020): 5444. [https://doi.org/10.1038/s41467-020-19160-7]().
 * For the matplotlib colormaps, you can cite this webpage [https://bids.github.io/colormap/]()
 * For the *cubehelix* colormap, please cite:
-  * Green, D. A. “A Colour Scheme for the Display of Astronomical Intensity Images.” *arXiv,* August 30, 2011. [http://arxiv.org/abs/1108.5083]().
+    * Green, D. A. “A Colour Scheme for the Display of Astronomical Intensity Images.” *arXiv,* August 30, 2011. [http://arxiv.org/abs/1108.5083]().
 
 
 ## References
@@ -184,13 +184,13 @@ As any work, a colormap should be cited:
 #### Specific colormaps
 * Cubehelix (Dave Green, public domain): [https://people.phy.cam.ac.uk/dag9/CUBEHELIX/]()
 * Scientific colour maps (Fabio Crameri, MIT license):
-  * [https://www.fabiocrameri.ch/colourmaps/]()
-  * [https://s-ink.org/colour-map-guideline]()
-  * [https://s-ink.org/scientific-colour-maps]()
-  * Seminar talk by Fabio Crameri about the scientific use of colour in science communication for the University of Oslo GeoHyd seminar: [https://www.youtube.com/watch?v=iDPzWARbFrs]()
+    * [https://www.fabiocrameri.ch/colourmaps/]()
+    * [https://s-ink.org/colour-map-guideline]()
+    * [https://s-ink.org/scientific-colour-maps]()
+    * Seminar talk by Fabio Crameri about the scientific use of colour in science communication for the University of Oslo GeoHyd seminar: [https://www.youtube.com/watch?v=iDPzWARbFrs]()
 * Matplotlib colormaps (CC0 license / public domain):
-  * Stéfan van der Walt and Nathaniel Smith: [https://bids.github.io/colormap/]()
-  * Python version: [https://github.com/BIDS/colormap/blob/master/colormaps.py]()
-  * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  [https://www.youtube.com/watch?v=xAoljeRJ3lU]()
+    * Stéfan van der Walt and Nathaniel Smith: [https://bids.github.io/colormap/]()
+    * Python version: [https://github.com/BIDS/colormap/blob/master/colormaps.py]()
+    * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  [https://www.youtube.com/watch?v=xAoljeRJ3lU]()
 * Black Body colormap (CC0 license / public domain) by Kenneth Moreland: ["Color Map Advice for Scientific Visualization"](https://www.kennethmoreland.com/color-advice/).
 * [Colors for data scientists. Generate and refine palettes of optimally distinct colors.](https://medialab.github.io/iwanthue/)
