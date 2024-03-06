@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-10-19
-! Last modification: vmagnin 2024-02-12
+! Last modification: vmagnin 2024-03-06
 !-------------------------------------------------------------------------------
 
 program check
@@ -77,6 +77,9 @@ program check
         & .or.(blue /= copy_colormap(0, 3))) error stop "ERROR: colormap%shift()"
 
     !! Test check() procedure within set() procedure
+    print *, "---------------------------------------------------------------------------"
+    print *, "The following error messages confirm that the private check() method is OK:"
+    print *, "---------------------------------------------------------------------------"
     ! Name is not in the list
     call cmap%set('actom10', 0.0_wp, 2.0_wp)
     if (cmap%get_name() /= 'grayC') error stop "ERROR: colormap%check() name"
