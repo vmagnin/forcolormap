@@ -144,7 +144,7 @@ Seyed Ali Ghasemi" >
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>private pure subroutine check(self, check_name, check_zmin, check_zmax, check_levels)  
+    <h2>private pure subroutine check(self, check_name, check_bounds, check_levels)  
 </h2>
         <div class="card mb-4">
       <h3 class="card-header card-title bg-light">Uses</h3>
@@ -295,6 +295,7 @@ large graphs.</div>
     </div>
 
 
+    <p>Check validity of the colormap and fix it if necessary</p>
 
     <h3>Type Bound</h3>
     <p><a href='../type/colormap.html'>Colormap</a></p>
@@ -342,7 +343,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-check_zmin"></span>
+              <span class="anchor" id="variable-check_bounds"></span>
               logical,
             </td>
 <td>intent(in),</td>
@@ -350,22 +351,7 @@ large graphs.</div>
               
             </td>
             <td>::</td>
-            <td><strong>check_zmin</strong></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-check_zmax"></span>
-              logical,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>check_zmax</strong></td>
+            <td><strong>check_bounds</strong></td>
             <td>
                 
             </td>
@@ -411,33 +397,33 @@ large graphs.</div>
 <polygon fill="none" stroke="black" points="179,-87 0,-87 0,-63 179,-63 179,-87"/>
 <text text-anchor="middle" x="89.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">forcolormap::Colormap%check</text>
 </g>
-<!-- proc~get_levels -->
+<!-- proc~get_levels~2 -->
 <g id="proc~~check~~CallsGraph_node2" class="node">
-<title>proc~get_levels</title>
-<g id="a_proc~~check~~CallsGraph_node2"><a xlink:href="../proc/get_levels.html" xlink:title="forcolormap_info::Colormaps_info%get_levels">
+<title>proc~get_levels~2</title>
+<g id="a_proc~~check~~CallsGraph_node2"><a xlink:href="../proc/get_levels~2.html" xlink:title="forcolormap_info::Colormaps_info%get_levels">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="488,-150 231,-150 231,-126 488,-126 488,-150"/>
 <text text-anchor="middle" x="359.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::Colormaps_info%get_levels</text>
 </a>
 </g>
 </g>
-<!-- proc~check&#45;&gt;proc~get_levels -->
+<!-- proc~check&#45;&gt;proc~get_levels~2 -->
 <g id="proc~~check~~CallsGraph_edge1" class="edge">
-<title>proc~check&#45;&gt;proc~get_levels</title>
+<title>proc~check&#45;&gt;proc~get_levels~2</title>
 <path fill="none" stroke="#255000" d="M121,-87.01C145.93,-96.41 182.28,-109.15 215,-117 226.29,-119.71 238.16,-122.12 250.04,-124.26"/>
 <polygon fill="#255000" stroke="#255000" points="249.57,-127.72 260.02,-125.99 250.76,-120.83 249.57,-127.72"/>
 </g>
-<!-- proc~get_name -->
+<!-- proc~get_name~2 -->
 <g id="proc~~check~~CallsGraph_node3" class="node">
-<title>proc~get_name</title>
-<g id="a_proc~~check~~CallsGraph_node3"><a xlink:href="../proc/get_name.html" xlink:title="forcolormap_info::Colormaps_info%get_name">
+<title>proc~get_name~2</title>
+<g id="a_proc~~check~~CallsGraph_node3"><a xlink:href="../proc/get_name~2.html" xlink:title="forcolormap_info::Colormaps_info%get_name">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="488,-108 231,-108 231,-84 488,-84 488,-108"/>
 <text text-anchor="middle" x="359.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">forcolormap_info::Colormaps_info%get_name</text>
 </a>
 </g>
 </g>
-<!-- proc~check&#45;&gt;proc~get_name -->
+<!-- proc~check&#45;&gt;proc~get_name~2 -->
 <g id="proc~~check~~CallsGraph_edge2" class="edge">
-<title>proc~check&#45;&gt;proc~get_name</title>
+<title>proc~check&#45;&gt;proc~get_name~2</title>
 <path fill="none" stroke="#255000" d="M179.37,-81.96C192.61,-83 206.52,-84.09 220.48,-85.19"/>
 <polygon fill="#255000" stroke="#255000" points="220.41,-88.69 230.65,-85.98 220.96,-81.71 220.41,-88.69"/>
 </g>
@@ -918,12 +904,12 @@ large graphs.</div>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">pure subroutine </span><span class="n">check</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">check_name</span><span class="p">,</span><span class="w"> </span><span class="n">check_zmin</span><span class="p">,</span><span class="w"> </span><span class="n">check_zmax</span><span class="p">,</span><span class="w"> </span><span class="n">check_levels</span><span class="p">)</span>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">pure subroutine </span><span class="n">check</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">check_name</span><span class="p">,</span><span class="w"> </span><span class="n">check_bounds</span><span class="p">,</span><span class="w"> </span><span class="n">check_levels</span><span class="p">)</span>
 <span class="w">        </span><span class="k">use </span><span class="n">forcolormap_info</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">Colormaps_info</span>
 
 <span class="w">        </span><span class="k">class</span><span class="p">(</span><span class="n">Colormap</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span>
 <span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span>
-<span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">check_name</span><span class="p">,</span><span class="w"> </span><span class="n">check_zmin</span><span class="p">,</span><span class="w"> </span><span class="n">check_zmax</span><span class="p">,</span><span class="w"> </span><span class="n">check_levels</span>
+<span class="w">        </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">check_name</span><span class="p">,</span><span class="w"> </span><span class="n">check_bounds</span><span class="p">,</span><span class="w"> </span><span class="n">check_levels</span>
 <span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">temp</span>
 <span class="w">        </span><span class="k">type</span><span class="p">(</span><span class="n">Colormaps_info</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmap_info</span>
 <span class="w">        </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">input_levels</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span>
@@ -988,15 +974,14 @@ large graphs.</div>
 <span class="k">            end if</span>
 <span class="k">        end if</span>
 
-<span class="k">        if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">check_zmin</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">check_zmin</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-
+<span class="k">        if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">check_bounds</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">check_bounds</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="w">                </span><span class="c">! Check validity of zmin and zmax</span>
 <span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">zmin</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">zmax</span><span class="p">)</span><span class="w"> </span><span class="n">status</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
 
 <span class="w">                </span><span class="c">! Fix zmin and zmax if they are not valid</span>
 <span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="n">eqv</span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">                    </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">zmin</span>
+<span class="k">                    </span><span class="n">temp</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">zmin</span>
 <span class="w">                    </span><span class="n">self</span><span class="p">%</span><span class="n">zmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">zmax</span>
 <span class="w">                    </span><span class="n">self</span><span class="p">%</span><span class="n">zmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span>
 <span class="w">                </span><span class="k">end if</span>
@@ -1041,7 +1026,7 @@ Seyed Ali Ghasemi<br>&copy; 2023-2024 <a rel="license" href="https://opensource.
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-03-05T10:13:34.672469             </p>
+ on 2024-03-06T09:45:10.554568             </p>
           </div>
         </div>
         <br>
