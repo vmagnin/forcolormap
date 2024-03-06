@@ -30,7 +30,7 @@ call setpixelrgb(x, y, red, green, blue)
 
 The library is using the precision `wp=>real64` defined in the module `iso_fortran_env`. And depending on the integers expected by your graphical library, you may need to convert the kinds of red, green, blue variables by writing for example `int(red, kind=int16)` if you need 16 bit integers.
 
-This [guideline](https://s-ink.org/colour-map-guideline) can help you choose the right kind of colormap. And you can visually choose the available colormaps in the [colormaps_list/ForColormap.pdf](https://github.com/vmagnin/forcolormap/blob/main/colormaps_list/ForColormap.pdf) manual or on this page (under development): https://github.com/gha3mi/forcolormap/tree/dev
+This [guideline](https://s-ink.org/colour-map-guideline) can help you choose the right kind of colormap. And you can visually choose the available colormaps in the [colormaps_list/ForColormap.pdf](https://github.com/vmagnin/forcolormap/blob/main/colormaps_list/ForColormap.pdf) manual or on this page (under development): [https://github.com/gha3mi/forcolormap/tree/dev]()
 
 
 ## Installation
@@ -143,7 +143,7 @@ They can be launched with the command `fpm run --example name_of_the_example` (w
 
 In the gtk-fortran-extra repository, you will also find a [physical model](https://github.com/vmagnin/gtk-fortran-extra/tree/main/reaction_diffusion) demonstrating the use of ForColormap. It creates a movie with Turing patterns, displayed with various colormaps:
 
-https://www.youtube.com/watch?v=cVHLCVVvZ4U
+[https://www.youtube.com/watch?v=cVHLCVVvZ4U]()
 
 ## Licenses
 
@@ -155,20 +155,20 @@ This project is under MIT license. The logo files are under [license CC BY-SA 4.
 As any work, a colormap should be cited:
 
 * For *Scientific colour maps,* please cite these two items:
-  * Crameri, F. (2018a), Scientific colour maps. *Zenodo.* http://doi.org/10.5281/zenodo.1243862
-  * Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. “The Misuse of Colour in Science Communication.” *Nature Communications* 11, no. 1 (October 28, 2020): 5444. https://doi.org/10.1038/s41467-020-19160-7.
-* For the matplotlib colormaps, you can cite this webpage https://bids.github.io/colormap/
+  * Crameri, F. (2018a), Scientific colour maps. *Zenodo.* [http://doi.org/10.5281/zenodo.1243862]()
+  * Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. “The Misuse of Colour in Science Communication.” *Nature Communications* 11, no. 1 (October 28, 2020): 5444. [https://doi.org/10.1038/s41467-020-19160-7]().
+* For the matplotlib colormaps, you can cite this webpage [https://bids.github.io/colormap/]()
 * For the *cubehelix* colormap, please cite:
-  * Green, D. A. “A Colour Scheme for the Display of Astronomical Intensity Images.” *arXiv,* August 30, 2011. http://arxiv.org/abs/1108.5083.
+  * Green, D. A. “A Colour Scheme for the Display of Astronomical Intensity Images.” *arXiv,* August 30, 2011. [http://arxiv.org/abs/1108.5083]().
 
 
 ## References
 
 ### Articles and books
 
-* Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. “Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.” Edited by Jesús Malo. *PLOS ONE* 13, no. 7, August 1, 2018, e0199239. https://doi.org/10.1371/journal.pone.0199239.
+* Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. “Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.” Edited by Jesús Malo. *PLOS ONE* 13, no. 7, August 1, 2018, e0199239. [https://doi.org/10.1371/journal.pone.0199239]().
 * Rogowitz, Bernice E, and Lloyd A Treinish. [“Why Should Engineers and Scientists Be Worried About Color?”](https://github.com/amadeusine/interesting-reads/blob/master/ibm-research__why-should-engineers-and-scientists-be-worried-about-color.pdf)
-* Thyng, Kristen, Chad Greene, Robert Hetland, Heather Zimmerle, and Steven DiMarco. “True Colors of Oceanography: Guidelines for Effective and Accurate Colormap Selection.” *Oceanography* 29, no. 3, September 1, 2016, pp. 9–13. https://doi.org/10.5670/oceanog.2016.66.
+* Thyng, Kristen, Chad Greene, Robert Hetland, Heather Zimmerle, and Steven DiMarco. “True Colors of Oceanography: Guidelines for Effective and Accurate Colormap Selection.” *Oceanography* 29, no. 3, September 1, 2016, pp. 9–13. [https://doi.org/10.5670/oceanog.2016.66]().
 * Valeur, Bernard. *La couleur dans tous ses éclats.* Bibliothèque scientifique. Paris: Belin-"Pour la science", 2011, ISBN 9782701158761.
 * Valeur, Bernard. *Lumière et luminescence - Ces phénomènes lumineux qui nous entourent.* Bibliothèque scientifique. Paris: Belin-"Pour la science", 2005, ISBN 9782701136035.
 
@@ -178,19 +178,19 @@ As any work, a colormap should be cited:
 * https://en.wikipedia.org/wiki/Color_gradient
 * https://en.wikipedia.org/wiki/Heat_map
 * Ken Hughes, ["Default colormaps: Are Parula and Viridis really an improvement over Jet?"](https://brushingupscience.com/2019/10/01/default-colormaps-are-parula-and-viridis-really-an-improvement-over-jet/), posted on October 1, 2019.
-* "In Search of a Perfect Colormap", http://inversed.ru/Blog_2.htm
+* [In Search of a Perfect Colormap](http://inversed.ru/Blog_2.htm)
 * The [Data Visualisation Guide section about colours](https://data.europa.eu/apps/data-visualisation-guide/tag/colour)
 
 #### Specific colormaps
-* Cubehelix (Dave Green, public domain): https://people.phy.cam.ac.uk/dag9/CUBEHELIX/
+* Cubehelix (Dave Green, public domain): [https://people.phy.cam.ac.uk/dag9/CUBEHELIX/]()
 * Scientific colour maps (Fabio Crameri, MIT license):
-  * https://www.fabiocrameri.ch/colourmaps/
-  * https://s-ink.org/colour-map-guideline
-  * https://s-ink.org/scientific-colour-maps
-  * Seminar talk by Fabio Crameri about the scientific use of colour in science communication for the University of Oslo GeoHyd seminar: https://www.youtube.com/watch?v=iDPzWARbFrs
+  * [https://www.fabiocrameri.ch/colourmaps/]()
+  * [https://s-ink.org/colour-map-guideline]()
+  * [https://s-ink.org/scientific-colour-maps]()
+  * Seminar talk by Fabio Crameri about the scientific use of colour in science communication for the University of Oslo GeoHyd seminar: [https://www.youtube.com/watch?v=iDPzWARbFrs]()
 * Matplotlib colormaps (CC0 license / public domain):
-  * Stéfan van der Walt and Nathaniel Smith: https://bids.github.io/colormap/
-  * Python version: https://github.com/BIDS/colormap/blob/master/colormaps.py
-  * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  https://www.youtube.com/watch?v=xAoljeRJ3lU
+  * Stéfan van der Walt and Nathaniel Smith: [https://bids.github.io/colormap/]()
+  * Python version: [https://github.com/BIDS/colormap/blob/master/colormaps.py]()
+  * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  [https://www.youtube.com/watch?v=xAoljeRJ3lU]()
 * Black Body colormap (CC0 license / public domain) by Kenneth Moreland: ["Color Map Advice for Scientific Visualization"](https://www.kennethmoreland.com/color-advice/).
 * [Colors for data scientists. Generate and refine palettes of optimally distinct colors.](https://medialab.github.io/iwanthue/)
