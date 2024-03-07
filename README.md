@@ -1,13 +1,13 @@
-![Logo ForColormap](logo/logo_forcolormap-roma_8.svg)
+![](logo/logo_forcolormap-roma_8.svg)
 
-# ForColormap
+The ForColormap Fortran library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It includes:
 
-This Fortran library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It offers various methods and options to manage colormaps. It includes:
-
-* the 222 colormaps of the *Scientific colour maps* collection v8.0.1 by Fabio Crameri. See Fabio Crameri's poster ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) for more information and my [No Bijection!](NO_BIJECTION.md) text about the mysteries and wonders of colors,
+* the 222 colormaps of the *Scientific colour maps* collection v8.0.1 by Fabio Crameri. See Fabio Crameri's poster ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) for more information,
 * the "magma", "inferno","plasma", "viridis" [matplotlib colormaps](https://bids.github.io/colormap/),
 * the Dave Green's [cubehelix](https://people.phy.cam.ac.uk/dag9/CUBEHELIX/) colormap,
 * a few basic colormaps: "black_body", "fire", "rainbow", "inv_rainbow", "zebra".
+
+And it offers various methods and options to manage colormaps. 
 
 ## Basic usage
 
@@ -28,7 +28,7 @@ call cmap%compute_RGB(z, red, green, blue)
 call setpixelrgb(x, y, red, green, blue)
 ```
 
-The library is using the precision `wp=>real64` defined in the module `iso_fortran_env`. And depending on the integers expected by your graphical library, you may need to convert the kinds of red, green, blue variables by writing for example `int(red, kind=int16)` if you need 16 bit integers.
+The library is using the precision `wp=>real64` defined in the module `iso_fortran_env`. And depending on the integers expected by your graphical library, you may need to convert the kinds of red, green, blue variables.
 
 This [guideline](https://s-ink.org/colour-map-guideline) can help you choose the right kind of colormap. And you can visually choose the available colormaps in the [colormaps_list/ForColormap.pdf](https://github.com/vmagnin/forcolormap/blob/main/colormaps_list/ForColormap.pdf) manual or on this page (under development): [https://github.com/gha3mi/forcolormap/tree/dev](https://github.com/gha3mi/forcolormap/tree/dev)
 
@@ -59,7 +59,7 @@ To use ForColormap within your own `fpm` project, add the following lines to you
 
 ```toml
 [dependencies]
-forcolormap = {git = "https://github.com/vmagnin/forcolormap.git" }
+forcolormap = {git = "https://github.com/vmagnin/forcolormap.git"}
 ```
 
 ### Using CMake
@@ -79,7 +79,7 @@ By default, ForColormap is built as a static library by CMake. You can compile y
 ```bash
 $ gfortran -static my_program.f90 $(pkg-config --cflags --libs forcolormap forimage)
 ```
-Note that ForColormap is depending on ForImage, and for linking you must respect that order.
+Note that ForColormap is depending on ForImage, and for static linking you must respect that order.
 
 #### Dynamic linking
 There is a CMake option to obtain a shared library:
@@ -175,6 +175,7 @@ As any work, a colormap should be cited:
 ### Web pages
 
 #### About colormaps
+* [No Bijection!](NO_BIJECTION.md): a passionate text about the mysteries and wonders of colors.
 * [https://en.wikipedia.org/wiki/Color_gradient](https://en.wikipedia.org/wiki/Color_gradient)
 * [https://en.wikipedia.org/wiki/Heat_map](https://en.wikipedia.org/wiki/Heat_map)
 * Ken Hughes, ["Default colormaps: Are Parula and Viridis really an improvement over Jet?"](https://brushingupscience.com/2019/10/01/default-colormaps-are-parula-and-viridis-really-an-improvement-over-jet/), posted on October 1, 2019.

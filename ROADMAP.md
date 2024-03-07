@@ -53,15 +53,17 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 
 ## Version 1.0
 
-The main goal of v1.0 is to offer a library with a stable API and a first version of a Diataxis documentation.
+The main goal of v1.0 is to offer a library with a stable API, to improve the FORD documentation and to follow the Diátaxis documentation framework.
 
 ### Documentation
 
-- [ ] Specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, etc. This information could be included in the Diataxis documentation.
+- [ ] Improve the FORD documentation, by adding FORD comments in the source code when needed.
+- [ ] Initiate a Diátaxis documentation.
+    - [ ] Specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, etc. This information could be included in the 
 
 ### Deprecation
 
-- [ ] Consider removing a few naive colormaps (e.g., "fire" is very similar to "black_body")
+- [ ] Consider removing a few naive colormaps (e.g., "fire" is very similar to "black_body").
 
 ### Quality Assurance
 
@@ -71,7 +73,7 @@ The main goal of v1.0 is to offer a library with a stable API and a first versio
 
 ## Version 1.1
 
-The main goal of v1.1 is to offer more features and to evolve the Diataxis documentation.
+The main goal of v1.1 is to offer more features and to evolve the Diátaxis documentation.
 
 
 # Ideas
@@ -105,7 +107,7 @@ These concepts are open for implementation or consideration. They may or may not
 
 ### Examples
 
-- [ ] ...
+- [ ] For the new features.
 
 ### Continuous Integration (CI)
 
