@@ -1,13 +1,13 @@
-name = "forcolormap"
-description= "A small Fortran colormap library"
-version = "0.8.0"
+name = "ForColormap"
+description= "A Fortran colormap library"
+version = "0.9.0"
 license = "MIT"
 author = "Vincent Magnin, Seyed Ali Ghasemi"
 copyright = "Copyright 2023-2024, Vincent Magnin & Seyed Ali Ghasemi"
 maintainer = "https://github.com/vmagnin/forcolormap/issues"
 homepage   = "https://github.com/vmagnin/forcolormap"
 categories = ["graphics"]
-keywords   = ["Fortran", "fpm", "colormap"]
+keywords   = ["Fortran", "colormap", "fpm", "CMake"]
 
 [dependencies]
 forimage = {git="https://github.com/gha3mi/forimage.git"}
