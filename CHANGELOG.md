@@ -15,6 +15,7 @@ All notable changes to the gtk-fortran project are documented in this file. The 
     * `example/colormaps_list.f90` is creating the `colormaps_list/COLORMAPS_LIST_*.md` files using the `Colormaps_info` class.
         * A `colormaps_list/ForColormap.pdf` manual listing all the available colormaps.
         * A link toward the page *ForColormap Collection Categories* was added in the `README.md` to help users choose a colormap.
+    * A `gallery/` directory with screenshots of simulations using ForColormap.
     * A `README.md` file in each subdirectory describing the files inside.
     * A `logo` directory with SVG files by @alozada.
 
