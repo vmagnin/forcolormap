@@ -1,6 +1,6 @@
 project:             ForColormap
 summary:             A Fortran library for colormaps 
-version:             0.8.0
+version:             0.9.0
 license:             MIT
 year:                2023-2024
 project_github:      https://github.com/vmagnin/forcolormap
