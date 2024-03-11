@@ -65,6 +65,7 @@ forcolormap = {git = "https://github.com/vmagnin/forcolormap.git"}
 ### Using CMake
 
 You can also build the project with CMake:
+
 ```bash
 $ git clone git@github.com:vmagnin/forcolormap.git
 $ cd forcolormap
@@ -76,6 +77,7 @@ $ sudo make install
 
 #### Static linking
 By default, ForColormap is built as a static library by CMake. You can compile your program with the `-static` option:
+
 ```bash
 $ gfortran -static my_program.f90 $(pkg-config --cflags --libs forcolormap forimage)
 ```
@@ -83,11 +85,13 @@ Note that ForColormap is depending on ForImage, and for static linking you must 
 
 #### Dynamic linking
 There is a CMake option to obtain a shared library:
+
 ```bash
 $ cmake -D BUILD_SHARED_LIBS=true ..
 ```
 
 You can compile your program like this:
+
 ```bash
 $ gfortran my_program.f90 $(pkg-config --cflags --libs forcolormap)
 ```
@@ -100,6 +104,7 @@ $ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
 #### Building examples and tests
 
 You can build the examples with:
+
 ```bash
 $ cmake -D BUILD_FORCOLORMAP_EXAMPLES=true ..
 $ make
@@ -107,6 +112,7 @@ $ cd example
 ```
 
 The automatic tests can be run with:
+
 ```bash
 $ cmake -D BUILD_TESTING=true ..
 $ make
@@ -116,6 +122,7 @@ $ ctest
 #### Uninstalling ForColormap
 
 From the `build` directory:
+
 ```bash
 $ sudo make uninstall_forcolormap
 ```

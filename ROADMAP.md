@@ -28,6 +28,7 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 - [x] Develop a PDF guide with all colorbars to aid in choosing a colormap.
 - [x] Develop a web version guide with all colorbars to aid in choosing a colormap.
 - [x] Create a simple documentation generated with FORD.
+- [x] Include real simulation images (`gallery/` directory).
 
 ### Continuous Integration (CI)
 
@@ -36,11 +37,11 @@ The main goal of v0.9 is to offer a usable library, sufficiently friendly, with 
 
 ### Building System
 
-- [x] Test with a gtk-fortran fpm project.
+- [x] Test with a gtk-fortran fpm project: Linux, FreeBSD, macOS, MSYS2/Windows.
 - [x] Implement a CMake building system, allowing installation of a `.so`
     - [x] Test on Linux.
     - [x] Test on FreeBSD.
-    - [ ] Test on Windows (MSYS2).
+    - [ ] Test on Windows (MSYS2): issue [#37](https://github.com/vmagnin/forcolormap/issues/37)
     - [x] Test on macOS.
 
 ### Others
@@ -116,7 +117,6 @@ These concepts are open for implementation or consideration. They may or may not
 ### Documentation
 
 - [ ] Include a few images in the `README.md` file.
-- [ ] Include real simulation images.
 
 ### Publication
 
