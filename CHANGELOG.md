@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to the gtk-fortran project are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [forcolormap dev]
+
+### Fixed
+* In `fpm.toml`, `name = "forcolormap"` is now lower case because fpm dependencies are case sensitive.
+
+
 ## [forcolormap 0.9] 2024-03-11
 
 ### Added
