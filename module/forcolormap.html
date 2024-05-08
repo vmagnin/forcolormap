@@ -78,7 +78,7 @@ Seyed Ali Ghasemi" >
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="46.7% of total for modules and submodules.">970 statements</a>
+                 title="46.8% of total for modules and submodules.">975 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -176,6 +176,7 @@ Seyed Ali Ghasemi" >
             <a class="list-group-item" href="../module/forcolormap.html#proc-create_bezier">create_bezier</a>
             <a class="list-group-item" href="../module/forcolormap.html#proc-create_lagrange">create_lagrange</a>
             <a class="list-group-item" href="../module/forcolormap.html#proc-extract">extract</a>
+            <a class="list-group-item" href="../module/forcolormap.html#proc-finalize">finalize</a>
             <a class="list-group-item" href="../module/forcolormap.html#proc-get_rgb">get_RGB</a>
             <a class="list-group-item" href="../module/forcolormap.html#proc-load">load</a>
             <a class="list-group-item" href="../module/forcolormap.html#proc-print">print</a>
@@ -208,10 +209,10 @@ Seyed Ali Ghasemi" >
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='colormap_parameters.html'>colormap_parameters</a></li>
-                  <li class="list-inline-item"><a href='matplotlib_colormaps.html'>matplotlib_colormaps</a></li>
                   <li class="list-inline-item"><a href='miscellaneous_colormaps.html'>miscellaneous_colormaps</a></li>
                   <li class="list-inline-item"><a href='scientific_colour_maps.html'>scientific_colour_maps</a></li>
+                  <li class="list-inline-item"><a href='matplotlib_colormaps.html'>matplotlib_colormaps</a></li>
+                  <li class="list-inline-item"><a href='colormap_parameters.html'>colormap_parameters</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -787,6 +788,11 @@ parameter,               dimension(*)
               </tr>
               <tr>
                 <td>  procedure, public ::
+  <strong><a href='../type/colormap.html#boundprocedure-finalize~3'>finalize</a></strong></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>  procedure, public ::
   <strong><a href='../type/colormap.html#boundprocedure-get_rgb'>get_RGB</a></strong></td>
                 <td></td>
               </tr>
@@ -975,7 +981,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~9"></span>
+              <span class="anchor" id="variable-self~10"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(in)</td>
@@ -1020,7 +1026,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~8"></span>
+              <span class="anchor" id="variable-self~9"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(in)</td>
@@ -1065,7 +1071,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~11"></span>
+              <span class="anchor" id="variable-self~12"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(in)</td>
@@ -1110,7 +1116,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~10"></span>
+              <span class="anchor" id="variable-self~11"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(in)</td>
@@ -1430,7 +1436,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~17"></span>
+              <span class="anchor" id="variable-self~18"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -1515,7 +1521,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~6"></span>
+              <span class="anchor" id="variable-self~7"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -1615,7 +1621,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~2"></span>
+              <span class="anchor" id="variable-self~3"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -1730,7 +1736,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~4"></span>
+              <span class="anchor" id="variable-self~5"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -1860,7 +1866,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~3"></span>
+              <span class="anchor" id="variable-self~4"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -1990,7 +1996,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~16"></span>
+              <span class="anchor" id="variable-self~17"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -2086,6 +2092,46 @@ parameter,               dimension(*)
   </div>
 
               <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-finalize"></span> <h3>private pure subroutine <a href='../proc/finalize.html'>finalize</a>(self)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>A finalizer procedure for memory cleanup:</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-self~2"></span>
+              class(<a href='../type/colormap.html'>Colormap</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
     <div class="card-header codesum"><span class="anchor" id="proc-get_rgb"></span> <h3>private pure subroutine <a href='../proc/get_rgb.html'>get_RGB</a>(self, level, red, green, blue)  
 </h3></div>
     <div class="card-body">
@@ -2105,7 +2151,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~7"></span>
+              <span class="anchor" id="variable-self~8"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -2205,7 +2251,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~5"></span>
+              <span class="anchor" id="variable-self~6"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -2305,7 +2351,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~12"></span>
+              <span class="anchor" id="variable-self~13"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -2345,7 +2391,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~14"></span>
+              <span class="anchor" id="variable-self~15"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -2530,7 +2576,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~15"></span>
+              <span class="anchor" id="variable-self~16"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -2585,7 +2631,7 @@ parameter,               dimension(*)
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-self~13"></span>
+              <span class="anchor" id="variable-self~14"></span>
               class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
@@ -2689,7 +2735,7 @@ Seyed Ali Ghasemi<br>              &copy; 2023-2024 <a rel="license" href="https
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-04-10T08:46:12.736343             </p>
+ on 2024-05-08T09:59:02.134377             </p>
           </div>
         </div>
         <br>
