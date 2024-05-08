@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-02-16, vmagnin 2024-03-06
+! Last modification: gha3mi 2024-02-16, vmagnin 2024-05-08
 !-------------------------------------------------------------------------------
 
 
@@ -52,6 +52,7 @@ module forcolormap
         integer, dimension(:, :), allocatable, private :: map
     contains
         procedure :: set
+        procedure :: finalize
         procedure :: create
         procedure :: create_lagrange
         procedure :: create_bezier
@@ -585,6 +586,13 @@ contains
             if (reverse) call self%reverse()
         end if
     end subroutine set
+
+    !> A finalizer procedure for memory cleanup:
+    pure subroutine finalize(self)
+        class(Colormap), intent(inout) :: self
+        if (allocated(self%map)) deallocate(self%map)
+    end subroutine
+
 
     !> You can create a custom colormap from a "map" array.
     pure subroutine create(self, name, zmin, zmax, map, reverse)

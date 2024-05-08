@@ -3,6 +3,9 @@ All notable changes to the gtk-fortran project are documented in this file. The 
 
 ## [forcolormap dev]
 
+### Added
+- In `src/colormap_class.f90`: a `finalize` method for memory cleanup.
+
 ### Fixed
 * In `fpm.toml`, `name = "forcolormap"` is now lower case because fpm dependencies are case sensitive.
 
