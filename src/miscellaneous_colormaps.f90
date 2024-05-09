@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modifications: gha3mi 2024-01-06, vmagnin 2024-02-16
+! Last modifications: gha3mi 2024-01-06, vmagnin 2024-05-09
 !-------------------------------------------------------------------------------
 
 module miscellaneous_colormaps
@@ -32,7 +32,7 @@ module miscellaneous_colormaps
     public :: fire_colormap, rainbow_colormap, &
               inv_rainbow_colormap, zebra_colormap, cubehelix_colormap
 
-    character(*), dimension(*), parameter, public :: miscellaneous_colormaps_list = &
+    character(*), dimension(6), parameter, public :: miscellaneous_colormaps_list = &
         [character(colormap_name_length) :: &
         "fire", "rainbow", "inv_rainbow", "zebra", "cubehelix", &
         "black_body"]

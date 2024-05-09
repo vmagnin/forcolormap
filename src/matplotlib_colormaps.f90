@@ -27,7 +27,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-10-30
-! Last modification: gha3mi 2023-10-30
+! Last modification: gha3mi 2023-10-30, vmagnin 2024-05-09
 !-------------------------------------------------------------------------------
 
 module matplotlib_colormaps
@@ -35,7 +35,7 @@ module matplotlib_colormaps
     implicit none
     private
 
-    character(*), dimension(*), parameter, public :: matplotlib_colormaps_list = &
+    character(*), dimension(4), parameter, public :: matplotlib_colormaps_list = &
         [character(colormap_name_length) :: &
         "magma", "inferno","plasma", "viridis"]
 
