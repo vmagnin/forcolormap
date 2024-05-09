@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-02-16, vmagnin 2024-05-08
+! Last modification: gha3mi 2024-02-16, vmagnin 2024-05-09
 !-------------------------------------------------------------------------------
 
 
@@ -37,7 +37,7 @@ module forcolormap
     public :: wp
 
     ! List of built-in colormaps:
-    character(*), dimension(*), public, parameter :: colormaps_list = &
+    character(*), dimension(6+222+4), public, parameter :: colormaps_list = &
         [character(colormap_name_length) :: &
         miscellaneous_colormaps_list,&
         scientific_colour_maps_list,&

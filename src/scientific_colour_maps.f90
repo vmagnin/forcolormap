@@ -27,7 +27,7 @@ module scientific_colour_maps
     implicit none
     private
 
-    character(*), dimension(*), parameter, public :: scientific_colour_maps_list = &
+    character(*), dimension(222), parameter, public :: scientific_colour_maps_list = &
         [character(colormap_name_length) :: &
         "acton", "acton10", "acton100", "acton25", "acton50", "actonS", &
         "bam", "bam10", "bam100", "bam25", "bam50", "bamako", &
