@@ -19,15 +19,18 @@ jobs:
           - {compiler: gcc}
           - {compiler: intel}
           - {compiler: intel-classic}
+          - {compiler: nvidia-hpc}
         exclude:
           - os: windows-latest
             toolchain: {compiler: intel}
           - os: windows-latest
             toolchain: {compiler: intel-classic}
+          - os: windows-latest
+            toolchain: {compiler: nvidia-hpc}
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
