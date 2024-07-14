@@ -30,6 +30,8 @@
 ! Last modification: gha3mi 2023-10-30, vmagnin 2024-05-09
 !-------------------------------------------------------------------------------
 
+!> This module contains a few matplotlib colormaps: "magma", "inferno",
+!> "plasma", "viridis".
 module matplotlib_colormaps
     use colormap_parameters, only: colormap_name_length
     implicit none

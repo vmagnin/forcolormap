@@ -285,26 +285,28 @@ large graphs.</div>
 <a id="ln-24" name="ln-24" href="#ln-24"></a><span class="c">! Last modification: gha3mi 2023-11-05</span>
 <a id="ln-25" name="ln-25" href="#ln-25"></a><span class="c">!-------------------------------------------------------------------------------</span>
 <a id="ln-26" name="ln-26" href="#ln-26"></a>
-<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="k">program </span><span class="n">colormaps_list</span>
-<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="w">    </span><span class="k">use </span><span class="n">forcolormap_info</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">Colormaps_info</span>
-<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="w">    </span><span class="k">implicit none</span>
-<a id="ln-30" name="ln-30" href="#ln-30"></a>
-<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="k">    type</span><span class="p">(</span><span class="n">Colormaps_info</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">info</span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="c">!&gt; Creates the `colormaps_list/COLORMAPS_LIST_*.md` files using</span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="c">!&gt; the `Colormaps_info` class.</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="k">program </span><span class="n">colormaps_list</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="w">    </span><span class="k">use </span><span class="n">forcolormap_info</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">Colormaps_info</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="w">    </span><span class="k">implicit none</span>
 <a id="ln-32" name="ln-32" href="#ln-32"></a>
-<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="w">    </span><span class="c">! Set all colormap information</span>
-<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="n">set_all</span><span class="p">()</span>
-<a id="ln-35" name="ln-35" href="#ln-35"></a>
-<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="w">    </span><span class="c">!! Write colormap information to a file</span>
-<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Sequential&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_SEQ.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Multi-Sequential&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_MSQ.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Diverging&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_DIV.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Categorical&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_CAT.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Cyclic&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_CYC.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<a id="ln-42" name="ln-42" href="#ln-42"></a>
-<a id="ln-43" name="ln-43" href="#ln-43"></a><span class="w">    </span><span class="c">! Deallocate all colormap information</span>
-<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="n">finalize</span><span class="p">()</span>
-<a id="ln-45" name="ln-45" href="#ln-45"></a>
-<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="k">end program </span><span class="n">colormaps_list</span>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="k">    type</span><span class="p">(</span><span class="n">Colormaps_info</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">info</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a>
+<a id="ln-35" name="ln-35" href="#ln-35"></a><span class="w">    </span><span class="c">! Set all colormap information</span>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="n">set_all</span><span class="p">()</span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="w">    </span><span class="c">!! Write colormap information to a file</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Sequential&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_SEQ.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Multi-Sequential&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_MSQ.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Diverging&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_DIV.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Categorical&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_CAT.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">gradient</span><span class="o">=</span><span class="s1">&#39;Cyclic&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;colormaps_list/COLORMAPS_LIST_CYC.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="ln-44" name="ln-44" href="#ln-44"></a>
+<a id="ln-45" name="ln-45" href="#ln-45"></a><span class="w">    </span><span class="c">! Deallocate all colormap information</span>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="w">    </span><span class="k">call </span><span class="n">info</span><span class="p">%</span><span class="n">finalize</span><span class="p">()</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="k">end program </span><span class="n">colormaps_list</span>
 </pre></div>
 
       </section>
@@ -327,7 +329,7 @@ Seyed Ali Ghasemi<br>              &copy; 2023-2024 <a rel="license" href="https
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-07-10T14:46:14.778138             </p>
+ on 2024-07-14T09:35:30.524747             </p>
           </div>
         </div>
         <br>

@@ -172,7 +172,7 @@ Seyed Ali Ghasemi" >
     <div class="col-md-9" id='text'>
       <h2 id="type-def-statement">
         type, public :: Colormaps_info</h2>
-    
+    <p>Define a derived type named 'Colormaps_info' to store an array of 'table' type</p>
 <br>      <div class="card">
         <div class="card-header">
           <h3 class="card-title">Inherits</h3>
@@ -292,7 +292,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Array of 'table' type to store multiple colormaps</p>
             </td>
         </tr>
     </tbody>
@@ -315,6 +315,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to finalize the derived type</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -369,6 +373,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to get the number of levels in a colormap</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -443,6 +451,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to get the name of a colormap</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -517,6 +529,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to get the number of colormaps</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -576,6 +592,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to set information for all colormaps in the array</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -583,7 +603,7 @@ large graphs.</div>
 </h3>
     
 
-  
+  <p>Set information for all colormaps.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -630,6 +650,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to filter and write information about the colormaps</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -637,7 +661,7 @@ large graphs.</div>
 </h3>
     
 
-  
+  <p>Filter the array of colormaps based on the given criteria and write information about the filtered colormaps</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -814,14 +838,14 @@ large graphs.</div>
     <section>
     <h3><span class="anchor" id="src"></span>Source Code</h3>
     <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Colormaps_info</span>
-<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">table</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">colormaps</span><span class="p">(</span><span class="mi">232</span><span class="p">)</span><span class="w"> </span><span class="c">! Array of &#39;table&#39; type to store multiple colormaps</span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">table</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">colormaps</span><span class="p">(</span><span class="mi">232</span><span class="p">)</span><span class="w"> </span><span class="c">!! Array of &#39;table&#39; type to store multiple colormaps</span>
 <span class="w">   </span><span class="k">contains</span>
-<span class="k">      procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">set_all</span><span class="w"> </span><span class="c">! Procedure to set information for all colormaps in the array</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">write</span><span class="w">   </span><span class="c">! Procedure to filter and write information about the colormaps</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">finalize</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">deallocate_Colormaps_info</span><span class="w"> </span><span class="c">! Procedure to finalize the derived type</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_ncolormaps</span><span class="w"> </span><span class="c">! Procedure to get the number of colormaps</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_name</span><span class="w">       </span><span class="c">! Procedure to get the name of a colormap</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_levels</span><span class="w">     </span><span class="c">! Procedure to get the number of levels in a colormap</span>
+<span class="k">      procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">set_all</span><span class="w"> </span><span class="c">!! Procedure to set information for all colormaps in the array</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">write</span><span class="w">   </span><span class="c">!! Procedure to filter and write information about the colormaps</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">finalize</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">deallocate_Colormaps_info</span><span class="w"> </span><span class="c">!! Procedure to finalize the derived type</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_ncolormaps</span><span class="w"> </span><span class="c">!! Procedure to get the number of colormaps</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_name</span><span class="w">       </span><span class="c">!! Procedure to get the name of a colormap</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_levels</span><span class="w">     </span><span class="c">!! Procedure to get the number of levels in a colormap</span>
 <span class="w">   </span><span class="k">end type </span><span class="n">Colormaps_info</span>
 </pre></div>
 
@@ -846,7 +870,7 @@ Seyed Ali Ghasemi<br>              &copy; 2023-2024 <a rel="license" href="https
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-07-10T14:46:14.778138             </p>
+ on 2024-07-14T09:35:30.524747             </p>
           </div>
         </div>
         <br>

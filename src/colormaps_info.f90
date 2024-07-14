@@ -24,6 +24,7 @@
 ! Last modification: gha3mi 2024-02-16, vmagnin 2024-02-29
 !-------------------------------------------------------------------------------
 
+!> The Colormaps_info class offers information about each colormap.
 module forcolormap_info
 
    use colormap_parameters, only: colormap_name_length
@@ -34,34 +35,34 @@ module forcolormap_info
 
    public :: Colormaps_info
 
-   ! Define a derived type named 'table' to store information about a colormap
+   !> Define a derived type named 'table' to store information about a colormap
    type :: table
-      character(len=:), allocatable, private :: name        ! Name of the colormap
-      character(len=:), allocatable, private :: family      ! Family or category of the colormap
-      character(len=:), allocatable, private :: gradient    ! Type of gradient used in the colormap
-      character(len=:), allocatable, private :: palette     ! Palette used in the colormap
-      character(len=:), allocatable, private :: colorbar    ! Colorbar style associated with the colormap
-      character(len=:), allocatable, private :: package     ! Package or library associated with the colormap
-      character(len=:), allocatable, private :: author      ! Author of the colormap
-      character(len=:), allocatable, private :: license     ! License information for the colormap
-      character(len=:), allocatable, private :: url         ! URL or web link to the colormap information
-      integer                      , private :: levels      ! Number of discrete levels in the colormap
+      character(len=:), allocatable, private :: name        !! Name of the colormap
+      character(len=:), allocatable, private :: family      !! Family or category of the colormap
+      character(len=:), allocatable, private :: gradient    !! Type of gradient used in the colormap
+      character(len=:), allocatable, private :: palette     !! Palette used in the colormap
+      character(len=:), allocatable, private :: colorbar    !! Colorbar style associated with the colormap
+      character(len=:), allocatable, private :: package     !! Package or library associated with the colormap
+      character(len=:), allocatable, private :: author      !! Author of the colormap
+      character(len=:), allocatable, private :: license     !! License information for the colormap
+      character(len=:), allocatable, private :: url         !! URL or web link to the colormap information
+      integer                      , private :: levels      !! Number of discrete levels in the colormap
    contains
-      procedure :: set_info   ! Procedure to set information for the colormap
-      procedure :: write_info ! Procedure to print information about the colormap
-      procedure :: finalize => deallocate_table ! Procedure to finalize the derived type
+      procedure :: set_info   !! Procedure to set information for the colormap
+      procedure :: write_info !! Procedure to print information about the colormap
+      procedure :: finalize => deallocate_table !! Procedure to finalize the derived type
    end type table
 
-   ! Define a derived type named 'Colormaps_info' to store an array of 'table' type
+   !> Define a derived type named 'Colormaps_info' to store an array of 'table' type
    type :: Colormaps_info
-      type(table), private :: colormaps(232) ! Array of 'table' type to store multiple colormaps
+      type(table), private :: colormaps(232) !! Array of 'table' type to store multiple colormaps
    contains
-      procedure :: set_all ! Procedure to set information for all colormaps in the array
-      procedure :: write   ! Procedure to filter and write information about the colormaps
-      procedure :: finalize => deallocate_Colormaps_info ! Procedure to finalize the derived type
-      procedure :: get_ncolormaps ! Procedure to get the number of colormaps
-      procedure :: get_name       ! Procedure to get the name of a colormap
-      procedure :: get_levels     ! Procedure to get the number of levels in a colormap
+      procedure :: set_all !! Procedure to set information for all colormaps in the array
+      procedure :: write   !! Procedure to filter and write information about the colormaps
+      procedure :: finalize => deallocate_Colormaps_info !! Procedure to finalize the derived type
+      procedure :: get_ncolormaps !! Procedure to get the number of colormaps
+      procedure :: get_name       !! Procedure to get the name of a colormap
+      procedure :: get_levels     !! Procedure to get the number of levels in a colormap
    end type Colormaps_info
 
 contains
@@ -86,7 +87,7 @@ contains
       levels = this%colormaps(index)%levels
    end function get_levels
 
-   ! set information about the colormap
+   !> Set information about the colormap
    pure elemental subroutine set_info(this, package, family, name, gradient, palette, author, license, url, colorbar, levels)
       class(table), intent(inout) :: this
       character(*), intent(in) :: package, family, name, gradient, palette, author, license, url, colorbar
@@ -103,7 +104,7 @@ contains
       this%levels = levels
    end subroutine set_info
 
-   ! print information about the colormap
+   !> Print information about the colormap
    impure subroutine write_info(this, verbose, file_name)
       class(table), intent(inout) :: this
       integer, intent(in), optional :: verbose
@@ -295,7 +296,7 @@ contains
       end select
    end subroutine write_info
 
-   ! filter the array of colormaps based on the given criteria and write information about the filtered colormaps
+   !> Filter the array of colormaps based on the given criteria and write information about the filtered colormaps
    impure subroutine write(this, verbose, name, family, gradient, palette, author, license, levels, file_name)
       class(Colormaps_info), intent(inout) :: this
       integer, intent(in), optional :: verbose
@@ -458,7 +459,7 @@ contains
 
    end subroutine write
 
-   ! set information for all colormaps
+   !> Set information for all colormaps.
    pure elemental subroutine set_all(this)
       class(Colormaps_info), intent(inout) :: this
       integer :: i
@@ -3737,7 +3738,7 @@ contains
       call this%colormaps(:)%finalize()
    end subroutine deallocate_Colormaps_info
 
-   ! Finds intersections between elements of the first column and other columns in the input array.
+   !> Finds intersections between elements of the first column and other columns in the input array.
    pure function findColumnIntersections(array) result(intersections)
       integer, intent(in) :: array(:,:)
       integer, allocatable :: intersections(:)

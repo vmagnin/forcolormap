@@ -122,7 +122,7 @@ Seyed Ali Ghasemi" >
             <a class="list-group-item" href="../type/table.html#variable-colorbar~2">colorbar</a>
             <a class="list-group-item" href="../type/table.html#variable-family">family</a>
             <a class="list-group-item" href="../type/table.html#variable-gradient">gradient</a>
-            <a class="list-group-item" href="../type/table.html#variable-levels~13">levels</a>
+            <a class="list-group-item" href="../type/table.html#variable-levels~9">levels</a>
             <a class="list-group-item" href="../type/table.html#variable-license">license</a>
             <a class="list-group-item" href="../type/table.html#variable-name~9">name</a>
             <a class="list-group-item" href="../type/table.html#variable-package">package</a>
@@ -178,7 +178,7 @@ Seyed Ali Ghasemi" >
     <div class="col-md-9" id='text'>
       <h2 id="type-def-statement">
         type, private :: table</h2>
-    
+    <p>Define a derived type named 'table' to store information about a colormap</p>
 <br>      <div class="card">
         <div class="card-header">
           <h3 class="card-title">Inherited by</h3>
@@ -298,7 +298,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Author of the colormap</p>
             </td>
         </tr>
         <tr>
@@ -315,7 +315,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Colorbar style associated with the colormap</p>
             </td>
         </tr>
         <tr>
@@ -332,7 +332,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Family or category of the colormap</p>
             </td>
         </tr>
         <tr>
@@ -349,12 +349,12 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Type of gradient used in the colormap</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-levels~13"></span>
+              <span class="anchor" id="variable-levels~9"></span>
               integer,
             </td>
               <td>private</td>
@@ -366,7 +366,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Number of discrete levels in the colormap</p>
             </td>
         </tr>
         <tr>
@@ -383,7 +383,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>License information for the colormap</p>
             </td>
         </tr>
         <tr>
@@ -400,7 +400,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Name of the colormap</p>
             </td>
         </tr>
         <tr>
@@ -417,7 +417,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Package or library associated with the colormap</p>
             </td>
         </tr>
         <tr>
@@ -434,7 +434,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>Palette used in the colormap</p>
             </td>
         </tr>
         <tr>
@@ -451,7 +451,7 @@ large graphs.</div>
                 <td></td>
                 <td></td>
             <td>
-                
+                <p>URL or web link to the colormap information</p>
             </td>
         </tr>
     </tbody>
@@ -474,6 +474,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to finalize the derived type</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -528,6 +532,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to set information for the colormap</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -535,7 +543,7 @@ large graphs.</div>
 </h3>
     
 
-  
+  <p>Set information about the colormap</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -732,6 +740,10 @@ large graphs.</div>
         
       </h3>
     </div>
+      <div class="card-body">
+        
+        <p>Procedure to print information about the colormap</p>
+      </div>
     <ul class="list-group">
         <li class="list-group-item">
                   <h3>
@@ -739,7 +751,7 @@ large graphs.</div>
 </h3>
     
 
-  
+  <p>Print information about the colormap</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -811,20 +823,20 @@ large graphs.</div>
     <section>
     <h3><span class="anchor" id="src"></span>Source Code</h3>
     <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">table</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span><span class="w">        </span><span class="c">! Name of the colormap</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">family</span><span class="w">      </span><span class="c">! Family or category of the colormap</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">gradient</span><span class="w">    </span><span class="c">! Type of gradient used in the colormap</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">palette</span><span class="w">     </span><span class="c">! Palette used in the colormap</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">colorbar</span><span class="w">    </span><span class="c">! Colorbar style associated with the colormap</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">package</span><span class="w">     </span><span class="c">! Package or library associated with the colormap</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">author</span><span class="w">      </span><span class="c">! Author of the colormap</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">license</span><span class="w">     </span><span class="c">! License information for the colormap</span>
-<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">url</span><span class="w">         </span><span class="c">! URL or web link to the colormap information</span>
-<span class="w">      </span><span class="kt">integer</span><span class="w">                      </span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">levels</span><span class="w">      </span><span class="c">! Number of discrete levels in the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span><span class="w">        </span><span class="c">!! Name of the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">family</span><span class="w">      </span><span class="c">!! Family or category of the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">gradient</span><span class="w">    </span><span class="c">!! Type of gradient used in the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">palette</span><span class="w">     </span><span class="c">!! Palette used in the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">colorbar</span><span class="w">    </span><span class="c">!! Colorbar style associated with the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">package</span><span class="w">     </span><span class="c">!! Package or library associated with the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">author</span><span class="w">      </span><span class="c">!! Author of the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">license</span><span class="w">     </span><span class="c">!! License information for the colormap</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">url</span><span class="w">         </span><span class="c">!! URL or web link to the colormap information</span>
+<span class="w">      </span><span class="kt">integer</span><span class="w">                      </span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">levels</span><span class="w">      </span><span class="c">!! Number of discrete levels in the colormap</span>
 <span class="w">   </span><span class="k">contains</span>
-<span class="k">      procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">set_info</span><span class="w">   </span><span class="c">! Procedure to set information for the colormap</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">write_info</span><span class="w"> </span><span class="c">! Procedure to print information about the colormap</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">finalize</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">deallocate_table</span><span class="w"> </span><span class="c">! Procedure to finalize the derived type</span>
+<span class="k">      procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">set_info</span><span class="w">   </span><span class="c">!! Procedure to set information for the colormap</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">write_info</span><span class="w"> </span><span class="c">!! Procedure to print information about the colormap</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">finalize</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">deallocate_table</span><span class="w"> </span><span class="c">!! Procedure to finalize the derived type</span>
 <span class="w">   </span><span class="k">end type </span><span class="n">table</span>
 </pre></div>
 
@@ -849,7 +861,7 @@ Seyed Ali Ghasemi<br>              &copy; 2023-2024 <a rel="license" href="https
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-07-10T14:46:14.778138             </p>
+ on 2024-07-14T09:35:30.524747             </p>
           </div>
         </div>
         <br>

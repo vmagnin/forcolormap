@@ -1,3 +1,4 @@
+!> Global parameters of ForColormap.
 module colormap_parameters
     use iso_fortran_env, only: wp=>real64
     implicit none

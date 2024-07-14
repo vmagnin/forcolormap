@@ -76,7 +76,7 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/bezier.html'>bezier</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Create colormap from continuous Bezier interpolation of control colors</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/check.html'>check</a></td>
@@ -88,7 +88,7 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/compute_rgb.html'>compute_RGB</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Most of the time you will just give z to obtain RGB values:</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/create.html'>create</a></td>
@@ -112,7 +112,12 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/cubehelix_colormap.html'>cubehelix_colormap</a></td>
                  <td><a href='../module/miscellaneous_colormaps.html'>miscellaneous_colormaps</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>This subroutine is based on the public domain FORTRAN 77 subroutine
+published by D.A. Green:
+  Green, D. A., 2011, Bulletin of the Astronomical Society of India,
+     Vol.39, p.289
+For more information on the parameters of cubehelix, see his page:
+https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/deallocate_colormaps_info.html'>deallocate_Colormaps_info</a></td>
@@ -136,13 +141,13 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/extract.html'>extract</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Extracts colors from the colormap based on specified number of levels (nl)</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/factorial.html'>factorial</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Factorial function used for Bezier interpolation</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/finalize.html'>finalize</a></td>
@@ -154,7 +159,7 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/findcolumnintersections.html'>findColumnIntersections</a></td>
                  <td><a href='../module/forcolormap_info.html'>forcolormap_info</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Finds intersections between elements of the first column and other columns in the input array.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/fire_colormap.html'>fire_colormap</a></td>
@@ -196,7 +201,7 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/get_rgb.html'>get_RGB</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>But you can also obtain RGB by giving directly a level number:</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/get_zmax.html'>get_zmax</a></td>
@@ -220,7 +225,7 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/lagrange.html'>lagrange</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Create colormap from Lagrange interpolation of control colors</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/lagrange_poly.html'>lagrange_poly</a></td>
@@ -232,13 +237,15 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/load.html'>load</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Load a .txt colormap with RGB integers separated by spaces on each line.
+Remark: if no path is indicated in filename, the .txt must be present
+at the root of the fpm project of the user.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/print.html'>print</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Useful for testing and debugging:</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/rainbow_colormap.html'>rainbow_colormap</a></td>
@@ -250,19 +257,19 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/reverse.html'>reverse</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Reverse the colormap</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/scale_real_int.html'>scale_real_int</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Scale the input real array to the integer RGB range [a, b]</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/scale_real_real.html'>scale_real_real</a></td>
                  <td><a href='../module/forcolormap.html'>forcolormap</a></td>
                  <td>Function</td>
-                 <td></td>
+                 <td><p>Normalize the input real array to the range [0, 1]</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/set.html'>set</a></td>
@@ -274,13 +281,13 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/set_all.html'>set_all</a></td>
                  <td><a href='../module/forcolormap_info.html'>forcolormap_info</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Set information for all colormaps.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/set_info.html'>set_info</a></td>
                  <td><a href='../module/forcolormap_info.html'>forcolormap_info</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Set information about the colormap</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/shift.html'>shift</a></td>
@@ -292,13 +299,13 @@ Seyed Ali Ghasemi" >
                  <td><a href='../proc/write.html'>write</a></td>
                  <td><a href='../module/forcolormap_info.html'>forcolormap_info</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Filter the array of colormaps based on the given criteria and write information about the filtered colormaps</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/write_info.html'>write_info</a></td>
                  <td><a href='../module/forcolormap_info.html'>forcolormap_info</a></td>
                  <td>Subroutine</td>
-                 <td></td>
+                 <td><p>Print information about the colormap</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/write_ppm_colorbar.html'>write_ppm_colorbar</a></td>
@@ -1351,7 +1358,7 @@ Seyed Ali Ghasemi<br>              &copy; 2023-2024 <a rel="license" href="https
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-07-10T14:46:14.778138             </p>
+ on 2024-07-14T09:35:30.524747             </p>
           </div>
         </div>
         <br>
