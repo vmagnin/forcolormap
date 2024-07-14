@@ -24,7 +24,7 @@
 ! Last modification: gha3mi 2024-02-16, vmagnin 2024-05-09
 !-------------------------------------------------------------------------------
 
-
+!> The Colormap class and the `colormaps_list`.
 module forcolormap
     use colormap_parameters, only: wp, colormap_name_length
     use scientific_colour_maps
@@ -36,14 +36,14 @@ module forcolormap
 
     public :: wp
 
-    ! List of built-in colormaps:
+    !> List of built-in colormaps:
     character(*), dimension(6+222+4), public, parameter :: colormaps_list = &
         [character(colormap_name_length) :: &
         miscellaneous_colormaps_list,&
         scientific_colour_maps_list,&
         matplotlib_colormaps_list]
 
-    ! The Colormap class (attributes are encapsulated):
+    !> The Colormap class (attributes are encapsulated):
     type, public :: Colormap
         character(colormap_name_length), private :: name
         integer, private  :: levels         ! Number of levels
@@ -692,9 +692,9 @@ contains
         end if
     end subroutine
 
-    ! Load a .txt colormap with RGB integers separated by spaces on each line.
-    ! Remark: if no path is indicated in filename, the .txt must be present
-    ! at the root of the fpm project of the user.
+    !> Load a .txt colormap with RGB integers separated by spaces on each line.
+    !> Remark: if no path is indicated in filename, the .txt must be present
+    !> at the root of the fpm project of the user.
     impure subroutine load(self, filename, zmin, zmax, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: filename
@@ -751,7 +751,7 @@ contains
     end subroutine load
 
 
-    ! Most of the time you will just give z to obtain RGB values:
+    !> Most of the time you will just give z to obtain RGB values:
     pure subroutine compute_RGB(self, z, red, green, blue)
         class(Colormap), intent(inout) :: self
         real(wp), intent(in) :: z
@@ -774,7 +774,7 @@ contains
         call get_RGB(self, level, red, green, blue)
     end subroutine
 
-    ! But you can also obtain RGB by giving directly a level number:
+    !> But you can also obtain RGB by giving directly a level number:
     pure subroutine get_RGB(self, level, red, green, blue)
         class(Colormap), intent(inout) :: self
         integer, intent(in)  :: level
@@ -817,7 +817,7 @@ contains
         zmax = self%zmax
     end function
 
-    ! Useful for testing and debugging:
+    !> Useful for testing and debugging:
     impure subroutine print(self)
         class(Colormap), intent(inout) :: self
         integer :: i
@@ -884,7 +884,7 @@ contains
         call ppm%export_pnm(filename)
     end subroutine write_ppm_colorbar
 
-    ! Reverse the colormap
+    !> Reverse the colormap
     pure subroutine reverse(self, name)
         class(Colormap), intent(inout) :: self
         character(*), intent(in), optional :: name
@@ -904,7 +904,7 @@ contains
         self%map(:,:) = cshift(self%map(:,:), sh)
     end subroutine shift
 
-    ! Normalize the input real array to the range [0, 1]
+    !> Normalize the input real array to the range [0, 1]
     pure function scale_real_real(real_array,a,b) result(real_scaled_array)
         real(wp), dimension(:), intent(in) :: real_array
         real(wp), intent(in) :: a, b
@@ -923,7 +923,7 @@ contains
         end if
     end function scale_real_real
 
-    ! Scale the input real array to the integer RGB range [a, b]
+    !> Scale the input real array to the integer RGB range [a, b]
     pure function scale_real_int(real_array,a,b) result(int_scaled_array)
         real(wp), dimension(:), intent(in) :: real_array
         integer, intent(in) :: a, b
@@ -937,7 +937,7 @@ contains
         int_scaled_array = a + nint((b - a) * normalizedArray)
     end function scale_real_int
 
-    ! Extracts colors from the colormap based on specified number of levels (nl)
+    !> Extracts colors from the colormap based on specified number of levels (nl)
     pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse)
         class(Colormap), intent(inout) :: self
         integer, intent(in) :: extractedLevels
@@ -1005,7 +1005,7 @@ contains
         end if
     end subroutine extract
 
-    ! Create colormap from continuous Bezier interpolation of control colors
+    !> Create colormap from continuous Bezier interpolation of control colors
     pure function bezier(colors, levels) result(map)
         integer, dimension(:,:), intent(in) :: colors
         integer, intent(in), optional :: levels
@@ -1039,7 +1039,7 @@ contains
         end do
     end function bezier
 
-    ! Factorial function used for Bezier interpolation
+    !> Factorial function used for Bezier interpolation
     pure function factorial(n) result(result)
         integer, intent(in) :: n
         integer :: result, i
@@ -1049,7 +1049,7 @@ contains
         end do
     end function factorial
 
-    ! Create colormap from Lagrange interpolation of control colors
+    !> Create colormap from Lagrange interpolation of control colors
     pure function lagrange(colors, levels) result(map)
         integer, dimension(:,:), intent(in) :: colors
         integer, intent(in), optional :: levels

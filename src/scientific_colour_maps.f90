@@ -22,6 +22,8 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 
+!> This module contains the 222 colormaps of the *Scientific colour maps*
+!> collection v8.0.1 by Fabio Crameri.
 module scientific_colour_maps
     use colormap_parameters, only: colormap_name_length
     implicit none

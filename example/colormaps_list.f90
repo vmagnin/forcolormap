@@ -24,6 +24,8 @@
 ! Last modification: gha3mi 2023-11-05
 !-------------------------------------------------------------------------------
 
+!> Creates the `colormaps_list/COLORMAPS_LIST_*.md` files using
+!> the `Colormaps_info` class.
 program colormaps_list
     use forcolormap_info, only: Colormaps_info
     implicit none

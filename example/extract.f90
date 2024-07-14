@@ -24,8 +24,8 @@
 ! Last modification: gha3mi 2023-11-07, vmagnin 2024-02-15
 !-------------------------------------------------------------------------------
 
-! This example demonstrates the process of extracting a specified number of colors.
-! The variable 'extractedLevels' represents the number of colors to be extracted from the colormap.
+!> This example demonstrates the process of extracting a specified number of colors.
+!> The variable 'extractedLevels' represents the number of colors to be extracted from the colormap.
 program extract
 
    use forcolormap, only: Colormap, wp

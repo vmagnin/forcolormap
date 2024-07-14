@@ -24,6 +24,7 @@
 ! Last modification: vmagnin 2024-03-06
 !-------------------------------------------------------------------------------
 
+!> Automatic tests launched by `fpm test`.
 program check
     use forcolormap
 

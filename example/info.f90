@@ -24,6 +24,8 @@
 ! Last modification: gha3mi 2023-11-05
 !-------------------------------------------------------------------------------
 
+!> Demonstrates how to obtain information about a colormap using
+!> the `Colormaps_info` class.
 program write_info
     use forcolormap_info, only: Colormaps_info
     implicit none
