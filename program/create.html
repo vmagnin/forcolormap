@@ -13,14 +13,29 @@ Seyed Ali Ghasemi" >
 
     <title>create &ndash; ForColormap</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../css/pygments.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
     <link href="../css/local.css" rel="stylesheet">
-      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../css/pygments.css" rel="stylesheet">
     <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
@@ -97,9 +112,11 @@ Seyed Ali Ghasemi" >
     </div>
   </div>
   <script>
-    $(function () {
-    $('[data-bs-toggle="tooltip"]').tooltip()
-    })
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
   </script>
 
   </div>
@@ -117,7 +134,7 @@ Seyed Ali Ghasemi" >
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../program/create.html#variable-colors~5">colors</a>
-            <a class="list-group-item" href="../program/create.html#variable-custom_cmap~2">custom_cmap</a>
+            <a class="list-group-item" href="../program/create.html#variable-custom_cmap~4">custom_cmap</a>
         </div>
       </div>
     </div>
@@ -171,7 +188,7 @@ Seyed Ali Ghasemi" >
 <!-- Title: program~~create~~UsesGraph Pages: 1 -->
 <svg id="programcreateUsesGraph" width="641pt" height="133pt"
  viewBox="0.00 0.00 641.00 132.69" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="program~~create~~UsesGraph" class="graph" transform="scale(1.03 1.03) rotate(0) translate(4 132.62)">
+<g id="program~~create~~UsesGraph" class="graph" transform="scale(0.97 0.97) rotate(0) translate(4 132.62)">
 <title>program~~create~~UsesGraph</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-132.62 656,-132.62 656,4 -4,4"/>
 <!-- program~create -->
@@ -387,7 +404,7 @@ create_lagrange() and create_bezier().</p>
 <!-- Title: program~~create~~CallsGraph Pages: 1 -->
 <svg id="programcreateCallsGraph" width="641pt" height="410pt"
  viewBox="0.00 0.00 641.00 410.40" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="program~~create~~CallsGraph" class="graph" transform="scale(1.28 1.28) rotate(0) translate(4 521)">
+<g id="program~~create~~CallsGraph" class="graph" transform="scale(0.78 0.78) rotate(0) translate(4 521)">
 <title>program~~create~~CallsGraph</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-521 816,-521 816,4 -4,4"/>
 <!-- program~create -->
@@ -621,33 +638,33 @@ create_lagrange() and create_bezier().</p>
 <path fill="none" stroke="#e7ff00" d="M409.88,-486.7C445.69,-490.37 509.91,-496.95 550.8,-501.14"/>
 <polygon fill="#e7ff00" stroke="#e7ff00" points="550.61,-504.64 560.91,-502.17 551.32,-497.67 550.61,-504.64"/>
 </g>
-<!-- proc~get_levels~2 -->
+<!-- proc~get_levels -->
 <g id="program~~create~~CallsGraph_node17" class="node">
-<title>proc~get_levels~2</title>
-<g id="a_program~~create~~CallsGraph_node17"><a xlink:href="../proc/get_levels~2.html" xlink:title="Colormaps_info%get_levels">
+<title>proc~get_levels</title>
+<g id="a_program~~create~~CallsGraph_node17"><a xlink:href="../proc/get_levels.html" xlink:title="Colormaps_info%get_levels">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="669,-433 510,-433 510,-409 669,-409 669,-433"/>
 <text text-anchor="middle" x="589.5" y="-418.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormaps_info%get_levels</text>
 </a>
 </g>
 </g>
-<!-- proc~check&#45;&gt;proc~get_levels~2 -->
+<!-- proc~check&#45;&gt;proc~get_levels -->
 <g id="program~~create~~CallsGraph_edge18" class="edge">
-<title>proc~check&#45;&gt;proc~get_levels~2</title>
+<title>proc~check&#45;&gt;proc~get_levels</title>
 <path fill="none" stroke="#5cff00" d="M435.76,-389.71C461.33,-394.95 492.44,-401.32 519.89,-406.94"/>
 <polygon fill="#5cff00" stroke="#5cff00" points="519.32,-410.4 529.82,-408.98 520.73,-403.54 519.32,-410.4"/>
 </g>
-<!-- proc~get_name~2 -->
+<!-- proc~get_name -->
 <g id="program~~create~~CallsGraph_node18" class="node">
-<title>proc~get_name~2</title>
-<g id="a_program~~create~~CallsGraph_node18"><a xlink:href="../proc/get_name~2.html" xlink:title="Colormaps_info%get_name">
+<title>proc~get_name</title>
+<g id="a_program~~create~~CallsGraph_node18"><a xlink:href="../proc/get_name.html" xlink:title="Colormaps_info%get_name">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="669,-391 510,-391 510,-367 669,-367 669,-391"/>
 <text text-anchor="middle" x="589.5" y="-376.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormaps_info%get_name</text>
 </a>
 </g>
 </g>
-<!-- proc~check&#45;&gt;proc~get_name~2 -->
+<!-- proc~check&#45;&gt;proc~get_name -->
 <g id="program~~create~~CallsGraph_edge19" class="edge">
-<title>proc~check&#45;&gt;proc~get_name~2</title>
+<title>proc~check&#45;&gt;proc~get_name</title>
 <path fill="none" stroke="#5cff00" d="M435.76,-379C455.22,-379 477.88,-379 499.71,-379"/>
 <polygon fill="#5cff00" stroke="#5cff00" points="500,-382.5 509.99,-379 499.99,-375.5 500,-382.5"/>
 </g>
@@ -752,7 +769,7 @@ create_lagrange() and create_bezier().</p>
 <!-- Title: Graph Key Pages: 1 -->
 <svg width="641pt" height="28pt"
  viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
 <title>Graph Key</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
 <!-- Subroutine -->
@@ -845,7 +862,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-custom_cmap~2"></span>
+              <span class="anchor" id="variable-custom_cmap~4"></span>
               type(<a href='../type/colormap.html'>Colormap</a>)
             </td>
             <td>
@@ -921,33 +938,11 @@ Seyed Ali Ghasemi<br>              &copy; 2023-2024 <a rel="license" href="https
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-07-14T09:35:30.524747             </p>
+ on 2025-12-13T11:52:40.946339+0000             </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-
-    <!-- MathJax JavaScript
-             ================================================== -->
-             <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-          });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-          <script src="../tipuesearch/tipuesearch_content.js"></script>
-          <script src="../tipuesearch/tipuesearch_set.js"></script>
-          <script src="../tipuesearch/tipuesearch.js"></script>
-
   </body>
 </html>

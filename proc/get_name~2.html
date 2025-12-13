@@ -13,14 +13,29 @@ Seyed Ali Ghasemi" >
 
     <title>get_name &ndash; ForColormap</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../css/pygments.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
     <link href="../css/local.css" rel="stylesheet">
-      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../css/pygments.css" rel="stylesheet">
     <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
@@ -78,20 +93,20 @@ Seyed Ali Ghasemi" >
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.3% of total for procedures.">6 statements</a>
+                 title=" 0.3% of total for procedures.">5 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/colormaps_info.f90"> Source File</a>
+              <a href="../src/colormap_class.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/colormaps_info.f90.html'>colormaps_info.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/forcolormap_info.html'>forcolormap_info</a></li>
+                <li class="breadcrumb-item"><a href='../sourcefile/colormap_class.f90.html'>colormap_class.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/forcolormap.html'>forcolormap</a></li>
             <li class="breadcrumb-item active" aria-current="page">get_name</li>
           </ol>
         </nav>
@@ -99,9 +114,11 @@ Seyed Ali Ghasemi" >
     </div>
   </div>
   <script>
-    $(function () {
-    $('[data-bs-toggle="tooltip"]').tooltip()
-    })
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
   </script>
 
   </div>
@@ -130,12 +147,6 @@ Seyed Ali Ghasemi" >
   
   
   
-    <div class="card card-primary">
-      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
-      <div class="list-group">
-        <a class="list-group-item" href="../proc/get_name~2.html#src">get_name</a>
-      </div>
-    </div>
 
 
   </div>
@@ -143,13 +154,13 @@ Seyed Ali Ghasemi" >
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>private pure elemental function get_name(this, index) result(name)  
+    <h2>private pure function get_name(self) result(name)  
 </h2>
     
 
 
     <h3>Type Bound</h3>
-    <p><a href='../type/colormaps_info.html'>Colormaps_info</a></p>
+    <p><a href='../type/colormap.html'>Colormap</a></p>
 
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
@@ -164,30 +175,15 @@ Seyed Ali Ghasemi" >
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-this~2"></span>
-              class(<a href='../type/colormaps_info.html'>Colormaps_info</a>),
+              <span class="anchor" id="variable-self~9"></span>
+              class(<a href='../type/colormap.html'>Colormap</a>),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-index"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>index</strong></td>
+            <td><strong>self</strong></td>
             <td>
                 
             </td>
@@ -214,261 +210,50 @@ Seyed Ali Ghasemi" >
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~get_name~2~~CalledByGraph Pages: 1 -->
-<svg id="procget_name2CalledByGraph" width="641pt" height="193pt"
- viewBox="0.00 0.00 641.00 192.55" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~get_name~2~~CalledByGraph" class="graph" transform="scale(1.22 1.22) rotate(0) translate(4 230)">
+<svg id="procget_name2CalledByGraph" width="260pt" height="74pt"
+ viewBox="0.00 0.00 260.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~get_name~2~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
 <title>proc~~get_name~2~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-230 775,-230 775,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 256,-70 256,4 -4,4"/>
 <!-- proc~get_name~2 -->
 <g id="proc~~get_name~2~~CalledByGraph_node1" class="node">
 <title>proc~get_name~2</title>
-<polygon fill="none" stroke="black" points="771,-104 612,-104 612,-80 771,-80 771,-104"/>
-<text text-anchor="middle" x="691.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50">Colormaps_info%get_name</text>
-</g>
-<!-- proc~check -->
-<g id="proc~~get_name~2~~CalledByGraph_node2" class="node">
-<title>proc~check</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node2"><a xlink:href="../proc/check.html" xlink:title="Colormap%check">
-<polygon fill="#d9534f" stroke="#d9534f" points="576,-104 470,-104 470,-80 576,-80 576,-104"/>
-<text text-anchor="middle" x="523" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormap%check</text>
-</a>
-</g>
-</g>
-<!-- proc~check&#45;&gt;proc~get_name~2 -->
-<g id="proc~~get_name~2~~CalledByGraph_edge1" class="edge">
-<title>proc~check&#45;&gt;proc~get_name~2</title>
-<path fill="none" stroke="#ff0000" d="M576.22,-92C584.38,-92 593,-92 601.7,-92"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="601.93,-95.5 611.93,-92 601.93,-88.5 601.93,-95.5"/>
-</g>
-<!-- proc~create -->
-<g id="proc~~get_name~2~~CalledByGraph_node3" class="node">
-<title>proc~create</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node3"><a xlink:href="../proc/create.html" xlink:title="Colormap%create">
-<polygon fill="#d9534f" stroke="#d9534f" points="407.5,-146 298.5,-146 298.5,-122 407.5,-122 407.5,-146"/>
-<text text-anchor="middle" x="353" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormap%create</text>
-</a>
-</g>
-</g>
-<!-- proc~create&#45;&gt;proc~check -->
-<g id="proc~~get_name~2~~CalledByGraph_edge2" class="edge">
-<title>proc~create&#45;&gt;proc~check</title>
-<path fill="none" stroke="#ff0000" d="M402.14,-121.96C421.47,-117.13 443.92,-111.52 464.13,-106.47"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="465,-109.86 473.85,-104.04 463.3,-103.07 465,-109.86"/>
-</g>
-<!-- proc~create_bezier -->
-<g id="proc~~get_name~2~~CalledByGraph_node4" class="node">
-<title>proc~create_bezier</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node4"><a xlink:href="../proc/create_bezier.html" xlink:title="Colormap%create_bezier">
-<polygon fill="#d9534f" stroke="#d9534f" points="426.5,-62 279.5,-62 279.5,-38 426.5,-38 426.5,-62"/>
-<text text-anchor="middle" x="353" y="-47.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormap%create_bezier</text>
-</a>
-</g>
-</g>
-<!-- proc~create_bezier&#45;&gt;proc~check -->
-<g id="proc~~get_name~2~~CalledByGraph_edge3" class="edge">
-<title>proc~create_bezier&#45;&gt;proc~check</title>
-<path fill="none" stroke="#ff0000" d="M402.14,-62.04C421.47,-66.87 443.92,-72.48 464.13,-77.53"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="463.3,-80.93 473.85,-79.96 465,-74.14 463.3,-80.93"/>
-</g>
-<!-- proc~create_lagrange -->
-<g id="proc~~get_name~2~~CalledByGraph_node5" class="node">
-<title>proc~create_lagrange</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node5"><a xlink:href="../proc/create_lagrange.html" xlink:title="Colormap%create_lagrange">
-<polygon fill="#d9534f" stroke="#d9534f" points="434,-104 272,-104 272,-80 434,-80 434,-104"/>
-<text text-anchor="middle" x="353" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormap%create_lagrange</text>
-</a>
-</g>
-</g>
-<!-- proc~create_lagrange&#45;&gt;proc~check -->
-<g id="proc~~get_name~2~~CalledByGraph_edge4" class="edge">
-<title>proc~create_lagrange&#45;&gt;proc~check</title>
-<path fill="none" stroke="#ff0000" d="M434.06,-92C442.72,-92 451.42,-92 459.82,-92"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="459.88,-95.5 469.88,-92 459.88,-88.5 459.88,-95.5"/>
-</g>
-<!-- proc~load -->
-<g id="proc~~get_name~2~~CalledByGraph_node6" class="node">
-<title>proc~load</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node6"><a xlink:href="../proc/load.html" xlink:title="Colormap%load">
-<polygon fill="#d9534f" stroke="#d9534f" points="229,-24 131,-24 131,0 229,0 229,-24"/>
-<text text-anchor="middle" x="180" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormap%load</text>
-</a>
-</g>
-</g>
-<!-- proc~load&#45;&gt;proc~check -->
-<g id="proc~~get_name~2~~CalledByGraph_edge5" class="edge">
-<title>proc~load&#45;&gt;proc~check</title>
-<path fill="none" stroke="#ff0000" d="M229.21,-7.57C281.32,-4.51 366.04,-4.64 434,-29 460.3,-38.43 485.73,-58.15 502.43,-73.04"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="500.16,-75.7 509.9,-79.89 504.9,-70.55 500.16,-75.7"/>
-</g>
-<!-- proc~set -->
-<g id="proc~~get_name~2~~CalledByGraph_node7" class="node">
-<title>proc~set</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node7"><a xlink:href="../proc/set.html" xlink:title="Colormap%set">
-<polygon fill="#d9534f" stroke="#d9534f" points="225.5,-184 134.5,-184 134.5,-160 225.5,-160 225.5,-184"/>
-<text text-anchor="middle" x="180" y="-169.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormap%set</text>
-</a>
-</g>
-</g>
-<!-- proc~set&#45;&gt;proc~check -->
-<g id="proc~~get_name~2~~CalledByGraph_edge6" class="edge">
-<title>proc~set&#45;&gt;proc~check</title>
-<path fill="none" stroke="#ff0000" d="M225.92,-176.23C277.7,-179.48 364.59,-179.88 434,-155 460.3,-145.57 485.73,-125.85 502.43,-110.96"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="504.9,-113.45 509.9,-104.11 500.16,-108.3 504.9,-113.45"/>
-</g>
-<!-- proc~set&#45;&gt;proc~create -->
-<g id="proc~~get_name~2~~CalledByGraph_edge8" class="edge">
-<title>proc~set&#45;&gt;proc~create</title>
-<path fill="none" stroke="#ff0000" d="M225.93,-162.02C244.98,-157.78 267.52,-152.77 288.24,-148.17"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="289.24,-151.53 298.25,-145.95 287.73,-144.7 289.24,-151.53"/>
-</g>
-<!-- proc~extract -->
-<g id="proc~~get_name~2~~CalledByGraph_node8" class="node">
-<title>proc~extract</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node8"><a xlink:href="../proc/extract.html" xlink:title="Colormap%extract">
-<polygon fill="#d9534f" stroke="#d9534f" points="236,-226 124,-226 124,-202 236,-202 236,-226"/>
-<text text-anchor="middle" x="180" y="-211.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Colormap%extract</text>
-</a>
-</g>
-</g>
-<!-- proc~extract&#45;&gt;proc~create -->
-<g id="proc~~get_name~2~~CalledByGraph_edge7" class="edge">
-<title>proc~extract&#45;&gt;proc~create</title>
-<path fill="none" stroke="#ff0000" d="M214.39,-201.9C221.57,-199.12 229.09,-196.07 236,-193 265.41,-179.95 297.98,-163.17 321.11,-150.84"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="322.94,-153.83 330.1,-146.02 319.63,-147.66 322.94,-153.83"/>
-</g>
-<!-- program~create -->
-<g id="proc~~get_name~2~~CalledByGraph_node9" class="node">
-<title>program~create</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node9"><a xlink:href="../program/create.html" xlink:title="create">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="207,-66 153,-66 153,-42 207,-42 207,-66"/>
-<text text-anchor="middle" x="180" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">create</text>
-</a>
-</g>
-</g>
-<!-- program~create&#45;&gt;proc~create_bezier -->
-<g id="proc~~get_name~2~~CalledByGraph_edge11" class="edge">
-<title>program~create&#45;&gt;proc~create_bezier</title>
-<path fill="none" stroke="#cbff00" d="M207.34,-53.38C224.08,-52.99 246.75,-52.46 269.17,-51.94"/>
-<polygon fill="#cbff00" stroke="#cbff00" points="269.52,-55.43 279.43,-51.7 269.35,-48.43 269.52,-55.43"/>
-</g>
-<!-- program~create&#45;&gt;proc~create_lagrange -->
-<g id="proc~~get_name~2~~CalledByGraph_edge12" class="edge">
-<title>program~create&#45;&gt;proc~create_lagrange</title>
-<path fill="none" stroke="#00ff66" d="M207.34,-59.85C228.7,-64.6 259.73,-71.49 287.57,-77.68"/>
-<polygon fill="#00ff66" stroke="#00ff66" points="287.14,-81.17 297.66,-79.92 288.66,-74.34 287.14,-81.17"/>
+<polygon fill="none" stroke="black" points="252,-45 124,-45 124,-21 252,-21 252,-45"/>
+<text text-anchor="middle" x="188" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">Colormap%get_name</text>
 </g>
 <!-- program~demo -->
-<g id="proc~~get_name~2~~CalledByGraph_node10" class="node">
+<g id="proc~~get_name~2~~CalledByGraph_node2" class="node">
 <title>program~demo</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node10"><a xlink:href="../program/demo.html" xlink:title="demo">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-100 17,-100 17,-76 71,-76 71,-100"/>
-<text text-anchor="middle" x="44" y="-85.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo</text>
+<g id="a_proc~~get_name~2~~CalledByGraph_node2"><a xlink:href="../program/demo.html" xlink:title="demo">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-66 17,-66 17,-42 71,-42 71,-66"/>
+<text text-anchor="middle" x="44" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo</text>
 </a>
 </g>
 </g>
-<!-- program~demo&#45;&gt;proc~create -->
-<g id="proc~~get_name~2~~CalledByGraph_edge9" class="edge">
-<title>program~demo&#45;&gt;proc~create</title>
-<path fill="none" stroke="#ff0000" d="M71.17,-91.92C118.9,-99.07 221.3,-114.42 288.37,-124.47"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="288,-127.95 298.4,-125.97 289.03,-121.03 288,-127.95"/>
-</g>
-<!-- program~demo&#45;&gt;proc~load -->
-<g id="proc~~get_name~2~~CalledByGraph_edge13" class="edge">
-<title>program~demo&#45;&gt;proc~load</title>
-<path fill="none" stroke="#0066ff" d="M60.02,-75.87C75.41,-63.86 100.36,-45.5 124,-33 127.26,-31.27 130.7,-29.62 134.2,-28.04"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="135.68,-31.22 143.52,-24.09 132.95,-24.77 135.68,-31.22"/>
-</g>
-<!-- program~demo&#45;&gt;proc~set -->
-<g id="proc~~get_name~2~~CalledByGraph_edge16" class="edge">
-<title>program~demo&#45;&gt;proc~set</title>
-<path fill="none" stroke="#cc00ff" d="M71.25,-100.04C76.86,-102.83 82.7,-105.89 88,-109 111.51,-122.77 136.89,-140.62 154.86,-153.8"/>
-<polygon fill="#cc00ff" stroke="#cc00ff" points="152.93,-156.72 163.05,-159.85 157.09,-151.09 152.93,-156.72"/>
+<!-- program~demo&#45;&gt;proc~get_name~2 -->
+<g id="proc~~get_name~2~~CalledByGraph_edge1" class="edge">
+<title>program~demo&#45;&gt;proc~get_name~2</title>
+<path fill="none" stroke="#ff0000" d="M71.04,-50.15C83.26,-48.34 98.49,-46.09 113.86,-43.82"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="114.57,-47.25 123.95,-42.32 113.54,-40.33 114.57,-47.25"/>
 </g>
 <!-- program~demo_reverse -->
-<g id="proc~~get_name~2~~CalledByGraph_node11" class="node">
+<g id="proc~~get_name~2~~CalledByGraph_node3" class="node">
 <title>program~demo_reverse</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node11"><a xlink:href="../program/demo_reverse.html" xlink:title="demo_reverse">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="88,-142 0,-142 0,-118 88,-118 88,-142"/>
-<text text-anchor="middle" x="44" y="-127.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo_reverse</text>
+<g id="a_proc~~get_name~2~~CalledByGraph_node3"><a xlink:href="../program/demo_reverse.html" xlink:title="demo_reverse">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="88,-24 0,-24 0,0 88,0 88,-24"/>
+<text text-anchor="middle" x="44" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo_reverse</text>
 </a>
 </g>
 </g>
-<!-- program~demo_reverse&#45;&gt;proc~create -->
-<g id="proc~~get_name~2~~CalledByGraph_edge10" class="edge">
-<title>program~demo_reverse&#45;&gt;proc~create</title>
-<path fill="none" stroke="#ff0000" d="M88.01,-130.56C140.11,-131.24 228.35,-132.39 288.33,-133.17"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="288.4,-136.67 298.45,-133.3 288.5,-129.67 288.4,-136.67"/>
-</g>
-<!-- program~demo_reverse&#45;&gt;proc~load -->
-<g id="proc~~get_name~2~~CalledByGraph_edge14" class="edge">
-<title>program~demo_reverse&#45;&gt;proc~load</title>
-<path fill="none" stroke="#0066ff" d="M76.3,-117.9C80.55,-115.38 84.61,-112.43 88,-109 114.27,-82.41 96.57,-58.38 124,-33 125.32,-31.78 126.71,-30.63 128.16,-29.55"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="130.4,-32.28 137.04,-24.02 126.7,-26.34 130.4,-32.28"/>
-</g>
-<!-- program~demo_reverse&#45;&gt;proc~set -->
-<g id="proc~~get_name~2~~CalledByGraph_edge17" class="edge">
-<title>program~demo_reverse&#45;&gt;proc~set</title>
-<path fill="none" stroke="#cc00ff" d="M83.4,-142.04C98.12,-146.65 115.1,-151.97 130.64,-156.84"/>
-<polygon fill="#cc00ff" stroke="#cc00ff" points="130.01,-160.31 140.6,-159.96 132.1,-153.63 130.01,-160.31"/>
-</g>
-<!-- program~example1 -->
-<g id="proc~~get_name~2~~CalledByGraph_node12" class="node">
-<title>program~example1</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node12"><a xlink:href="../program/example1.html" xlink:title="example1">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="76.5,-24 11.5,-24 11.5,0 76.5,0 76.5,-24"/>
-<text text-anchor="middle" x="44" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
-</a>
-</g>
-</g>
-<!-- program~example1&#45;&gt;proc~load -->
-<g id="proc~~get_name~2~~CalledByGraph_edge15" class="edge">
-<title>program~example1&#45;&gt;proc~load</title>
-<path fill="none" stroke="#0066ff" d="M76.76,-12C89.9,-12 105.57,-12 120.65,-12"/>
-<polygon fill="#0066ff" stroke="#0066ff" points="120.95,-15.5 130.95,-12 120.95,-8.5 120.95,-15.5"/>
-</g>
-<!-- program~extract -->
-<g id="proc~~get_name~2~~CalledByGraph_node13" class="node">
-<title>program~extract</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node13"><a xlink:href="../program/extract.html" xlink:title="extract">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-226 17,-226 17,-202 71,-202 71,-226"/>
-<text text-anchor="middle" x="44" y="-211.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extract</text>
-</a>
-</g>
-</g>
-<!-- program~extract&#45;&gt;proc~set -->
-<g id="proc~~get_name~2~~CalledByGraph_edge18" class="edge">
-<title>program~extract&#45;&gt;proc~set</title>
-<path fill="none" stroke="#cc00ff" d="M71.15,-205.8C88.11,-200.49 110.7,-193.41 130.83,-187.1"/>
-<polygon fill="#cc00ff" stroke="#cc00ff" points="131.98,-190.41 140.48,-184.07 129.89,-183.73 131.98,-190.41"/>
-</g>
-<!-- program~extract&#45;&gt;proc~extract -->
-<g id="proc~~get_name~2~~CalledByGraph_edge20" class="edge">
-<title>program~extract&#45;&gt;proc~extract</title>
-<path fill="none" stroke="#ff0000" d="M71.15,-214C83.35,-214 98.45,-214 113.47,-214"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="113.8,-217.5 123.8,-214 113.8,-210.5 113.8,-217.5"/>
-</g>
-<!-- program~modify -->
-<g id="proc~~get_name~2~~CalledByGraph_node14" class="node">
-<title>program~modify</title>
-<g id="a_proc~~get_name~2~~CalledByGraph_node14"><a xlink:href="../program/modify.html" xlink:title="modify">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="71,-184 17,-184 17,-160 71,-160 71,-184"/>
-<text text-anchor="middle" x="44" y="-169.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">modify</text>
-</a>
-</g>
-</g>
-<!-- program~modify&#45;&gt;proc~set -->
-<g id="proc~~get_name~2~~CalledByGraph_edge19" class="edge">
-<title>program~modify&#45;&gt;proc~set</title>
-<path fill="none" stroke="#cc00ff" d="M71.15,-172C86.32,-172 106,-172 124.39,-172"/>
-<polygon fill="#cc00ff" stroke="#cc00ff" points="124.44,-175.5 134.44,-172 124.44,-168.5 124.44,-175.5"/>
+<!-- program~demo_reverse&#45;&gt;proc~get_name~2 -->
+<g id="proc~~get_name~2~~CalledByGraph_edge2" class="edge">
+<title>program~demo_reverse&#45;&gt;proc~get_name~2</title>
+<path fill="none" stroke="#ff0000" d="M88.38,-18.41C96.41,-19.6 105,-20.87 113.63,-22.15"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="113.36,-25.65 123.76,-23.65 114.38,-18.72 113.36,-25.65"/>
 </g>
 </g>
 </svg>
-</div>                <script>
-                  var panprocget_name2CalledByGraph = svgPanZoom('#procget_name2CalledByGraph',
-                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
-                  );
-                </script>          <div>
+</div>          <div>
             <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
           </div>
           <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
@@ -488,7 +273,7 @@ Seyed Ali Ghasemi" >
 <!-- Title: Graph Key Pages: 1 -->
 <svg width="641pt" height="28pt"
  viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
 <title>Graph Key</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
 <!-- Subroutine -->
@@ -561,18 +346,6 @@ large graphs.</div>
 
 
     
-    <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">pure elemental function </span><span class="n">get_name</span><span class="p">(</span><span class="n">this</span><span class="p">,</span><span class="w"> </span><span class="nb">index</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="w">      </span><span class="k">class</span><span class="p">(</span><span class="n">Colormaps_info</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">this</span>
-<span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">index</span>
-<span class="nb">      </span><span class="kt">character</span><span class="p">(</span><span class="n">colormap_name_length</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span>
-<span class="w">      </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">colormaps</span><span class="p">(</span><span class="nb">index</span><span class="p">)%</span><span class="n">name</span><span class="p">)</span>
-<span class="w">   </span><span class="k">end function </span><span class="n">get_name</span>
-</pre></div>
-
-    </section>
-    <br>
     
     </div>
   </div>
@@ -593,33 +366,11 @@ Seyed Ali Ghasemi<br>              &copy; 2023-2024 <a rel="license" href="https
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-07-14T09:35:30.524747             </p>
+ on 2025-12-13T11:52:40.946339+0000             </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-
-    <!-- MathJax JavaScript
-             ================================================== -->
-             <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-          });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-          <script src="../tipuesearch/tipuesearch_content.js"></script>
-          <script src="../tipuesearch/tipuesearch_set.js"></script>
-          <script src="../tipuesearch/tipuesearch.js"></script>
-
   </body>
 </html>
