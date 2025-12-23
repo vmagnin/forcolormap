@@ -568,12 +568,12 @@ contains
         case("magma")
             call self%create(self%name, self%zmin, self%zmax, magma)
         case("inferno")
-            call self%create(self%name, self%zmin, self%zmax, inferno) 
+            call self%create(self%name, self%zmin, self%zmax, inferno)
         case("plasma")
-            call self%create(self%name, self%zmin, self%zmax, plasma) 
+            call self%create(self%name, self%zmin, self%zmax, plasma)
         case("viridis")
-            call self%create(self%name, self%zmin, self%zmax, viridis) 
-        ! 
+            call self%create(self%name, self%zmin, self%zmax, viridis)
+        !
         case("black_body")
             call self%create(self%name, self%zmin, self%zmax, black_body)
         case default
@@ -1129,6 +1129,7 @@ contains
         interface
             pure subroutine error(status, input_name, input_zmin, input_zmax, input_levels)
                 import wp
+                implicit none
                 logical, dimension(:), intent(in) :: status
                 character(*), intent(in) :: input_name
                 real(wp), intent(in) :: input_zmin, input_zmax

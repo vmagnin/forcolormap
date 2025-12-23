@@ -3,7 +3,7 @@ description= "A Fortran colormap library"
 version = "0.9.0"
 license = "MIT"
 author = "Vincent Magnin, Seyed Ali Ghasemi"
-copyright = "Copyright 2023-2024, Vincent Magnin & Seyed Ali Ghasemi"
+copyright = "Copyright 2023-2025, Vincent Magnin & Seyed Ali Ghasemi"
 maintainer = "https://github.com/vmagnin/forcolormap/issues"
 homepage   = "https://github.com/vmagnin/forcolormap"
 categories = ["graphics"]
@@ -65,3 +65,26 @@ library = false
 implicit-typing = false
 implicit-external = false
 source-form = "free"
+
+[extra.ford]
+project             = "ForColormap"
+year                = "2023-2025"
+summary             = 'A Fortran library for colormaps'
+project_github      = "https://github.com/vmagnin/forcolormap"
+author              = "Vincent Magnin, Seyed Ali Ghasemi"
+license             = "MIT"
+src_dir             = ["src", "example", "test"]
+output_dir          = "doc"
+source              = true
+incl_src            = true
+graph               = true
+coloured_edges      = true
+search              = true
+print_creation_date = true
+sort                = "permission-alpha"
+display             = ["public", "private", "protected"]
+favicon             = "logo/logo_forcolormap-roma_8.svg"
+
+[extra.fortitude.check]
+exclude = ["scripts"]
+ignore = ["C003", "C121", "S001", "C092", "S061"]

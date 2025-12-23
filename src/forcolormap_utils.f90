@@ -50,7 +50,7 @@ contains
         integer  :: red, green, blue
         real(wp) :: z
         type(format_pnm) :: ppm
-        character(*), intent(in), optional :: encoding    !> Default is binary
+        character(*), intent(in), optional :: encoding    !! Default is binary
 
         allocate(rgb_image(pixheight,pixwidth*3))
 
