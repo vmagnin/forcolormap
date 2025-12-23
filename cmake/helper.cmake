@@ -23,7 +23,7 @@ function(add_fortran_library lib_name mod_dir include_install_dir version major)
             OUTPUT_NAME ${lib_name}
             VERSION ${version}
             SOVERSION ${major}
-            Fortran_MODULE_DIRECTORY ${include_install_dir}
+            Fortran_MODULE_DIRECTORY ${mod_dir}
     )
     target_include_directories(
         ${lib_name}

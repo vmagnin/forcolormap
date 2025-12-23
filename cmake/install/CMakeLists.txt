@@ -1,5 +1,6 @@
 # Get the macros and functions we'll need
 include("${PROJECT_SOURCE_DIR}/cmake/helper.cmake")
+include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 # Install the library and necessary include files
@@ -8,7 +9,7 @@ install_library(
     ${CMAKE_INSTALL_LIBDIR}
     ${CMAKE_INSTALL_BINDIR}
     ${PROJECT_INCLUDE_DIR}
-    ${CMAKE_INSTALL_PREFIX}
+    ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 # Define the version file
