@@ -44,7 +44,12 @@ jobs:
             compiler: nvfortran
           - os: windows-latest
             compiler: nvfortran
-  
+          - os: ubuntu-latest
+            compiler: flang-new
+          - os: windows-latest
+            compiler: flang-new
+          - os: windows-latest
+            compiler: ifx
     steps:
       - name: Setup Fortran
         uses: gha3mi/setup-fortran-conda@latest
@@ -110,6 +115,8 @@ jobs:
             compiler: nvfortran
           - os: windows-latest
             compiler: nvfortran
+          - os: ubuntu-latest
+            compiler: flang-new
   
     steps:
       - name: Setup Fortran
