@@ -2,7 +2,7 @@ name: Setup Fortran Conda CI/CD
 
 on:
   push:
-    branches: [main, ali-dev]
+    branches: [main]
     paths-ignore:
       - 'README.md'
       - 'CHANGELOG.md'
