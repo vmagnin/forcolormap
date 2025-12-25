@@ -37,7 +37,7 @@ module forcolormap
     public :: wp
 
     !> List of built-in colormaps:
-    character(*), dimension(6+222+4), public, parameter :: colormaps_list = &
+    character(*), dimension(*), public, parameter :: colormaps_list = &
         [character(colormap_name_length) :: &
         miscellaneous_colormaps_list,&
         scientific_colour_maps_list,&
