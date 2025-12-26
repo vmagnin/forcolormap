@@ -37,7 +37,7 @@ module matplotlib_colormaps
     implicit none
     private
 
-    character(*), dimension(4), parameter, public :: matplotlib_colormaps_list = &
+    character(*), dimension(*), parameter, public :: matplotlib_colormaps_list = &
         [character(colormap_name_length) :: &
         "magma", "inferno","plasma", "viridis"]
 

@@ -33,7 +33,7 @@ module miscellaneous_colormaps
     public :: fire_colormap, rainbow_colormap, &
               inv_rainbow_colormap, zebra_colormap, cubehelix_colormap
 
-    character(*), dimension(6), parameter, public :: miscellaneous_colormaps_list = &
+    character(*), dimension(*), parameter, public :: miscellaneous_colormaps_list = &
         [character(colormap_name_length) :: &
         "fire", "rainbow", "inv_rainbow", "zebra", "cubehelix", &
         "black_body"]
