@@ -1,66 +1,13 @@
 # Roadmap
 
-## Version 0.9
-
-The main goal of v0.9 is to offer a usable library, sufficiently friendly, with a minimalist API documentation.
-
-### Features
-
-- [x] Methods
-  - [x] Implement a `check()` method to fix colormap parameters if needed.
-  - [x] Include a few minimalist methods to create or manipulate colormaps. More will be added in subsequent releases.
-- [x] Introspection (Colormap_info)
-    - [x] Include all available colormaps.
-- [x] Add Interpolation functions.
-  - [x] Lagrange
-  - [x] Bezier
-- [x] Add a `src/forcolormap_utils.f90` module where the subroutine `test_colormap()` will be moved.
-
-### Examples
-
-- [x] Create a `modify` example:
-  - [x] For the `shift()` method.
-- [x] A gtk-fortran example using ForColormap
-  - [x] to put in https://github.com/vmagnin/gtk-fortran-extra/tree/main/reaction_diffusion
-
-### Documentation
-
-- [x] Develop a PDF guide with all colorbars to aid in choosing a colormap.
-- [x] Develop a web version guide with all colorbars to aid in choosing a colormap.
-- [x] Create a simple documentation generated with FORD.
-- [x] Include real simulation images (`gallery/` directory).
-
-### Continuous Integration (CI)
-
-- [x] Integrate fpm tests.
-- [x] Integrate FORD documentation.
-
-### Building System
-
-- [x] Test with a gtk-fortran fpm project: Linux, FreeBSD, macOS, MSYS2/Windows.
-- [x] Implement a CMake building system, allowing installation of a `.so`
-    - [x] Test on Linux.
-    - [x] Test on FreeBSD.
-    - [ ] Test on Windows (MSYS2): issue [#37](https://github.com/vmagnin/forcolormap/issues/37)
-    - [x] Test on macOS.
-
-### Others
-
-- [x] Design a logo.
-
-<!-- ### Bug Fixes -->
-
-
-
 ## Version 1.0
 
-The main goal of v1.0 is to offer a library with a stable API, to improve the FORD documentation and to follow the Diátaxis documentation framework.
+The main goal of v1.0 is to offer a reliable library with a stable API and to improve the FORD documentation.
 
 ### Documentation
 
 - [ ] Improve the FORD documentation, by adding FORD comments in the source code when needed.
-- [ ] Initiate a Diátaxis documentation.
-    - [ ] Specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, etc. This information could be included in the 
+- [ ] Include a few images in the `README.md` file.
 
 ### Deprecation
 
@@ -70,11 +17,14 @@ The main goal of v1.0 is to offer a library with a stable API, to improve the FO
 
 - [ ] Add more automatic tests in `test/check.f90`.
 
+### Publication
+
+- [ ] Submit a JOSS *(Journal of Open Source Software)* paper similar to https://joss.theoj.org/papers/10.21105/joss.02004
 
 
 ## Version 1.1
 
-The main goal of v1.1 is to offer more features and to evolve the Diátaxis documentation.
+The main goal of v1.1 is to offer more features.
 
 
 # Ideas
@@ -82,6 +32,7 @@ The main goal of v1.1 is to offer more features and to evolve the Diátaxis docu
 These concepts are open for implementation or consideration. They may or may not be implemented.
 
 ### Features
+
 - [ ] Add facilities to pass 8 or 16-bit integers to C graphical libraries.
     - [ ] Test with gtk-fortran and other graphical libraries.
 - [ ] Methods
@@ -99,12 +50,12 @@ These concepts are open for implementation or consideration. They may or may not
   - [ ] Create and load colormaps based on other color formats (note: Color conversion is implemented in ForImage).
   - [ ] `brighten()` and darken (note: this is implemented in ForImage).
   - [ ] `mix()` two colormaps.
-- [ ] Develop a GUI using gtk-fortran to load, show, choose, modify, save, etc., colormaps.
 - [ ] Add Interpolation functions
   - [ ] B-Splines
   - [ ] NURBS
 - [ ] Colormaps
   - [ ] Add more colormaps, only if similar ones are not already available and cannot be easily obtained with the available methods.
+- [ ] Develop a GUI using gtk-fortran to load, show, choose, modify, save, etc., colormaps.
 
 ### Examples
 
@@ -116,9 +67,5 @@ These concepts are open for implementation or consideration. They may or may not
 
 ### Documentation
 
-- [ ] Include a few images in the `README.md` file.
-
-### Publication
-
-- [ ] Obtain a DOI from Zenodo, for example.
-- [ ] And/or submit a JOSS *(Journal of Open Source Software)* paper similar to https://joss.theoj.org/papers/10.21105/joss.02004
+- [ ] Follow the [Diátaxis](https://diataxis.fr/) documentation framework, if FORD allows.
+- [ ] Specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, etc.
