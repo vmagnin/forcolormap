@@ -7,6 +7,7 @@ All notable changes are documented in this file. The format is based on [Keep a 
 * The nvidia-hpc compiler in the CI workflow.
 * In `src/colormap_class.f90`: a `finalize` method for memory cleanup.
 * `gallery/lajolla_reaction_diffusion.png`
+* Displayed in the `README.md`: `gallery/lajolla_test.png` and `gallery/lajolla_colorbar.png`.
 
 ### Changed
 * Improved the CI (fpm, cmake, ford and fortitude): new `.github/workflows/CI-CD.yml` replacing the old `*.yml` files.

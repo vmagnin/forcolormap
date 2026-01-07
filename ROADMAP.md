@@ -7,7 +7,7 @@ The main goal of v1.0 is to offer a reliable library with a stable API and to im
 ### Documentation
 
 - [ ] Improve the FORD documentation, by adding FORD comments in the source code when needed.
-- [ ] Include a few images in the `README.md` file.
+- [*] Include a few images in the `README.md` file.
 
 ### Deprecation
 
