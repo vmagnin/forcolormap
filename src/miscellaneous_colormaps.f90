@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modifications: gha3mi 2024-01-06, vmagnin 2024-05-09
+! Last modifications: gha3mi 2024-01-06, vmagnin 2026-01-07
 !-------------------------------------------------------------------------------
 
 !> This module contains miscellaneous colormaps, especially black body andf cubehelix.
@@ -299,6 +299,7 @@ module miscellaneous_colormaps
 
     contains
 
+    !> Creates a colormap with fire tones, similar to the black_body colormap
     pure subroutine fire_colormap(levels, map)
         integer, intent(in) :: levels
         integer, dimension(:,:), allocatable, intent(out) :: map
@@ -314,6 +315,7 @@ module miscellaneous_colormaps
         end do
     end subroutine fire_colormap
 
+    !> Creates a rainbow like colormap, from dark blue to red
     pure subroutine rainbow_colormap(map)
         integer, dimension(:,:), allocatable, intent(out) :: map
         integer :: levels, last, i
@@ -330,6 +332,7 @@ module miscellaneous_colormaps
         end do
     end subroutine rainbow_colormap
 
+    !> Creates a rainbow like colormap, from red to dark blue
     pure subroutine inv_rainbow_colormap(map)
         integer, dimension(:,:), allocatable, intent(out) :: map
         integer :: levels, last, i
@@ -346,6 +349,7 @@ module miscellaneous_colormaps
         end do
     end subroutine inv_rainbow_colormap
 
+    !> Creates a zebra-like colormap, alterning white and black stripes
     pure subroutine zebra_colormap(map)
         integer, dimension(:,:), allocatable, intent(out) :: map
         integer :: levels, last, i
