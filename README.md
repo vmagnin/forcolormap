@@ -41,11 +41,11 @@ You need, whatever your operating system:
 
 * a modern Fortran compiler, for example GFortran or the Intel ifort/ifx compilers. See the [Fortran-lang.org compilers page](https://fortran-lang.org/compilers/) for other compilers.
 * The Fortran Package Manager [fpm](https://fpm.fortran-lang.org/) or CMake (>=3.24) & pkg-config for building the project.
-    * For writing PPM files, the library [ForImage](https://github.com/gha3mi/forimage) is used as a fpm or CMake dependency (automatically downloaded).
+* The only dependency of ForColormap is the library [ForImage](https://github.com/gha3mi/forimage), used especially for writing PPM files. It is automatically downloaded by fpm and CMake.
 
 ### Testing the project with fpm
 
-If you have a GitHub account, just clone the repository. Then launch the demo example, which is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps:
+If you have a GitHub account, just clone the repository, else download it as a zip archive. Then launch the demo example, which is creating [PPM files](https://en.wikipedia.org/wiki/Netpbm#File_formats) with colormaps and colorbars for all the available colormaps:
 
 ```bash
 $ git clone git@github.com:vmagnin/forcolormap.git
@@ -135,7 +135,9 @@ See [CMake basics](https://github.com/vmagnin/gtk-fortran/wiki/CMake-basics) for
 
 ## Learning
 
-In the `example` directory, you will find these commented demos:
+The API is documented in the [FORD documentation](https://vmagnin.github.io/forcolormap/).
+
+And in the `example` directory, you will find these commented demos:
  
 * `demo.f90` creates demo PPM files for each built-in colormap, plus a PPM file with the corresponding colorbars. It also demonstrates how to create your own colormap defined in an array and how to download a colormap from a `.txt` file.
 * `demo_reverse.f90` demonstrates the usage of the `reverse=.true.` option to reverse the direction of a colormap.
@@ -151,6 +153,11 @@ They can be launched with the command `fpm run --example name_of_the_example` (w
 In the gtk-fortran-extra repository, you will also find a [physical model](https://github.com/vmagnin/gtk-fortran-extra/tree/main/reaction_diffusion) demonstrating the use of ForColormap. It creates a movie with Turing patterns, displayed with various colormaps:
 
 [https://www.youtube.com/watch?v=cVHLCVVvZ4U](https://www.youtube.com/watch?v=cVHLCVVvZ4U)
+
+## Contributing
+
+You can report problems and ask support in the GitHub Issues tab and you can contribute to the code by making Pull Requests. We are also present on the [Fortran Discourse](https://fortran-lang.discourse.group/).
+
 
 ## Licenses
 
