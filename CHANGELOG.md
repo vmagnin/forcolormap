@@ -1,12 +1,21 @@
 # Changelog
-All notable changes to the gtk-fortran project are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+All notable changes are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [forcolormap dev]
 
 ### Added
-- In `src/colormap_class.f90`: a `finalize` method for memory cleanup.
+* The nvidia-hpc compiler in the CI workflow.
+* In `src/colormap_class.f90`: a `finalize` method for memory cleanup.
+* `gallery/lajolla_reaction_diffusion.png`
+
+### Changed
+* Improved the CI (fpm, cmake, ford and fortitude): new `.github/workflows/CI-CD.yml` replacing the old `*.yml` files.
+* Moved FORD configuration from `ford.yml` to `fpm.toml`.
+* Transformed main comments in FORD format.
 
 ### Fixed
+* CMake: a problem concerning WIN32 and shared library (PR [#42](https://github.com/vmagnin/forcolormap/pull/42)).
+* CMake: `install_library` args and include install dirs.
 * In `fpm.toml`, `name = "forcolormap"` is now lower case because fpm dependencies are case sensitive.
 
 
