@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin & gha3mi: 2024-02-21
-! Last modification: vmagnin 2024-02-22
+! Last modification: vmagnin 2026-01-07
 !-------------------------------------------------------------------------------
 
 !> This module contains miscellaneous procedures and functions.
@@ -36,7 +36,7 @@ module forcolormap_utils
 
 contains
 
-    !> This procedure computes a default z=f(x,y) function and plot it
+    !> Compute a default z=f(x,y) function and plot it
     !> in a .ppm file using the specified colormap. That function is defined
     !> in the [0, 2] range.
     subroutine test_colormap(self, filename, encoding)

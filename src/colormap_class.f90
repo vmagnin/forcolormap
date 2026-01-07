@@ -595,7 +595,7 @@ contains
     end subroutine
 
 
-    !> You can create a custom colormap from a "map" array.
+    !> Create a custom colormap from a "map" array.
     pure subroutine create(self, name, zmin, zmax, map, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
@@ -627,7 +627,7 @@ contains
         end if
     end subroutine
 
-    !> You can create a custom colormap using Lagrange interpolation:
+    !> Create a custom colormap using Lagrange interpolation:
     pure subroutine create_lagrange(self, name, zmin, zmax, colors, levels, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
@@ -660,7 +660,7 @@ contains
         end if
     end subroutine
 
-    !> You can create a custom colormap using Bezier interpolation:
+    !> Create a custom colormap using Bezier interpolation:
     pure subroutine create_bezier(self, name, zmin, zmax, colors, levels, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
@@ -752,7 +752,7 @@ contains
     end subroutine load
 
 
-    !> Most of the time you will just give z to obtain RGB values:
+    !> Compute the RGB values for a z real value
     pure subroutine compute_RGB(self, z, red, green, blue)
         class(Colormap), intent(inout) :: self
         real(wp), intent(in) :: z
@@ -775,7 +775,7 @@ contains
         call get_RGB(self, level, red, green, blue)
     end subroutine
 
-    !> But you can also obtain RGB by giving directly a level number:
+    !> Compute the RGB values directly from an integer level number
     pure subroutine get_RGB(self, level, red, green, blue)
         class(Colormap), intent(inout) :: self
         integer, intent(in)  :: level
@@ -1007,7 +1007,7 @@ contains
         end if
     end subroutine extract
 
-    !> Create colormap from continuous Bezier interpolation of control colors
+    !> Create a colormap from continuous Bezier interpolation of control colors
     pure function bezier(colors, levels) result(map)
         integer, dimension(:,:), intent(in) :: colors
         integer, intent(in), optional :: levels
@@ -1115,7 +1115,7 @@ contains
         end do
     end function lagrange_poly
 
-    !> Check validity of the colormap and fix it if necessary
+    !> Check the validity of the colormap and fix it if necessary
     pure subroutine check(self,check_name, check_bounds, check_levels)
         use forcolormap_info, only: Colormaps_info
 

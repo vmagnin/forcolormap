@@ -366,7 +366,7 @@ module miscellaneous_colormaps
     end subroutine zebra_colormap
 
     !---------------------------------------------------------------------
-    !> This subroutine is based on the public domain FORTRAN 77 subroutine
+    !> Based on the public domain FORTRAN 77 subroutine
     !> published by D.A. Green:
     !>   Green, D. A., 2011, Bulletin of the Astronomical Society of India,
     !>      Vol.39, p.289
