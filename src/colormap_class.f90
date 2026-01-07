@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2024-02-16, vmagnin 2024-05-09
+! Last modification: gha3mi 2024-02-16, vmagnin 2026-01-07
 !-------------------------------------------------------------------------------
 
 !> The Colormap class and the `colormaps_list`.
@@ -74,6 +74,7 @@ module forcolormap
 
 contains
 
+    !> Choose a colormap and set its parameters
     pure subroutine set(self, name, zmin, zmax, levels, varargs, reverse)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
@@ -785,7 +786,7 @@ contains
         blue =  self%map(level, 3)
     end subroutine
 
-
+   !> Returns the name of the colormap
     pure function get_name(self) result(name)
         class(Colormap), intent(in) :: self
         character(colormap_name_length) :: name
@@ -793,7 +794,7 @@ contains
         name = self%name
     end function
 
-
+    !> Returns the number of levels in the colormap
     pure function get_levels(self) result(levels)
         class(Colormap), intent(in) :: self
         integer :: levels
@@ -801,7 +802,7 @@ contains
         levels = self%levels
     end function
 
-
+    !> Returns the minimal value of the z range
     pure function get_zmin(self) result(zmin)
         class(Colormap), intent(in) :: self
         real(wp) :: zmin
@@ -809,7 +810,7 @@ contains
         zmin = self%zmin
     end function
 
-
+    !> Returns the maximal value of the z range
     pure function get_zmax(self) result(zmax)
         class(Colormap), intent(in) :: self
         real(wp) :: zmax
@@ -831,6 +832,7 @@ contains
         end do
     end subroutine
 
+    !> Writes the colorbar of the colormap in a PPM file
     impure subroutine write_ppm_colorbar(self, filename, width, height, encoding)
         use forimage, only: format_pnm
         class(Colormap), intent(inout) :: self
@@ -1084,7 +1086,7 @@ contains
         end do
     end function lagrange
 
-    ! Lagrange polynomial
+    !> Interpolates a Lagrange polynomial defined by n equidistant points between 0 and 1
     pure function lagrange_poly(t, n) result(B)
         real(wp), intent(in) :: t
         integer, intent(in) :: n !! order + 1
@@ -1218,6 +1220,7 @@ contains
     end subroutine check
 end module forcolormap
 
+!> Print error and fix messages for unvalid colormaps
 impure subroutine error(status, input_name, input_zmin, input_zmax, input_levels)
     use colormap_parameters, only: wp
     logical, dimension(:), intent(in) :: status
