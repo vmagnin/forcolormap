@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-11-05
-! Last modification: gha3mi 2024-02-16, vmagnin 2024-02-29
+! Last modification: gha3mi 2024-02-16, vmagnin 2026-01-07
 !-------------------------------------------------------------------------------
 
 !> The Colormaps_info class offers information about each colormap.
@@ -60,19 +60,21 @@ module forcolormap_info
       procedure :: set_all !! Procedure to set information for all colormaps in the array
       procedure :: write   !! Procedure to filter and write information about the colormaps
       procedure :: finalize => deallocate_Colormaps_info !! Procedure to finalize the derived type
-      procedure :: get_ncolormaps !! Procedure to get the number of colormaps
-      procedure :: get_name       !! Procedure to get the name of a colormap
-      procedure :: get_levels     !! Procedure to get the number of levels in a colormap
+      procedure :: get_ncolormaps !! Returns the number of available colormaps
+      procedure :: get_name       !! Returns the name of a colormap
+      procedure :: get_levels     !! Returns the number of levels in a colormap
    end type Colormaps_info
 
 contains
 
+   !> Returns the number of available colormaps
    pure elemental function get_ncolormaps(this) result(ncolormaps)
       class(Colormaps_info), intent(in) :: this
       integer :: ncolormaps
       ncolormaps = size(this%colormaps)
    end function get_ncolormaps
 
+   !> Returns the name of a colormap
    pure elemental function get_name(this, index) result(name)
       class(Colormaps_info), intent(in) :: this
       integer, intent(in) :: index
@@ -80,6 +82,7 @@ contains
       name = trim(this%colormaps(index)%name)
    end function get_name
 
+   !> Returns the number of levels in a colormap
    pure function get_levels(this, index) result(levels)
       class(Colormaps_info), intent(in) :: this
       integer, intent(in) :: index
@@ -3716,6 +3719,7 @@ contains
 
    end subroutine set_all
 
+   !> Procedure to finalize the derived type
    pure elemental subroutine deallocate_table(this)
       class(table), intent(inout) :: this
       if (allocated(this%name)) deallocate(this%name)
@@ -3729,6 +3733,7 @@ contains
       if (allocated(this%url)) deallocate(this%url)
    end subroutine deallocate_table
 
+   !> Procedure to finalize the derived type
    pure elemental subroutine deallocate_Colormaps_info(this)
       class(Colormaps_info), intent(inout) :: this
       ! integer :: i
