@@ -24,11 +24,13 @@
 ! Last modification: vmagnin 2026-01-08
 !-------------------------------------------------------------------------------
 
-!> Automatic tests launched by `fpm test`. Methods tested: 
+!> Automatic tests launched by `fpm test`. 
 program check
     use forcolormap
+    use forcolormap_info, only: Colormaps_info
 
     implicit none
+    type(Colormaps_info) :: info
     type(Colormap) :: cmap
     integer :: red, green, blue
     integer, dimension(0:6, 3) :: test_colormap = reshape( [ &
@@ -43,7 +45,18 @@ program check
     integer, dimension(0:6, 3) :: copy_colormap
     integer :: i
 
-    !! create(), 
+    !! Methods of the Colormaps_info class: get_ncolormaps(), get_name(), 
+    !! get_levels().
+    if (info%get_ncolormaps() /= 232) error stop "ERROR: info%get_ncolormaps()"
+    call info%set_all()
+    ! The first colormap is "acton" (Scientific Colour Map) and the second
+    ! one is "acton10":
+    if (info%get_name(1) /= "acton")  error stop "ERROR: info%get_name()"
+    if (info%get_levels(1) /= 256)    error stop "ERROR: info%get_levels()"
+    if (info%get_levels(2) /= 10)     error stop "ERROR: info%get_levels()"
+  
+    ! We use our personnal test_colormap with 7 colours for testing.
+    !! Methods of the Colormap class: create(), 
     call cmap%create("discrete", 0.0_wp, 2.0_wp, test_colormap)
     copy_colormap = test_colormap
 
@@ -80,8 +93,20 @@ program check
     call cmap%get_RGB(6, red, green, blue)
     if ((red /= copy_colormap(0, 1)).or.(green /= copy_colormap(0, 2)) &
         & .or.(blue /= copy_colormap(0, 3))) error stop "ERROR: colormap%shift()"
+    call cmap%shift(-1)         ! Toward right (back to the original)
+    
+    !! reverse(), 
+    call cmap%reverse("discrete")
+    call cmap%get_RGB(0, red, green, blue)
+    if ((red /= copy_colormap(6, 1)).or.(green /= copy_colormap(6, 2)) &
+        & .or.(blue /= copy_colormap(6, 3))) error stop "ERROR: colormap%reverse()"
+    
+    !! extract(), 
+    call cmap%set('acton', 0.0_wp, 2.0_wp)
+    call cmap%extract(10)
+    if (cmap%get_levels() /= 10)    error stop "ERROR: colormap%extract()"
 
-    !! check()
+    !! check(), 
     print *, "---------------------------------------------------------------------------"
     print *, "The following error messages confirm that the private check() method is OK:"
     print *, "---------------------------------------------------------------------------"
@@ -97,7 +122,10 @@ program check
     call cmap%set('acton10', 0.0_wp, 2.0_wp, 256)
     if (cmap%get_levels() /= 10) error stop "ERROR: colormap%check() levels /= predefined levels"
 
-    !! Test check() procedure within create() procedure
+    !! finalize()
+    call cmap%finalize()
+
+    ! Test check() procedure within create() procedure
     ! Maximum value is less than minimum value
     call cmap%create("discrete", 2.0_wp, 0.0_wp, test_colormap)
     if (cmap%get_zmin() /= 0.0_wp .or. cmap%get_zmax() /= 2.0_wp) error stop "ERROR: colormap%check() zmin > zmax"
