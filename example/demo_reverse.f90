@@ -21,11 +21,11 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modification: gha3mi 2023-11-01, vmagnin 2024-03-01
+! Last modification: gha3mi 2023-11-01, vmagnin 2026-01-08
 !-------------------------------------------------------------------------------
 
 !> This example demonstrates the use of the 'reverse' optional argument to
-!> reverse the order of a colormap.
+!> reverse the order of a colormap. 
 program demo_reverse
     use forcolormap, only: Colormap, colormaps_list, wp
     use forcolormap_utils, only: test_colormap
@@ -46,15 +46,15 @@ program demo_reverse
         221,   199,    44,   &
         237,   191,    44 ], &
         shape(my_colormap), order = [2, 1] )
-    !> You can create your own colormap using that array. The name of your
-    !> colormap must conform to the max length defined in colormap_parameters.f90
-    !> Use the create() method instead of the set() method.
+    !> The name of your colormap must conform to the max length 
+    !> defined in colormap_parameters.f90
+    ! Use the create() method instead of the set() method.
     call custom_cmap%create('red_cabbage_reverse', 0.0_wp, 2.0_wp, my_colormap, reverse=.true.)
     call custom_cmap%colorbar('red_cabbage_reverse_colorbar')
     call test_colormap(custom_cmap, 'red_cabbage_reverse_test')
 
-    !> We create PPM files (binary encoded by default) for each built-in colormap.
-    !> The built-in z=f(x,y) test function is in the [0, 2] range:
+    ! We create PPM files (binary encoded by default) for each built-in colormap.
+    ! The built-in z=f(x,y) test function is in the [0, 2] range:
     do i = 1, size(colormaps_list)
         call cmap%set(trim(colormaps_list(i)), 0.0_wp, 2.0_wp, reverse=.true.)
         call cmap%colorbar(trim(colormaps_list(i))//'_reverse_colorbar')
@@ -62,14 +62,14 @@ program demo_reverse
         print '("Colormap ", A30, " has ", I0, " levels")', trim(cmap%get_name()), cmap%get_levels()
     end do
 
-    !> Cubehelix can also accept other parameters (varargs array):
+    ! Cubehelix can also accept other parameters (varargs array):
     call cmap%set("cubehelix", 0.0_wp, 2.0_wp, 1024, [0.5_wp, -1.0_wp, 1.0_wp, 1.0_wp], reverse=.true.)
     ! We change the name for the output test files:
     call cmap%colorbar('cubehelix_customized_reverse_colorbar')
     call test_colormap(cmap, 'cubehelix_customized_reverse_test')
 
-    !> Or you can download it from a .txt file.
-    !> Use the load() method instead of the set() method.
+    !> You can also download your colormap from a .txt file by
+    !> using the load() method instead of the set() method.
     call custom_cmap%load("test_map_to_load.txt", 0.0_wp, 2.0_wp, reverse=.true.)
     call custom_cmap%colorbar('a_loaded_reverse_colorbar')
     call test_colormap(custom_cmap, 'a_loaded_reverse_colormap_test')

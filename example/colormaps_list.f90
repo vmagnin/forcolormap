@@ -35,7 +35,7 @@ program colormaps_list
     ! Set all colormap information
     call info%set_all()
 
-    !! Write colormap information to a file
+    ! Write colormap information to a file
     call info%write(gradient='Sequential', file_name='colormaps_list/COLORMAPS_LIST_SEQ.md', verbose=4)
     call info%write(gradient='Multi-Sequential', file_name='colormaps_list/COLORMAPS_LIST_MSQ.md', verbose=4)
     call info%write(gradient='Diverging', file_name='colormaps_list/COLORMAPS_LIST_DIV.md', verbose=4)
