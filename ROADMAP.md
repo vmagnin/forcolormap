@@ -6,16 +6,13 @@ The main goal of v1.0 is to offer a reliable library with a stable API and to im
 
 ### Documentation
 
-- [ ] Improve the FORD documentation, by adding FORD comments in the source code when needed.
+- [x] Improve the FORD documentation, by adding FORD comments in the source code when needed.
 - [x] Include a few images in the `README.md` file.
-
-### Deprecation
-
-- [ ] Consider removing a few naive colormaps (e.g., "fire" is very similar to "black_body").
+- [ ] Add properties of the colormaps in the `README.md` file: specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, etc.
 
 ### Quality Assurance
 
-- [ ] Add more automatic tests in `test/check.f90`.
+- [x] Add more automatic tests in `test/check.f90`.
 
 ### Publication
 
@@ -68,4 +65,3 @@ These concepts are open for implementation or consideration. They may or may not
 ### Documentation
 
 - [ ] Follow the [Diátaxis](https://diataxis.fr/) documentation framework, if FORD allows.
-- [ ] Specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, etc.
