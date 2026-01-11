@@ -25,7 +25,7 @@
 !-------------------------------------------------------------------------------
 
 !> Demonstrates how to obtain information about a colormap using
-!> the `Colormaps_info` class. 
+!> the `Colormaps_info` class.
 program write_info
     use forcolormap_info, only: Colormaps_info
     implicit none
@@ -35,11 +35,11 @@ program write_info
     ! Set all colormap information
     call info%set_all()
 
-    !! You can print all colormap information using default verbosity (level 1). 
+    !! You can print all colormap information using default verbosity (level 1).
     ! verbose: 1 (default) prints a table , 2 prints a box, 3 prints the name
     call info%write()
 
-    !! You can filter and write colormap information with the 
+    !! You can filter and write colormap information with the
     !! available filters: name, family, gradient, palette, author, license, levels
 
     ! Filter by gradient using default verbosity (level 1)

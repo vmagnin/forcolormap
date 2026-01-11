@@ -26,7 +26,7 @@
 
 !> This example will create colorbar files for each available colormap and
 !> the corresponding test images. It also demonstrates how you can create your
-!> own colormap defined in an array, or import it from a text file. 
+!> own colormap defined in an array, or import it from a text file.
 program demo
     use forcolormap, only: Colormap, colormaps_list, wp
     use example_utils, only: test_colormap

@@ -24,7 +24,7 @@
 ! Last modification: vmagnin 2026-01-08
 !-------------------------------------------------------------------------------
 
-!> Automatic tests launched by `fpm test`. 
+!> Automatic tests launched by `fpm test`.
 program check
     use forcolormap
     use forcolormap_info, only: Colormaps_info
@@ -45,7 +45,7 @@ program check
     integer, dimension(0:6, 3) :: copy_colormap
     integer :: i
 
-    !! Methods of the Colormaps_info class: get_ncolormaps(), get_name(), 
+    !! Methods of the Colormaps_info class: get_ncolormaps(), get_name(),
     !! get_levels().
     if (info%get_ncolormaps() /= 232) error stop "ERROR: info%get_ncolormaps()"
     call info%set_all()
@@ -54,26 +54,26 @@ program check
     if (info%get_name(1) /= "acton")  error stop "ERROR: info%get_name()"
     if (info%get_levels(1) /= 256)    error stop "ERROR: info%get_levels()"
     if (info%get_levels(2) /= 10)     error stop "ERROR: info%get_levels()"
-  
+
     ! We use our personnal test_colormap with 7 colours for testing.
-    !! Methods of the Colormap class: create(), 
+    !! Methods of the Colormap class: create(),
     call cmap%create("discrete", 0.0_wp, 2.0_wp, test_colormap)
     copy_colormap = test_colormap
 
-    !! get_levels(), get_zmin(), get_zmax(), get_name(), 
+    !! get_levels(), get_zmin(), get_zmax(), get_name(),
     if (cmap%get_levels() /= 7)    error stop "ERROR: colormap%get_levels()"
     if (cmap%get_zmin() /= 0.0_wp) error stop "ERROR: colormap%get_zmin()"
     if (cmap%get_zmax() /= 2.0_wp) error stop "ERROR: colormap%get_zmax()"
     if (trim(cmap%get_name()) /= "discrete") error stop "ERROR: colormap%get_current()"
 
-    !! get_RGB(), 
+    !! get_RGB(),
     do i = 0, size(test_colormap(:, 1))-1
         call cmap%get_RGB(i, red, green, blue)
         if ((red /= test_colormap(i, 1)).or.(green /= test_colormap(i, 2)) &
             & .or.(blue /= test_colormap(i, 3))) error stop "ERROR: colormap%get_RGB()"
     end do
 
-    !! compute_RGB(), 
+    !! compute_RGB(),
     call cmap%compute_RGB(0.0_wp, red, green, blue)
     if ((red /= test_colormap(0, 1)).or.(green /= test_colormap(0, 2)) &
             & .or.(blue /= test_colormap(0, 3))) error stop "ERROR: colormap%compute_RGB()"
@@ -84,7 +84,7 @@ program check
     if ((red /= test_colormap(6, 1)).or.(green /= test_colormap(6, 2)) &
             & .or.(blue /= test_colormap(6, 3))) error stop "ERROR: colormap%compute_RGB()"
 
-    !! shift(), 
+    !! shift(),
     call cmap%shift(+2)         ! Toward left
     call cmap%get_RGB(0, red, green, blue)
     if ((red /= copy_colormap(2, 1)).or.(green /= copy_colormap(2, 2)) &
@@ -94,19 +94,19 @@ program check
     if ((red /= copy_colormap(0, 1)).or.(green /= copy_colormap(0, 2)) &
         & .or.(blue /= copy_colormap(0, 3))) error stop "ERROR: colormap%shift()"
     call cmap%shift(-1)         ! Toward right (back to the original)
-    
-    !! reverse(), 
+
+    !! reverse(),
     call cmap%reverse("discrete")
     call cmap%get_RGB(0, red, green, blue)
     if ((red /= copy_colormap(6, 1)).or.(green /= copy_colormap(6, 2)) &
         & .or.(blue /= copy_colormap(6, 3))) error stop "ERROR: colormap%reverse()"
-    
-    !! extract(), 
+
+    !! extract(),
     call cmap%set('acton', 0.0_wp, 2.0_wp)
     call cmap%extract(10)
     if (cmap%get_levels() /= 10)    error stop "ERROR: colormap%extract()"
 
-    !! check(), 
+    !! check(),
     print *, "---------------------------------------------------------------------------"
     print *, "The following error messages confirm that the private check() method is OK:"
     print *, "---------------------------------------------------------------------------"

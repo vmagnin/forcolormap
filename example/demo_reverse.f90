@@ -25,7 +25,7 @@
 !-------------------------------------------------------------------------------
 
 !> This example demonstrates the use of the 'reverse' optional argument to
-!> reverse the order of a colormap. 
+!> reverse the order of a colormap.
 program demo_reverse
     use forcolormap, only: Colormap, colormaps_list, wp
     use example_utils, only: test_colormap
@@ -46,7 +46,7 @@ program demo_reverse
         221,   199,    44,   &
         237,   191,    44 ], &
         shape(my_colormap), order = [2, 1] )
-    !> The name of your colormap must conform to the max length 
+    !> The name of your colormap must conform to the max length
     !> defined in forcolormap_parameters.f90
     ! Use the create() method instead of the set() method.
     call custom_cmap%create('red_cabbage_reverse', 0.0_wp, 2.0_wp, my_colormap, reverse=.true.)
