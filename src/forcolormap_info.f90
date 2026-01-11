@@ -27,7 +27,7 @@
 !> The Colormaps_info class offers information about each colormap.
 module forcolormap_info
 
-   use colormap_parameters, only: colormap_name_length
+   use forcolormap_parameters, only: colormap_name_length
 
    implicit none
 

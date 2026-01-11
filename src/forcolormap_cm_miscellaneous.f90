@@ -25,8 +25,8 @@
 !-------------------------------------------------------------------------------
 
 !> This module contains miscellaneous colormaps, especially black body andf cubehelix.
-module miscellaneous_colormaps
-    use colormap_parameters, only: colormap_name_length, wp, pi
+module forcolormap_cm_miscellaneous
+    use forcolormap_parameters, only: colormap_name_length, wp, pi
     implicit none
     private
 
@@ -408,4 +408,4 @@ module miscellaneous_colormaps
             map(i, 3) = nint(255*(fract + amp*(+1.97294_wp*cos(angle))))
         end do
     end subroutine cubehelix_colormap
-end module miscellaneous_colormaps
+end module forcolormap_cm_miscellaneous

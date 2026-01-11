@@ -26,10 +26,10 @@
 
 !> The Colormap class and the `colormaps_list`.
 module forcolormap
-    use colormap_parameters, only: wp, colormap_name_length
-    use scientific_colour_maps
-    use matplotlib_colormaps
-    use miscellaneous_colormaps
+    use forcolormap_parameters, only: wp, colormap_name_length
+    use forcolormap_cm_scientific
+    use forcolormap_cm_matplotlib
+    use forcolormap_cm_miscellaneous
 
     implicit none
     private
@@ -1222,7 +1222,7 @@ end module forcolormap
 
 !> Print error and fix messages for unvalid colormaps
 impure subroutine error(status, input_name, input_zmin, input_zmax, input_levels)
-    use colormap_parameters, only: wp
+    use forcolormap_parameters, only: wp
     logical, dimension(:), intent(in) :: status
     character(*), intent(in) :: input_name
     real(wp), intent(in) :: input_zmin, input_zmax

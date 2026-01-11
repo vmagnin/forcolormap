@@ -48,7 +48,7 @@ program demo
         237,   191,    44 ], &
         shape(my_colormap), order = [2, 1] )
     !> The name of your colormap must conform to the max length
-    !> defined in colormap_parameters.f90
+    !> defined in forcolormap_parameters.f90
     ! Use the create() method instead of the set() method.
     call custom_cmap%create('red_cabbage', 0.0_wp, 2.0_wp, my_colormap)
     call custom_cmap%colorbar('red_cabbage_colorbar')

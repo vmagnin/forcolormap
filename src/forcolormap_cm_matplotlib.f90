@@ -32,8 +32,8 @@
 
 !> This module contains a few matplotlib colormaps: "magma", "inferno",
 !> "plasma", "viridis".
-module matplotlib_colormaps
-    use colormap_parameters, only: colormap_name_length
+module forcolormap_cm_matplotlib
+    use forcolormap_parameters, only: colormap_name_length
     implicit none
     private
 
@@ -1076,4 +1076,4 @@ module matplotlib_colormaps
            251,     231,     35,&
            253,     231,     37 &
             ], shape(viridis), order=[2, 1] )
-end module matplotlib_colormaps
+end module forcolormap_cm_matplotlib
