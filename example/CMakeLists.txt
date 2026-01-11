@@ -1,13 +1,22 @@
 # DEMO_REVERSE
-add_executable(demo_reverse demo_reverse.f90)
+add_executable(demo_reverse
+  demo_reverse.f90
+  example_utils.f90
+)
 target_link_libraries(demo_reverse ${PROJECT_NAME})
 
 # DEMO
-add_executable(demo demo.f90)
+add_executable(demo
+  demo.f90
+  example_utils.f90
+)
 target_link_libraries(demo ${PROJECT_NAME})
 
 # EXAMPLE1
-add_executable(example1 example1.f90)
+add_executable(example1
+  example1.f90
+  example_utils.f90
+)
 target_link_libraries(example1 ${PROJECT_NAME})
 
 # EXTRACT

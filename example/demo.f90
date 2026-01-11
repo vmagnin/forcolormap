@@ -29,7 +29,7 @@
 !> own colormap defined in an array, or import it from a text file. 
 program demo
     use forcolormap, only: Colormap, colormaps_list, wp
-    use forcolormap_utils, only: test_colormap
+    use example_utils, only: test_colormap
     implicit none
 
     integer :: i

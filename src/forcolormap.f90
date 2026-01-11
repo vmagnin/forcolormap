@@ -27,6 +27,7 @@
 !> The Colormap class and the `colormaps_list`.
 module forcolormap
     use forcolormap_parameters, only: wp, colormap_name_length
+    use forcolormap_utils, only: bezier, lagrange, scale
     use forcolormap_cm_scientific
     use forcolormap_cm_matplotlib
     use forcolormap_cm_miscellaneous
@@ -906,39 +907,6 @@ contains
         self%map(:,:) = cshift(self%map(:,:), sh)
     end subroutine shift
 
-    !> Normalize the input real array to the range [0, 1]
-    pure function scale_real_real(real_array,a,b) result(real_scaled_array)
-        real(wp), dimension(:), intent(in) :: real_array
-        real(wp), intent(in) :: a, b
-        real(wp), dimension(size(real_array)) :: real_scaled_array
-        real(wp) :: minValue, maxValue
-        real(wp), parameter :: tolerance = 1.0e-12_wp
-
-        ! Find minimum and maximum values in the input real array
-        minValue = minval(real_array)
-        maxValue = maxval(real_array)
-
-        if (abs(maxValue-minValue) < tolerance) then
-            real_scaled_array = b
-        else
-            real_scaled_array = a + (b - a) * (real_array - minValue) / (maxValue - minValue)
-        end if
-    end function scale_real_real
-
-    !> Scale the input real array to the integer RGB range [a, b]
-    pure function scale_real_int(real_array,a,b) result(int_scaled_array)
-        real(wp), dimension(:), intent(in) :: real_array
-        integer, intent(in) :: a, b
-        real(wp), dimension(size(real_array)) :: normalizedArray
-        integer, dimension(size(real_array)) :: int_scaled_array
-
-        ! Normalize the real array elements to the range [0, 1]
-        normalizedArray = scale_real_real(real_array, 0.0_wp, 1.0_wp)
-
-        ! Scale the real array elements between a and b
-        int_scaled_array = a + nint((b - a) * normalizedArray)
-    end function scale_real_int
-
     !> Extracts colors from the colormap based on specified number of levels (nl)
     pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse)
         class(Colormap), intent(inout) :: self
@@ -979,7 +947,7 @@ contains
 
         ! Scale interpolated indices to integers between 0 and self%levels - 1
         do concurrent (i = 1:3)
-            ind(:,i) = scale_real_int(ind_rel(:,i), 0, self%levels-1)
+            ind(:,i) = scale(ind_rel(:,i), 0, self%levels-1)
         end do
 
         ! Extract colors from the colormap based on interpolated indices
@@ -1006,114 +974,6 @@ contains
             if (reverse) call self%reverse()
         end if
     end subroutine extract
-
-    !> Create a colormap from continuous Bezier interpolation of control colors
-    pure function bezier(colors, levels) result(map)
-        integer, dimension(:,:), intent(in) :: colors
-        integer, intent(in), optional :: levels
-        integer, dimension(:,:), allocatable :: map
-        real(wp), dimension(:,:), allocatable :: map_r
-        integer :: order, i, j, levels_
-        real(wp) :: t
-
-        ! Set default value for levels
-        if (present(levels)) then
-            levels_ = levels
-        else
-            levels_ = 256
-        end if
-
-        ! Order of the Bezier curve
-        order = size(colors, 1) - 1
-        if (order < 1) error stop "Error: At least two control colors are required for Bezier interpolation."
-
-        allocate(map_r(levels_,3), map(levels_,3)) ! 3 for RGB
-        do i = 1,levels_
-            t = real(i-1, wp) / real(levels_-1, wp)
-            map_r(i,:) = 0.0_wp
-            do j = 0, order
-                map_r(i,:) = map_r(i,:) + real(colors(j+1,:), wp)*&
-                    real(factorial(order), wp)/(real(factorial(j), wp)*real(factorial(order-j), wp)) * t**j * (1.0_wp-t)**(order-j)
-            end do
-            map(i,1) = min(255, max(0, nint(map_r(i,1))))
-            map(i,2) = min(255, max(0, nint(map_r(i,2))))
-            map(i,3) = min(255, max(0, nint(map_r(i,3))))
-        end do
-    end function bezier
-
-    !> Factorial function used for Bezier interpolation
-    pure function factorial(n) result(result)
-        integer, intent(in) :: n
-        integer :: result, i
-        result = 1
-        do concurrent (i = 2:n)
-            result = result * i
-        end do
-    end function factorial
-
-    !> Create colormap from Lagrange interpolation of control colors
-    pure function lagrange(colors, levels) result(map)
-        integer, dimension(:,:), intent(in) :: colors
-        integer, intent(in), optional :: levels
-        integer, dimension(:,:), allocatable :: map
-        real(wp), dimension(:,:), allocatable :: map_r
-        integer :: order, i, j, levels_
-        real(wp) :: t
-
-        ! Set default value for levels
-        if (present(levels)) then
-            levels_ = levels
-        else
-            levels_ = 256
-        end if
-
-        ! Order of the Lagrange interpolation.
-        order = size(colors, 1) - 1
-        if (order < 1) error stop "Error: At least two control colors are required for Lagrange interpolation."
-
-        allocate(map_r(levels_,3), map(levels_,3)) ! 3 for RGB
-        do i = 1, levels_
-            t = real(i-1, wp) / real(levels_-1, wp)
-            map_r(i,:) = 0.0_wp
-            do j = 0, order
-                map_r(i,1) = dot_product(lagrange_poly(t,order+1), real(colors(:,1), wp))
-                map_r(i,2) = dot_product(lagrange_poly(t,order+1), real(colors(:,2), wp))
-                map_r(i,3) = dot_product(lagrange_poly(t,order+1), real(colors(:,3), wp))
-            end do
-            map(i,1) = min(255, max(0, nint(map_r(i,1))))
-            map(i,2) = min(255, max(0, nint(map_r(i,2))))
-            map(i,3) = min(255, max(0, nint(map_r(i,3))))
-        end do
-    end function lagrange
-
-    !> Interpolates a Lagrange polynomial defined by n equidistant points between 0 and 1
-    pure function lagrange_poly(t, n) result(B)
-        real(wp), intent(in) :: t
-        integer, intent(in) :: n !! order + 1
-        real(wp), allocatable :: B(:)
-        integer :: i, l
-        real(wp), dimension(:), allocatable :: Xth
-
-        ! Create an array of n equidistant points between 0 and 1
-        allocate(Xth(n), source = 0.0_wp)
-        do i = 1, n - 1
-            Xth(i) = 0.0_wp + real(i - 1, wp) * (1.0_wp - (0.0_wp)) / real(n - 1, wp)
-        end do
-        Xth(n) = 1.0_wp
-
-        allocate(B(n), source = 1.0_wp)
-        l = 0
-        i = 0
-        do i = 1, n
-            do l = 1, n
-                if (l /= i) then
-                    if (abs(Xth(i) - Xth(l)) >= tiny(0.0_wp)) then
-                        B(i) = B(i)*(t - Xth(l))/(Xth(i) - Xth(l))
-                    end if
-                end if
-            end do
-        end do
-    end function lagrange_poly
 
     !> Check the validity of the colormap and fix it if necessary
     pure subroutine check(self,check_name, check_bounds, check_levels)
