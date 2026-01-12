@@ -58,6 +58,7 @@ program check
     ! We use our personnal test_colormap with 7 colours for testing.
     !! Methods of the Colormap class: create(),
     call cmap%create("discrete", 0.0_wp, 2.0_wp, test_colormap)
+    call cmap%print_status()
     copy_colormap = test_colormap
 
     !! get_levels(), get_zmin(), get_zmax(), get_name(),
@@ -103,6 +104,7 @@ program check
 
     !! extract(),
     call cmap%set('acton', 0.0_wp, 2.0_wp)
+    call cmap%print_status()
     call cmap%extract(10)
     if (cmap%get_levels() /= 10)    error stop "ERROR: colormap%extract()"
 
@@ -112,14 +114,17 @@ program check
     print *, "---------------------------------------------------------------------------"
     ! Name is not in the list
     call cmap%set('actom10', 0.0_wp, 2.0_wp)
+    call cmap%print_status()
     if (cmap%get_name() /= 'grayC') error stop "ERROR: colormap%check() name"
 
     ! Maximum value is less than minimum value
     call cmap%set('acton10', 2.0_wp, 0.0_wp)
+    call cmap%print_status()
     if (cmap%get_zmin() /= 0.0_wp .or. cmap%get_zmax() /= 2.0_wp) error stop "ERROR: colormap%check() zmin > zmax"
 
     ! Number of levels is not equal to predefined number of levels
     call cmap%set('acton10', 0.0_wp, 2.0_wp, 256)
+    call cmap%print_status()
     if (cmap%get_levels() /= 10) error stop "ERROR: colormap%check() levels /= predefined levels"
 
     !! finalize()
@@ -128,6 +133,7 @@ program check
     ! Test check() procedure within create() procedure
     ! Maximum value is less than minimum value
     call cmap%create("discrete", 2.0_wp, 0.0_wp, test_colormap)
+    call cmap%print_status()
     if (cmap%get_zmin() /= 0.0_wp .or. cmap%get_zmax() /= 2.0_wp) error stop "ERROR: colormap%check() zmin > zmax"
 
 end program check

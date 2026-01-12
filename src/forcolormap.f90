@@ -51,6 +51,12 @@ module forcolormap
         real(wp), private :: zmin, zmax     ! z range
         ! An array containing for each level the associated RGB values:
         integer, dimension(:, :), allocatable, private :: map
+
+        logical, private :: status(4) = .false.
+        ! status(1): name validity
+        ! status(2): zmin < zmax
+        ! status(3): levels match colormap
+        ! status(4): levels >= 1
     contains
         procedure :: set
         procedure :: finalize
@@ -69,11 +75,23 @@ module forcolormap
         procedure :: reverse
         procedure :: shift
         procedure :: extract
+        procedure, private :: assign_map
         procedure, private :: check
+        procedure :: print_status
     end type Colormap
 
 
 contains
+
+    !> Assign a colormap from a given "map" array
+    pure subroutine assign_map(self, map)
+        class(Colormap), intent(inout) :: self
+        integer, intent(in) :: map(:, :)
+
+        self%levels = size(map, 1)
+        if (allocated(self%map)) deallocate(self%map)
+        allocate(self%map(0:self%levels-1, 1:3), source=map)
+    end subroutine assign_map
 
     !> Choose a colormap and set its parameters
     pure subroutine set(self, name, zmin, zmax, levels, varargs, reverse)
@@ -123,464 +141,464 @@ contains
         ! Scientific colour maps collection (Fabio Crameri)
         ! (The user can not choose the number of levels)
         case("acton")
-            call self%create(self%name, self%zmin, self%zmax, acton)
+            call self%assign_map(acton)
         case("acton10")
-            call self%create(self%name, self%zmin, self%zmax, acton10)
+            call self%assign_map(acton10)
         case("acton100")
-            call self%create(self%name, self%zmin, self%zmax, acton100)
+            call self%assign_map(acton100)
         case("acton25")
-            call self%create(self%name, self%zmin, self%zmax, acton25)
+            call self%assign_map(acton25)
         case("acton50")
-            call self%create(self%name, self%zmin, self%zmax, acton50)
+            call self%assign_map(acton50)
         case("actonS")
-            call self%create(self%name, self%zmin, self%zmax, actonS)
+            call self%assign_map(actonS)
         case("bam")
-            call self%create(self%name, self%zmin, self%zmax, bam)
+            call self%assign_map(bam)
         case("bam10")
-            call self%create(self%name, self%zmin, self%zmax, bam10)
+            call self%assign_map(bam10)
         case("bam100")
-            call self%create(self%name, self%zmin, self%zmax, bam100)
+            call self%assign_map(bam100)
         case("bam25")
-            call self%create(self%name, self%zmin, self%zmax, bam25)
+            call self%assign_map(bam25)
         case("bam50")
-            call self%create(self%name, self%zmin, self%zmax, bam50)
+            call self%assign_map(bam50)
         case("bamako")
-            call self%create(self%name, self%zmin, self%zmax, bamako)
+            call self%assign_map(bamako)
         case("bamako10")
-            call self%create(self%name, self%zmin, self%zmax, bamako10)
+            call self%assign_map(bamako10)
         case("bamako100")
-            call self%create(self%name, self%zmin, self%zmax, bamako100)
+            call self%assign_map(bamako100)
         case("bamako25")
-            call self%create(self%name, self%zmin, self%zmax, bamako25)
+            call self%assign_map(bamako25)
         case("bamako50")
-            call self%create(self%name, self%zmin, self%zmax, bamako50)
+            call self%assign_map(bamako50)
         case("bamakoS")
-            call self%create(self%name, self%zmin, self%zmax, bamakoS)
+            call self%assign_map(bamakoS)
         case("bamO")
-            call self%create(self%name, self%zmin, self%zmax, bamO)
+            call self%assign_map(bamO)
         case("bamO10")
-            call self%create(self%name, self%zmin, self%zmax, bamO10)
+            call self%assign_map(bamO10)
         case("bamO100")
-            call self%create(self%name, self%zmin, self%zmax, bamO100)
+            call self%assign_map(bamO100)
         case("bamO25")
-            call self%create(self%name, self%zmin, self%zmax, bamO25)
+            call self%assign_map(bamO25)
         case("bamO50")
-            call self%create(self%name, self%zmin, self%zmax, bamO50)
+            call self%assign_map(bamO50)
         case("batlow")
-            call self%create(self%name, self%zmin, self%zmax, batlow)
+            call self%assign_map(batlow)
         case("batlow10")
-            call self%create(self%name, self%zmin, self%zmax, batlow10)
+            call self%assign_map(batlow10)
         case("batlow100")
-            call self%create(self%name, self%zmin, self%zmax, batlow100)
+            call self%assign_map(batlow100)
         case("batlow25")
-            call self%create(self%name, self%zmin, self%zmax, batlow25)
+            call self%assign_map(batlow25)
         case("batlow50")
-            call self%create(self%name, self%zmin, self%zmax, batlow50)
+            call self%assign_map(batlow50)
         case("batlowK")
-            call self%create(self%name, self%zmin, self%zmax, batlowK)
+            call self%assign_map(batlowK)
         case("batlowK10")
-            call self%create(self%name, self%zmin, self%zmax, batlowK10)
+            call self%assign_map(batlowK10)
         case("batlowK100")
-            call self%create(self%name, self%zmin, self%zmax, batlowK100)
+            call self%assign_map(batlowK100)
         case("batlowK25")
-            call self%create(self%name, self%zmin, self%zmax, batlowK25)
+            call self%assign_map(batlowK25)
         case("batlowK50")
-            call self%create(self%name, self%zmin, self%zmax, batlowK50)
+            call self%assign_map(batlowK50)
         case("batlowKS")
-            call self%create(self%name, self%zmin, self%zmax, batlowKS)
+            call self%assign_map(batlowKS)
         case("batlowS")
-            call self%create(self%name, self%zmin, self%zmax, batlowS)
+            call self%assign_map(batlowS)
         case("batlowW")
-            call self%create(self%name, self%zmin, self%zmax, batlowW)
+            call self%assign_map(batlowW)
         case("batlowW10")
-            call self%create(self%name, self%zmin, self%zmax, batlowW10)
+            call self%assign_map(batlowW10)
         case("batlowW100")
-            call self%create(self%name, self%zmin, self%zmax, batlowW100)
+            call self%assign_map(batlowW100)
         case("batlowW25")
-            call self%create(self%name, self%zmin, self%zmax, batlowW25)
+            call self%assign_map(batlowW25)
         case("batlowW50")
-            call self%create(self%name, self%zmin, self%zmax, batlowW50)
+            call self%assign_map(batlowW50)
         case("batlowWS")
-            call self%create(self%name, self%zmin, self%zmax, batlowWS)
+            call self%assign_map(batlowWS)
         case("berlin")
-            call self%create(self%name, self%zmin, self%zmax, berlin)
+            call self%assign_map(berlin)
         case("berlin10")
-            call self%create(self%name, self%zmin, self%zmax, berlin10)
+            call self%assign_map(berlin10)
         case("berlin100")
-            call self%create(self%name, self%zmin, self%zmax, berlin100)
+            call self%assign_map(berlin100)
         case("berlin25")
-            call self%create(self%name, self%zmin, self%zmax, berlin25)
+            call self%assign_map(berlin25)
         case("berlin50")
-            call self%create(self%name, self%zmin, self%zmax, berlin50)
+            call self%assign_map(berlin50)
         case("bilbao")
-            call self%create(self%name, self%zmin, self%zmax, bilbao)
+            call self%assign_map(bilbao)
         case("bilbao10")
-            call self%create(self%name, self%zmin, self%zmax, bilbao10)
+            call self%assign_map(bilbao10)
         case("bilbao100")
-            call self%create(self%name, self%zmin, self%zmax, bilbao100)
+            call self%assign_map(bilbao100)
         case("bilbao25")
-            call self%create(self%name, self%zmin, self%zmax, bilbao25)
+            call self%assign_map(bilbao25)
         case("bilbao50")
-            call self%create(self%name, self%zmin, self%zmax, bilbao50)
+            call self%assign_map(bilbao50)
         case("bilbaoS")
-            call self%create(self%name, self%zmin, self%zmax, bilbaoS)
+            call self%assign_map(bilbaoS)
         case("broc")
-            call self%create(self%name, self%zmin, self%zmax, broc)
+            call self%assign_map(broc)
         case("broc10")
-            call self%create(self%name, self%zmin, self%zmax, broc10)
+            call self%assign_map(broc10)
         case("broc100")
-            call self%create(self%name, self%zmin, self%zmax, broc100)
+            call self%assign_map(broc100)
         case("broc25")
-            call self%create(self%name, self%zmin, self%zmax, broc25)
+            call self%assign_map(broc25)
         case("broc50")
-            call self%create(self%name, self%zmin, self%zmax, broc50)
+            call self%assign_map(broc50)
         case("brocO")
-            call self%create(self%name, self%zmin, self%zmax, brocO)
+            call self%assign_map(brocO)
         case("brocO10")
-            call self%create(self%name, self%zmin, self%zmax, brocO10)
+            call self%assign_map(brocO10)
         case("brocO100")
-            call self%create(self%name, self%zmin, self%zmax, brocO100)
+            call self%assign_map(brocO100)
         case("brocO25")
-            call self%create(self%name, self%zmin, self%zmax, brocO25)
+            call self%assign_map(brocO25)
         case("brocO50")
-            call self%create(self%name, self%zmin, self%zmax, brocO50)
+            call self%assign_map(brocO50)
         case("buda")
-            call self%create(self%name, self%zmin, self%zmax, buda)
+            call self%assign_map(buda)
         case("buda10")
-            call self%create(self%name, self%zmin, self%zmax, buda10)
+            call self%assign_map(buda10)
         case("buda100")
-            call self%create(self%name, self%zmin, self%zmax, buda100)
+            call self%assign_map(buda100)
         case("buda25")
-            call self%create(self%name, self%zmin, self%zmax, buda25)
+            call self%assign_map(buda25)
         case("buda50")
-            call self%create(self%name, self%zmin, self%zmax, buda50)
+            call self%assign_map(buda50)
         case("budaS")
-            call self%create(self%name, self%zmin, self%zmax, budaS)
+            call self%assign_map(budaS)
         case("bukavu")
-            call self%create(self%name, self%zmin, self%zmax, bukavu)
+            call self%assign_map(bukavu)
         case("bukavu10")
-            call self%create(self%name, self%zmin, self%zmax, bukavu10)
+            call self%assign_map(bukavu10)
         case("bukavu100")
-            call self%create(self%name, self%zmin, self%zmax, bukavu100)
+            call self%assign_map(bukavu100)
         case("bukavu25")
-            call self%create(self%name, self%zmin, self%zmax, bukavu25)
+            call self%assign_map(bukavu25)
         case("bukavu50")
-            call self%create(self%name, self%zmin, self%zmax, bukavu50)
+            call self%assign_map(bukavu50)
         case("cork")
-            call self%create(self%name, self%zmin, self%zmax, cork)
+            call self%assign_map(cork)
         case("cork10")
-            call self%create(self%name, self%zmin, self%zmax, cork10)
+            call self%assign_map(cork10)
         case("cork100")
-            call self%create(self%name, self%zmin, self%zmax, cork100)
+            call self%assign_map(cork100)
         case("cork25")
-            call self%create(self%name, self%zmin, self%zmax, cork25)
+            call self%assign_map(cork25)
         case("cork50")
-            call self%create(self%name, self%zmin, self%zmax, cork50)
+            call self%assign_map(cork50)
         case("corkO")
-            call self%create(self%name, self%zmin, self%zmax, corkO)
+            call self%assign_map(corkO)
         case("corkO10")
-            call self%create(self%name, self%zmin, self%zmax, corkO10)
+            call self%assign_map(corkO10)
         case("corkO100")
-            call self%create(self%name, self%zmin, self%zmax, corkO100)
+            call self%assign_map(corkO100)
         case("corkO25")
-            call self%create(self%name, self%zmin, self%zmax, corkO25)
+            call self%assign_map(corkO25)
         case("corkO50")
-            call self%create(self%name, self%zmin, self%zmax, corkO50)
+            call self%assign_map(corkO50)
         case("davos")
-            call self%create(self%name, self%zmin, self%zmax, davos)
+            call self%assign_map(davos)
         case("davos10")
-            call self%create(self%name, self%zmin, self%zmax, davos10)
+            call self%assign_map(davos10)
         case("davos100")
-            call self%create(self%name, self%zmin, self%zmax, davos100)
+            call self%assign_map(davos100)
         case("davos25")
-            call self%create(self%name, self%zmin, self%zmax, davos25)
+            call self%assign_map(davos25)
         case("davos50")
-            call self%create(self%name, self%zmin, self%zmax, davos50)
+            call self%assign_map(davos50)
         case("davosS")
-            call self%create(self%name, self%zmin, self%zmax, davosS)
+            call self%assign_map(davosS)
         case("devon")
-            call self%create(self%name, self%zmin, self%zmax, devon)
+            call self%assign_map(devon)
         case("devon10")
-            call self%create(self%name, self%zmin, self%zmax, devon10)
+            call self%assign_map(devon10)
         case("devon100")
-            call self%create(self%name, self%zmin, self%zmax, devon100)
+            call self%assign_map(devon100)
         case("devon25")
-            call self%create(self%name, self%zmin, self%zmax, devon25)
+            call self%assign_map(devon25)
         case("devon50")
-            call self%create(self%name, self%zmin, self%zmax, devon50)
+            call self%assign_map(devon50)
         case("devonS")
-            call self%create(self%name, self%zmin, self%zmax, devonS)
+            call self%assign_map(devonS)
         case("fes")
-            call self%create(self%name, self%zmin, self%zmax, fes)
+            call self%assign_map(fes)
         case("fes10")
-            call self%create(self%name, self%zmin, self%zmax, fes10)
+            call self%assign_map(fes10)
         case("fes100")
-            call self%create(self%name, self%zmin, self%zmax, fes100)
+            call self%assign_map(fes100)
         case("fes25")
-            call self%create(self%name, self%zmin, self%zmax, fes25)
+            call self%assign_map(fes25)
         case("fes50")
-            call self%create(self%name, self%zmin, self%zmax, fes50)
+            call self%assign_map(fes50)
         case("glasgow")
-            call self%create(self%name, self%zmin, self%zmax, glasgow)
+            call self%assign_map(glasgow)
         case("glasgow10")
-            call self%create(self%name, self%zmin, self%zmax, glasgow10)
+            call self%assign_map(glasgow10)
         case("glasgow100")
-            call self%create(self%name, self%zmin, self%zmax, glasgow100)
+            call self%assign_map(glasgow100)
         case("glasgow25")
-            call self%create(self%name, self%zmin, self%zmax, glasgow25)
+            call self%assign_map(glasgow25)
         case("glasgow50")
-            call self%create(self%name, self%zmin, self%zmax, glasgow50)
+            call self%assign_map(glasgow50)
         case("glasgowS")
-            call self%create(self%name, self%zmin, self%zmax, glasgowS)
+            call self%assign_map(glasgowS)
         case("grayC")
-            call self%create(self%name, self%zmin, self%zmax, grayC)
+            call self%assign_map(grayC)
         case("grayC10")
-            call self%create(self%name, self%zmin, self%zmax, grayC10)
+            call self%assign_map(grayC10)
         case("grayC100")
-            call self%create(self%name, self%zmin, self%zmax, grayC100)
+            call self%assign_map(grayC100)
         case("grayC25")
-            call self%create(self%name, self%zmin, self%zmax, grayC25)
+            call self%assign_map(grayC25)
         case("grayC50")
-            call self%create(self%name, self%zmin, self%zmax, grayC50)
+            call self%assign_map(grayC50)
         case("grayCS")
-            call self%create(self%name, self%zmin, self%zmax, grayCS)
+            call self%assign_map(grayCS)
         case("hawaii")
-            call self%create(self%name, self%zmin, self%zmax, hawaii)
+            call self%assign_map(hawaii)
         case("hawaii10")
-            call self%create(self%name, self%zmin, self%zmax, hawaii10)
+            call self%assign_map(hawaii10)
         case("hawaii100")
-            call self%create(self%name, self%zmin, self%zmax, hawaii100)
+            call self%assign_map(hawaii100)
         case("hawaii25")
-            call self%create(self%name, self%zmin, self%zmax, hawaii25)
+            call self%assign_map(hawaii25)
         case("hawaii50")
-            call self%create(self%name, self%zmin, self%zmax, hawaii50)
+            call self%assign_map(hawaii50)
         case("hawaiiS")
-            call self%create(self%name, self%zmin, self%zmax, hawaiiS)
+            call self%assign_map(hawaiiS)
         case("imola")
-            call self%create(self%name, self%zmin, self%zmax, imola)
+            call self%assign_map(imola)
         case("imola10")
-            call self%create(self%name, self%zmin, self%zmax, imola10)
+            call self%assign_map(imola10)
         case("imola100")
-            call self%create(self%name, self%zmin, self%zmax, imola100)
+            call self%assign_map(imola100)
         case("imola25")
-            call self%create(self%name, self%zmin, self%zmax, imola25)
+            call self%assign_map(imola25)
         case("imola50")
-            call self%create(self%name, self%zmin, self%zmax, imola50)
+            call self%assign_map(imola50)
         case("imolaS")
-            call self%create(self%name, self%zmin, self%zmax, imolaS)
+            call self%assign_map(imolaS)
         case("lajolla")
-            call self%create(self%name, self%zmin, self%zmax, lajolla)
+            call self%assign_map(lajolla)
         case("lajolla10")
-            call self%create(self%name, self%zmin, self%zmax, lajolla10)
+            call self%assign_map(lajolla10)
         case("lajolla100")
-            call self%create(self%name, self%zmin, self%zmax, lajolla100)
+            call self%assign_map(lajolla100)
         case("lajolla25")
-            call self%create(self%name, self%zmin, self%zmax, lajolla25)
+            call self%assign_map(lajolla25)
         case("lajolla50")
-            call self%create(self%name, self%zmin, self%zmax, lajolla50)
+            call self%assign_map(lajolla50)
         case("lajollaS")
-            call self%create(self%name, self%zmin, self%zmax, lajollaS)
+            call self%assign_map(lajollaS)
         case("lapaz")
-            call self%create(self%name, self%zmin, self%zmax, lapaz)
+            call self%assign_map(lapaz)
         case("lapaz10")
-            call self%create(self%name, self%zmin, self%zmax, lapaz10)
+            call self%assign_map(lapaz10)
         case("lapaz100")
-            call self%create(self%name, self%zmin, self%zmax, lapaz100)
+            call self%assign_map(lapaz100)
         case("lapaz25")
-            call self%create(self%name, self%zmin, self%zmax, lapaz25)
+            call self%assign_map(lapaz25)
         case("lapaz50")
-            call self%create(self%name, self%zmin, self%zmax, lapaz50)
+            call self%assign_map(lapaz50)
         case("lapazS")
-            call self%create(self%name, self%zmin, self%zmax, lapazS)
+            call self%assign_map(lapazS)
         case("lipari")
-            call self%create(self%name, self%zmin, self%zmax, lipari)
+            call self%assign_map(lipari)
         case("lipari10")
-            call self%create(self%name, self%zmin, self%zmax, lipari10)
+            call self%assign_map(lipari10)
         case("lipari100")
-            call self%create(self%name, self%zmin, self%zmax, lipari100)
+            call self%assign_map(lipari100)
         case("lipari25")
-            call self%create(self%name, self%zmin, self%zmax, lipari25)
+            call self%assign_map(lipari25)
         case("lipari50")
-            call self%create(self%name, self%zmin, self%zmax, lipari50)
+            call self%assign_map(lipari50)
         case("lipariS")
-            call self%create(self%name, self%zmin, self%zmax, lipariS)
+            call self%assign_map(lipariS)
         case("lisbon")
-            call self%create(self%name, self%zmin, self%zmax, lisbon)
+            call self%assign_map(lisbon)
         case("lisbon10")
-            call self%create(self%name, self%zmin, self%zmax, lisbon10)
+            call self%assign_map(lisbon10)
         case("lisbon100")
-            call self%create(self%name, self%zmin, self%zmax, lisbon100)
+            call self%assign_map(lisbon100)
         case("lisbon25")
-            call self%create(self%name, self%zmin, self%zmax, lisbon25)
+            call self%assign_map(lisbon25)
         case("lisbon50")
-            call self%create(self%name, self%zmin, self%zmax, lisbon50)
+            call self%assign_map(lisbon50)
         case("managua")
-            call self%create(self%name, self%zmin, self%zmax, managua)
+            call self%assign_map(managua)
         case("managua10")
-            call self%create(self%name, self%zmin, self%zmax, managua10)
+            call self%assign_map(managua10)
         case("managua100")
-            call self%create(self%name, self%zmin, self%zmax, managua100)
+            call self%assign_map(managua100)
         case("managua25")
-            call self%create(self%name, self%zmin, self%zmax, managua25)
+            call self%assign_map(managua25)
         case("managua50")
-            call self%create(self%name, self%zmin, self%zmax, managua50)
+            call self%assign_map(managua50)
         case("navia")
-            call self%create(self%name, self%zmin, self%zmax, navia)
+            call self%assign_map(navia)
         case("navia10")
-            call self%create(self%name, self%zmin, self%zmax, navia10)
+            call self%assign_map(navia10)
         case("navia100")
-            call self%create(self%name, self%zmin, self%zmax, navia100)
+            call self%assign_map(navia100)
         case("navia25")
-            call self%create(self%name, self%zmin, self%zmax, navia25)
+            call self%assign_map(navia25)
         case("navia50")
-            call self%create(self%name, self%zmin, self%zmax, navia50)
+            call self%assign_map(navia50)
         case("naviaS")
-            call self%create(self%name, self%zmin, self%zmax, naviaS)
+            call self%assign_map(naviaS)
         case("naviaW")
-            call self%create(self%name, self%zmin, self%zmax, naviaW)
+            call self%assign_map(naviaW)
         case("naviaW10")
-            call self%create(self%name, self%zmin, self%zmax, naviaW10)
+            call self%assign_map(naviaW10)
         case("naviaW100")
-            call self%create(self%name, self%zmin, self%zmax, naviaW100)
+            call self%assign_map(naviaW100)
         case("naviaW25")
-            call self%create(self%name, self%zmin, self%zmax, naviaW25)
+            call self%assign_map(naviaW25)
         case("naviaW50")
-            call self%create(self%name, self%zmin, self%zmax, naviaW50)
+            call self%assign_map(naviaW50)
         case("naviaWS")
-            call self%create(self%name, self%zmin, self%zmax, naviaWS)
+            call self%assign_map(naviaWS)
         case("nuuk")
-            call self%create(self%name, self%zmin, self%zmax, nuuk)
+            call self%assign_map(nuuk)
         case("nuuk10")
-            call self%create(self%name, self%zmin, self%zmax, nuuk10)
+            call self%assign_map(nuuk10)
         case("nuuk100")
-            call self%create(self%name, self%zmin, self%zmax, nuuk100)
+            call self%assign_map(nuuk100)
         case("nuuk25")
-            call self%create(self%name, self%zmin, self%zmax, nuuk25)
+            call self%assign_map(nuuk25)
         case("nuuk50")
-            call self%create(self%name, self%zmin, self%zmax, nuuk50)
+            call self%assign_map(nuuk50)
         case("nuukS")
-            call self%create(self%name, self%zmin, self%zmax, nuukS)
+            call self%assign_map(nuukS)
         case("oleron")
-            call self%create(self%name, self%zmin, self%zmax, oleron)
+            call self%assign_map(oleron)
         case("oleron10")
-            call self%create(self%name, self%zmin, self%zmax, oleron10)
+            call self%assign_map(oleron10)
         case("oleron100")
-            call self%create(self%name, self%zmin, self%zmax, oleron100)
+            call self%assign_map(oleron100)
         case("oleron25")
-            call self%create(self%name, self%zmin, self%zmax, oleron25)
+            call self%assign_map(oleron25)
         case("oleron50")
-            call self%create(self%name, self%zmin, self%zmax, oleron50)
+            call self%assign_map(oleron50)
         case("oslo")
-            call self%create(self%name, self%zmin, self%zmax, oslo)
+            call self%assign_map(oslo)
         case("oslo10")
-            call self%create(self%name, self%zmin, self%zmax, oslo10)
+            call self%assign_map(oslo10)
         case("oslo100")
-            call self%create(self%name, self%zmin, self%zmax, oslo100)
+            call self%assign_map(oslo100)
         case("oslo25")
-            call self%create(self%name, self%zmin, self%zmax, oslo25)
+            call self%assign_map(oslo25)
         case("oslo50")
-            call self%create(self%name, self%zmin, self%zmax, oslo50)
+            call self%assign_map(oslo50)
         case("osloS")
-            call self%create(self%name, self%zmin, self%zmax, osloS)
+            call self%assign_map(osloS)
         case("roma")
-            call self%create(self%name, self%zmin, self%zmax, roma)
+            call self%assign_map(roma)
         case("roma10")
-            call self%create(self%name, self%zmin, self%zmax, roma10)
+            call self%assign_map(roma10)
         case("roma100")
-            call self%create(self%name, self%zmin, self%zmax, roma100)
+            call self%assign_map(roma100)
         case("roma25")
-            call self%create(self%name, self%zmin, self%zmax, roma25)
+            call self%assign_map(roma25)
         case("roma50")
-            call self%create(self%name, self%zmin, self%zmax, roma50)
+            call self%assign_map(roma50)
         case("romaO")
-            call self%create(self%name, self%zmin, self%zmax, romaO)
+            call self%assign_map(romaO)
         case("romaO10")
-            call self%create(self%name, self%zmin, self%zmax, romaO10)
+            call self%assign_map(romaO10)
         case("romaO100")
-            call self%create(self%name, self%zmin, self%zmax, romaO100)
+            call self%assign_map(romaO100)
         case("romaO25")
-            call self%create(self%name, self%zmin, self%zmax, romaO25)
+            call self%assign_map(romaO25)
         case("romaO50")
-            call self%create(self%name, self%zmin, self%zmax, romaO50)
+            call self%assign_map(romaO50)
         case("tofino")
-            call self%create(self%name, self%zmin, self%zmax, tofino)
+            call self%assign_map(tofino)
         case("tofino10")
-            call self%create(self%name, self%zmin, self%zmax, tofino10)
+            call self%assign_map(tofino10)
         case("tofino100")
-            call self%create(self%name, self%zmin, self%zmax, tofino100)
+            call self%assign_map(tofino100)
         case("tofino25")
-            call self%create(self%name, self%zmin, self%zmax, tofino25)
+            call self%assign_map(tofino25)
         case("tofino50")
-            call self%create(self%name, self%zmin, self%zmax, tofino50)
+            call self%assign_map(tofino50)
         case("tokyo")
-            call self%create(self%name, self%zmin, self%zmax, tokyo)
+            call self%assign_map(tokyo)
         case("tokyo10")
-            call self%create(self%name, self%zmin, self%zmax, tokyo10)
+            call self%assign_map(tokyo10)
         case("tokyo100")
-            call self%create(self%name, self%zmin, self%zmax, tokyo100)
+            call self%assign_map(tokyo100)
         case("tokyo25")
-            call self%create(self%name, self%zmin, self%zmax, tokyo25)
+            call self%assign_map(tokyo25)
         case("tokyo50")
-            call self%create(self%name, self%zmin, self%zmax, tokyo50)
+            call self%assign_map(tokyo50)
         case("tokyoS")
-            call self%create(self%name, self%zmin, self%zmax, tokyoS)
+            call self%assign_map(tokyoS)
         case("turku")
-            call self%create(self%name, self%zmin, self%zmax, turku)
+            call self%assign_map(turku)
         case("turku10")
-            call self%create(self%name, self%zmin, self%zmax, turku10)
+            call self%assign_map(turku10)
         case("turku100")
-            call self%create(self%name, self%zmin, self%zmax, turku100)
+            call self%assign_map(turku100)
         case("turku25")
-            call self%create(self%name, self%zmin, self%zmax, turku25)
+            call self%assign_map(turku25)
         case("turku50")
-            call self%create(self%name, self%zmin, self%zmax, turku50)
+            call self%assign_map(turku50)
         case("turkuS")
-            call self%create(self%name, self%zmin, self%zmax, turkuS)
+            call self%assign_map(turkuS)
         case("vanimo")
-            call self%create(self%name, self%zmin, self%zmax, vanimo)
+            call self%assign_map(vanimo)
         case("vanimo10")
-            call self%create(self%name, self%zmin, self%zmax, vanimo10)
+            call self%assign_map(vanimo10)
         case("vanimo100")
-            call self%create(self%name, self%zmin, self%zmax, vanimo100)
+            call self%assign_map(vanimo100)
         case("vanimo25")
-            call self%create(self%name, self%zmin, self%zmax, vanimo25)
+            call self%assign_map(vanimo25)
         case("vanimo50")
-            call self%create(self%name, self%zmin, self%zmax, vanimo50)
+            call self%assign_map(vanimo50)
         case("vik")
-            call self%create(self%name, self%zmin, self%zmax, vik)
+            call self%assign_map(vik)
         case("vik10")
-            call self%create(self%name, self%zmin, self%zmax, vik10)
+            call self%assign_map(vik10)
         case("vik100")
-            call self%create(self%name, self%zmin, self%zmax, vik100)
+            call self%assign_map(vik100)
         case("vik25")
-            call self%create(self%name, self%zmin, self%zmax, vik25)
+            call self%assign_map(vik25)
         case("vik50")
-            call self%create(self%name, self%zmin, self%zmax, vik50)
+            call self%assign_map(vik50)
         case("vikO")
-            call self%create(self%name, self%zmin, self%zmax, vikO)
+            call self%assign_map(vikO)
         case("vikO10")
-            call self%create(self%name, self%zmin, self%zmax, vikO10)
+            call self%assign_map(vikO10)
         case("vikO100")
-            call self%create(self%name, self%zmin, self%zmax, vikO100)
+            call self%assign_map(vikO100)
         case("vikO25")
-            call self%create(self%name, self%zmin, self%zmax, vikO25)
+            call self%assign_map(vikO25)
         case("vikO50")
-            call self%create(self%name, self%zmin, self%zmax, vikO50)
+            call self%assign_map(vikO50)
         ! Matplotlib colormaps collection
         case("magma")
-            call self%create(self%name, self%zmin, self%zmax, magma)
+            call self%assign_map(magma)
         case("inferno")
-            call self%create(self%name, self%zmin, self%zmax, inferno)
+            call self%assign_map(inferno)
         case("plasma")
-            call self%create(self%name, self%zmin, self%zmax, plasma)
+            call self%assign_map(plasma)
         case("viridis")
-            call self%create(self%name, self%zmin, self%zmax, viridis)
+            call self%assign_map(viridis)
         !
         case("black_body")
-            call self%create(self%name, self%zmin, self%zmax, black_body)
+            call self%assign_map(black_body)
         case default
             self%name = "grayC"
-            call self%create(self%name, self%zmin, self%zmax, grayC)
+            call self%assign_map(grayC)
         end select
 
         ! Reverse the colormap if requested
@@ -603,24 +621,15 @@ contains
         real(wp), intent(in) :: zmin, zmax
         logical, intent(in), optional :: reverse
         integer, dimension(:, :), intent(in) :: map
-        integer :: last
 
         self%name   = trim(name)
-        self%levels = size(map(:, 1))
-        last  = self%levels - 1
+        self%levels = size(map, 1)
         self%zmin   = zmin
         self%zmax   = zmax
 
         call self%check(check_bounds=.true., check_levels=.true.)
 
-        ! Is the colormap reseted?
-        if (allocated(self%map)) then
-            deallocate(self%map)
-        end if
-        ! The second dimension is for RGB: 1=Red, 2=Green, 3=Blue
-        allocate(self%map(0:last, 1:3))
-
-        self%map = map
+        call self%assign_map(map)
 
         ! Reverse the colormap if requested
         if (present(reverse)) then
@@ -636,24 +645,15 @@ contains
         integer, dimension(:, :), intent(in) :: colors
         integer, intent(in) :: levels
         logical, intent(in), optional :: reverse
-        integer :: last
 
         self%name   = trim(name)
         self%levels = levels
-        last  = self%levels - 1
         self%zmin   = zmin
         self%zmax   = zmax
 
         call self%check(check_bounds=.true., check_levels=.true.)
 
-        ! Is the colormap reseted?
-        if (allocated(self%map)) then
-            deallocate(self%map)
-        end if
-        ! The second dimension is for RGB: 1=Red, 2=Green, 3=Blue
-        allocate(self%map(0:last, 1:3))
-
-        self%map = lagrange(colors, self%levels)
+        call self%assign_map(lagrange(colors, self%levels))
 
         ! Reverse the colormap if requested
         if (present(reverse)) then
@@ -669,24 +669,15 @@ contains
         integer, dimension(:, :), intent(in) :: colors
         integer, intent(in) :: levels
         logical, intent(in), optional :: reverse
-        integer :: last
 
         self%name   = trim(name)
         self%levels = levels
-        last  = self%levels - 1
         self%zmin   = zmin
         self%zmax   = zmax
 
         call self%check(check_bounds=.true., check_levels=.true.)
 
-        ! Is the colormap reseted?
-        if (allocated(self%map)) then
-            deallocate(self%map)
-        end if
-        ! The second dimension is for RGB: 1=Red, 2=Green, 3=Blue
-        allocate(self%map(0:last, 1:3))
-
-        self%map = bezier(colors, self%levels)
+        call self%assign_map(bezier(colors, self%levels))
 
         ! Reverse the colormap if requested
         if (present(reverse)) then
@@ -755,7 +746,7 @@ contains
 
     !> Compute the RGB values for a z real value
     pure subroutine compute_RGB(self, z, red, green, blue)
-        class(Colormap), intent(inout) :: self
+        class(Colormap), intent(in) :: self
         real(wp), intent(in) :: z
         integer, intent(out) :: red, green, blue
         integer  :: level
@@ -773,12 +764,12 @@ contains
         ! To avoid being out of range:
         level = min(max(level, 0), self%levels-1)
 
-        call get_RGB(self, level, red, green, blue)
+        call self%get_RGB(level, red, green, blue)
     end subroutine
 
     !> Compute the RGB values directly from an integer level number
     pure subroutine get_RGB(self, level, red, green, blue)
-        class(Colormap), intent(inout) :: self
+        class(Colormap), intent(in) :: self
         integer, intent(in)  :: level
         integer, intent(out) :: red, green, blue
 
@@ -821,7 +812,7 @@ contains
 
     !> Useful for testing and debugging:
     impure subroutine print(self)
-        class(Colormap), intent(inout) :: self
+        class(Colormap), intent(in) :: self
         integer :: i
 
         print '(a,a)', "Name of the colormap: ", self%name
@@ -836,7 +827,7 @@ contains
     !> Writes the colorbar of the colormap in a PPM file
     impure subroutine write_ppm_colorbar(self, filename, width, height, encoding)
         use forimage, only: format_pnm
-        class(Colormap), intent(inout) :: self
+        class(Colormap), intent(in) :: self
         character(*), intent(in) :: filename
         integer :: i, j     ! Pixbuffer coordinates
         integer, intent(in), optional :: width, height
@@ -968,7 +959,7 @@ contains
         if (present(zmax)) self%zmax = zmax
 
         ! Create the extracted colormap with the specified parameters
-        call self%create(self%name, self%zmin, self%zmax, extracted_map)
+        call self%assign_map(extracted_map)
 
         if (present(reverse)) then
             if (reverse) call self%reverse()
@@ -980,33 +971,13 @@ contains
         use forcolormap_info, only: Colormaps_info
 
         class(Colormap), intent(inout) :: self
-        logical, dimension(4) :: status
         logical, intent(in), optional :: check_name, check_bounds, check_levels
         real(wp) :: temp
         type(Colormaps_info) :: cmap_info
-        integer :: input_levels, i, levels
-        real(wp) :: input_zmin, input_zmax
-        character(:), allocatable :: input_name
-
-        interface
-            pure subroutine error(status, input_name, input_zmin, input_zmax, input_levels)
-                import wp
-                implicit none
-                logical, dimension(:), intent(in) :: status
-                character(*), intent(in) :: input_name
-                real(wp), intent(in) :: input_zmin, input_zmax
-                integer, intent(in) :: input_levels
-            end subroutine error
-        end interface
-
-        ! Save input parameters for error message
-        input_levels = self%levels
-        input_zmin = self%zmin
-        input_zmax = self%zmax
-        input_name = self%name
+        integer :: i, levels
 
         ! Initialize status array
-        status = .true.
+        self%status = .true.
 
         call cmap_info%set_all()
 
@@ -1014,10 +985,10 @@ contains
             if (check_name) then
 
                 ! Check if the colormap is valid
-                if (.not. any(self%name == colormaps_list)) status(1) = .false.
+                if (.not. any(self%name == colormaps_list)) self%status(1) = .false.
 
                 ! Fix the colormap if it is not valid
-                if (status(1) .eqv. .false.) self%name = "grayC"
+                if (self%status(1) .eqv. .false.) self%name = "grayC"
 
                 ! Find the number of levels of the colormap
                 do i = 1, cmap_info%get_ncolormaps()
@@ -1031,7 +1002,7 @@ contains
                 if (levels /= self%levels .or. self%levels < 1) then
                     if (self%levels /= -256) then
                         if (levels /= -1) then
-                            status(3) = .false.
+                            self%status(3) = .false.
                             self%levels = levels
                         end if
                     else
@@ -1040,7 +1011,7 @@ contains
                 end if
 
                 ! Fix the number of levels if it is not valid
-                if (status(3) .eqv. .false.) then
+                if (self%status(3) .eqv. .false.) then
                     self%levels = levels
                 end if
 
@@ -1050,10 +1021,10 @@ contains
         if (present(check_bounds)) then
             if (check_bounds) then
                 ! Check validity of zmin and zmax
-                if (self%zmin > self%zmax) status(2) = .false.
+                if (self%zmin > self%zmax) self%status(2) = .false.
 
                 ! Fix zmin and zmax if they are not valid
-                if (status(2) .eqv. .false.) then
+                if (self%status(2) .eqv. .false.) then
                     temp      = self%zmin
                     self%zmin = self%zmax
                     self%zmax = temp
@@ -1062,51 +1033,48 @@ contains
             end if
         end if
 
-
         if (present(check_levels)) then
             if (check_levels) then
                 ! Check if the number of levels is valid
                 if (self%levels < 1) then
-                    status(4) = .false.
+                    self%status(4) = .false.
                     self%levels = 256
                 end if
             end if
         end if
 
-        ! Call error subroutine if any status is false
-        if (any(status .eqv. .false.))&
-            call error(status, input_name, input_zmin, input_zmax, input_levels)
-
     end subroutine check
-end module forcolormap
 
-!> Print error and fix messages for unvalid colormaps
-impure subroutine error(status, input_name, input_zmin, input_zmax, input_levels)
-    use forcolormap_parameters, only: wp
-    logical, dimension(:), intent(in) :: status
-    character(*), intent(in) :: input_name
-    real(wp), intent(in) :: input_zmin, input_zmax
-    integer, intent(in) :: input_levels
-    integer :: i
+    !> Print error and fix messages for unvalid colormaps
+    impure subroutine print_status(self)
+        class(Colormap), intent(in) :: self
+        integer :: i
 
-    do i = 1, size(status)
-        if (.not. status(i)) then
-            select case (i)
-              case (1)
-                print'(a,a,a)',&
-                    "Error 1: Colormap name '"//trim(input_name)//"' not found! 'grayC' is set by default."
-              case (2)
-                print'(a,f6.4,a,f6.4,a)',&
-                    "Error 2: Min value (zmin=",input_zmin,") exceeds Max value (zmax=",input_zmax,")! zmin and zmax are swapped."
-              case (3)
-                print'(a,g0,a)',&
-                    "Error 3: Number of Levels (levels=",input_levels,") doesn't match colormap! Levels adjusted to colormap."
-              case (4)
-                print'(a,g0,a)',&
-                    "Error 4: Number of Levels (levels=",input_levels,") is less than 1! Levels adjusted to 256."
-              case default
-                print '(a)', "Unknown error!"
-            end select
+        if (any(self%status .eqv. .false.)) then
+
+            do i = 1, size(self%status)
+                if (.not. self%status(i)) then
+                    select case (i)
+                    case (1)
+                        print'(a)',&
+                            "Error 1: Colormap name not found! 'grayC' is set by default."
+                    case (2)
+                        print'(a)',&
+                            "Error 2: Min value (zmin) exceeds Max value (zmax)! zmin and zmax are swapped."
+                    case (3)
+                        print'(a)',&
+                            "Error 3: Number of Levels (levels) doesn't match colormap! Levels adjusted to colormap."
+                    case (4)
+                        print'(a)',&
+                            "Error 4: Number of Levels (levels) is less than 1! Levels adjusted to 256."
+                    case default
+                        print '(a)', "Unknown error!"
+                    end select
+                end if
+            end do
+
         end if
-    end do
-end subroutine error
+
+    end subroutine print_status
+
+end module forcolormap
