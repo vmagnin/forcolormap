@@ -8,11 +8,13 @@ The main goal of v1.0 is to offer a reliable library with a stable API and to im
 
 - [x] Improve the FORD documentation, by adding FORD comments in the source code when needed.
 - [x] Include a few images in the `README.md` file.
-- [ ] Add properties of the colormaps in the `README.md` file: specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, etc.
+- [x] Add properties of the colormaps in the `README.md` file: specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, citable, etc.
 
 ### Quality Assurance
 
 - [x] Add more automatic tests in `test/check.f90`.
+- [ ] Refactoring and code cleanup.
+- [ ] fix bugs and compiler warnings.
 
 ### Publication
 
