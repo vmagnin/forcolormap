@@ -211,6 +211,6 @@ As any work, a colormap should be cited:
 * Matplotlib colormaps (CC0 license / public domain):
     * Stéfan van der Walt and Nathaniel Smith: [https://bids.github.io/colormap/](https://bids.github.io/colormap/)
     * Python version: [https://github.com/BIDS/colormap/blob/master/colormaps.py](https://github.com/BIDS/colormap/blob/master/colormaps.py)
-    * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  [https://www.youtube.com/watch?v=xAoljeRJ3lU](https://www.youtube.com/watch?v=xAoljeRJ3lU)
+    * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  [https://www.youtube.com/watch?v=xAoljeRJ3lU](https://www.youtube.com/watch?v=xAoljeRJ3lU)
 * Black Body colormap (CC0 license / public domain) by Kenneth Moreland: ["Color Map Advice for Scientific Visualization"](https://www.kennethmoreland.com/color-advice/).
 * [Colors for data scientists. Generate and refine palettes of optimally distinct colors.](https://medialab.github.io/iwanthue/)
