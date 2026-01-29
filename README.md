@@ -64,38 +64,3 @@ In the gtk-fortran-extra repository, you will also find a [physical model](https
 
 You can report problems and ask support in the GitHub Issues tab and you can contribute to the code by making Pull Requests. We are also present on the [Fortran Discourse](https://fortran-lang.discourse.group/).
 
-
-
-## References
-
-### Articles and books
-
-* Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. “Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.” Edited by Jesús Malo. *PLOS ONE* 13, no. 7, August 1, 2018, e0199239. [https://doi.org/10.1371/journal.pone.0199239](https://doi.org/10.1371/journal.pone.0199239).
-* Rogowitz, Bernice E, and Lloyd A Treinish. [“Why Should Engineers and Scientists Be Worried About Color?”](https://github.com/amadeusine/interesting-reads/blob/master/ibm-research__why-should-engineers-and-scientists-be-worried-about-color.pdf)
-* Thyng, Kristen, Chad Greene, Robert Hetland, Heather Zimmerle, and Steven DiMarco. “True Colors of Oceanography: Guidelines for Effective and Accurate Colormap Selection.” *Oceanography* 29, no. 3, September 1, 2016, pp. 9–13. [https://doi.org/10.5670/oceanog.2016.66](https://doi.org/10.5670/oceanog.2016.66).
-* Valeur, Bernard. *La couleur dans tous ses éclats.* Bibliothèque scientifique. Paris: Belin-"Pour la science", 2011, ISBN 9782701158761.
-* Valeur, Bernard. *Lumière et luminescence - Ces phénomènes lumineux qui nous entourent.* Bibliothèque scientifique. Paris: Belin-"Pour la science", 2005, ISBN 9782701136035.
-
-### Web pages
-
-#### About colormaps
-* [No Bijection!](NO_BIJECTION.md): a passionate text about the mysteries and wonders of colors.
-* [https://en.wikipedia.org/wiki/Color_gradient](https://en.wikipedia.org/wiki/Color_gradient)
-* [https://en.wikipedia.org/wiki/Heat_map](https://en.wikipedia.org/wiki/Heat_map)
-* Ken Hughes, ["Default colormaps: Are Parula and Viridis really an improvement over Jet?"](https://brushingupscience.com/2019/10/01/default-colormaps-are-parula-and-viridis-really-an-improvement-over-jet/), posted on October 1, 2019.
-* [In Search of a Perfect Colormap](http://inversed.ru/Blog_2.htm)
-* The [Data Visualisation Guide section about colours](https://data.europa.eu/apps/data-visualisation-guide/tag/colour)
-
-#### Specific colormaps
-* Cubehelix (Dave Green, public domain): [https://people.phy.cam.ac.uk/dag9/CUBEHELIX/](https://people.phy.cam.ac.uk/dag9/CUBEHELIX/)
-* Scientific colour maps (Fabio Crameri, MIT license):
-    * [https://www.fabiocrameri.ch/colourmaps/](https://www.fabiocrameri.ch/colourmaps/)
-    * [https://s-ink.org/colour-map-guideline](https://s-ink.org/colour-map-guideline)
-    * [https://s-ink.org/scientific-colour-maps](https://s-ink.org/scientific-colour-maps)
-    * Seminar talk by Fabio Crameri about the scientific use of colour in science communication for the University of Oslo GeoHyd seminar: [https://www.youtube.com/watch?v=iDPzWARbFrs](https://www.youtube.com/watch?v=iDPzWARbFrs)
-* Matplotlib colormaps (CC0 license / public domain):
-    * Stéfan van der Walt and Nathaniel Smith: [https://bids.github.io/colormap/](https://bids.github.io/colormap/)
-    * Python version: [https://github.com/BIDS/colormap/blob/master/colormaps.py](https://github.com/BIDS/colormap/blob/master/colormaps.py)
-    * Nathaniel Smith and Stéfan van der Walt, *A Better Default Colormap for Matplotlib,* SciPy 2015:  [https://www.youtube.com/watch?v=xAoljeRJ3lU](https://www.youtube.com/watch?v=xAoljeRJ3lU)
-* Black Body colormap (CC0 license / public domain) by Kenneth Moreland: ["Color Map Advice for Scientific Visualization"](https://www.kennethmoreland.com/color-advice/).
-* [Colors for data scientists. Generate and refine palettes of optimally distinct colors.](https://medialab.github.io/iwanthue/)
