@@ -6,6 +6,7 @@ The main goal of v1.0 is to offer a reliable library with a stable API and to im
 
 ### Documentation
 
+- [x] Follow the [Diátaxis](https://diataxis.fr) framework. 
 - [x] Improve the FORD documentation, by adding FORD comments in the source code when needed.
 - [x] Include a few images in the `README.md` file.
 - [x] Add properties of the colormaps in the `README.md` file: specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, citable, etc.
@@ -63,7 +64,3 @@ These concepts are open for implementation or consideration. They may or may not
 ### Continuous Integration (CI)
 
 - [ ] Set up continuous integration (CI) to automatically generate PDF files and colormap tables on a monthly basis or after each pull request.
-
-### Documentation
-
-- [ ] Follow the [Diátaxis](https://diataxis.fr/) documentation framework, if FORD allows.
