@@ -2,3 +2,4 @@
 title: Installation
 ---
 
+{!INSTALL.md!}
