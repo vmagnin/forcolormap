@@ -60,7 +60,3 @@ In the gtk-fortran-extra repository, you will also find a [physical model](https
 
 [https://www.youtube.com/watch?v=cVHLCVVvZ4U](https://www.youtube.com/watch?v=cVHLCVVvZ4U)
 
-## Contributing
-
-You can report problems and ask support in the GitHub Issues tab and you can contribute to the code by making Pull Requests. We are also present on the [Fortran Discourse](https://fortran-lang.discourse.group/).
-
