@@ -1,0 +1,6 @@
+---
+title: MIT license
+---
+
+
+{!LICENSE!}
