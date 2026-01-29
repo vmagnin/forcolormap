@@ -1,4 +1,4 @@
-![](logo/logo_forcolormap-roma_8.svg)
+<img src="logo/logo_forcolormap-roma_8.svg" alt="Logo" width="400" />
 
 The ForColormap Fortran library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It includes:
 
@@ -9,7 +9,9 @@ The ForColormap Fortran library is independent of any graphical toolkit: its mai
 * The "zebra" colormap is black and white.
 * A few basic colormaps with no specific properties: "fire", "rainbow", "inv_rainbow".
 
-ForColormap also offers various methods and options to manage colormaps. 
+ForColormap also offers various methods and options to manage colormaps.
+
+It is distributed under the MIT license.
 
 ## Basic usage
 
@@ -33,3 +35,9 @@ call setpixelrgb(x, y, red, green, blue)
 ![Example using the lajolla Scientific colormap](docs/gallery/lajolla_test.png)
 
 ![The lajolla Scientific colormap](docs/gallery/lajolla_colorbar.png)
+
+## Documentation
+
+The full documentation is available at https://vmagnin.github.io/forcolormap/
+
+You will find there tutorials, how-tos, references and other explanations.
