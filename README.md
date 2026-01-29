@@ -65,11 +65,6 @@ In the gtk-fortran-extra repository, you will also find a [physical model](https
 You can report problems and ask support in the GitHub Issues tab and you can contribute to the code by making Pull Requests. We are also present on the [Fortran Discourse](https://fortran-lang.discourse.group/).
 
 
-## Licenses
-
-This project is under MIT license. The logo files are under [license CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-
-
 ## Citing colormaps
 
 As any work, a colormap should be cited:
