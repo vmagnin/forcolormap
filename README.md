@@ -30,33 +30,6 @@ call cmap%compute_RGB(z, red, green, blue)
 call setpixelrgb(x, y, red, green, blue)
 ```
 
-![Example using the lajolla Scientific colormap](gallery/lajolla_test.png)
+![Example using the lajolla Scientific colormap](docs/gallery/lajolla_test.png)
 
-![The lajolla Scientific colormap](gallery/lajolla_colorbar.png)
-
-The library is using the precision `wp=>real64` defined in the module `iso_fortran_env`. And depending on the integers expected by your graphical library, you may need to convert the kinds of red, green, blue variables.
-
-This [guideline](https://s-ink.org/colour-map-guideline) can help you choose the right kind of colormap. And you can visually choose the available colormaps in the [colormaps_list/ForColormap.pdf](https://github.com/vmagnin/forcolormap/blob/main/colormaps_list/ForColormap.pdf) manual or on this page (under development): [https://github.com/gha3mi/forcolormap/tree/dev](https://github.com/gha3mi/forcolormap/tree/dev)
-
-
-## Learning
-
-The API is documented in the [FORD documentation](https://vmagnin.github.io/forcolormap/).
-
-And in the `example` directory, you will find these commented demos:
- 
-* `demo.f90` creates demo PPM files for each built-in colormap, plus a PPM file with the corresponding colorbars. It also demonstrates how to create your own colormap defined in an array and how to download a colormap from a `.txt` file.
-* `demo_reverse.f90` demonstrates the usage of the `reverse=.true.` option to reverse the direction of a colormap.
-* `colormaps_list.f90` generates the `colormaps_list/COLORMAPS_LIST_*.md` files.
-* `example1.f90` demonstrates how ForImage can be used to import/export PPM files.
-* `create.f90` demonstrates creating a custom colormap using methods like `create_lagrange()` and `create_bezier()`.
-* `extract.f90` demonstrates how to create a specific colormap by extracting a specified number of colors of a colormap.
-* `info.f90` demonstrates how to obtain information about a colormap using the `Colormaps_info` class.
-* `modify.f90` demonstrates how you can modify a colormap with methods like `shift()`, in concrete cases.
-
-They can be launched with the command `fpm run --example name_of_the_example` (without the `.f90` extension).
-
-In the gtk-fortran-extra repository, you will also find a [physical model](https://github.com/vmagnin/gtk-fortran-extra/tree/main/reaction_diffusion) demonstrating the use of ForColormap. It creates a movie with Turing patterns, displayed with various colormaps:
-
-[https://www.youtube.com/watch?v=cVHLCVVvZ4U](https://www.youtube.com/watch?v=cVHLCVVvZ4U)
-
+![The lajolla Scientific colormap](docs/gallery/lajolla_colorbar.png)
