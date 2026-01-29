@@ -32,9 +32,14 @@ call cmap%compute_RGB(z, red, green, blue)
 call setpixelrgb(x, y, red, green, blue)
 ```
 
+![](page/gallery/lajolla_test.png)
+
 ![Example using the lajolla Scientific colormap](docs/gallery/lajolla_test.png)
 
+![](page/gallery/lajolla_colorbar.png)
+
 ![The lajolla Scientific colormap](docs/gallery/lajolla_colorbar.png)
+
 
 ## Documentation
 
