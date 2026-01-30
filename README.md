@@ -1,4 +1,4 @@
-<img src="logo/logo_forcolormap-roma_8.svg" alt="Logo" width="400" />
+<img src="logo/logo_forcolormap-roma_8.svg" alt="" width="400" />
 
 The ForColormap Fortran library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It includes:
 
