@@ -846,11 +846,10 @@ contains
 
         allocate(rgb_image(pixheight,pixwidth*3))
 
-        ! do i = 0, pixwidth-1
         do concurrent (i = 0:pixwidth-1) local(z, red, green, blue, j)
             z = self%get_zmin() + i / real(pixwidth-1, kind=wp) * (self%get_zmax() - self%get_zmin())
-            do j = 0, pixheight-1
-                call self%compute_RGB(z, red, green, blue)
+            call self%compute_RGB(z, red, green, blue)
+            do concurrent (j = 0: pixheight-1)
                 rgb_image(pixheight-j, 3*(i+1)-2) = red
                 rgb_image(pixheight-j, 3*(i+1)-1) = green
                 rgb_image(pixheight-j, 3*(i+1))   = blue
