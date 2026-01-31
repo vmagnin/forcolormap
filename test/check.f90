@@ -27,10 +27,9 @@
 !> Automatic tests launched by `fpm test`.
 program check
     use forcolormap
-    use forcolormap_info, only: Colormaps_info
+    use forcolormap_info, only: cmap_info
 
     implicit none
-    type(Colormaps_info) :: info
     type(Colormap) :: cmap
     integer :: red, green, blue
     integer, dimension(0:6, 3) :: test_colormap = reshape( [ &
@@ -47,13 +46,12 @@ program check
 
     !! Methods of the Colormaps_info class: get_ncolormaps(), get_name(),
     !! get_levels().
-    if (info%get_ncolormaps() /= 232) error stop "ERROR: info%get_ncolormaps()"
-    call info%set_all()
+    if (cmap_info%get_ncolormaps() /= 232) error stop "ERROR: cmap_info%get_ncolormaps()"
     ! The first colormap is "acton" (Scientific Colour Map) and the second
     ! one is "acton10":
-    if (info%get_name(1) /= "acton")  error stop "ERROR: info%get_name()"
-    if (info%get_levels(1) /= 256)    error stop "ERROR: info%get_levels()"
-    if (info%get_levels(2) /= 10)     error stop "ERROR: info%get_levels()"
+    if (cmap_info%get_name(1) /= "acton")  error stop "ERROR: cmap_info%get_name()"
+    if (cmap_info%get_levels(1) /= 256)    error stop "ERROR: cmap_info%get_levels()"
+    if (cmap_info%get_levels(2) /= 10)     error stop "ERROR: cmap_info%get_levels()"
 
     ! We use our personnal test_colormap with 7 colours for testing.
     !! Methods of the Colormap class: create(),

@@ -27,22 +27,14 @@
 !> Creates the `colormaps_list/COLORMAPS_LIST_*.md` files using
 !> the `Colormaps_info` class.
 program colormaps_list
-    use forcolormap_info, only: Colormaps_info
+    use forcolormap_info, only: cmap_info
     implicit none
 
-    type(Colormaps_info) :: info
-
-    ! Set all colormap information
-    call info%set_all()
-
     ! Write colormap information to a file
-    call info%write(gradient='Sequential', file_name='colormaps_list/COLORMAPS_LIST_SEQ.md', verbose=4)
-    call info%write(gradient='Multi-Sequential', file_name='colormaps_list/COLORMAPS_LIST_MSQ.md', verbose=4)
-    call info%write(gradient='Diverging', file_name='colormaps_list/COLORMAPS_LIST_DIV.md', verbose=4)
-    call info%write(gradient='Categorical', file_name='colormaps_list/COLORMAPS_LIST_CAT.md', verbose=4)
-    call info%write(gradient='Cyclic', file_name='colormaps_list/COLORMAPS_LIST_CYC.md', verbose=4)
-
-    ! Deallocate all colormap information
-    call info%finalize()
+    call cmap_info%write(gradient='Sequential', file_name='colormaps_list/COLORMAPS_LIST_SEQ.md', verbose=4)
+    call cmap_info%write(gradient='Multi-Sequential', file_name='colormaps_list/COLORMAPS_LIST_MSQ.md', verbose=4)
+    call cmap_info%write(gradient='Diverging', file_name='colormaps_list/COLORMAPS_LIST_DIV.md', verbose=4)
+    call cmap_info%write(gradient='Categorical', file_name='colormaps_list/COLORMAPS_LIST_CAT.md', verbose=4)
+    call cmap_info%write(gradient='Cyclic', file_name='colormaps_list/COLORMAPS_LIST_CYC.md', verbose=4)
 
 end program colormaps_list

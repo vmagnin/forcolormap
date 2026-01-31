@@ -28,7 +28,8 @@
 !> the corresponding test images. It also demonstrates how you can create your
 !> own colormap defined in an array, or import it from a text file.
 program demo
-    use forcolormap, only: Colormap, colormaps_list, wp
+    use forcolormap, only: Colormap, wp
+    use forcolormap_info, only: cmap_info
     use example_utils, only: test_colormap
     implicit none
 
@@ -56,10 +57,10 @@ program demo
 
     ! We create PPM files (binary encoded by default) for each built-in colormap.
     ! The built-in z=f(x,y) test function is in the [0, 2] range:
-    do i = 1, size(colormaps_list)
-        call cmap%set(trim(colormaps_list(i)), 0.0_wp, 2.0_wp)
-        call cmap%colorbar(trim(colormaps_list(i))//'_colorbar')
-        call test_colormap(cmap, trim(colormaps_list(i))//'_test')
+    do i = 1, cmap_info%get_ncolormaps()
+        call cmap%set(trim(cmap_info%get_name(i)), 0.0_wp, 2.0_wp)
+        call cmap%colorbar(trim(cmap_info%get_name(i))//'_colorbar')
+        call test_colormap(cmap, trim(cmap_info%get_name(i))//'_test')
         print '("Colormap ", A30, " has ", I0, " levels")', trim(cmap%get_name()), cmap%get_levels()
     end do
 

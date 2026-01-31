@@ -36,14 +36,7 @@ module forcolormap
     private
 
     public :: wp
-
-    !> List of built-in colormaps:
-    character(*), dimension(*), public, parameter :: colormaps_list = &
-        [character(colormap_name_length) :: &
-        miscellaneous_colormaps_list,&
-        scientific_colour_maps_list,&
-        matplotlib_colormaps_list]
-
+    
     !> The Colormap class (attributes are encapsulated):
     type, public :: Colormap
         character(colormap_name_length), private :: name
@@ -852,9 +845,10 @@ contains
 
         allocate(rgb_image(pixheight,pixwidth*3))
 
-        do i = 0, pixwidth-1
+        ! do i = 0, pixwidth-1
+        do concurrent (i = 0:pixwidth-1) local(z, red, green, blue, j)
+            z = self%get_zmin() + i / real(pixwidth-1, kind=wp) * (self%get_zmax() - self%get_zmin())
             do j = 0, pixheight-1
-                z = self%get_zmin() + i / real(pixwidth-1, kind=wp) * (self%get_zmax() - self%get_zmin())
                 call self%compute_RGB(z, red, green, blue)
                 rgb_image(pixheight-j, 3*(i+1)-2) = red
                 rgb_image(pixheight-j, 3*(i+1)-1) = green
@@ -968,24 +962,27 @@ contains
 
     !> Check the validity of the colormap and fix it if necessary
     pure subroutine check(self,check_name, check_bounds, check_levels)
-        use forcolormap_info, only: Colormaps_info
+        use forcolormap_info, only: cmap_info
 
         class(Colormap), intent(inout) :: self
         logical, intent(in), optional :: check_name, check_bounds, check_levels
         real(wp) :: temp
-        type(Colormaps_info) :: cmap_info
         integer :: i, levels
 
         ! Initialize status array
         self%status = .true.
 
-        call cmap_info%set_all()
-
         if (present(check_name)) then
             if (check_name) then
 
                 ! Check if the colormap is valid
-                if (.not. any(self%name == colormaps_list)) self%status(1) = .false.
+                self%status(1) = .false.
+                do i = 1, cmap_info%get_ncolormaps()
+                    if (self%name == trim(cmap_info%get_name(i))) then
+                        self%status(1) = .true.
+                        exit
+                    end if
+                end do
 
                 ! Fix the colormap if it is not valid
                 if (self%status(1) .eqv. .false.) self%name = "grayC"

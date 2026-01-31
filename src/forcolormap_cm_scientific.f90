@@ -25,49 +25,234 @@
 !> This module contains the 222 colormaps of the *Scientific colour maps*
 !> collection v8.0.1 by Fabio Crameri.
 module forcolormap_cm_scientific
-    use forcolormap_parameters, only: colormap_name_length
+    use forcolormap_parameters, only: colormap_name_length, colormap_metadata
     implicit none
     private
 
-    character(*), dimension(*), parameter, public :: scientific_colour_maps_list = &
-        [character(colormap_name_length) :: &
-        "acton", "acton10", "acton100", "acton25", "acton50", "actonS", &
-        "bam", "bam10", "bam100", "bam25", "bam50", "bamako", &
-        "bamako10", "bamako100", "bamako25", "bamako50", "bamakoS", "bamO", &
-        "bamO10", "bamO100", "bamO25", "bamO50", "batlow", "batlow10", &
-        "batlow100", "batlow25", "batlow50", "batlowK", "batlowK10", "batlowK100", &
-        "batlowK25", "batlowK50", "batlowKS", "batlowS", "batlowW", "batlowW10", &
-        "batlowW100", "batlowW25", "batlowW50", "batlowWS", "berlin", "berlin10", &
-        "berlin100", "berlin25", "berlin50", "bilbao", "bilbao10", "bilbao100", &
-        "bilbao25", "bilbao50", "bilbaoS", "broc", "broc10", "broc100", &
-        "broc25", "broc50", "brocO", "brocO10", "brocO100", "brocO25", &
-        "brocO50", "buda", "buda10", "buda100", "buda25", "buda50", &
-        "budaS", "bukavu", "bukavu10", "bukavu100", "bukavu25", "bukavu50", &
-        "cork", "cork10", "cork100", "cork25", "cork50", "corkO", &
-        "corkO10", "corkO100", "corkO25", "corkO50", "davos", "davos10", &
-        "davos100", "davos25", "davos50", "davosS", "devon", "devon10", &
-        "devon100", "devon25", "devon50", "devonS", "fes", "fes10", &
-        "fes100", "fes25", "fes50", "glasgow", "glasgow10", "glasgow100", &
-        "glasgow25", "glasgow50", "glasgowS", "grayC", "grayC10", "grayC100", &
-        "grayC25", "grayC50", "grayCS", "hawaii", "hawaii10", "hawaii100", &
-        "hawaii25", "hawaii50", "hawaiiS", "imola", "imola10", "imola100", &
-        "imola25", "imola50", "imolaS", "lajolla", "lajolla10", "lajolla100", &
-        "lajolla25", "lajolla50", "lajollaS", "lapaz", "lapaz10", "lapaz100", &
-        "lapaz25", "lapaz50", "lapazS", "lipari", "lipari10", "lipari100", &
-        "lipari25", "lipari50", "lipariS", "lisbon", "lisbon10", "lisbon100", &
-        "lisbon25", "lisbon50", "managua", "managua10", "managua100", "managua25", &
-        "managua50", "navia", "navia10", "navia100", "navia25", "navia50", &
-        "naviaS", "naviaW", "naviaW10", "naviaW100", "naviaW25", "naviaW50", &
-        "naviaWS", "nuuk", "nuuk10", "nuuk100", "nuuk25", "nuuk50", &
-        "nuukS", "oleron", "oleron10", "oleron100", "oleron25", "oleron50", &
-        "oslo", "oslo10", "oslo100", "oslo25", "oslo50", "osloS", &
-        "roma", "roma10", "roma100", "roma25", "roma50", "romaO", &
-        "romaO10", "romaO100", "romaO25", "romaO50", "tofino", "tofino10", &
-        "tofino100", "tofino25", "tofino50", "tokyo", "tokyo10", "tokyo100", &
-        "tokyo25", "tokyo50", "tokyoS", "turku", "turku10", "turku100", &
-        "turku25", "turku50", "turkuS", "vanimo", "vanimo10", "vanimo100", &
-        "vanimo25", "vanimo50", "vik", "vik10", "vik100", "vik25", &
-        "vik50", "vikO", "vikO10", "vikO100", "vikO25",         "vikO50"]
+    type(colormap_metadata), dimension(*), parameter, public :: scientific_metadata = [ &
+        colormap_metadata("acton","acton","Sequential","Continuous",256,"acton_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("acton10","acton","Sequential","Discrete",10,"acton10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("acton25","acton","Sequential","Discrete",25,"acton25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("acton50","acton","Sequential","Discrete",50,"acton50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("acton100","acton","Sequential","Discrete",100,"acton100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("actonS","acton","Categorical","Continuous",100,"actonS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bam","bam","Diverging","Continuous",256,"bam_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bam10","bam","Diverging","Discrete",10,"bam10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bam100","bam","Diverging","Discrete",100,"bam100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bam25","bam","Diverging","Discrete",25,"bam25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bam50","bam","Diverging","Discrete",50,"bam50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamako","bamako","Sequential","Continuous",256,"bamako_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamako10","bamako","Sequential","Discrete",10,"bamako10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamako100","bamako","Sequential","Discrete",100,"bamako100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamako25","bamako","Sequential","Discrete",25,"bamako25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamako50","bamako","Sequential","Discrete",50,"bamako50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamakoS","bamako","Categorical","Continuous",100,"bamakoS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamO","bam","Cyclic","Continuous",256,"bamO_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamO10","bam","Cyclic","Discrete",10,"bamO10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamO100","bam","Cyclic","Discrete",100,"bamO100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamO25","bam","Cyclic","Discrete",25,"bamO25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bamO50","bam","Cyclic","Discrete",50,"bamO50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlow","batlow","Sequential","Continuous",256,"batlow_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlow10","batlow","Sequential","Discrete",10,"batlow10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlow100","batlow","Sequential","Discrete",100,"batlow100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlow25","batlow","Sequential","Discrete",25,"batlow25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlow50","batlow","Sequential","Discrete",50,"batlow50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowK","batlow","Sequential","Continuous",256,"batlowK_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowK10","batlow","Sequential","Discrete",10,"batlowK10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowK100","batlow","Sequential","Discrete",100,"batlowK100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowK25","batlow","Sequential","Discrete",25,"batlowK25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowK50","batlow","Sequential","Discrete",50,"batlowK50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowKS","batlow","Categorical","Continuous",100,"batlowKS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowS","batlow","Categorical","Continuous",100,"batlowS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowW","batlow","Sequential","Continuous",256,"batlowW_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowW10","batlow","Sequential","Discrete",10,"batlowW10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowW100","batlow","Sequential","Discrete",100,"batlowW100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowW25","batlow","Sequential","Discrete",25,"batlowW25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowW50","batlow","Sequential","Discrete",50,"batlowW50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("batlowWS","batlow","Categorical","Continuous",100,"batlowWS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("berlin","berlin","Diverging","Continuous",256,"berlin_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("berlin10","berlin","Diverging","Discrete",10,"berlin10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("berlin100","berlin","Diverging","Discrete",100,"berlin100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("berlin25","berlin","Diverging","Discrete",25,"berlin25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("berlin50","berlin","Diverging","Discrete",50,"berlin50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bilbao","bilbao","Sequential","Continuous",256,"bilbao_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bilbao10","bilbao","Sequential","Discrete",10,"bilbao10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bilbao100","bilbao","Sequential","Discrete",100,"bilbao100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bilbao25","bilbao","Sequential","Discrete",25,"bilbao25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bilbao50","bilbao","Sequential","Discrete",50,"bilbao50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bilbaoS","bilbao","Categorical","Continuous",100,"bilbaoS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("broc","broc","Diverging","Continuous",256,"broc_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("broc10","broc","Diverging","Discrete",10,"broc10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("broc100","broc","Diverging","Discrete",100,"broc100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("broc25","broc","Diverging","Discrete",25,"broc25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("broc50","broc","Diverging","Discrete",50,"broc50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("brocO","broc","Cyclic","Continuous",256,"brocO_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("brocO10","broc","Diverging","Discrete",10,"brocO10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("brocO100","broc","Diverging","Discrete",100,"brocO100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("brocO25","broc","Diverging","Discrete",25,"brocO25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("brocO50","broc","Diverging","Discrete",50,"brocO50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("buda","buda","Sequential","Continuous",256,"buda_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("buda10","buda","Sequential","Discrete",10,"buda10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("buda100","buda","Sequential","Discrete",100,"buda100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("buda25","buda","Sequential","Discrete",25,"buda25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("buda50","buda","Sequential","Discrete",50,"buda50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("budaS","buda","Categorical","Continuous",100,"budaS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bukavu","bukavu","Multi-Sequential","Continuous",256,"bukavu_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bukavu10","bukavu","Multi-Sequential","Discrete",10,"bukavu10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bukavu100","bukavu","Multi-Sequential","Discrete",100,"bukavu100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bukavu25","bukavu","Multi-Sequential","Discrete",25,"bukavu25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("bukavu50","bukavu","Multi-Sequential","Discrete",50,"bukavu50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("cork","cork","Diverging","Continuous",256,"cork_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("cork10","cork","Diverging","Discrete",10,"cork10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("cork100","cork","Diverging","Discrete",100,"cork100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("cork25","cork","Diverging","Discrete",25,"cork25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("cork50","cork","Diverging","Discrete",50,"cork50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("corkO","cork","Cyclic","Continuous",256,"corkO_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("corkO10","cork","Diverging","Discrete",10,"corkO10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("corkO100","cork","Diverging","Discrete",100,"corkO100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("corkO25","cork","Diverging","Discrete",25,"corkO25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("corkO50","cork","Diverging","Discrete",50,"corkO50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("davos","davos","Sequential","Continuous",256,"davos_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("davos10","davos","Sequential","Discrete",10,"davos10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("davos100","davos","Sequential","Discrete",100,"davos100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("davos25","davos","Sequential","Discrete",25,"davos25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("davos50","davos","Sequential","Discrete",50,"davos50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("davosS","davos","Categorical","Continuous",100,"davosS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("devon","devon","Sequential","Continuous",256,"devon_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("devon10","devon","Sequential","Discrete",10,"devon10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("devon100","devon","Sequential","Discrete",100,"devon100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("devon25","devon","Sequential","Discrete",25,"devon25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("devon50","devon","Sequential","Discrete",50,"devon50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("devonS","devon","Categorical","Continuous",100,"devonS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("fes","fes","Multi-Sequential","Continuous",256,"fes_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("fes10","fes","Multi-Sequential","Discrete",10,"fes10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("fes100","fes","Multi-Sequential","Discrete",100,"fes100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("fes25","fes","Multi-Sequential","Discrete",25,"fes25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("fes50","fes","Multi-Sequential","Discrete",50,"fes50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("glasgow","glasgow","Sequential","Continuous",256,"glasgow_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("glasgow10","glasgow","Sequential","Discrete",10,"glasgow10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("glasgow100","glasgow","Sequential","Discrete",100,"glasgow100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("glasgow25","glasgow","Sequential","Discrete",25,"glasgow25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("glasgow50","glasgow","Sequential","Discrete",50,"glasgow50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("glasgowS","glasgow","Categorical","Continuous",100,"glasgowS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("grayC","grayC","Sequential","Continuous",256,"grayC_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("grayC10","grayC","Sequential","Discrete",10,"grayC10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("grayC100","grayC","Sequential","Discrete",100,"grayC100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("grayC25","grayC","Sequential","Discrete",25,"grayC25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("grayC50","grayC","Sequential","Discrete",50,"grayC50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("grayCS","grayC","Categorical","Continuous",100,"grayCS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("hawaii","hawaii","Sequential","Continuous",256,"hawaii_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("hawaii10","hawaii","Sequential","Discrete",10,"hawaii10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("hawaii100","hawaii","Sequential","Discrete",100,"hawaii100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("hawaii25","hawaii","Sequential","Discrete",25,"hawaii25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("hawaii50","hawaii","Sequential","Discrete",50,"hawaii50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("hawaiiS","hawaii","Categorical","Continuous",100,"hawaiiS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("imola","imola","Sequential","Continuous",256,"imola_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("imola10","imola","Sequential","Discrete",10,"imola10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("imola100","imola","Sequential","Discrete",100,"imola100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("imola25","imola","Sequential","Discrete",25,"imola25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("imola50","imola","Sequential","Discrete",50,"imola50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("imolaS","imola","Categorical","Continuous",100,"imolaS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lajolla","lajolla","Sequential","Continuous",256,"lajolla_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lajolla10","lajolla","Sequential","Discrete",10,"lajolla10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lajolla100","lajolla","Sequential","Discrete",100,"lajolla100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lajolla25","lajolla","Sequential","Discrete",25,"lajolla25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lajolla50","lajolla","Sequential","Discrete",50,"lajolla50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lajollaS","lajolla","Categorical","Continuous",100,"lajollaS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lapaz","lapaz","Sequential","Continuous",256,"lapaz_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lapaz10","lapaz","Sequential","Discrete",10,"lapaz10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lapaz100","lapaz","Sequential","Discrete",100,"lapaz100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lapaz25","lapaz","Sequential","Discrete",25,"lapaz25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lapaz50","lapaz","Sequential","Discrete",50,"lapaz50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lapazS","lapaz","Categorical","Continuous",100,"lapazS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lipariS","lipari","Categorical","Continuous",100,"lipariS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lipari","lipari","Sequential","Continuous",256,"lipari_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lipari10","lipari","Sequential","Discrete",10,"lipari10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lipari100","lipari","Sequential","Discrete",100,"lipari100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lipari25","lipari","Sequential","Discrete",25,"lipari25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lipari50","lipari","Sequential","Discrete",50,"lipari50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lisbon","lisbon","Diverging","Continuous",256,"lisbon_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lisbon10","lisbon","Diverging","Discrete",10,"lisbon10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lisbon100","lisbon","Diverging","Discrete",100,"lisbon100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lisbon25","lisbon","Diverging","Discrete",25,"lisbon25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("lisbon50","lisbon","Diverging","Discrete",50,"lisbon50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("managua","managua","Diverging","Continuous",256,"managua_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("managua10","managua","Diverging","Discrete",10,"managua10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("managua100","managua","Diverging","Discrete",100,"managua100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("managua25","managua","Diverging","Discrete",25,"managua25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("managua50","managua","Diverging","Discrete",50,"managua50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("navia","navia","Sequential","Continuous",256,"navia_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("navia10","navia","Sequential","Discrete",10,"navia10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("navia100","navia","Sequential","Discrete",100,"navia100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("navia25","navia","Sequential","Discrete",25,"navia25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("navia50","navia","Sequential","Discrete",50,"navia50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("naviaS","navia","Categorical","Continuous",100,"naviaS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("naviaW","navia","Sequential","Continuous",256,"naviaW_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("naviaWS","navia","Categorical","Continuous",100,"naviaWS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("naviaW10","navia","Sequential","Discrete",10,"naviaW10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("naviaW100","navia","Sequential","Discrete",100,"naviaW100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("naviaW25","navia","Sequential","Discrete",25,"naviaW25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("naviaW50","navia","Sequential","Discrete",50,"naviaW50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("nuuk","nuuk","Sequential","Continuous",256,"nuuk_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("nuuk10","nuuk","Sequential","Discrete",10,"nuuk10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("nuuk100","nuuk","Sequential","Discrete",100,"nuuk100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("nuuk25","nuuk","Sequential","Discrete",25,"nuuk25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("nuuk50","nuuk","Sequential","Discrete",50,"nuuk50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("nuukS","nuuk","Categorical","Continuous",100,"nuukS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oleron","oleron","Multi-Sequential","Continuous",256,"oleron_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oleron10","oleron","Multi-Sequential","Discrete",10,"oleron10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oleron100","oleron","Multi-Sequential","Discrete",100,"oleron100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oleron25","oleron","Multi-Sequential","Discrete",25,"oleron25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oleron50","oleron","Multi-Sequential","Discrete",50,"oleron50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oslo","oslo","Sequential","Continuous",256,"oslo_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oslo10","oslo","Sequential","Discrete",10,"oslo10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oslo100","oslo","Sequential","Discrete",100,"oslo100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oslo25","oslo","Sequential","Discrete",25,"oslo25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("oslo50","oslo","Sequential","Discrete",50,"oslo50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("osloS","oslo","Categorical","Continuous",100,"osloS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("roma","roma","Diverging","Continuous",256,"roma_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("roma10","roma","Diverging","Discrete",10,"roma10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("roma100","roma","Diverging","Discrete",100,"roma100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("roma25","roma","Diverging","Discrete",25,"roma25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("roma50","roma","Diverging","Discrete",50,"roma50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("romaO","roma","Cyclic","Continuous",256,"romaO_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("romaO10","roma","Diverging","Discrete",10,"romaO10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("romaO100","roma","Diverging","Discrete",100,"romaO100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("romaO25","roma","Diverging","Discrete",25,"romaO25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("romaO50","roma","Diverging","Discrete",50,"romaO50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tofino","tofino","Diverging","Continuous",256,"tofino_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tofino10","tofino","Diverging","Discrete",10,"tofino10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tofino100","tofino","Diverging","Discrete",100,"tofino100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tofino25","tofino","Diverging","Discrete",25,"tofino25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tofino50","tofino","Diverging","Discrete",50,"tofino50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tokyo","tokyo","Sequential","Continuous",256,"tokyo_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tokyo10","tokyo","Sequential","Discrete",10,"tokyo10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tokyo100","tokyo","Sequential","Discrete",100,"tokyo100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tokyo25","tokyo","Sequential","Discrete",25,"tokyo25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tokyo50","tokyo","Sequential","Discrete",50,"tokyo50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("tokyoS","tokyo","Categorical","Continuous",100,"tokyoS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("turku","turku","Sequential","Continuous",256,"turku_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("turku10","turku","Sequential","Discrete",10,"turku10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("turku100","turku","Sequential","Discrete",100,"turku100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("turku25","turku","Sequential","Discrete",25,"turku25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("turku50","turku","Sequential","Discrete",50,"turku50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("turkuS","turku","Categorical","Continuous",100,"turkuS_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vanimo","vanimo","Diverging","Continuous",256,"vanimo_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vanimo10","vanimo","Diverging","Discrete",10,"vanimo10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vanimo100","vanimo","Diverging","Discrete",100,"vanimo100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vanimo25","vanimo","Diverging","Discrete",25,"vanimo25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vanimo50","vanimo","Diverging","Discrete",50,"vanimo50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vik","vik","Diverging","Continuous",256,"vik_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vik10","vik","Diverging","Discrete",10,"vik10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vik100","vik","Diverging","Discrete",100,"vik100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vik25","vik","Diverging","Discrete",25,"vik25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vik50","vik","Diverging","Discrete",50,"vik50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vikO","vik","Cyclic","Continuous",256,"vikO_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vikO10","vik","Diverging","Discrete",10,"vikO10_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vikO100","vik","Diverging","Discrete",100,"vikO100_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vikO25","vik","Diverging","Discrete",25,"vikO25_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch"), &
+        colormap_metadata("vikO50","vik","Diverging","Discrete",50,"vikO50_colorbar.ppm","Scientific Colour Map","Fabio Crameri","MIT license","https://www.fabiocrameri.ch") &
+    ]
 
     integer, dimension(0:255, 1:3), public :: acton=reshape( [ &
              38, 13, 64,      39, 14, 65,      40, 15, 66,      41, 17, 67, &

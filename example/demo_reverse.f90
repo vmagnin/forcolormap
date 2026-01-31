@@ -27,7 +27,8 @@
 !> This example demonstrates the use of the 'reverse' optional argument to
 !> reverse the order of a colormap.
 program demo_reverse
-    use forcolormap, only: Colormap, colormaps_list, wp
+    use forcolormap, only: Colormap, wp
+    use forcolormap_info, only: cmap_info
     use example_utils, only: test_colormap
     implicit none
 
@@ -55,10 +56,10 @@ program demo_reverse
 
     ! We create PPM files (binary encoded by default) for each built-in colormap.
     ! The built-in z=f(x,y) test function is in the [0, 2] range:
-    do i = 1, size(colormaps_list)
-        call cmap%set(trim(colormaps_list(i)), 0.0_wp, 2.0_wp, reverse=.true.)
-        call cmap%colorbar(trim(colormaps_list(i))//'_reverse_colorbar')
-        call test_colormap(cmap, trim(colormaps_list(i))//'_reverse_test')
+    do i = 1, cmap_info%get_ncolormaps()
+        call cmap%set(trim(cmap_info%get_name(i)), 0.0_wp, 2.0_wp, reverse=.true.)
+        call cmap%colorbar(trim(cmap_info%get_name(i))//'_reverse_colorbar')
+        call test_colormap(cmap, trim(cmap_info%get_name(i))//'_reverse_test')
         print '("Colormap ", A30, " has ", I0, " levels")', trim(cmap%get_name()), cmap%get_levels()
     end do
 

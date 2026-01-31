@@ -26,17 +26,21 @@
 
 !> This module contains miscellaneous colormaps, especially black body andf cubehelix.
 module forcolormap_cm_miscellaneous
-    use forcolormap_parameters, only: colormap_name_length, wp, pi
+    use forcolormap_parameters, only: colormap_name_length, colormap_metadata, wp, pi
     implicit none
     private
 
     public :: fire_colormap, rainbow_colormap, &
               inv_rainbow_colormap, zebra_colormap, cubehelix_colormap
 
-    character(*), dimension(*), parameter, public :: miscellaneous_colormaps_list = &
-        [character(colormap_name_length) :: &
-        "fire", "rainbow", "inv_rainbow", "zebra", "cubehelix", &
-        "black_body"]
+    type(colormap_metadata), dimension(*), parameter, public :: miscellaneous_metadata = [ &
+        colormap_metadata("black_body","black_body","Sequential","Continuous",1024,"black_body_colorbar.ppm","Miscellaneous","Kenneth Moreland","Public Domain (CC0)","https://www.kennethmoreland.com"), &
+        colormap_metadata("cubehelix","cubehelix","Sequential","Continuous",-1,"cubehelix_colorbar.ppm","Miscellaneous","Dave Green","Public Domain (Unlicense license)","https://people.phy.cam.ac.uk/dag9/CUBEHELIX"), &
+        colormap_metadata("fire","fire","Sequential","Continuous",-1,"fire_colorbar.ppm","Miscellaneous","Vincent Magnin","Public Domain (CC0)",""), &
+        colormap_metadata("rainbow","rainbow","Sequential","Continuous",256,"rainbow_colorbar.ppm","Miscellaneous","Vincent Magnin","Public Domain (CC0)",""), &
+        colormap_metadata("inv_rainbow","rainbow","Sequential","Continuous",256,"inv_rainbow_colorbar.ppm","Miscellaneous","Vincent Magnin","Public Domain (CC0)",""), &
+        colormap_metadata("zebra","zebra","Categorical","Discrete",256,"zebra_colorbar.ppm","Miscellaneous","Vincent Magnin","Public Domain (CC0)","") &
+    ]
 
     integer, dimension(0:1023, 1:3), public :: black_body=reshape( [ &
               0,  0,  0,       1,  0,  0,       2,  0,  0,       2,  1,  0, &
