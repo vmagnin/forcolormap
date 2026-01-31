@@ -26,7 +26,7 @@
 
 !> This example demonstrates how ForImage can be used to import/export PPM files.
 program example1
-    use forcolormap
+    use forcolormap, only: Colormap, wp
     use example_utils, only: test_colormap
     use forimage, only: format_pnm
     implicit none

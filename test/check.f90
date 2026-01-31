@@ -26,7 +26,7 @@
 
 !> Automatic tests launched by `fpm test`.
 program check
-    use forcolormap
+    use forcolormap, only: Colormap, wp
     use forcolormap_info, only: cmap_info
 
     implicit none
