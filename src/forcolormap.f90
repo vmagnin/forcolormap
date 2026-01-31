@@ -45,11 +45,12 @@ module forcolormap
         ! An array containing for each level the associated RGB values:
         integer, dimension(:, :), allocatable, private :: map
 
-        logical, private :: status(4) = .false.
+        logical, private :: status(5) = .false.
         ! status(1): name validity
         ! status(2): zmin < zmax
         ! status(3): levels match colormap
         ! status(4): levels >= 1
+        ! status(5): extract validity
     contains
         procedure :: set
         procedure :: finalize
@@ -906,6 +907,10 @@ contains
         integer, dimension(self%levels,3) :: array
         character(3) :: extractedLevels_char
 
+        ! Check if the number of extractedLevels is valid
+        call self%check(check_extract=.true., extractedLevels=extractedLevels)
+        if (.not. self%status(5)) return
+
         ! Initialize array with indices
         do concurrent (i = 1: self%levels)
             array(i,:) = i-1
@@ -915,11 +920,6 @@ contains
         do concurrent (i = 1: 3)
             array_rel(:,i) = array(:,i)/ maxval(array(:,i))
         end do
-
-        ! Check if the number of extractedLevels is valid
-        if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
-            error stop "Error: Invalid number of extractedLevels. Must be > 1 and <= levels"
-        end if
 
         step(:) = array_rel(self%levels,:) / real(extractedLevels-1, kind=wp)
 
@@ -961,11 +961,12 @@ contains
     end subroutine extract
 
     !> Check the validity of the colormap and fix it if necessary
-    pure subroutine check(self,check_name, check_bounds, check_levels)
+    pure subroutine check(self,check_name, check_bounds, check_levels, check_extract, extractedLevels)
         use forcolormap_info, only: cmap_info
 
         class(Colormap), intent(inout) :: self
-        logical, intent(in), optional :: check_name, check_bounds, check_levels
+        logical, intent(in), optional :: check_name, check_bounds, check_levels, check_extract
+        integer, intent(in), optional :: extractedLevels
         real(wp) :: temp
         integer :: i, levels
 
@@ -1040,6 +1041,19 @@ contains
             end if
         end if
 
+        ! Check validity of extractedLevels
+        if (present(check_extract)) then
+            if (check_extract) then
+                if (.not. present(extractedLevels)) then
+                    self%status(5) = .false.
+                else if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
+                    self%status(5) = .false.
+                else
+                    self%status(5) = .true.
+                end if
+            end if
+        end if
+
     end subroutine check
 
     !> Print error and fix messages for unvalid colormaps
@@ -1063,7 +1077,10 @@ contains
                             "Error 3: Number of Levels (levels) doesn't match colormap! Levels adjusted to colormap."
                     case (4)
                         print'(a)',&
-                            "Error 4: Number of Levels (levels) is less than 1! Levels adjusted to 256."
+                        "Error 4: Number of Levels (levels) is less than 1! Levels adjusted to 256."
+                    case (5)
+                        print'(a)',&
+                        "Error 5: Invalid extractedLevels. No extraction performed."
                     case default
                         print '(a)', "Unknown error!"
                     end select

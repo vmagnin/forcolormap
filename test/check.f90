@@ -134,4 +134,14 @@ program check
     call cmap%print_status()
     if (cmap%get_zmin() /= 0.0_wp .or. cmap%get_zmax() /= 2.0_wp) error stop "ERROR: colormap%check() zmin > zmax"
 
+    ! test extract() procedure with an excessive number of levels
+    call cmap%set('fes', 0.0_wp, 2.0_wp)
+    call cmap%extract(1000)
+    call cmap%print_status()
+
+    ! test extract() procedure with an invalid number of levels
+    call cmap%set('fes', 0.0_wp, 2.0_wp)
+    call cmap%extract(0)
+    call cmap%print_status()
+
 end program check
