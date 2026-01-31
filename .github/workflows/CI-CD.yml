@@ -26,30 +26,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        compiler: [gfortran, ifx, flang-new, nvfortran]
         include:
-          - os: ubuntu-latest
-            extra-packages: ""
-          - os: windows-latest
-            extra-packages: ""
-          - os: macos-latest
-            extra-packages: ""
-        exclude:
-          - os: macos-latest
-            compiler: flang-new
-          - os: macos-latest
-            compiler: ifx
-          - os: macos-latest
-            compiler: nvfortran
-          - os: windows-latest
-            compiler: nvfortran
-          - os: ubuntu-latest
-            compiler: flang-new
-          - os: windows-latest
-            compiler: flang-new
-          - os: windows-latest
-            compiler: ifx
+        - {os: ubuntu-latest,  compiler: gfortran }
+        - {os: ubuntu-latest,  compiler: ifx      }
+        - {os: ubuntu-latest,  compiler: flang-new}
+        - {os: ubuntu-latest,  compiler: nvfortran}
+        - {os: windows-latest, compiler: gfortran }
+        - {os: windows-latest, compiler: ifx      }
+        - {os: windows-latest, compiler: flang-new}
+        - {os: macos-latest,   compiler: gfortran }
     steps:
       - name: Setup Fortran
         uses: gha3mi/setup-fortran-conda@latest
@@ -97,26 +82,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        compiler: [gfortran, ifx, flang-new, nvfortran]
         include:
-          - os: ubuntu-latest
-            extra-packages: ""
-          - os: windows-latest
-            extra-packages: ""
-          - os: macos-latest
-            extra-packages: ""
-        exclude:
-          - os: macos-latest
-            compiler: flang-new
-          - os: macos-latest
-            compiler: ifx
-          - os: macos-latest
-            compiler: nvfortran
-          - os: windows-latest
-            compiler: nvfortran
-          - os: ubuntu-latest
-            compiler: flang-new
+        - {os: ubuntu-latest,  compiler: gfortran }
+        - {os: ubuntu-latest,  compiler: ifx      }
+        - {os: ubuntu-latest,  compiler: flang-new}
+        - {os: ubuntu-latest,  compiler: nvfortran}
+        - {os: windows-latest, compiler: gfortran }
+        - {os: windows-latest, compiler: ifx      }
+        - {os: windows-latest, compiler: flang-new}
+        - {os: macos-latest,   compiler: gfortran }
   
     steps:
       - name: Setup Fortran
