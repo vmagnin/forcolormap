@@ -33,17 +33,17 @@ module forcolormap
     use forcolormap_cm_miscellaneous
 
     implicit none
-    private
 
-    public :: wp
+    private
+    public wp, Colormap
 
     !> The Colormap class (attributes are encapsulated):
-    type, public :: Colormap
+    type Colormap
         character(colormap_name_length), private :: name
         integer, private  :: levels         ! Number of levels
         real(wp), private :: zmin, zmax     ! z range
         ! An array containing for each level the associated RGB values:
-        integer, dimension(:, :), allocatable, private :: map
+        integer, allocatable, private :: map(:,:)
 
         logical, private :: status(5) = .false.
         ! status(1): name validity
@@ -72,7 +72,7 @@ module forcolormap
         procedure, private :: assign_map
         procedure, private :: check
         procedure :: print_status
-    end type Colormap
+    end type
 
 
 contains
@@ -92,7 +92,7 @@ contains
         else
             allocate(self%map(0:self%levels-1, 1:3), source=map)
         end if
-    end subroutine assign_map
+    end subroutine
 
     !> Choose a colormap and set its parameters
     pure subroutine set(self, name, zmin, zmax, levels, varargs, reverse)
@@ -100,7 +100,7 @@ contains
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         integer, intent(in), optional :: levels
-        real(wp), dimension(:), intent(in), optional :: varargs
+        real(wp), intent(in), optional :: varargs(:)
         logical, intent(in), optional :: reverse
 
         self%name = trim(name)
@@ -606,7 +606,7 @@ contains
         if (present(reverse)) then
             if (reverse) call self%reverse()
         end if
-    end subroutine set
+    end subroutine
 
     !> Finalize the colormap, deallocating the map array and resetting status.
     pure subroutine finalize(self)
@@ -621,7 +621,7 @@ contains
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         logical, intent(in), optional :: reverse
-        integer, dimension(:, :), intent(in) :: map
+        integer, intent(in) :: map(:,:)
 
         self%name   = trim(name)
         self%levels = size(map, 1)
@@ -643,7 +643,7 @@ contains
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
-        integer, dimension(:, :), intent(in) :: colors
+        integer, intent(in) :: colors(:,:)
         integer, intent(in) :: levels
         logical, intent(in), optional :: reverse
 
@@ -667,7 +667,7 @@ contains
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
-        integer, dimension(:, :), intent(in) :: colors
+        integer, intent(in) :: colors(:,:)
         integer, intent(in) :: levels
         logical, intent(in), optional :: reverse
 
@@ -742,7 +742,7 @@ contains
         else
             stop "ERROR: COLORMAP FILE NOT FOUND!"
         end if
-    end subroutine load
+    end subroutine
 
 
     !> Compute the RGB values for a z real value
@@ -774,9 +774,9 @@ contains
         integer, intent(in)  :: level
         integer, intent(out) :: red, green, blue
 
-        red =   self%map(level, 1)
+        red   = self%map(level, 1)
         green = self%map(level, 2)
-        blue =  self%map(level, 3)
+        blue  = self%map(level, 3)
     end subroutine
 
    !> Returns the name of the colormap
@@ -830,14 +830,12 @@ contains
         use forimage, only: format_pnm
         class(Colormap), intent(in) :: self
         character(*), intent(in) :: filename
-        integer :: i, j     ! Pixbuffer coordinates
         integer, intent(in), optional :: width, height
-        integer :: pixwidth, pixheight
-        integer, dimension(:,:), allocatable :: rgb_image
-        integer  :: red, green, blue
+        character(*), intent(in), optional :: encoding
+        integer, allocatable :: rgb_image(:,:)
+        integer  :: pixwidth, pixheight, red, green, blue, i, j
         real(wp) :: z
         type(format_pnm) :: ppm
-        character(*), intent(in), optional :: encoding
 
         if (present(width)) then
             pixwidth = width
@@ -877,27 +875,27 @@ contains
             comment     = 'comment',&
             pixels      = rgb_image)
         call ppm%export_pnm(filename)
-    end subroutine write_ppm_colorbar
+    end subroutine
 
     !> Reverse the colormap
     pure subroutine reverse(self, name)
         class(Colormap), intent(inout) :: self
         character(*), intent(in), optional :: name
-        self%map(:,:) = self%map(size(self%map,1)-1:0:-1, :)
+        self%map = self%map(size(self%map,1)-1:0:-1, :)
         if (present(name)) then
             self%name = trim(name)
         else
             self%name = trim(self%name)//'_reverse'
         end if
-    end subroutine reverse
+    end subroutine
 
     !> Apply a circular shift to the colormap (left is +, right is -)
     pure subroutine shift(self, sh)
         class(Colormap), intent(inout) :: self
         integer, intent(in) :: sh   !! The shift
 
-        self%map(:,:) = cshift(self%map(:,:), sh)
-    end subroutine shift
+        self%map = cshift(self%map, sh)
+    end subroutine
 
     !> Extracts colors from the colormap based on specified number of levels (extractedLevels).
     pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse)
@@ -938,7 +936,7 @@ contains
         if (present(reverse)) then
             if (reverse) call self%reverse()
         end if
-    end subroutine extract
+    end subroutine
 
     !> Check the validity of the colormap and fix it if necessary
     pure subroutine check(self,check_name, check_bounds, check_levels, check_extract, extractedLevels)
@@ -1034,7 +1032,7 @@ contains
             end if
         end if
 
-    end subroutine check
+    end subroutine
 
     !> Print error and fix messages for unvalid colormaps
     impure subroutine print_status(self)
@@ -1069,6 +1067,6 @@ contains
 
         end if
 
-    end subroutine print_status
+    end subroutine
 
-end module forcolormap
+end module
