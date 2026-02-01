@@ -36,7 +36,7 @@ module forcolormap
     private
 
     public :: wp
-    
+
     !> The Colormap class (attributes are encapsulated):
     type, public :: Colormap
         character(colormap_name_length), private :: name
