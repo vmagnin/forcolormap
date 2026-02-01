@@ -92,12 +92,12 @@ contains
 
     !> Create colormap from Lagrange interpolation of control colors
     pure function lagrange(colors, levels) result(map)
-        integer, dimension(:,:), intent(in) :: colors
+        integer, intent(in) :: colors(:,:)
         integer, intent(in), optional :: levels
-        integer, dimension(:,:), allocatable :: map
-        real(wp), dimension(:,:), allocatable :: map_r
-        integer :: order, i, j, levels_
-        real(wp) :: t
+        integer, allocatable :: map(:,:)
+        integer :: order, i, j, n, levels_
+        real(wp) :: t, r, g, b
+        real(wp), allocatable :: L(:)
 
         ! Set default value for levels
         if (present(levels)) then
@@ -110,50 +110,49 @@ contains
         order = size(colors, 1) - 1
         if (order < 1) error stop "Error: At least two control colors are required for Lagrange interpolation."
 
-        allocate(map_r(levels_,3), map(levels_,3)) ! 3 for RGB
+        allocate(map(levels_, 3))
+        n = order + 1
         do i = 1, levels_
             t = real(i-1, wp) / real(levels_-1, wp)
-            map_r(i,:) = 0.0_wp
-            do j = 0, order
-                map_r(i,1) = dot_product(lagrange_poly(t,order+1), real(colors(:,1), wp))
-                map_r(i,2) = dot_product(lagrange_poly(t,order+1), real(colors(:,2), wp))
-                map_r(i,3) = dot_product(lagrange_poly(t,order+1), real(colors(:,3), wp))
+            L = lagrange_poly(t, n)
+            r = 0.0_wp
+            g = 0.0_wp
+            b = 0.0_wp
+            do j = 1, n
+                r = r + L(j) * real(colors(j,1), wp)
+                g = g + L(j) * real(colors(j,2), wp)
+                b = b + L(j) * real(colors(j,3), wp)
             end do
-            map(i,1) = min(255, max(0, nint(map_r(i,1))))
-            map(i,2) = min(255, max(0, nint(map_r(i,2))))
-            map(i,3) = min(255, max(0, nint(map_r(i,3))))
+            map(i,1) = min(255, max(0, nint(r)))
+            map(i,2) = min(255, max(0, nint(g)))
+            map(i,3) = min(255, max(0, nint(b)))
         end do
     end function lagrange
 
     !> Interpolates a Lagrange polynomial defined by n equidistant points between 0 and 1
     pure function lagrange_poly(t, n) result(B)
         real(wp), intent(in) :: t
-        integer, intent(in) :: n !! order + 1
-        real(wp), allocatable :: B(:)
+        integer, intent(in) :: n
+        real(wp) :: B(n)
         integer :: i, l
-        real(wp), dimension(:), allocatable :: Xth
+        real(wp) :: inv, xi, xl
 
-        ! Create an array of n equidistant points between 0 and 1
-        allocate(Xth(n), source = 0.0_wp)
-        do i = 1, n - 1
-            Xth(i) = 0.0_wp + real(i - 1, wp) * (1.0_wp - (0.0_wp)) / real(n - 1, wp)
-        end do
-        Xth(n) = 1.0_wp
-
-        allocate(B(n), source = 1.0_wp)
-        l = 0
-        i = 0
+        if (n <= 1) error stop "Error: Number of points n must be greater than 1 in lagrange_poly."
+        if (t < 0.0_wp .or. t > 1.0_wp) error stop "Error: t must be in [0,1] in lagrange_poly."
+        B = 1.0_wp
+        inv = 1.0_wp/real(n-1, wp)
         do i = 1, n
+            xi = real(i-1, wp) * inv
             do l = 1, n
                 if (l /= i) then
-                    if (abs(Xth(i) - Xth(l)) >= tiny(0.0_wp)) then
-                        B(i) = B(i)*(t - Xth(l))/(Xth(i) - Xth(l))
+                    xl = real(l-1, wp) * inv
+                    if (abs(xi-xl) >= tiny(0.0_wp)) then
+                        B(i) = B(i)*(t-xl)/(xi-xl)
                     end if
                 end if
             end do
         end do
     end function lagrange_poly
-
 
     !> Normalize the input real array to the range [0, 1]
     pure function scale_real_real(real_array,a,b) result(real_scaled_array)
