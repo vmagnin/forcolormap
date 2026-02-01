@@ -43,12 +43,11 @@ contains
 
     !> Create a colormap from continuous Bezier interpolation of control colors
     pure function bezier(colors, levels) result(map)
-        integer, dimension(:,:), intent(in) :: colors
+        integer, intent(in) :: colors(:,:)
         integer, intent(in), optional :: levels
-        integer, dimension(:,:), allocatable :: map
-        real(wp), dimension(:,:), allocatable :: map_r
-        integer :: order, i, j, levels_
-        real(wp) :: t
+        integer, allocatable :: map(:,:)
+        integer :: order, i, j, levels_, fact_order
+        real(wp) :: r, g, b, coeff, t, omt
 
         ! Set default value for levels
         if (present(levels)) then
@@ -61,17 +60,23 @@ contains
         order = size(colors, 1) - 1
         if (order < 1) error stop "Error: At least two control colors are required for Bezier interpolation."
 
-        allocate(map_r(levels_,3), map(levels_,3)) ! 3 for RGB
-        do i = 1,levels_
+        allocate(map(levels_, 3))
+        fact_order = factorial(order)
+        do i = 1, levels_
             t = real(i-1, wp) / real(levels_-1, wp)
-            map_r(i,:) = 0.0_wp
+            omt = 1.0_wp - t
+            r = 0.0_wp
+            g = 0.0_wp
+            b = 0.0_wp
             do j = 0, order
-                map_r(i,:) = map_r(i,:) + real(colors(j+1,:), wp)*&
-                    real(factorial(order), wp)/(real(factorial(j), wp)*real(factorial(order-j), wp)) * t**j * (1.0_wp-t)**(order-j)
+                coeff = real(fact_order, wp)/real(factorial(j)*factorial(order-j), wp)*t**j*omt**(order-j)
+                r = r + real(colors(j+1,1), wp) * coeff
+                g = g + real(colors(j+1,2), wp) * coeff
+                b = b + real(colors(j+1,3), wp) * coeff
             end do
-            map(i,1) = min(255, max(0, nint(map_r(i,1))))
-            map(i,2) = min(255, max(0, nint(map_r(i,2))))
-            map(i,3) = min(255, max(0, nint(map_r(i,3))))
+            map(i,1) = min(255, max(0, nint(r)))
+            map(i,2) = min(255, max(0, nint(g)))
+            map(i,3) = min(255, max(0, nint(b)))
         end do
     end function bezier
 
@@ -80,7 +85,7 @@ contains
         integer, intent(in) :: n
         integer :: result, i
         result = 1
-        do concurrent (i = 2:n)
+        do concurrent (i = 2:n) reduce(*:result)
             result = result * i
         end do
     end function factorial
