@@ -27,7 +27,7 @@
 !> The Colormap class and the `colormaps_list`.
 module forcolormap
     use forcolormap_parameters, only: wp, colormap_name_length
-    use forcolormap_utils, only: bezier, lagrange, scale
+    use forcolormap_utils, only: bezier, lagrange
     use forcolormap_cm_scientific
     use forcolormap_cm_matplotlib
     use forcolormap_cm_miscellaneous
@@ -899,54 +899,28 @@ contains
         self%map(:,:) = cshift(self%map(:,:), sh)
     end subroutine shift
 
-    !> Extracts colors from the colormap based on specified number of levels (nl)
+    !> Extracts colors from the colormap based on specified number of levels (extractedLevels).
     pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse)
         class(Colormap), intent(inout) :: self
         integer, intent(in) :: extractedLevels
         character(*), intent(in), optional :: name
         real(wp), intent(in), optional :: zmin, zmax
         logical, intent(in), optional :: reverse
-        integer :: extracted_map(extractedLevels,3)
-        integer :: ind(extractedLevels,3)
-        real(wp) :: ind_rel(extractedLevels,3), array_rel(self%levels,3), step(3), current_element(3)
-        integer :: i
-        integer, dimension(self%levels,3) :: array
+        integer :: extracted_map(extractedLevels, 3), i, idx
+        real(wp) :: factor
         character(3) :: extractedLevels_char
 
         ! Check if the number of extractedLevels is valid
         call self%check(check_extract=.true., extractedLevels=extractedLevels)
         if (.not. self%status(5)) return
 
-        ! Initialize array with indices
-        do concurrent (i = 1: self%levels)
-            array(i,:) = i-1
+        factor = real(self%levels-1, wp) / real(extractedLevels-1, wp)
+        do concurrent (i = 1:extractedLevels) local(idx)
+            idx = min(max(nint(real(i-1, wp) * factor), 0), self%levels-1)
+            extracted_map(i, :) = self%map(idx, :)
         end do
 
-        ! Normalize array elements to the range [0, 1]
-        do concurrent (i = 1: 3)
-            array_rel(:,i) = array(:,i)/ maxval(array(:,i))
-        end do
-
-        step(:) = array_rel(self%levels,:) / real(extractedLevels-1, kind=wp)
-
-        current_element(:) = array_rel(1,:)
-
-        do i = 1, extractedLevels
-            ind_rel(i,:) = current_element
-            current_element = current_element + step
-        end do
-
-        ! Scale interpolated indices to integers between 0 and self%levels - 1
-        do concurrent (i = 1:3)
-            ind(:,i) = scale(ind_rel(:,i), 0, self%levels-1)
-        end do
-
-        ! Extract colors from the colormap based on interpolated indices
-        do concurrent (i = 1: 3)
-            extracted_map(:,i) = self%map(ind(:,i),i)
-        end do
-
-        ! Set colormap name if provided, otherwise use the number of levels as part of the name
+        ! Name handling
         if (present(name)) then
             self%name = name
         else
@@ -958,7 +932,7 @@ contains
         if (present(zmin)) self%zmin = zmin
         if (present(zmax)) self%zmax = zmax
 
-        ! Create the extracted colormap with the specified parameters
+        ! Replace map
         call self%assign_map(extracted_map)
 
         if (present(reverse)) then
