@@ -64,19 +64,19 @@ contains
    end function get_ncolormaps
 
    !> Return the colormap name for a given index.
-   pure elemental function get_name(this, index) result(name)
+   pure elemental function get_name(this, idx) result(name)
       class(Colormaps_info), intent(in) :: this
-      integer, intent(in) :: index
+      integer, intent(in) :: idx
       character(colormap_name_length) :: name
-      name = trim(this%colormaps(index)%name)
+      name = trim(this%colormaps(idx)%name)
    end function get_name
 
    !> Return the number of levels for a given index.
-   pure function get_levels(this, index) result(levels)
+   pure function get_levels(this, idx) result(levels)
       class(Colormaps_info), intent(in) :: this
-      integer, intent(in) :: index
+      integer, intent(in) :: idx
       integer :: levels
-      levels = this%colormaps(index)%levels
+      levels = this%colormaps(idx)%levels
    end function get_levels
 
    !> Filter colormaps and write metadata.
