@@ -83,8 +83,15 @@ contains
         integer, intent(in) :: map(:, :)
 
         self%levels = size(map, 1)
-        if (allocated(self%map)) deallocate(self%map)
-        allocate(self%map(0:self%levels-1, 1:3), source=map)
+        if (allocated(self%map)) then
+            ! reallocate only if necessary
+            if (size(self%map, 1) /= self%levels .or. size(self%map, 2) /= 3) then
+                deallocate(self%map)
+                allocate(self%map(0:self%levels-1, 1:3), source=map)
+            end if
+        else
+            allocate(self%map(0:self%levels-1, 1:3), source=map)
+        end if
     end subroutine assign_map
 
     !> Choose a colormap and set its parameters
