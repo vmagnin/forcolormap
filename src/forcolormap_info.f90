@@ -52,7 +52,12 @@ module forcolormap_info
    end type Colormaps_info
 
    !> Global instance providing access to colormap metadata.
-   type(Colormaps_info), protected :: cmap_info
+   ! type(Colormaps_info), protected :: cmap_info
+   ! nvfortan requires to do it this way:
+   type(Colormaps_info), protected :: cmap_info  = Colormaps_info([ &
+         scientific_metadata, &
+         miscellaneous_metadata, &
+         matplotlib_metadata])
 
 contains
 
