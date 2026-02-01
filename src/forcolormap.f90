@@ -608,12 +608,12 @@ contains
         end if
     end subroutine set
 
-    !> A finalizer procedure for memory cleanup:
+    !> Finalize the colormap, deallocating the map array and resetting status.
     pure subroutine finalize(self)
         class(Colormap), intent(inout) :: self
         if (allocated(self%map)) deallocate(self%map)
+        self%status = .false.
     end subroutine
-
 
     !> Create a custom colormap from a "map" array.
     pure subroutine create(self, name, zmin, zmax, map, reverse)
