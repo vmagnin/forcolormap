@@ -27,7 +27,7 @@
 !> Demonstrates how to obtain information about a colormap using
 !> the `Colormaps_info` class.
 program write_info
-    use forcolormap_info, only: cmap_info
+    use forcolormap, only: cmap_info
     implicit none
 
     ! type(Colormaps_info) :: info

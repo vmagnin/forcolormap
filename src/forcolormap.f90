@@ -28,6 +28,7 @@
 module forcolormap
     use forcolormap_parameters, only: wp, colormap_name_length
     use forcolormap_utils, only: bezier, lagrange
+    use forcolormap_info, only: cmap_info
     use forcolormap_cm_scientific
     use forcolormap_cm_matplotlib
     use forcolormap_cm_miscellaneous
@@ -35,7 +36,7 @@ module forcolormap
     implicit none
 
     private
-    public wp, Colormap
+    public wp, Colormap, cmap_info
 
     !> The Colormap class (attributes are encapsulated):
     type Colormap
@@ -66,6 +67,9 @@ module forcolormap
         procedure :: get_zmax
         procedure :: print
         procedure :: colorbar => write_ppm_colorbar
+        procedure, private :: write_ppm_colormap_1d
+        procedure, private :: write_ppm_colormap_2d
+        generic :: colormap => write_ppm_colormap_1d, write_ppm_colormap_2d
         procedure :: reverse
         procedure :: shift
         procedure :: extract
@@ -74,6 +78,21 @@ module forcolormap
         procedure :: print_status
     end type
 
+    abstract interface
+        pure function zf1d(x) result(z)
+            import wp
+            implicit none
+            real(wp), intent(in) :: x
+            real(wp) :: z
+        end function
+
+        pure function zf2d(x, y) result(z)
+            import wp
+            implicit none
+            real(wp), intent(in) :: x, y
+            real(wp) :: z
+        end function
+    end interface
 
 contains
 
@@ -877,6 +896,116 @@ contains
         call ppm%export_pnm(filename)
     end subroutine
 
+    !> render a colormap defined by a 1D function into a PPM file
+    impure subroutine write_ppm_colormap_1d(self, filename, zfun, xmin, xmax, width, height, encoding)
+        use forimage, only: format_pnm
+        class(Colormap), intent(in) :: self
+        character(*), intent(in)    :: filename
+        procedure(zf1d)              :: zfun
+        real(wp), intent(in)        :: xmin, xmax
+        integer, intent(in), optional :: width, height
+        character(*), intent(in), optional :: encoding
+
+        type(format_pnm) :: ppm
+        integer, allocatable :: rgb_image(:,:)
+        integer :: pixwidth, pixheight, i, j, red, green, blue
+        real(wp) :: t, x, z
+
+        if (present(width)) then
+            pixwidth = width
+        else
+            pixwidth = 600
+        end if
+        if (present(height)) then
+            pixheight = height
+        else
+            pixheight = 50
+        end if
+
+        allocate(rgb_image(pixheight, pixwidth*3))
+        do concurrent (i = 0:pixwidth-1) local(t, x, red, green, blue, j)
+            t = real(i, wp) / real(max(1, pixwidth-1), wp)
+            x = xmin + t*(xmax - xmin)
+            z = zfun(x)
+            call self%compute_RGB(z, red, green, blue)
+            do concurrent (j = 0:pixheight-1)
+                rgb_image(pixheight-j, 3*(i+1)-2) = red
+                rgb_image(pixheight-j, 3*(i+1)-1) = green
+                rgb_image(pixheight-j, 3*(i+1)  ) = blue
+            end do
+        end do
+
+        if (present(encoding)) then
+            call ppm%set_format(encoding)
+        else
+            call ppm%set_format('binary')
+        end if
+
+        call ppm%set_pnm(encoding = ppm%get_format(),&
+            file_format = 'ppm',&
+            width       = pixwidth,&
+            height      = pixheight,&
+            max_color   = 255,&
+            comment     = 'comment',&
+            pixels      = rgb_image)
+        call ppm%export_pnm(filename)
+    end subroutine
+
+    !> render a colormap defined by a 2D function into a PPM file
+    impure subroutine write_ppm_colormap_2d(self, filename, zfun, xmin, xmax, width, height, encoding)
+        use forimage, only: format_pnm
+        class(Colormap), intent(in) :: self
+        character(*), intent(in)    :: filename
+        procedure(zf2d)              :: zfun
+        real(wp), intent(in)        :: xmin(2), xmax(2)
+        integer, intent(in), optional :: width, height
+        character(*), intent(in), optional :: encoding
+
+        type(format_pnm) :: ppm
+        integer, allocatable :: rgb_image(:,:)
+        integer :: pixwidth, pixheight, i, j, red, green, blue
+        real(wp) :: ti, tj, x, y, z
+
+        if (present(width)) then
+            pixwidth = width
+        else
+            pixwidth = 600
+        end if
+        if (present(height)) then
+            pixheight = height
+        else
+            pixheight = 600
+        end if
+
+        allocate(rgb_image(pixheight, pixwidth*3))
+        do concurrent (j = 0:pixheight-1, i = 0:pixwidth-1) local(ti, tj, x, y, red, green, blue)
+            tj = real(j, wp) / real(max(1, pixheight-1), wp)
+            ti = real(i, wp) / real(max(1, pixwidth-1),  wp)
+            y  = xmin(2) + tj*(xmax(2) - xmin(2))
+            x  = xmin(1) + ti*(xmax(1) - xmin(1))
+            z = zfun(x, y)
+            call self%compute_RGB(z, red, green, blue)
+            rgb_image(pixheight-j, 3*(i+1)-2) = red
+            rgb_image(pixheight-j, 3*(i+1)-1) = green
+            rgb_image(pixheight-j, 3*(i+1)  ) = blue
+        end do
+
+        if (present(encoding)) then
+            call ppm%set_format(encoding)
+        else
+            call ppm%set_format('binary')
+        end if
+
+        call ppm%set_pnm(encoding = ppm%get_format(),&
+            file_format = 'ppm',&
+            width       = pixwidth,&
+            height      = pixheight,&
+            max_color   = 255,&
+            comment     = 'comment',&
+            pixels      = rgb_image)
+        call ppm%export_pnm(filename)
+    end subroutine
+
     !> Reverse the colormap
     pure subroutine reverse(self, name)
         class(Colormap), intent(inout) :: self
@@ -940,8 +1069,6 @@ contains
 
     !> Check the validity of the colormap and fix it if necessary
     pure subroutine check(self,check_name, check_bounds, check_levels, check_extract, extractedLevels)
-        use forcolormap_info, only: cmap_info
-
         class(Colormap), intent(inout) :: self
         logical, intent(in), optional :: check_name, check_bounds, check_levels, check_extract
         integer, intent(in), optional :: extractedLevels

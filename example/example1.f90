@@ -27,7 +27,6 @@
 !> This example demonstrates how ForImage can be used to import/export PPM files.
 program example1
     use forcolormap, only: Colormap, wp
-    use example_utils, only: test_colormap
     use forimage, only: format_pnm
     implicit none
 
@@ -37,7 +36,7 @@ program example1
     ! Create ppm files
     call custom_cmap%load('test_map_to_load.txt', 0.0_wp, 2.0_wp)
     call custom_cmap%colorbar('a_loaded_colormap_ascii_test', encoding='ascii')
-    call test_colormap(custom_cmap, 'a_loaded_colormap_ascii_colorbar', encoding='ascii')
+    call custom_cmap%colormap('a_loaded_colormap_ascii_colorbar', zfun, [0.0_wp, 0.0_wp], [599.0_wp, 599.0_wp], encoding='ascii')
     call custom_cmap%print()
 
     ! Import ascii ppm files
@@ -55,5 +54,13 @@ program example1
     ! Deallocate
     call ex1_colormap%finalize()
     call ex1_colorbar%finalize()
+
+contains
+
+   pure function zfun(x,y) result(z)
+      real(wp), intent(in) :: x, y
+      real(wp) :: z
+      z = 1.0_wp + sin(x*y/10000.0_wp) * cos(y/100.0_wp)
+   end function
 
 end program example1
