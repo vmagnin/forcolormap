@@ -38,8 +38,9 @@ program example1
     ! Create ppm files
     call custom_cmap%load('test_map_to_load.txt', 0.0_wp, 2.0_wp)
     call custom_cmap%colorbar('a_loaded_colormap_ascii_test', encoding='ascii')
-    call custom_cmap%colormap('a_loaded_colormap_ascii_colorbar', zfun, xmin, xmax, encoding='ascii')
+    call custom_cmap%colormap('a_loaded_colormap_ascii_colorbar', zfun, xmin, xmax, encoding='ascii', width=200, height=200)
     call custom_cmap%print()
+    call custom_cmap%finalize()
 
     ! Import ascii ppm files
     call ex1_colormap%import_pnm('a_loaded_colormap_ascii_test','ppm', 'ascii')
