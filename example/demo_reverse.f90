@@ -32,6 +32,8 @@ program demo_reverse
 
     integer :: i
     type(Colormap) :: cmap, custom_cmap
+    real(wp), dimension(2), parameter :: xmin = [0.0_wp, 0.0_wp]
+    real(wp), dimension(2), parameter :: xmax = [599.0_wp, 599.0_wp]
 
     !> A discrete colormap with 8 levels, by @alozada, resembling the color
     !> changes in red cabbage (containing Anthocyanins) with pH:
@@ -50,14 +52,14 @@ program demo_reverse
     ! Use the create() method instead of the set() method.
     call custom_cmap%create('red_cabbage_reverse', 0.0_wp, 2.0_wp, my_colormap, reverse=.true.)
     call custom_cmap%colorbar('red_cabbage_reverse_colorbar')
-    call custom_cmap%colormap('red_cabbage_reverse_test', zfun, [0.0_wp, 0.0_wp], [599.0_wp, 599.0_wp] )
+    call custom_cmap%colormap('red_cabbage_reverse_test', zfun, xmin, xmax)
 
     ! We create PPM files (binary encoded by default) for each built-in colormap.
     ! The built-in z=f(x,y) test function is in the [0, 2] range:
     do i = 1, cmap_info%get_ncolormaps()
         call cmap%set(trim(cmap_info%get_name(i)), 0.0_wp, 2.0_wp, reverse=.true.)
         call cmap%colorbar(trim(cmap_info%get_name(i))//'_reverse_colorbar')
-        call cmap%colormap(trim(cmap_info%get_name(i))//'_reverse_test', zfun, [0.0_wp, 0.0_wp], [599.0_wp, 599.0_wp])
+        call cmap%colormap(trim(cmap_info%get_name(i))//'_reverse_test', zfun, xmin, xmax)
         print '("Colormap ", A30, " has ", I0, " levels")', trim(cmap%get_name()), cmap%get_levels()
     end do
 
@@ -65,13 +67,13 @@ program demo_reverse
     call cmap%set("cubehelix", 0.0_wp, 2.0_wp, 1024, [0.5_wp, -1.0_wp, 1.0_wp, 1.0_wp], reverse=.true.)
     ! We change the name for the output test files:
     call cmap%colorbar('cubehelix_customized_reverse_colorbar')
-    call cmap%colormap('cubehelix_customized_reverse_test', zfun, [0.0_wp, 0.0_wp], [599.0_wp, 599.0_wp])
+    call cmap%colormap('cubehelix_customized_reverse_test', zfun, xmin, xmax)
 
     !> You can also download your colormap from a .txt file by
     !> using the load() method instead of the set() method.
     call custom_cmap%load("test_map_to_load.txt", 0.0_wp, 2.0_wp, reverse=.true.)
     call custom_cmap%colorbar('a_loaded_reverse_colorbar')
-    call custom_cmap%colormap('a_loaded_reverse_colormap_test', zfun, [0.0_wp, 0.0_wp], [599.0_wp, 599.0_wp])
+    call custom_cmap%colormap('a_loaded_reverse_colormap_test', zfun, xmin, xmax)
     call custom_cmap%print()
 
 contains

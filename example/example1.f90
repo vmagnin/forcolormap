@@ -32,11 +32,13 @@ program example1
 
     type(Colormap) :: custom_cmap
     type(format_pnm) :: ex1_colormap, ex1_colorbar
+    real(wp), dimension(2), parameter :: xmin = [0.0_wp, 0.0_wp]
+    real(wp), dimension(2), parameter :: xmax = [599.0_wp, 599.0_wp]
 
     ! Create ppm files
     call custom_cmap%load('test_map_to_load.txt', 0.0_wp, 2.0_wp)
     call custom_cmap%colorbar('a_loaded_colormap_ascii_test', encoding='ascii')
-    call custom_cmap%colormap('a_loaded_colormap_ascii_colorbar', zfun, [0.0_wp, 0.0_wp], [599.0_wp, 599.0_wp], encoding='ascii')
+    call custom_cmap%colormap('a_loaded_colormap_ascii_colorbar', zfun, xmin, xmax, encoding='ascii')
     call custom_cmap%print()
 
     ! Import ascii ppm files
