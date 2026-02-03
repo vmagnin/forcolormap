@@ -33,7 +33,7 @@ jobs:
         - {os: ubuntu-latest,  compiler: nvfortran}
         - {os: windows-latest, compiler: gfortran }
         - {os: windows-latest, compiler: ifx      }
-        - {os: windows-latest, compiler: flang-new}
+        # - {os: windows-latest, compiler: flang-new} # see: https://github.com/gha3mi/setup-fortran-conda/issues/47
         - {os: macos-latest,   compiler: gfortran }
     steps:
       - name: Setup Fortran
