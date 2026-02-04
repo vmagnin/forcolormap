@@ -86,350 +86,212 @@ contains
 
    !> Filter colormaps and write metadata.
    impure subroutine write(this, verbose, name, family, gradient, palette, author, license, levels, file_name, append)
+      use iso_fortran_env, only: output_unit
       class(Colormaps_info), intent(in) :: this
       integer, intent(in), optional :: verbose
       character(*), intent(in), optional :: name, family, gradient, palette, author, license
       integer, intent(in), optional :: levels
       character(*), intent(in), optional :: file_name
       logical, intent(in), optional :: append
-      integer :: i, verbose_, nunit, n
-      logical :: keep(this%get_ncolormaps())
+      integer :: i, verbose_, unit
       logical :: append_, apply_filter
-      type(colormap_metadata) :: metadata
-
-      integer :: w_name, w_family, w_gradient, w_palette, w_colorbar
-      integer :: w_package, w_author, w_license, w_url, w_levels
-      integer :: total_w1, total_w4
-      character(len=1024) :: sep1, sep4
+      integer :: w_name, w_family, w_gradient, w_palette, w_colorbar, w_package, w_author, w_license, w_url, w_levels
       character(len=32) :: tmp
-      character(len=:), allocatable :: line
-      character(len=:), allocatable :: f_name, f_family, f_gradient, f_palette, f_levels
-      character(len=:), allocatable :: f_colorbar, f_package, f_author, f_license, f_url
+      character(*), parameter :: H_NAME     = 'Name'
+      character(*), parameter :: H_FAMILY   = 'Family'
+      character(*), parameter :: H_GRADIENT = 'Gradient'
+      character(*), parameter :: H_PALETTE  = 'Palette'
+      character(*), parameter :: H_LEVELS   = 'Levels'
+      character(*), parameter :: H_COLORBAR = 'Colorbar'
+      character(*), parameter :: H_PACKAGE  = 'Package'
+      character(*), parameter :: H_AUTHOR   = 'Author'
+      character(*), parameter :: H_LICENSE  = 'Licence'
+      character(*), parameter :: H_URL      = 'URL'
+      integer, parameter :: LH_NAME     = len(H_NAME)
+      integer, parameter :: LH_FAMILY   = len(H_FAMILY)
+      integer, parameter :: LH_GRADIENT = len(H_GRADIENT)
+      integer, parameter :: LH_PALETTE  = len(H_PALETTE)
+      integer, parameter :: LH_LEVELS   = len(H_LEVELS)
+      integer, parameter :: LH_COLORBAR = len(H_COLORBAR)
+      integer, parameter :: LH_PACKAGE  = len(H_PACKAGE)
+      integer, parameter :: LH_AUTHOR   = len(H_AUTHOR)
+      integer, parameter :: LH_LICENSE  = len(H_LICENSE)
+      integer, parameter :: LH_URL      = len(H_URL)
+      character(len=1), parameter :: SEP1 = '|'
+      character(len=1), parameter :: SEP2 = '-'
 
-      if (present(verbose)) then
-         verbose_ = verbose
+      ! defaults
+      verbose_ = 1
+      if (present(verbose)) verbose_ = verbose
+      append_  = .false.
+      if (present(append)) append_  = append
+
+      ! output unit
+      if (present(file_name)) then
+         if (append_) then
+            open(newunit=unit, file=trim(file_name), status='unknown', position='append', action='write')
+         else
+            open(newunit=unit, file=trim(file_name), status='replace', action='write')
+         end if
       else
-         verbose_ = 1
+         unit = output_unit
       end if
 
-      if (present(append)) then
-         append_ = append
-      else
-         append_ = .false.
-      end if
+      apply_filter = present(name) .or. present(family) .or. present(gradient) .or. present(palette) .or. present(author) .or. present(license) .or. present(levels)
 
-      n = this%get_ncolormaps()
-      keep = .true.
-      apply_filter = present(name) .or. present(family) .or. present(gradient) .or. present(palette) .or. &
-                     present(author) .or. present(license) .or. present(levels)
+      ! initialize column widths from headers
+      w_name     = LH_NAME
+      w_family   = LH_FAMILY
+      w_gradient = LH_GRADIENT
+      w_palette  = LH_PALETTE
+      w_levels   = LH_LEVELS
+      w_colorbar = LH_COLORBAR
+      w_package  = LH_PACKAGE
+      w_author   = LH_AUTHOR
+      w_license  = LH_LICENSE
+      w_url      = LH_URL
 
-      do i = 1, n
-         if (present(name))     keep(i) = keep(i) .and. (this%colormaps(i)%name == name)
-         if (present(family))   keep(i) = keep(i) .and. (this%colormaps(i)%family == family)
-         if (present(gradient)) keep(i) = keep(i) .and. (this%colormaps(i)%gradient == gradient)
-         if (present(palette))  keep(i) = keep(i) .and. (this%colormaps(i)%palette == palette)
-         if (present(author))   keep(i) = keep(i) .and. (this%colormaps(i)%author == author)
-         if (present(license))  keep(i) = keep(i) .and. (this%colormaps(i)%license == license)
-         if (present(levels))   keep(i) = keep(i) .and. (this%colormaps(i)%levels == levels)
-      end do
-
-      ! Compute dynamic column widths.
-      w_name     = len_trim('Name')
-      w_family   = len_trim('Family')
-      w_gradient = len_trim('Gradient')
-      w_palette  = len_trim('Palette')
-      w_levels   = len_trim('Levels')
-      w_colorbar = len_trim('Colorbar')
-      w_package  = len_trim('Package')
-      w_author   = len_trim('Author')
-      w_license  = len_trim('Licence')
-      w_url      = len_trim('URL')
-
-      do i = 1, n
-         if (apply_filter .and. .not. keep(i)) cycle
+      ! determine maximum column widths
+      do i = 1, this%get_ncolormaps()
+         if (.not. passes_filter(i)) cycle
          w_name     = max(w_name,     len_trim(this%colormaps(i)%name))
          w_family   = max(w_family,   len_trim(this%colormaps(i)%family))
          w_gradient = max(w_gradient, len_trim(this%colormaps(i)%gradient))
          w_palette  = max(w_palette,  len_trim(this%colormaps(i)%palette))
-         write(tmp,'(i0)') this%colormaps(i)%levels
+         write(tmp,'(i4)') this%colormaps(i)%levels
          w_levels   = max(w_levels,   len_trim(tmp))
          w_colorbar = max(w_colorbar, len_trim(this%colormaps(i)%colorbar))
          w_package  = max(w_package,  len_trim(this%colormaps(i)%package))
          w_author   = max(w_author,   len_trim(this%colormaps(i)%author))
          w_license  = max(w_license,  len_trim(this%colormaps(i)%license))
-         w_url      = max(w_url,      max(1, len_trim(this%colormaps(i)%url)))
+         w_url      = max(w_url,      len_trim(this%colormaps(i)%url))
       end do
 
-      total_w1 = w_name + w_family + w_gradient + w_palette + w_levels + w_colorbar + w_package + &
-                 w_author + w_license + w_url + 2*9
-      total_w4 = w_name + w_family + w_gradient + w_palette + w_levels + w_colorbar + 2*5
+      ! header
+      select case (verbose_)
+       case (1) ! full table
+         write(unit,'(a)') SEP1// &
+            cell(H_NAME,     w_name)     //SEP1// &
+            cell(H_FAMILY,   w_family)   //SEP1// &
+            cell(H_GRADIENT, w_gradient) //SEP1// &
+            cell(H_PALETTE,  w_palette)  //SEP1// &
+            cell(H_LEVELS,   w_levels)   //SEP1// &
+            cell(H_COLORBAR, w_colorbar) //SEP1// &
+            cell(H_PACKAGE,  w_package)  //SEP1// &
+            cell(H_AUTHOR,   w_author)   //SEP1// &
+            cell(H_LICENSE,  w_license)  //SEP1// &
+            cell(H_URL,      w_url)      //SEP1
 
-      sep1 = repeat('*', total_w1)
-      sep4 = repeat('*', total_w4)
+         write(unit,'(a)') SEP1// &
+            repeat(SEP2, w_name)     //SEP1// &
+            repeat(SEP2, w_family)   //SEP1// &
+            repeat(SEP2, w_gradient) //SEP1// &
+            repeat(SEP2, w_palette)  //SEP1// &
+            repeat(SEP2, w_levels)   //SEP1// &
+            repeat(SEP2, w_colorbar) //SEP1// &
+            repeat(SEP2, w_package)  //SEP1// &
+            repeat(SEP2, w_author)   //SEP1// &
+            repeat(SEP2, w_license)  //SEP1// &
+            repeat(SEP2, w_url)      //SEP1
 
-      ! Print header for verbose = 1 (full metadata).
-      if (verbose_ == 1) then
-         if (present(file_name)) then
-            if (.not. append_) then
-               open(newunit=nunit, file=trim(file_name), status='replace', action='write')
-               write(nunit,'(a)') ''
-               line = '|'// &
-                      'Name'//repeat(' ', max(0, w_name-len_trim('Name')))//'|'// &
-                      'Family'//repeat(' ', max(0, w_family-len_trim('Family')))//'|'// &
-                      'Gradient'//repeat(' ', max(0, w_gradient-len_trim('Gradient')))//'|'// &
-                      'Palette'//repeat(' ', max(0, w_palette-len_trim('Palette')))//'|'// &
-                      'Levels'//repeat(' ', max(0, w_levels-len_trim('Levels')))//'|'// &
-                      'Colorbar'//repeat(' ', max(0, w_colorbar-len_trim('Colorbar')))//'|'// &
-                      'Package'//repeat(' ', max(0, w_package-len_trim('Package')))//'|'// &
-                      'Author'//repeat(' ', max(0, w_author-len_trim('Author')))//'|'// &
-                      'Licence'//repeat(' ', max(0, w_license-len_trim('Licence')))//'|'// &
-                      'URL'//repeat(' ', max(0, w_url-len_trim('URL')))//'|'
-               write(nunit,'(a)') line
-               line = '|'// &
-                      repeat('-', max(1, w_name))//'|'// &
-                      repeat('-', max(1, w_family))//'|'// &
-                      repeat('-', max(1, w_gradient))//'|'// &
-                      repeat('-', max(1, w_palette))//'|'// &
-                      repeat('-', max(1, w_levels))//'|'// &
-                      repeat('-', max(1, w_colorbar))//'|'// &
-                      repeat('-', max(1, w_package))//'|'// &
-                      repeat('-', max(1, w_author))//'|'// &
-                      repeat('-', max(1, w_license))//'|'// &
-                      repeat('-', max(1, w_url))//'|'
-               write(nunit,'(a)') line
-               close(nunit)
-            end if
-         else
-            print*,''
-            line = 'Name'//repeat(' ', max(0, w_name-len_trim('Name')))//'  '// &
-                   'Family'//repeat(' ', max(0, w_family-len_trim('Family')))//'  '// &
-                   'Gradient'//repeat(' ', max(0, w_gradient-len_trim('Gradient')))//'  '// &
-                   'Palette'//repeat(' ', max(0, w_palette-len_trim('Palette')))//'  '// &
-                   'Levels'//repeat(' ', max(0, w_levels-len_trim('Levels')))//'  '// &
-                   'Colorbar'//repeat(' ', max(0, w_colorbar-len_trim('Colorbar')))//'  '// &
-                   'Package'//repeat(' ', max(0, w_package-len_trim('Package')))//'  '// &
-                   'Author'//repeat(' ', max(0, w_author-len_trim('Author')))//'  '// &
-                   'Licence'//repeat(' ', max(0, w_license-len_trim('Licence')))//'  '// &
-                   'URL'//repeat(' ', max(0, w_url-len_trim('URL')))
-            write(*,'(a)') line
-            write(*,'(a)') sep1(1:total_w1)
-         end if
-      end if
+       case (4) ! minimal table
+         write(unit,'(a)') SEP1// &
+            cell(H_NAME,     w_name)     //SEP1// &
+            cell(H_FAMILY,   w_family)   //SEP1// &
+            cell(H_GRADIENT, w_gradient) //SEP1// &
+            cell(H_PALETTE,  w_palette)  //SEP1// &
+            cell(H_LEVELS,   w_levels)   //SEP1// &
+            cell(H_COLORBAR, w_colorbar) //SEP1
 
-      ! Print header for verbose = 4 (compact metadata).
-      if (verbose_ == 4) then
-         if (present(file_name)) then
-            if (.not. append_) then
-               open(newunit=nunit, file=trim(file_name), status='replace', action='write')
-               write(nunit,'(a)') ''
-               line = '|'// &
-                      'Name'//repeat(' ', max(0, w_name-len_trim('Name')))//'|'// &
-                      'Family'//repeat(' ', max(0, w_family-len_trim('Family')))//'|'// &
-                      'Gradient'//repeat(' ', max(0, w_gradient-len_trim('Gradient')))//'|'// &
-                      'Palette'//repeat(' ', max(0, w_palette-len_trim('Palette')))//'|'// &
-                      'Levels'//repeat(' ', max(0, w_levels-len_trim('Levels')))//'|'// &
-                      'Colorbar'//repeat(' ', max(0, w_colorbar-len_trim('Colorbar')))//'|'
-               write(nunit,'(a)') line
-               line = '|'// &
-                      repeat('-', max(1, w_name))//'|'// &
-                      repeat('-', max(1, w_family))//'|'// &
-                      repeat('-', max(1, w_gradient))//'|'// &
-                      repeat('-', max(1, w_palette))//'|'// &
-                      repeat('-', max(1, w_levels))//'|'// &
-                      repeat('-', max(1, w_colorbar))//'|'
-               write(nunit,'(a)') line
-               close(nunit)
-            end if
-         else
-            print*,''
-            line = 'Name'//repeat(' ', max(0, w_name-len_trim('Name')))//'  '// &
-                   'Family'//repeat(' ', max(0, w_family-len_trim('Family')))//'  '// &
-                   'Gradient'//repeat(' ', max(0, w_gradient-len_trim('Gradient')))//'  '// &
-                   'Palette'//repeat(' ', max(0, w_palette-len_trim('Palette')))//'  '// &
-                   'Levels'//repeat(' ', max(0, w_levels-len_trim('Levels')))//'  '// &
-                   'Colorbar'//repeat(' ', max(0, w_colorbar-len_trim('Colorbar')))
-            write(*,'(a)') line
-            write(*,'(a)') sep4(1:total_w4)
-         end if
-      end if
+         write(unit,'(a)') SEP1// &
+            repeat(SEP2, w_name)     //SEP1// &
+            repeat(SEP2, w_family)   //SEP1// &
+            repeat(SEP2, w_gradient) //SEP1// &
+            repeat(SEP2, w_palette)  //SEP1// &
+            repeat(SEP2, w_levels)   //SEP1// &
+            repeat(SEP2, w_colorbar) //SEP1
 
-      if (present(file_name) .and. present(gradient) .and. append_) then
-         open(newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
-         write(nunit,'(a)') ''
-         if (verbose_ == 4) then
-            line = '|'// &
-                   'Name'//repeat(' ', max(0, w_name-len_trim('Name')))//'|'// &
-                   'Family'//repeat(' ', max(0, w_family-len_trim('Family')))//'|'// &
-                   'Gradient'//repeat(' ', max(0, w_gradient-len_trim('Gradient')))//'|'// &
-                   'Palette'//repeat(' ', max(0, w_palette-len_trim('Palette')))//'|'// &
-                   'Levels'//repeat(' ', max(0, w_levels-len_trim('Levels')))//'|'// &
-                   'Colorbar'//repeat(' ', max(0, w_colorbar-len_trim('Colorbar')))//'|'
-            write(nunit,'(a)') line
-            line = '|'// &
-                   repeat('-', max(1, w_name))//'|'// &
-                   repeat('-', max(1, w_family))//'|'// &
-                   repeat('-', max(1, w_gradient))//'|'// &
-                   repeat('-', max(1, w_palette))//'|'// &
-                   repeat('-', max(1, w_levels))//'|'// &
-                   repeat('-', max(1, w_colorbar))//'|'
-            write(nunit,'(a)') line
-         else if (verbose_ == 1) then
-            line = '|'// &
-                   'Name'//repeat(' ', max(0, w_name-len_trim('Name')))//'|'// &
-                   'Family'//repeat(' ', max(0, w_family-len_trim('Family')))//'|'// &
-                   'Gradient'//repeat(' ', max(0, w_gradient-len_trim('Gradient')))//'|'// &
-                   'Palette'//repeat(' ', max(0, w_palette-len_trim('Palette')))//'|'// &
-                   'Levels'//repeat(' ', max(0, w_levels-len_trim('Levels')))//'|'// &
-                   'Colorbar'//repeat(' ', max(0, w_colorbar-len_trim('Colorbar')))//'|'// &
-                   'Package'//repeat(' ', max(0, w_package-len_trim('Package')))//'|'// &
-                   'Author'//repeat(' ', max(0, w_author-len_trim('Author')))//'|'// &
-                   'Licence'//repeat(' ', max(0, w_license-len_trim('Licence')))//'|'// &
-                   'URL'//repeat(' ', max(0, w_url-len_trim('URL')))//'|'
-            write(nunit,'(a)') line
-            line = '|'// &
-                   repeat('-', max(1, w_name))//'|'// &
-                   repeat('-', max(1, w_family))//'|'// &
-                   repeat('-', max(1, w_gradient))//'|'// &
-                   repeat('-', max(1, w_palette))//'|'// &
-                   repeat('-', max(1, w_levels))//'|'// &
-                   repeat('-', max(1, w_colorbar))//'|'// &
-                   repeat('-', max(1, w_package))//'|'// &
-                   repeat('-', max(1, w_author))//'|'// &
-                   repeat('-', max(1, w_license))//'|'// &
-                   repeat('-', max(1, w_url))//'|'
-            write(nunit,'(a)') line
-         end if
-         close(nunit)
-      end if
+      end select
 
-      do i = 1, n
-         if (apply_filter .and. .not. keep(i)) cycle
-
-         metadata = this%colormaps(i)
+      ! data
+      do i = 1, this%get_ncolormaps()
+         if (.not. passes_filter(i)) cycle
 
          select case (verbose_)
-          case (1)
-            write(tmp,'(i0)') metadata%levels
-            f_name     = adjustl(trim(metadata%name))
-            f_family   = adjustl(trim(metadata%family))
-            f_gradient = adjustl(trim(metadata%gradient))
-            f_palette  = adjustl(trim(metadata%palette))
-            f_levels   = adjustl(trim(tmp))
-            f_colorbar = adjustl(trim(metadata%colorbar))
-            f_package  = adjustl(trim(metadata%package))
-            f_author   = adjustl(trim(metadata%author))
-            f_license  = adjustl(trim(metadata%license))
-            f_url      = adjustl(trim(metadata%url))
+          case (1) ! full table
+            write(tmp,'(i4)') this%colormaps(i)%levels
+            write(unit,'(a)') SEP1// &
+               cell(this%colormaps(i)%name,     w_name)     //SEP1// &
+               cell(this%colormaps(i)%family,   w_family)   //SEP1// &
+               cell(this%colormaps(i)%gradient, w_gradient) //SEP1// &
+               cell(this%colormaps(i)%palette,  w_palette)  //SEP1// &
+               cell(tmp,                        w_levels)   //SEP1// &
+               cell(this%colormaps(i)%colorbar, w_colorbar) //SEP1// &
+               cell(this%colormaps(i)%package,  w_package)  //SEP1// &
+               cell(this%colormaps(i)%author,   w_author)   //SEP1// &
+               cell(this%colormaps(i)%license,  w_license)  //SEP1// &
+               cell(this%colormaps(i)%url,      w_url)      //SEP1
 
-            if (present(file_name)) then
-               line = '|'// &
-                      f_name(1:min(w_name,len_trim(f_name)))//repeat(' ', max(0, w_name-len_trim(f_name)))//'|'// &
-                      f_family(1:min(w_family,len_trim(f_family)))//repeat(' ', max(0, w_family-len_trim(f_family)))//'|'// &
-                      f_gradient(1:min(w_gradient,len_trim(f_gradient)))//repeat(' ', max(0, w_gradient-len_trim(f_gradient)))//'|'// &
-                      f_palette(1:min(w_palette,len_trim(f_palette)))//repeat(' ', max(0, w_palette-len_trim(f_palette)))//'|'// &
-                      f_levels(1:min(w_levels,len_trim(f_levels)))//repeat(' ', max(0, w_levels-len_trim(f_levels)))//'|'// &
-                      f_colorbar(1:min(w_colorbar,len_trim(f_colorbar)))//repeat(' ', max(0, w_colorbar-len_trim(f_colorbar)))//'|'// &
-                      f_package(1:min(w_package,len_trim(f_package)))//repeat(' ', max(0, w_package-len_trim(f_package)))//'|'// &
-                      f_author(1:min(w_author,len_trim(f_author)))//repeat(' ', max(0, w_author-len_trim(f_author)))//'|'// &
-                      f_license(1:min(w_license,len_trim(f_license)))//repeat(' ', max(0, w_license-len_trim(f_license)))//'|'// &
-                      f_url(1:min(w_url,len_trim(f_url)))//repeat(' ', max(0, w_url-len_trim(f_url)))//'|'
-               open (newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
-               write (nunit,'(a)') line
-               close (nunit)
-            else
-               line = f_name(1:min(w_name,len_trim(f_name)))//repeat(' ', max(0, w_name-len_trim(f_name)))//'  '// &
-                      f_family(1:min(w_family,len_trim(f_family)))//repeat(' ', max(0, w_family-len_trim(f_family)))//'  '// &
-                      f_gradient(1:min(w_gradient,len_trim(f_gradient)))//repeat(' ', max(0, w_gradient-len_trim(f_gradient)))//'  '// &
-                      f_palette(1:min(w_palette,len_trim(f_palette)))//repeat(' ', max(0, w_palette-len_trim(f_palette)))//'  '// &
-                      f_levels(1:min(w_levels,len_trim(f_levels)))//repeat(' ', max(0, w_levels-len_trim(f_levels)))//'  '// &
-                      f_colorbar(1:min(w_colorbar,len_trim(f_colorbar)))//repeat(' ', max(0, w_colorbar-len_trim(f_colorbar)))//'  '// &
-                      f_package(1:min(w_package,len_trim(f_package)))//repeat(' ', max(0, w_package-len_trim(f_package)))//'  '// &
-                      f_author(1:min(w_author,len_trim(f_author)))//repeat(' ', max(0, w_author-len_trim(f_author)))//'  '// &
-                      f_license(1:min(w_license,len_trim(f_license)))//repeat(' ', max(0, w_license-len_trim(f_license)))//'  '// &
-                      f_url(1:min(w_url,len_trim(f_url)))//repeat(' ', max(0, w_url-len_trim(f_url)))
-               write(*,'(a)') line
-            end if
-          case (2)
-            if (present(file_name)) then
-               open (newunit=nunit, file=trim(file_name), position='append', status = 'unknown', action = 'write')
-               write(nunit,'(a)')    ''
-               write(nunit,'(a)')    '**********************************************'
-               write(nunit,'(a,a)')  'Name    : ', metadata%name
-               write(nunit,'(a,a)')  'Family  : ', metadata%family
-               write(nunit,'(a,a)')  'Gradient: ', metadata%gradient
-               write(nunit,'(a,a)')  'Palette : ', metadata%palette
-               write(nunit,'(a,I4)') 'Levels  : ', metadata%levels
-               write(nunit,'(a,a)')  'Colorbar: ', metadata%colorbar
-               write(nunit,'(a,a)')  'Package : ', metadata%package
-               write(nunit,'(a,a)')  'Author  : ', metadata%author
-               write(nunit,'(a,a)')  'Licence : ', metadata%license
-               write(nunit,'(a,a)')  'URL     : ', metadata%url
-               write(nunit,'(a)')    '**********************************************'
-               write(nunit,'(a)')    ''
-               close(nunit)
-            else
-               print'(a)'    ,''
-               print'(a)'    ,'**********************************************'
-               print'(a,a)'  , 'Name    : ', metadata%name
-               print'(a,a)'  , 'Family  : ', metadata%family
-               print'(a,a)'  , 'Gradient: ', metadata%gradient
-               print'(a,a)'  , 'Palette : ', metadata%palette
-               print'(a,I4)' , 'Levels  : ', metadata%levels
-               print'(a,a)'  , 'Colorbar: ', metadata%colorbar
-               print'(a,a)'  , 'Package : ', metadata%package
-               print'(a,a)'  , 'Author  : ', metadata%author
-               print'(a,a)'  , 'Licence : ', metadata%license
-               print'(a,a)'  , 'URL     : ', metadata%url
-               print'(a)'    , '**********************************************'
-               print'(a)'    ,''
-            end if
-          case (3)
-            if (present(file_name)) then
-               open (newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
-               write(nunit,'(a)') metadata%name
-               close(nunit)
-            else
-               print'(a)',  metadata%name
-            end if
-          case (4)
-            write(tmp,'(i0)') metadata%levels
-            f_name     = adjustl(trim(metadata%name))
-            f_family   = adjustl(trim(metadata%family))
-            f_gradient = adjustl(trim(metadata%gradient))
-            f_palette  = adjustl(trim(metadata%palette))
-            f_levels   = adjustl(trim(tmp))
-            f_colorbar = adjustl(trim(metadata%colorbar))
+          case (2) ! box
+            write(unit,'(a)')    ''
+            write(unit,'(a)')    '**********************************************'
+            write(unit,'(a,a)')  H_NAME//'    : ', this%colormaps(i)%name
+            write(unit,'(a,a)')  H_FAMILY//'  : ', this%colormaps(i)%family
+            write(unit,'(a,a)')  H_GRADIENT//': ', this%colormaps(i)%gradient
+            write(unit,'(a,a)')  H_PALETTE//' : ', this%colormaps(i)%palette
+            write(unit,'(a,I4)') H_LEVELS//'  : ', this%colormaps(i)%levels
+            write(unit,'(a,a)')  H_COLORBAR//': ', this%colormaps(i)%colorbar
+            write(unit,'(a,a)')  H_PACKAGE//' : ', this%colormaps(i)%package
+            write(unit,'(a,a)')  H_AUTHOR//'  : ', this%colormaps(i)%author
+            write(unit,'(a,a)')  H_LICENSE//' : ', this%colormaps(i)%license
+            write(unit,'(a,a)')  H_URL//'     : ', this%colormaps(i)%url
+            write(unit,'(a)')    '**********************************************'
+            write(unit,'(a)')    ''
 
-            if (present(file_name)) then
-               line = '|'// &
-                      f_name(1:min(w_name,len_trim(f_name)))//repeat(' ', max(0, w_name-len_trim(f_name)))//'|'// &
-                      f_family(1:min(w_family,len_trim(f_family)))//repeat(' ', max(0, w_family-len_trim(f_family)))//'|'// &
-                      f_gradient(1:min(w_gradient,len_trim(f_gradient)))//repeat(' ', max(0, w_gradient-len_trim(f_gradient)))//'|'// &
-                      f_palette(1:min(w_palette,len_trim(f_palette)))//repeat(' ', max(0, w_palette-len_trim(f_palette)))//'|'// &
-                      f_levels(1:min(w_levels,len_trim(f_levels)))//repeat(' ', max(0, w_levels-len_trim(f_levels)))//'|'// &
-                      f_colorbar(1:min(w_colorbar,len_trim(f_colorbar)))//repeat(' ', max(0, w_colorbar-len_trim(f_colorbar)))//'|'
-               open (newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
-               write (nunit,'(a)') line
-               close (nunit)
-            else
-               line = f_name(1:min(w_name,len_trim(f_name)))//repeat(' ', max(0, w_name-len_trim(f_name)))//'  '// &
-                      f_family(1:min(w_family,len_trim(f_family)))//repeat(' ', max(0, w_family-len_trim(f_family)))//'  '// &
-                      f_gradient(1:min(w_gradient,len_trim(f_gradient)))//repeat(' ', max(0, w_gradient-len_trim(f_gradient)))//'  '// &
-                      f_palette(1:min(w_palette,len_trim(f_palette)))//repeat(' ', max(0, w_palette-len_trim(f_palette)))//'  '// &
-                      f_levels(1:min(w_levels,len_trim(f_levels)))//repeat(' ', max(0, w_levels-len_trim(f_levels)))//'  '// &
-                      f_colorbar(1:min(w_colorbar,len_trim(f_colorbar)))//repeat(' ', max(0, w_colorbar-len_trim(f_colorbar)))
-               write(*,'(a)') line
-            end if
+          case (3) ! name only
+            write(unit,'(a)') this%colormaps(i)%name
+
+          case (4) ! minimal table
+            write(tmp,'(i4)') this%colormaps(i)%levels
+            write(unit,'(a)') SEP1// &
+               cell(this%colormaps(i)%name,     w_name)     //SEP1// &
+               cell(this%colormaps(i)%family,   w_family)   //SEP1// &
+               cell(this%colormaps(i)%gradient, w_gradient) //SEP1// &
+               cell(this%colormaps(i)%palette,  w_palette)  //SEP1// &
+               cell(tmp,                        w_levels)   //SEP1// &
+               cell(this%colormaps(i)%colorbar, w_colorbar) //SEP1
+
          end select
       end do
 
-      if (present(file_name)) then
-         open(newunit=nunit, file=trim(file_name), position='append', status='unknown', action='write')
-         write(nunit,'(a)')'' ! Write a trailing blank line
-         close(nunit)
-      else
-         print*,'' ! Write a trailing blank line
-      end if
+      write(unit,'(a)') ''
+      if (present(file_name)) close(unit)
+
+   contains
+
+      pure logical function passes_filter(idx) result(ok)
+         integer, intent(in) :: idx
+         ok = .true.
+         if (.not. apply_filter) return
+         if (present(name))     ok = ok .and. (this%colormaps(idx)%name     == name)
+         if (present(family))   ok = ok .and. (this%colormaps(idx)%family   == family)
+         if (present(gradient)) ok = ok .and. (this%colormaps(idx)%gradient == gradient)
+         if (present(palette))  ok = ok .and. (this%colormaps(idx)%palette  == palette)
+         if (present(author))   ok = ok .and. (this%colormaps(idx)%author   == author)
+         if (present(license))  ok = ok .and. (this%colormaps(idx)%license  == license)
+         if (present(levels))   ok = ok .and. (this%colormaps(idx)%levels   == levels)
+      end function passes_filter
+
+      pure function cell(s, w) result(out)
+         character(*), intent(in) :: s
+         integer,      intent(in) :: w
+         character(len=w)         :: out
+         integer :: n
+         character(len=len(s)) :: t
+         t = adjustl(trim(s))
+         n = min(w, len_trim(t))
+         out = t(1:n)//repeat(' ', w - n)
+      end function cell
 
    end subroutine write
 
