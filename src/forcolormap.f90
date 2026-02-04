@@ -871,7 +871,7 @@ contains
         allocate(rgb_image(pixheight,pixwidth*3))
 
         do concurrent (i = 0:pixwidth-1) local(z, red, green, blue, j)
-            z = self%get_zmin() + i / real(pixwidth-1, kind=wp) * (self%get_zmax() - self%get_zmin())
+            z = self%zmin + i / real(pixwidth-1, kind=wp) * (self%zmax - self%zmin)
             call self%compute_RGB(z, red, green, blue)
             do concurrent (j = 0: pixheight-1)
                 rgb_image(pixheight-j, 3*(i+1)-2) = red
@@ -956,7 +956,7 @@ contains
         use forimage, only: format_pnm
         class(Colormap), intent(in) :: self
         character(*), intent(in)    :: filename
-        procedure(zf2d)              :: zfun
+        procedure(zf2d)             :: zfun
         real(wp), intent(in)        :: xmin(2), xmax(2)
         integer, intent(in), optional :: width, height
         character(*), intent(in), optional :: encoding
