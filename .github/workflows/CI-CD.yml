@@ -132,12 +132,20 @@ jobs:
           cmake --build build/cmake/static --config Release
           cmake --install build/cmake/static --config Release --verbose
 
+      - name: cmake uninstall (static)
+        if: always()
+        run: cmake --build build/cmake/static --target uninstall_forcolormap --config Release --verbose
+
       - name: cmake install (shared)
         if: always()
         run: |
           cmake -S . -B build/cmake/shared -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=. -G Ninja
           cmake --build build/cmake/shared --config Release
           cmake --install build/cmake/shared --config Release --verbose
+
+      - name: cmake uninstall (shared)
+        if: always()
+        run: cmake --build build/cmake/shared --target uninstall_forcolormap --config Release --verbose
 
   linter_fortitude:
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
