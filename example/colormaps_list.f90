@@ -27,7 +27,7 @@
 !> Creates the `colormaps_list/COLORMAPS_LIST_*.md` files using
 !> the `Colormaps_info` class.
 program colormaps_list
-    use forcolormap_info, only: cmap_info
+    use forcolormap, only: cmap_info
     implicit none
 
     ! Write colormap information to a file

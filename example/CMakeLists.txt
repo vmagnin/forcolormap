@@ -32,3 +32,8 @@ target_link_libraries(modify PRIVATE forcolormap)
 add_executable(create
   create.f90)
 target_link_libraries(create PRIVATE forcolormap)
+
+# COLORMAPS_LIST
+add_executable(colormaps_list
+  colormaps_list.f90)
+target_link_libraries(colormaps_list PRIVATE forcolormap)
