@@ -86,7 +86,7 @@ contains
 
    !> Filter colormaps and write metadata.
    impure subroutine write(this, verbose, name, family, gradient, palette, author, license, levels, file_name, append)
-      use iso_fortran_env, only: output_unit
+      use, intrinsic :: iso_fortran_env, only: output_unit
       class(Colormaps_info), intent(in) :: this
       integer, intent(in), optional :: verbose
       character(*), intent(in), optional :: name, family, gradient, palette, author, license
@@ -211,6 +211,9 @@ contains
             repeat(SEP2, w_levels)   //SEP1// &
             repeat(SEP2, w_colorbar) //SEP1
 
+       case default
+         ! no header
+
       end select
 
       ! data
@@ -261,6 +264,9 @@ contains
                cell(tmp,                        w_levels)   //SEP1// &
                cell(this%colormaps(i)%colorbar, w_colorbar) //SEP1
 
+          case default
+            print *, 'Invalid verbose level: ', verbose_
+            return
          end select
       end do
 

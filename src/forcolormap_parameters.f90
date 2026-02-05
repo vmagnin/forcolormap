@@ -1,6 +1,6 @@
 !> Global parameters of ForColormap.
 module forcolormap_parameters
-   use iso_fortran_env, only: wp=>real64
+   use, intrinsic :: iso_fortran_env, only: wp=>real64
    implicit none
    private
    public :: wp, pi, colormap_name_length, colormap_metadata
