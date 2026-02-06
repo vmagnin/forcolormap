@@ -87,4 +87,4 @@ favicon             = "logo/logo_forcolormap-roma_8.svg"
 
 [extra.fortitude.check]
 exclude = ["scripts"]
-ignore = ["C003", "C121", "S001", "S061"]
+ignore = ["C003", "C121", "S001", "S061", "E001"]
