@@ -29,7 +29,7 @@ jobs:
         include:
         - {os: ubuntu-latest,  compiler: gfortran }
         - {os: ubuntu-latest,  compiler: ifx      }
-        - {os: ubuntu-latest,  compiler: flang-new}
+        # - {os: ubuntu-latest,  compiler: flang-new} # see: https://github.com/gha3mi/setup-fortran-conda/issues/46
         - {os: ubuntu-latest,  compiler: nvfortran}
         - {os: windows-latest, compiler: gfortran }
         - {os: windows-latest, compiler: ifx      }

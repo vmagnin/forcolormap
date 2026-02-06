@@ -869,8 +869,11 @@ contains
         end if
 
         allocate(rgb_image(pixheight,pixwidth*3))
-
+#if defined(__NVCOMPILER)
+        do i = 0, pixwidth-1
+#else
         do concurrent (i = 0:pixwidth-1) local(z, red, green, blue, j)
+#endif
             z = self%zmin + i / real(pixwidth-1, kind=wp) * (self%zmax - self%zmin)
             call self%compute_RGB(z, red, green, blue)
             do concurrent (j = 0: pixheight-1)
@@ -923,7 +926,11 @@ contains
         end if
 
         allocate(rgb_image(pixheight, pixwidth*3))
+#if defined(__NVCOMPILER)
+        do i = 0, pixwidth-1
+#else
         do concurrent (i = 0:pixwidth-1) local(t, x, red, green, blue, j)
+#endif
             t = real(i, wp) / real(max(1, pixwidth-1), wp)
             x = xmin + t*(xmax - xmin)
             z = zfun(x)
@@ -978,7 +985,12 @@ contains
         end if
 
         allocate(rgb_image(pixheight, pixwidth*3))
+#if defined(__NVCOMPILER)
+        do i = 0, pixwidth-1
+            do j = 0, pixheight-1
+#else
         do concurrent (j = 0:pixheight-1, i = 0:pixwidth-1) local(ti, tj, x, y, red, green, blue)
+#endif
             tj = real(j, wp) / real(max(1, pixheight-1), wp)
             ti = real(i, wp) / real(max(1, pixwidth-1),  wp)
             y  = xmin(2) + tj*(xmax(2) - xmin(2))
@@ -988,6 +1000,9 @@ contains
             rgb_image(pixheight-j, 3*(i+1)-2) = red
             rgb_image(pixheight-j, 3*(i+1)-1) = green
             rgb_image(pixheight-j, 3*(i+1)  ) = blue
+#if defined(__NVCOMPILER)
+            end do
+#endif
         end do
 
         if (present(encoding)) then
@@ -1010,7 +1025,7 @@ contains
     pure subroutine reverse(self, name)
         class(Colormap), intent(inout) :: self
         character(*), intent(in), optional :: name
-        self%map = self%map(size(self%map,1)-1:0:-1, :)
+        self%map(0:self%levels-1, :) = self%map(self%levels-1:0:-1, :)
         if (present(name)) then
             self%name = trim(name)
         else
