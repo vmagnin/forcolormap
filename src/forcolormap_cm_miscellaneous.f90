@@ -385,6 +385,8 @@ module forcolormap_cm_miscellaneous
         real(wp) :: start, rots, hue, gamma
         real(wp) :: fract, angle, amp
 
+        if (nlev < 2) error stop "ERROR: cubehelix nlev must be >= 2"
+
         if (present(varargs)) then
             if (size(varargs) /= 4) error stop "ERROR: cubehelix varargs(:) must have 4 values"
             start = varargs(1)
@@ -401,7 +403,7 @@ module forcolormap_cm_miscellaneous
 
         allocate(map(0:nlev-1, 1:3))
 
-        do concurrent (i = 0:nlev-1)
+        do concurrent (i = 0:nlev-1) local(fract, angle, amp)
             fract = real(i, kind=wp) / (nlev-1)
             angle = 2*pi * (start/3 + 1 + rots*fract)
             fract = fract ** gamma

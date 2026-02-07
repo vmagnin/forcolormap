@@ -929,7 +929,7 @@ contains
 #if defined(__NVCOMPILER)
         do i = 0, pixwidth-1
 #else
-        do concurrent (i = 0:pixwidth-1) local(t, x, red, green, blue, j)
+        do concurrent (i = 0:pixwidth-1) local(t, x, red, green, blue, j, z)
 #endif
             t = real(i, wp) / real(max(1, pixwidth-1), wp)
             x = xmin + t*(xmax - xmin)
@@ -989,7 +989,7 @@ contains
         do i = 0, pixwidth-1
             do j = 0, pixheight-1
 #else
-        do concurrent (j = 0:pixheight-1, i = 0:pixwidth-1) local(ti, tj, x, y, red, green, blue)
+        do concurrent (j = 0:pixheight-1, i = 0:pixwidth-1) local(ti, tj, x, y, z, red, green, blue)
 #endif
             tj = real(j, wp) / real(max(1, pixheight-1), wp)
             ti = real(i, wp) / real(max(1, pixwidth-1),  wp)
