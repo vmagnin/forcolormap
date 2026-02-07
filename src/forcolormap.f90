@@ -1067,7 +1067,7 @@ contains
             self%name = name
         else
             write(extractedLevels_char, '(I3)') extractedLevels
-            self%name = self%name//trim(extractedLevels_char)
+            self%name = trim(self%name)//trim(extractedLevels_char)
         end if
 
         ! Set zmin and zmax if provided
@@ -1164,9 +1164,7 @@ contains
         ! Check validity of extractedLevels
         if (present(check_extract)) then
             if (check_extract) then
-                if (.not. present(extractedLevels)) then
-                    self%status(5) = .false.
-                else if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
+                if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
                     self%status(5) = .false.
                 else
                     self%status(5) = .true.
