@@ -45,3 +45,4 @@
 # Directories
 build/
 doc/
+coverage/
