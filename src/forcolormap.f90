@@ -74,6 +74,7 @@ module forcolormap
         procedure :: reverse
         procedure :: shift
         procedure :: extract
+        procedure :: blend
         procedure, private :: assign_map
         procedure, private :: check
         procedure :: print_status
@@ -1114,6 +1115,33 @@ contains
         write(unit,'(a)') '  }'
         write(unit,'(a)') ']'
         close(unit)
+    end subroutine
+
+    !> Blend this colormap with another one: blend = (1-alpha)*self + alpha*other
+    pure subroutine blend(self, other, alpha, name)
+        class(Colormap), intent(inout) :: self
+        type(Colormap),  intent(in)    :: other
+        real(wp),        intent(in)    :: alpha
+        character(*),    intent(in), optional :: name
+        integer :: i, c
+        real(wp) :: a
+        real(wp) :: v
+
+        if (self%levels /= other%levels) error stop "ERROR: Colormaps must have the same number of levels to be blended!"
+
+        ! Clamp alpha to [0, 1]
+        a = max(0.0_wp, min(1.0_wp, alpha))
+        do concurrent (i = 0:self%levels-1, c = 1:3) local(v)
+            v = (1.0_wp - a)*real(self%map(i,c), wp) + a*real(other%map(i,c), wp)
+            self%map(i,c) = min(max(nint(v), 0), self%levels-1)
+        end do
+
+        ! name handling
+        if (present(name)) then
+            self%name = trim(name)
+        else
+            self%name = trim(self%name)//"_"//trim(other%name)//"_blend"
+        end if
     end subroutine
 
     !> Check the validity of the colormap and fix it if necessary
