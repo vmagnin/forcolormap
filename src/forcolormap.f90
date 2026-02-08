@@ -70,6 +70,7 @@ module forcolormap
         procedure, private :: write_ppm_colormap_1d
         procedure, private :: write_ppm_colormap_2d
         generic :: colormap => write_ppm_colormap_1d, write_ppm_colormap_2d
+        procedure :: export_paraview_preset
         procedure :: reverse
         procedure :: shift
         procedure :: extract
@@ -1080,6 +1081,39 @@ contains
         if (present(reverse)) then
             if (reverse) call self%reverse()
         end if
+    end subroutine
+
+    !> Export the colormap as a Paraview preset file (.json)
+    impure subroutine export_paraview_preset(self, filename)
+        class(Colormap), intent(in) :: self
+        character(*), intent(in) :: filename
+        integer :: unit, i
+        real(wp) :: t, rf, gf, bf
+        character(:), allocatable :: pname
+
+        pname = 'ForColormap_'//trim(self%name)
+
+        open(newunit=unit, file=trim(filename)//'.json', status="replace", action="write")
+        write(unit,'(a)') '['
+        write(unit,'(a)') '  {'
+        write(unit,'(a,a,a)') '    "Name": "', pname, '",'
+        write(unit,'(a)') '    "ColorSpace": "RGB",'
+        write(unit,'(a)') '    "RGBPoints": ['
+        do i = 0, self%levels-1
+            t  = real(i, wp) / real(max(1, self%levels-1), wp)
+            rf = real(self%map(i,1), wp) / 255.0_wp
+            gf = real(self%map(i,2), wp) / 255.0_wp
+            bf = real(self%map(i,3), wp) / 255.0_wp
+            if (i < self%levels-1) then
+                write(unit,'(6x,f8.6,", ",f8.6,", ",f8.6,", ",f8.6,",")') t, rf, gf, bf
+            else
+                write(unit,'(6x,f8.6,", ",f8.6,", ",f8.6,", ",f8.6)')  t, rf, gf, bf
+            end if
+        end do
+        write(unit,'(a)') '    ]'
+        write(unit,'(a)') '  }'
+        write(unit,'(a)') ']'
+        close(unit)
     end subroutine
 
     !> Check the validity of the colormap and fix it if necessary
