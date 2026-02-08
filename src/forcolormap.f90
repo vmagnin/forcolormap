@@ -67,6 +67,7 @@ module forcolormap
         procedure :: get_zmax
         procedure :: print
         procedure :: colorbar => write_ppm_colorbar
+        procedure :: colorbar_ansi
         procedure, private :: write_ppm_colormap_1d
         procedure, private :: write_ppm_colormap_2d
         generic :: colormap => write_ppm_colormap_1d, write_ppm_colormap_2d
@@ -1143,6 +1144,33 @@ contains
             self%name = trim(self%name)//"_"//trim(other%name)//"_blend"
         end if
     end subroutine
+
+    !> Preview the colormap in a truecolor ANSI terminal.
+    !> Optional width controls how many color blocks are printed.
+    impure subroutine colorbar_ansi(self, width)
+        class(Colormap), intent(in) :: self
+        integer, intent(in), optional :: width
+        integer :: i, n, idx
+        integer :: r, g, b
+        real(wp) :: factor
+
+        if (present(width)) then
+            n = max(1, width)
+        else
+            n = self%levels
+        end if
+
+        factor = real(self%levels - 1, wp) / real(max(1, n - 1), wp)
+        do i = 0, n-1
+            idx = nint(real(i, wp) * factor)
+            idx = min(max(idx, 0), self%levels - 1)
+            r = self%map(idx,1)
+            g = self%map(idx,2)
+            b = self%map(idx,3)
+            write(*,'(a,g0,a,g0,a,g0,a)', advance='no') char(27)//'[48;2;', r, ';', g, ';', b, 'm  '
+        end do
+        write(*,'(a)') char(27)//'[0m'
+    end subroutine colorbar_ansi
 
     !> Check the validity of the colormap and fix it if necessary
     pure subroutine check(self,check_name, check_bounds, check_levels, check_extract, extractedLevels)
