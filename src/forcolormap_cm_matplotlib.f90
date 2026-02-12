@@ -33,7 +33,7 @@
 !> This module contains a few matplotlib colormaps: "magma", "inferno",
 !> "plasma", "viridis".
 module forcolormap_cm_matplotlib
-    use forcolormap_parameters, only: colormap_name_length, colormap_metadata
+    use forcolormap_parameters, only: colormap_metadata
     implicit none
     private
 

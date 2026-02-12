@@ -25,7 +25,7 @@
 !> This module contains the 222 colormaps of the *Scientific colour maps*
 !> collection v8.0.1 by Fabio Crameri.
 module forcolormap_cm_scientific
-    use forcolormap_parameters, only: colormap_name_length, colormap_metadata
+    use forcolormap_parameters, only: colormap_metadata
     implicit none
     private
 

@@ -26,7 +26,7 @@
 
 !> This module contains miscellaneous colormaps, especially black body andf cubehelix.
 module forcolormap_cm_miscellaneous
-    use forcolormap_parameters, only: colormap_name_length, colormap_metadata, wp, pi
+    use forcolormap_parameters, only: colormap_metadata, wp, pi
     implicit none
     private
 
