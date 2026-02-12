@@ -49,6 +49,7 @@ module forcolormap_info
       procedure :: get_ncolormaps !! Return the total number of colormaps
       procedure :: get_name       !! Return the name of a colormap by index
       procedure :: get_levels     !! Return the number of levels by index
+      procedure :: find_index     !! Return index by name (0 if not found)
    end type Colormaps_info
 
    !> Global instance providing access to colormap metadata.
@@ -60,6 +61,25 @@ module forcolormap_info
          matplotlib_metadata])
 
 contains
+
+   !> Return the index of a colormap by its name. Returns 0 if not found.
+   pure function find_index(this, name) result(idx)
+      class(Colormaps_info), intent(in) :: this
+      character(*), intent(in) :: name
+      integer :: idx
+      integer :: i
+      character(colormap_name_length) :: key
+
+      key = adjustl(trim(name))
+
+      idx = 0
+      do i = 1, size(this%colormaps)
+         if (key == this%colormaps(i)%name) then
+               idx = i
+               exit
+         end if
+      end do
+   end function find_index
 
    !> Return the total number of available colormaps.
    pure elemental function get_ncolormaps(this) result(ncolormaps_)
