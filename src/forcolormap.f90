@@ -117,13 +117,21 @@ contains
     end subroutine
 
     !> Choose a colormap and set its parameters
-    pure subroutine set(self, name, zmin, zmax, levels, varargs, reverse)
+    pure subroutine set(self, name, zmin, zmax, levels, varargs, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         integer, intent(in), optional :: levels
         real(wp), intent(in), optional :: varargs(:)
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         self%name = trim(name)
         self%zmin = zmin
@@ -136,7 +144,7 @@ contains
         end if
 
         ! Check validity of the colormap and fix it if necessary
-        call self%check(check_name=.true., check_bounds=.true., check_levels=.true.)
+        if (sanitize_) call self%check(check_name=.true., check_bounds=.true., check_levels=.true.)
 
         select case(self%name)
         ! Miscellaneous colormaps collection
@@ -638,19 +646,27 @@ contains
     end subroutine
 
     !> Create a custom colormap from a "map" array.
-    pure subroutine create(self, name, zmin, zmax, map, reverse)
+    pure subroutine create(self, name, zmin, zmax, map, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         logical, intent(in), optional :: reverse
         integer, intent(in) :: map(:,:)
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         self%name   = trim(name)
         self%levels = size(map, 1)
         self%zmin   = zmin
         self%zmax   = zmax
 
-        call self%check(check_bounds=.true., check_levels=.true.)
+        if (sanitize_) call self%check(check_bounds=.true., check_levels=.true.)
 
         call self%assign_map(map)
 
@@ -661,20 +677,28 @@ contains
     end subroutine
 
     !> Create a custom colormap using Lagrange interpolation:
-    pure subroutine create_lagrange(self, name, zmin, zmax, colors, levels, reverse)
+    pure subroutine create_lagrange(self, name, zmin, zmax, colors, levels, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         integer, intent(in) :: colors(:,:)
         integer, intent(in) :: levels
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         self%name   = trim(name)
         self%levels = levels
         self%zmin   = zmin
         self%zmax   = zmax
 
-        call self%check(check_bounds=.true., check_levels=.true.)
+        if (sanitize_) call self%check(check_bounds=.true., check_levels=.true.)
 
         call self%assign_map(lagrange(colors, self%levels))
 
@@ -685,20 +709,28 @@ contains
     end subroutine
 
     !> Create a custom colormap using Bezier interpolation:
-    pure subroutine create_bezier(self, name, zmin, zmax, colors, levels, reverse)
+    pure subroutine create_bezier(self, name, zmin, zmax, colors, levels, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         integer, intent(in) :: colors(:,:)
         integer, intent(in) :: levels
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         self%name   = trim(name)
         self%levels = levels
         self%zmin   = zmin
         self%zmax   = zmax
 
-        call self%check(check_bounds=.true., check_levels=.true.)
+        if (sanitize_) call self%check(check_bounds=.true., check_levels=.true.)
 
         call self%assign_map(bezier(colors, self%levels))
 
@@ -711,15 +743,22 @@ contains
     !> Load a .txt colormap with RGB integers separated by spaces on each line.
     !> Remark: if no path is indicated in filename, the .txt must be present
     !> at the root of the fpm project of the user.
-    impure subroutine load(self, filename, zmin, zmax, reverse)
+    impure subroutine load(self, filename, zmin, zmax, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: filename
         real(wp), intent(in) :: zmin, zmax
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
         integer :: i, n
         integer :: red, green, blue
-        logical :: file_found
+        logical :: file_found, sanitize_
         integer :: file_unit, ios
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         inquire(file=filename, exist=file_found)
 
@@ -755,7 +794,7 @@ contains
             self%zmax   = zmax
             self%levels = n
 
-            call self%check(check_bounds=.true.)
+            if (sanitize_) call self%check(check_bounds=.true.)
 
             ! Reverse the colormap if requested
             if (present(reverse)) then
@@ -1045,18 +1084,26 @@ contains
     end subroutine
 
     !> Extracts colors from the colormap based on specified number of levels (extractedLevels).
-    pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse)
+    pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         integer, intent(in) :: extractedLevels
         character(*), intent(in), optional :: name
         real(wp), intent(in), optional :: zmin, zmax
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
         integer :: extracted_map(extractedLevels, 3), i, idx
         real(wp) :: factor
         character(3) :: extractedLevels_char
 
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
+
         ! Check if the number of extractedLevels is valid
-        call self%check(check_extract=.true., extractedLevels=extractedLevels)
+        if (sanitize_) call self%check(check_extract=.true., extractedLevels=extractedLevels)
         if (.not. self%status(5)) return
 
         factor = real(self%levels-1, wp) / real(extractedLevels-1, wp)
