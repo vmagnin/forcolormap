@@ -1230,67 +1230,61 @@ contains
         ! Initialize status array
         self%status = .true.
 
+        ! Check name and levels and set them to default if not valid
         if (present(check_name)) then
             if (check_name) then
 
-                ! Check if the colormap is valid
-                self%status(1) = .false.
-                do i = 1, cmap_info%get_ncolormaps()
-                    if (self%name == trim(cmap_info%get_name(i))) then
-                        self%status(1) = .true.
-                        exit
-                    end if
-                end do
+                i = cmap_info%find_index(self%name)
+                if (i == 0) then
+                    self%status(1) = .false.
+                    self%name = "grayC"
+                    i = cmap_info%find_index(self%name)
+                else
+                    self%status(1) = .true.
+                end if
 
-                ! Fix the colormap if it is not valid
-                if (self%status(1) .eqv. .false.) self%name = "grayC"
+                levels = -1
+                if (i > 0) levels = cmap_info%get_levels(i)
 
-                ! Find the number of levels of the colormap
-                do i = 1, cmap_info%get_ncolormaps()
-                    if (self%name == trim(cmap_info%get_name(i))) then
-                        levels = cmap_info%get_levels(i)
-                        exit
-                    end if
-                end do
-
-                ! Check if the number of levels is valid
-                if (levels /= self%levels .or. self%levels < 1) then
-                    if (self%levels /= -256) then
-                        if (levels /= -1) then
+                select case (self%levels)
+                case (-256)
+                    self%levels = 256
+                case default
+                    if (levels /= -1) then
+                        if (self%levels < 1) then
+                            self%status(4) = .false.
+                            self%levels = 256
+                        end if
+                        if (self%levels /= levels) then
                             self%status(3) = .false.
                             self%levels = levels
                         end if
                     else
-                        self%levels = 256
+                        if (self%levels < 1) then
+                            self%status(4) = .false.
+                            self%levels = 256
+                        end if
                     end if
-                end if
-
-                ! Fix the number of levels if it is not valid
-                if (self%status(3) .eqv. .false.) then
-                    self%levels = levels
-                end if
+                end select
 
             end if
         end if
 
+        ! Check zmin and zmax and fix them if necessary
         if (present(check_bounds)) then
             if (check_bounds) then
-                ! Check validity of zmin and zmax
-                if (self%zmin > self%zmax) self%status(2) = .false.
-
-                ! Fix zmin and zmax if they are not valid
-                if (self%status(2) .eqv. .false.) then
+                if (self%zmin > self%zmax) then
+                    self%status(2) = .false.
                     temp      = self%zmin
                     self%zmin = self%zmax
                     self%zmax = temp
                 end if
-
             end if
         end if
 
+        ! Check levels and set to default if not valid
         if (present(check_levels)) then
             if (check_levels) then
-                ! Check if the number of levels is valid
                 if (self%levels < 1) then
                     self%status(4) = .false.
                     self%levels = 256
@@ -1298,10 +1292,12 @@ contains
             end if
         end if
 
-        ! Check validity of extractedLevels
+        ! Check extracted levels, no fix possible, just set status
         if (present(check_extract)) then
             if (check_extract) then
-                if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
+                if (.not. present(extractedLevels)) then
+                    self%status(5) = .false.
+                else if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
                     self%status(5) = .false.
                 else
                     self%status(5) = .true.
