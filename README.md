@@ -15,7 +15,7 @@ It is distributed under the MIT license.
 
 ## Basic usage
 
-Assuming your graphical library has a `setpixelgb()`-like function and you know your `z` values will be for example in the [0, 2] range, you can write something like:
+Assuming your graphical library has a classical `setpixelrgb()` function and you know your `z` values will be for example in the [0, 2] range, you can write something like:
 
 ```fortran
 use forcolormap, only: Colormap, wp
