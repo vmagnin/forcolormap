@@ -50,6 +50,14 @@ module forcolormap_info
       procedure :: get_name       !! Return the name of a colormap by index
       procedure :: get_levels     !! Return the number of levels by index
       procedure :: find_index     !! Return index by name (0 if not found)
+      procedure :: get_family     !! Return the family of a colormap by index
+      procedure :: get_gradient   !! Return the gradient type of a colormap by index
+      procedure :: get_palette    !! Return the palette type of a colormap by index
+      procedure :: get_colorbar   !! Return the colorbar type of a colormap by index
+      procedure :: get_package    !! Return the package name of a colormap by index
+      procedure :: get_author     !! Return the author of a colormap by index
+      procedure :: get_license    !! Return the license of a colormap by index
+      procedure :: get_url        !! Return the URL of a colormap by index
    end type Colormaps_info
 
    !> Global instance providing access to colormap metadata.
@@ -61,6 +69,70 @@ module forcolormap_info
          matplotlib_metadata])
 
 contains
+
+   !> Return the family of a colormap by its index.
+   pure function get_family(this, idx) result(family)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: idx
+      character(colormap_name_length) :: family
+      family = trim(this%colormaps(idx)%family)
+   end function get_family
+
+   !> Return the gradient type of a colormap by its index.
+   pure function get_gradient(this, idx) result(gradient)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: idx
+      character(colormap_name_length) :: gradient
+      gradient = trim(this%colormaps(idx)%gradient)
+   end function get_gradient
+
+   !> Return the palette type of a colormap by its index.
+   pure function get_palette(this, idx) result(palette)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: idx
+      character(colormap_name_length) :: palette
+      palette = trim(this%colormaps(idx)%palette)
+   end function get_palette
+
+   !> Return the colorbar type of a colormap by its index.
+   pure function get_colorbar(this, idx) result(colorbar)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: idx
+      character(colormap_name_length) :: colorbar
+      colorbar = trim(this%colormaps(idx)%colorbar)
+   end function get_colorbar
+
+   !> Return the package name of a colormap by its index.
+   pure function get_package(this, idx) result(package)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: idx
+      character(colormap_name_length) :: package
+      package = trim(this%colormaps(idx)%package)
+   end function get_package
+
+   !> Return the author of a colormap by its index.
+   pure function get_author(this, idx) result(author)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: idx
+      character(colormap_name_length) :: author
+      author = trim(this%colormaps(idx)%author)
+   end function get_author
+
+   !> Return the license of a colormap by its index.
+   pure function get_license(this, idx) result(license)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: idx
+      character(colormap_name_length) :: license
+      license = trim(this%colormaps(idx)%license)
+   end function get_license
+
+   !> Return the URL of a colormap by its index.
+   pure function get_url(this, idx) result(url)
+      class(Colormaps_info), intent(in) :: this
+      integer, intent(in) :: idx
+      character(colormap_name_length) :: url
+      url = trim(this%colormaps(idx)%url)
+   end function get_url
 
    !> Return the index of a colormap by its name. Returns 0 if not found.
    pure function find_index(this, name) result(idx)
