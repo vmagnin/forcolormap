@@ -24,7 +24,7 @@
 ! Last modifications: gha3mi 2024-01-06, vmagnin 2026-01-07
 !-------------------------------------------------------------------------------
 
-!> This module contains miscellaneous colormaps, especially black body andf cubehelix.
+!> This module contains miscellaneous colormaps, especially black body and cubehelix.
 module forcolormap_cm_miscellaneous
     use forcolormap_parameters, only: colormap_metadata, wp, pi
     implicit none
