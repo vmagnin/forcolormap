@@ -82,6 +82,7 @@ module forcolormap
     end type
 
     abstract interface
+        !> An interface for passing a 1D function
         pure function zf1d(x) result(z)
             import wp
             implicit none
@@ -89,6 +90,7 @@ module forcolormap
             real(wp) :: z
         end function
 
+        !> An interface for passing a 2D function
         pure function zf2d(x, y) result(z)
             import wp
             implicit none
