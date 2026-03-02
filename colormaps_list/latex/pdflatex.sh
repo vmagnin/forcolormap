@@ -5,7 +5,7 @@ md2tex() {
   local input_file="$1"
   local output_file="$2"
 
-  awk -F'|' 'NR>3 && NF { 
+  awk -F'|' 'NR>2 && NF { 
       namer=gensub(/^ *| *$/, "", "g", $2);
       gsub(/_/,"\\_", namer); # Replace underscores with "\_"
       name=gensub(/^ *| *$/, "", "g", $2);

@@ -33,13 +33,16 @@
 !> This module contains a few matplotlib colormaps: "magma", "inferno",
 !> "plasma", "viridis".
 module forcolormap_cm_matplotlib
-    use forcolormap_parameters, only: colormap_name_length
+    use forcolormap_parameters, only: colormap_metadata
     implicit none
     private
 
-    character(*), dimension(*), parameter, public :: matplotlib_colormaps_list = &
-        [character(colormap_name_length) :: &
-        "magma", "inferno","plasma", "viridis"]
+    type(colormap_metadata), dimension(*), parameter, public :: matplotlib_metadata = [ &
+        colormap_metadata("magma","magma","Sequential","Continuous",256,"magma_colorbar.ppm","Matplotlib","N. Smith et al.","Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("inferno","inferno","Sequential","Continuous",256,"inferno_colorbar.ppm","Matplotlib","N. Smith et al.","Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("plasma","plasma","Sequential","Continuous",256,"plasma_colorbar.ppm","Matplotlib","N. Smith et al.","Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("viridis","viridis","Sequential","Continuous",256,"viridis_colorbar.ppm","Matplotlib","N. Smith et al.","Public Domain (CC0)","https://bids.github.io/colormap/") &
+    ]
 
     integer, dimension(0:255, 1:3), public :: magma=reshape( [ &
               0,      0,      4,&

@@ -27,36 +27,31 @@
 !> The Colormap class and the `colormaps_list`.
 module forcolormap
     use forcolormap_parameters, only: wp, colormap_name_length
-    use forcolormap_utils, only: bezier, lagrange, scale
+    use forcolormap_utils, only: bezier, lagrange
+    use forcolormap_info, only: cmap_info
     use forcolormap_cm_scientific
     use forcolormap_cm_matplotlib
     use forcolormap_cm_miscellaneous
 
     implicit none
+
     private
-
-    public :: wp
-
-    !> List of built-in colormaps:
-    character(*), dimension(*), public, parameter :: colormaps_list = &
-        [character(colormap_name_length) :: &
-        miscellaneous_colormaps_list,&
-        scientific_colour_maps_list,&
-        matplotlib_colormaps_list]
+    public wp, Colormap, cmap_info
 
     !> The Colormap class (attributes are encapsulated):
-    type, public :: Colormap
+    type Colormap
         character(colormap_name_length), private :: name
         integer, private  :: levels         ! Number of levels
         real(wp), private :: zmin, zmax     ! z range
         ! An array containing for each level the associated RGB values:
-        integer, dimension(:, :), allocatable, private :: map
+        integer, allocatable, private :: map(:,:)
 
-        logical, private :: status(4) = .false.
+        logical, private :: status(5) = .false.
         ! status(1): name validity
         ! status(2): zmin < zmax
         ! status(3): levels match colormap
         ! status(4): levels >= 1
+        ! status(5): extract validity
     contains
         procedure :: set
         procedure :: finalize
@@ -72,14 +67,35 @@ module forcolormap
         procedure :: get_zmax
         procedure :: print
         procedure :: colorbar => write_ppm_colorbar
+        procedure :: colorbar_ansi
+        procedure, private :: write_ppm_colormap_1d
+        procedure, private :: write_ppm_colormap_2d
+        generic :: colormap => write_ppm_colormap_1d, write_ppm_colormap_2d
+        procedure :: export_paraview_preset
         procedure :: reverse
         procedure :: shift
         procedure :: extract
+        procedure :: blend
         procedure, private :: assign_map
         procedure, private :: check
         procedure :: print_status
-    end type Colormap
+    end type
 
+    abstract interface
+        pure function zf1d(x) result(z)
+            import wp
+            implicit none
+            real(wp), intent(in) :: x
+            real(wp) :: z
+        end function
+
+        pure function zf2d(x, y) result(z)
+            import wp
+            implicit none
+            real(wp), intent(in) :: x, y
+            real(wp) :: z
+        end function
+    end interface
 
 contains
 
@@ -89,18 +105,34 @@ contains
         integer, intent(in) :: map(:, :)
 
         self%levels = size(map, 1)
-        if (allocated(self%map)) deallocate(self%map)
-        allocate(self%map(0:self%levels-1, 1:3), source=map)
-    end subroutine assign_map
+        if (allocated(self%map)) then
+            ! reallocate only if necessary
+            if (size(self%map, 1) /= self%levels .or. size(self%map, 2) /= 3) then
+                deallocate(self%map)
+                allocate(self%map(0:self%levels-1, 1:3))
+            end if
+        else
+            allocate(self%map(0:self%levels-1, 1:3))
+        end if
+        self%map = map
+    end subroutine
 
     !> Choose a colormap and set its parameters
-    pure subroutine set(self, name, zmin, zmax, levels, varargs, reverse)
+    pure subroutine set(self, name, zmin, zmax, levels, varargs, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         integer, intent(in), optional :: levels
-        real(wp), dimension(:), intent(in), optional :: varargs
+        real(wp), intent(in), optional :: varargs(:)
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         self%name = trim(name)
         self%zmin = zmin
@@ -113,7 +145,7 @@ contains
         end if
 
         ! Check validity of the colormap and fix it if necessary
-        call self%check(check_name=.true., check_bounds=.true., check_levels=.true.)
+        if (sanitize_) call self%check(check_name=.true., check_bounds=.true., check_levels=.true.)
 
         select case(self%name)
         ! Miscellaneous colormaps collection
@@ -605,29 +637,37 @@ contains
         if (present(reverse)) then
             if (reverse) call self%reverse()
         end if
-    end subroutine set
+    end subroutine
 
-    !> A finalizer procedure for memory cleanup:
+    !> Finalize the colormap, deallocating the map array and resetting status.
     pure subroutine finalize(self)
         class(Colormap), intent(inout) :: self
         if (allocated(self%map)) deallocate(self%map)
+        self%status = .false.
     end subroutine
 
-
     !> Create a custom colormap from a "map" array.
-    pure subroutine create(self, name, zmin, zmax, map, reverse)
+    pure subroutine create(self, name, zmin, zmax, map, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
         logical, intent(in), optional :: reverse
-        integer, dimension(:, :), intent(in) :: map
+        integer, intent(in) :: map(:,:)
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         self%name   = trim(name)
         self%levels = size(map, 1)
         self%zmin   = zmin
         self%zmax   = zmax
 
-        call self%check(check_bounds=.true., check_levels=.true.)
+        if (sanitize_) call self%check(check_bounds=.true., check_levels=.true.)
 
         call self%assign_map(map)
 
@@ -638,20 +678,28 @@ contains
     end subroutine
 
     !> Create a custom colormap using Lagrange interpolation:
-    pure subroutine create_lagrange(self, name, zmin, zmax, colors, levels, reverse)
+    pure subroutine create_lagrange(self, name, zmin, zmax, colors, levels, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
-        integer, dimension(:, :), intent(in) :: colors
+        integer, intent(in) :: colors(:,:)
         integer, intent(in) :: levels
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         self%name   = trim(name)
         self%levels = levels
         self%zmin   = zmin
         self%zmax   = zmax
 
-        call self%check(check_bounds=.true., check_levels=.true.)
+        if (sanitize_) call self%check(check_bounds=.true., check_levels=.true.)
 
         call self%assign_map(lagrange(colors, self%levels))
 
@@ -662,20 +710,28 @@ contains
     end subroutine
 
     !> Create a custom colormap using Bezier interpolation:
-    pure subroutine create_bezier(self, name, zmin, zmax, colors, levels, reverse)
+    pure subroutine create_bezier(self, name, zmin, zmax, colors, levels, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: name
         real(wp), intent(in) :: zmin, zmax
-        integer, dimension(:, :), intent(in) :: colors
+        integer, intent(in) :: colors(:,:)
         integer, intent(in) :: levels
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         self%name   = trim(name)
         self%levels = levels
         self%zmin   = zmin
         self%zmax   = zmax
 
-        call self%check(check_bounds=.true., check_levels=.true.)
+        if (sanitize_) call self%check(check_bounds=.true., check_levels=.true.)
 
         call self%assign_map(bezier(colors, self%levels))
 
@@ -688,15 +744,22 @@ contains
     !> Load a .txt colormap with RGB integers separated by spaces on each line.
     !> Remark: if no path is indicated in filename, the .txt must be present
     !> at the root of the fpm project of the user.
-    impure subroutine load(self, filename, zmin, zmax, reverse)
+    impure subroutine load(self, filename, zmin, zmax, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         character(*), intent(in) :: filename
         real(wp), intent(in) :: zmin, zmax
         logical, intent(in), optional :: reverse
+        logical, intent(in), optional :: sanitize
         integer :: i, n
         integer :: red, green, blue
-        logical :: file_found
+        logical :: file_found, sanitize_
         integer :: file_unit, ios
+
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
+        end if
 
         inquire(file=filename, exist=file_found)
 
@@ -732,7 +795,7 @@ contains
             self%zmax   = zmax
             self%levels = n
 
-            call self%check(check_bounds=.true.)
+            if (sanitize_) call self%check(check_bounds=.true.)
 
             ! Reverse the colormap if requested
             if (present(reverse)) then
@@ -741,7 +804,7 @@ contains
         else
             stop "ERROR: COLORMAP FILE NOT FOUND!"
         end if
-    end subroutine load
+    end subroutine
 
 
     !> Compute the RGB values for a z real value
@@ -773,9 +836,9 @@ contains
         integer, intent(in)  :: level
         integer, intent(out) :: red, green, blue
 
-        red =   self%map(level, 1)
+        red   = self%map(level, 1)
         green = self%map(level, 2)
-        blue =  self%map(level, 3)
+        blue  = self%map(level, 3)
     end subroutine
 
    !> Returns the name of the colormap
@@ -829,14 +892,12 @@ contains
         use forimage, only: format_pnm
         class(Colormap), intent(in) :: self
         character(*), intent(in) :: filename
-        integer :: i, j     ! Pixbuffer coordinates
         integer, intent(in), optional :: width, height
-        integer :: pixwidth, pixheight
-        integer, dimension(:,:), allocatable :: rgb_image
-        integer  :: red, green, blue
+        character(*), intent(in), optional :: encoding
+        integer, allocatable :: rgb_image(:,:)
+        integer  :: pixwidth, pixheight, red, green, blue, i, j
         real(wp) :: z
         type(format_pnm) :: ppm
-        character(*), intent(in), optional :: encoding
 
         if (present(width)) then
             pixwidth = width
@@ -851,11 +912,14 @@ contains
         end if
 
         allocate(rgb_image(pixheight,pixwidth*3))
-
+#if defined(__NVCOMPILER)
         do i = 0, pixwidth-1
-            do j = 0, pixheight-1
-                z = self%get_zmin() + i / real(pixwidth-1, kind=wp) * (self%get_zmax() - self%get_zmin())
-                call self%compute_RGB(z, red, green, blue)
+#else
+        do concurrent (i = 0:pixwidth-1) local(z, red, green, blue, j)
+#endif
+            z = self%zmin + i / real(pixwidth-1, kind=wp) * (self%zmax - self%zmin)
+            call self%compute_RGB(z, red, green, blue)
+            do concurrent (j = 0: pixheight-1)
                 rgb_image(pixheight-j, 3*(i+1)-2) = red
                 rgb_image(pixheight-j, 3*(i+1)-1) = green
                 rgb_image(pixheight-j, 3*(i+1))   = blue
@@ -876,166 +940,352 @@ contains
             comment     = 'comment',&
             pixels      = rgb_image)
         call ppm%export_pnm(filename)
-    end subroutine write_ppm_colorbar
+    end subroutine
+
+    !> render a colormap defined by a 1D function into a PPM file
+    impure subroutine write_ppm_colormap_1d(self, filename, zfun, xmin, xmax, width, height, encoding)
+        use forimage, only: format_pnm
+        class(Colormap), intent(in) :: self
+        character(*), intent(in)    :: filename
+        procedure(zf1d)              :: zfun
+        real(wp), intent(in)        :: xmin, xmax
+        integer, intent(in), optional :: width, height
+        character(*), intent(in), optional :: encoding
+
+        type(format_pnm) :: ppm
+        integer, allocatable :: rgb_image(:,:)
+        integer :: pixwidth, pixheight, i, j, red, green, blue
+        real(wp) :: t, x, z
+
+        if (present(width)) then
+            pixwidth = width
+        else
+            pixwidth = 600
+        end if
+        if (present(height)) then
+            pixheight = height
+        else
+            pixheight = 50
+        end if
+
+        allocate(rgb_image(pixheight, pixwidth*3))
+#if defined(__NVCOMPILER)
+        do i = 0, pixwidth-1
+#else
+        do concurrent (i = 0:pixwidth-1) local(t, x, red, green, blue, j, z)
+#endif
+            t = real(i, wp) / real(max(1, pixwidth-1), wp)
+            x = xmin + t*(xmax - xmin)
+            z = zfun(x)
+            call self%compute_RGB(z, red, green, blue)
+            do concurrent (j = 0:pixheight-1)
+                rgb_image(pixheight-j, 3*(i+1)-2) = red
+                rgb_image(pixheight-j, 3*(i+1)-1) = green
+                rgb_image(pixheight-j, 3*(i+1)  ) = blue
+            end do
+        end do
+
+        if (present(encoding)) then
+            call ppm%set_format(encoding)
+        else
+            call ppm%set_format('binary')
+        end if
+
+        call ppm%set_pnm(encoding = ppm%get_format(),&
+            file_format = 'ppm',&
+            width       = pixwidth,&
+            height      = pixheight,&
+            max_color   = 255,&
+            comment     = 'comment',&
+            pixels      = rgb_image)
+        call ppm%export_pnm(filename)
+    end subroutine
+
+    !> render a colormap defined by a 2D function into a PPM file
+    impure subroutine write_ppm_colormap_2d(self, filename, zfun, xmin, xmax, width, height, encoding)
+        use forimage, only: format_pnm
+        class(Colormap), intent(in) :: self
+        character(*), intent(in)    :: filename
+        procedure(zf2d)             :: zfun
+        real(wp), intent(in)        :: xmin(2), xmax(2)
+        integer, intent(in), optional :: width, height
+        character(*), intent(in), optional :: encoding
+
+        type(format_pnm) :: ppm
+        integer, allocatable :: rgb_image(:,:)
+        integer :: pixwidth, pixheight, i, j, red, green, blue
+        real(wp) :: ti, tj, x, y, z
+
+        if (present(width)) then
+            pixwidth = width
+        else
+            pixwidth = 600
+        end if
+        if (present(height)) then
+            pixheight = height
+        else
+            pixheight = 600
+        end if
+
+        allocate(rgb_image(pixheight, pixwidth*3))
+#if defined(__NVCOMPILER)
+        do i = 0, pixwidth-1
+            do j = 0, pixheight-1
+#else
+        do concurrent (j = 0:pixheight-1, i = 0:pixwidth-1) local(ti, tj, x, y, z, red, green, blue)
+#endif
+            tj = real(j, wp) / real(max(1, pixheight-1), wp)
+            ti = real(i, wp) / real(max(1, pixwidth-1),  wp)
+            y  = xmin(2) + tj*(xmax(2) - xmin(2))
+            x  = xmin(1) + ti*(xmax(1) - xmin(1))
+            z = zfun(x, y)
+            call self%compute_RGB(z, red, green, blue)
+            rgb_image(pixheight-j, 3*(i+1)-2) = red
+            rgb_image(pixheight-j, 3*(i+1)-1) = green
+            rgb_image(pixheight-j, 3*(i+1)  ) = blue
+#if defined(__NVCOMPILER)
+            end do
+#endif
+        end do
+
+        if (present(encoding)) then
+            call ppm%set_format(encoding)
+        else
+            call ppm%set_format('binary')
+        end if
+
+        call ppm%set_pnm(encoding = ppm%get_format(),&
+            file_format = 'ppm',&
+            width       = pixwidth,&
+            height      = pixheight,&
+            max_color   = 255,&
+            comment     = 'comment',&
+            pixels      = rgb_image)
+        call ppm%export_pnm(filename)
+    end subroutine
 
     !> Reverse the colormap
     pure subroutine reverse(self, name)
         class(Colormap), intent(inout) :: self
         character(*), intent(in), optional :: name
-        self%map(:,:) = self%map(size(self%map,1)-1:0:-1, :)
+        self%map(0:self%levels-1, :) = self%map(self%levels-1:0:-1, :)
         if (present(name)) then
             self%name = trim(name)
         else
             self%name = trim(self%name)//'_reverse'
         end if
-    end subroutine reverse
+    end subroutine
 
     !> Apply a circular shift to the colormap (left is +, right is -)
     pure subroutine shift(self, sh)
         class(Colormap), intent(inout) :: self
         integer, intent(in) :: sh   !! The shift
 
-        self%map(:,:) = cshift(self%map(:,:), sh)
-    end subroutine shift
+        self%map = cshift(self%map, sh)
+    end subroutine
 
-    !> Extracts colors from the colormap based on specified number of levels (nl)
-    pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse)
+    !> Extracts colors from the colormap based on specified number of levels (extractedLevels).
+    pure subroutine extract(self, extractedLevels, name, zmin, zmax, reverse, sanitize)
         class(Colormap), intent(inout) :: self
         integer, intent(in) :: extractedLevels
         character(*), intent(in), optional :: name
         real(wp), intent(in), optional :: zmin, zmax
         logical, intent(in), optional :: reverse
-        integer :: extracted_map(extractedLevels,3)
-        integer :: ind(extractedLevels,3)
-        real(wp) :: ind_rel(extractedLevels,3), array_rel(self%levels,3), step(3), current_element(3)
-        integer :: i
-        integer, dimension(self%levels,3) :: array
+        logical, intent(in), optional :: sanitize
+        logical :: sanitize_
+        integer :: extracted_map(extractedLevels, 3), i, idx
+        real(wp) :: factor
         character(3) :: extractedLevels_char
 
-        ! Initialize array with indices
-        do concurrent (i = 1: self%levels)
-            array(i,:) = i-1
-        end do
-
-        ! Normalize array elements to the range [0, 1]
-        do concurrent (i = 1: 3)
-            array_rel(:,i) = array(:,i)/ maxval(array(:,i))
-        end do
-
-        ! Check if the number of extractedLevels is valid
-        if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
-            error stop "Error: Invalid number of extractedLevels. Must be > 1 and <= levels"
+        if (present(sanitize)) then
+            sanitize_ = sanitize
+        else
+            sanitize_ = .true.
         end if
 
-        step(:) = array_rel(self%levels,:) / real(extractedLevels-1, kind=wp)
+        ! Check if the number of extractedLevels is valid
+        if (sanitize_) call self%check(check_extract=.true., extractedLevels=extractedLevels)
+        if (.not. self%status(5)) return
 
-        current_element(:) = array_rel(1,:)
-
-        do i = 1, extractedLevels
-            ind_rel(i,:) = current_element
-            current_element = current_element + step
+        factor = real(self%levels-1, wp) / real(extractedLevels-1, wp)
+        do concurrent (i = 1:extractedLevels) local(idx)
+            idx = min(max(nint(real(i-1, wp) * factor), 0), self%levels-1)
+            extracted_map(i, :) = self%map(idx, :)
         end do
 
-        ! Scale interpolated indices to integers between 0 and self%levels - 1
-        do concurrent (i = 1:3)
-            ind(:,i) = scale(ind_rel(:,i), 0, self%levels-1)
-        end do
-
-        ! Extract colors from the colormap based on interpolated indices
-        do concurrent (i = 1: 3)
-            extracted_map(:,i) = self%map(ind(:,i),i)
-        end do
-
-        ! Set colormap name if provided, otherwise use the number of levels as part of the name
+        ! Name handling
         if (present(name)) then
             self%name = name
         else
             write(extractedLevels_char, '(I3)') extractedLevels
-            self%name = self%name//trim(extractedLevels_char)
+            self%name = trim(self%name)//trim(extractedLevels_char)
         end if
 
         ! Set zmin and zmax if provided
         if (present(zmin)) self%zmin = zmin
         if (present(zmax)) self%zmax = zmax
 
-        ! Create the extracted colormap with the specified parameters
+        ! Replace map
         call self%assign_map(extracted_map)
 
         if (present(reverse)) then
             if (reverse) call self%reverse()
         end if
-    end subroutine extract
+    end subroutine
+
+    !> Export the colormap as a Paraview preset file (.json)
+    impure subroutine export_paraview_preset(self, filename)
+        class(Colormap), intent(in) :: self
+        character(*), intent(in) :: filename
+        integer :: unit, i
+        real(wp) :: t, rf, gf, bf
+        character(:), allocatable :: pname
+
+        pname = 'ForColormap_'//trim(self%name)
+
+        open(newunit=unit, file=trim(filename)//'.json', status="replace", action="write")
+        write(unit,'(a)') '['
+        write(unit,'(a)') '  {'
+        write(unit,'(a,a,a)') '    "Name": "', pname, '",'
+        write(unit,'(a)') '    "ColorSpace": "RGB",'
+        write(unit,'(a)') '    "RGBPoints": ['
+        do i = 0, self%levels-1
+            t  = real(i, wp) / real(max(1, self%levels-1), wp)
+            rf = real(self%map(i,1), wp) / 255.0_wp
+            gf = real(self%map(i,2), wp) / 255.0_wp
+            bf = real(self%map(i,3), wp) / 255.0_wp
+            if (i < self%levels-1) then
+                write(unit,'(6x,f8.6,", ",f8.6,", ",f8.6,", ",f8.6,",")') t, rf, gf, bf
+            else
+                write(unit,'(6x,f8.6,", ",f8.6,", ",f8.6,", ",f8.6)')  t, rf, gf, bf
+            end if
+        end do
+        write(unit,'(a)') '    ]'
+        write(unit,'(a)') '  }'
+        write(unit,'(a)') ']'
+        close(unit)
+    end subroutine
+
+    !> Blend this colormap with another one: blend = (1-alpha)*self + alpha*other
+    pure subroutine blend(self, other, alpha, name)
+        class(Colormap), intent(inout) :: self
+        type(Colormap),  intent(in)    :: other
+        real(wp),        intent(in)    :: alpha
+        character(*),    intent(in), optional :: name
+        integer :: i, c
+        real(wp) :: a
+        real(wp) :: v
+
+        if (self%levels /= other%levels) error stop "ERROR: Colormaps must have the same number of levels to be blended!"
+
+        ! Clamp alpha to [0, 1]
+        a = max(0.0_wp, min(1.0_wp, alpha))
+        do concurrent (i = 0:self%levels-1, c = 1:3) local(v)
+            v = (1.0_wp - a)*real(self%map(i,c), wp) + a*real(other%map(i,c), wp)
+            self%map(i,c) = min(max(nint(v), 0), self%levels-1)
+        end do
+
+        ! name handling
+        if (present(name)) then
+            self%name = trim(name)
+        else
+            self%name = trim(self%name)//"_"//trim(other%name)//"_blend"
+        end if
+    end subroutine
+
+    !> Preview the colormap in a truecolor ANSI terminal.
+    !> Optional width controls how many color blocks are printed.
+    impure subroutine colorbar_ansi(self, width)
+        class(Colormap), intent(in) :: self
+        integer, intent(in), optional :: width
+        integer :: i, n, idx
+        integer :: r, g, b
+        real(wp) :: factor
+
+        if (present(width)) then
+            n = max(1, width)
+        else
+            n = self%levels
+        end if
+
+        factor = real(self%levels - 1, wp) / real(max(1, n - 1), wp)
+        do i = 0, n-1
+            idx = nint(real(i, wp) * factor)
+            idx = min(max(idx, 0), self%levels - 1)
+            r = self%map(idx,1)
+            g = self%map(idx,2)
+            b = self%map(idx,3)
+            write(*,'(a,g0,a,g0,a,g0,a)', advance='no') char(27)//'[48;2;', r, ';', g, ';', b, 'm  '
+        end do
+        write(*,'(a)') char(27)//'[0m'
+    end subroutine colorbar_ansi
 
     !> Check the validity of the colormap and fix it if necessary
-    pure subroutine check(self,check_name, check_bounds, check_levels)
-        use forcolormap_info, only: Colormaps_info
-
+    pure subroutine check(self,check_name, check_bounds, check_levels, check_extract, extractedLevels)
         class(Colormap), intent(inout) :: self
-        logical, intent(in), optional :: check_name, check_bounds, check_levels
+        logical, intent(in), optional :: check_name, check_bounds, check_levels, check_extract
+        integer, intent(in), optional :: extractedLevels
         real(wp) :: temp
-        type(Colormaps_info) :: cmap_info
         integer :: i, levels
 
         ! Initialize status array
         self%status = .true.
 
-        call cmap_info%set_all()
-
+        ! Check name and levels and set them to default if not valid
         if (present(check_name)) then
             if (check_name) then
 
-                ! Check if the colormap is valid
-                if (.not. any(self%name == colormaps_list)) self%status(1) = .false.
+                i = cmap_info%find_index(self%name)
+                if (i == 0) then
+                    self%status(1) = .false.
+                    self%name = "grayC"
+                    i = cmap_info%find_index(self%name)
+                else
+                    self%status(1) = .true.
+                end if
 
-                ! Fix the colormap if it is not valid
-                if (self%status(1) .eqv. .false.) self%name = "grayC"
+                levels = -1
+                if (i > 0) levels = cmap_info%get_levels(i)
 
-                ! Find the number of levels of the colormap
-                do i = 1, cmap_info%get_ncolormaps()
-                    if (self%name == trim(cmap_info%get_name(i))) then
-                        levels = cmap_info%get_levels(i)
-                        exit
-                    end if
-                end do
-
-                ! Check if the number of levels is valid
-                if (levels /= self%levels .or. self%levels < 1) then
-                    if (self%levels /= -256) then
-                        if (levels /= -1) then
+                select case (self%levels)
+                case (-256)
+                    self%levels = 256
+                case default
+                    if (levels /= -1) then
+                        if (self%levels < 1) then
+                            self%status(4) = .false.
+                            self%levels = 256
+                        end if
+                        if (self%levels /= levels) then
                             self%status(3) = .false.
                             self%levels = levels
                         end if
                     else
-                        self%levels = 256
+                        if (self%levels < 1) then
+                            self%status(4) = .false.
+                            self%levels = 256
+                        end if
                     end if
-                end if
-
-                ! Fix the number of levels if it is not valid
-                if (self%status(3) .eqv. .false.) then
-                    self%levels = levels
-                end if
+                end select
 
             end if
         end if
 
+        ! Check zmin and zmax and fix them if necessary
         if (present(check_bounds)) then
             if (check_bounds) then
-                ! Check validity of zmin and zmax
-                if (self%zmin > self%zmax) self%status(2) = .false.
-
-                ! Fix zmin and zmax if they are not valid
-                if (self%status(2) .eqv. .false.) then
+                if (self%zmin > self%zmax) then
+                    self%status(2) = .false.
                     temp      = self%zmin
                     self%zmin = self%zmax
                     self%zmax = temp
                 end if
-
             end if
         end if
 
+        ! Check levels and set to default if not valid
         if (present(check_levels)) then
             if (check_levels) then
-                ! Check if the number of levels is valid
                 if (self%levels < 1) then
                     self%status(4) = .false.
                     self%levels = 256
@@ -1043,7 +1293,20 @@ contains
             end if
         end if
 
-    end subroutine check
+        ! Check extracted levels, no fix possible, just set status
+        if (present(check_extract)) then
+            if (check_extract) then
+                if (.not. present(extractedLevels)) then
+                    self%status(5) = .false.
+                else if (extractedLevels <= 1 .or. extractedLevels > self%levels) then
+                    self%status(5) = .false.
+                else
+                    self%status(5) = .true.
+                end if
+            end if
+        end if
+
+    end subroutine
 
     !> Print error and fix messages for unvalid colormaps
     impure subroutine print_status(self)
@@ -1066,7 +1329,10 @@ contains
                             "Error 3: Number of Levels (levels) doesn't match colormap! Levels adjusted to colormap."
                     case (4)
                         print'(a)',&
-                            "Error 4: Number of Levels (levels) is less than 1! Levels adjusted to 256."
+                        "Error 4: Number of Levels (levels) is less than 1! Levels adjusted to 256."
+                    case (5)
+                        print'(a)',&
+                        "Error 5: Invalid extractedLevels. No extraction performed."
                     case default
                         print '(a)', "Unknown error!"
                     end select
@@ -1075,6 +1341,6 @@ contains
 
         end if
 
-    end subroutine print_status
+    end subroutine
 
-end module forcolormap
+end module
