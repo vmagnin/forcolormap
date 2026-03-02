@@ -3,7 +3,6 @@ title: Web pages
 ---
 
 # About colormaps
-* [No Bijection!](NO_BIJECTION.md): a passionate text about the mysteries and wonders of colors.
 * [https://en.wikipedia.org/wiki/Color_gradient](https://en.wikipedia.org/wiki/Color_gradient)
 * [https://en.wikipedia.org/wiki/Heat_map](https://en.wikipedia.org/wiki/Heat_map)
 * Ken Hughes, ["Default colormaps: Are Parula and Viridis really an improvement over Jet?"](https://brushingupscience.com/2019/10/01/default-colormaps-are-parula-and-viridis-really-an-improvement-over-jet/), posted on October 1, 2019.
