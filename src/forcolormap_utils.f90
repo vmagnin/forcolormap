@@ -34,6 +34,7 @@ module forcolormap_utils
 
    public :: bezier, lagrange, lagrange_poly, factorial, scale
 
+   !> Interface to the scale_real_real() and scale_real_int() functions.
    interface scale
        module procedure scale_real_real
        module procedure scale_real_int
