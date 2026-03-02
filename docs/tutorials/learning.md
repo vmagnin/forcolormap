@@ -3,7 +3,7 @@ title: Learning
 ---
 
 # API
-The API is documented in the [FORD documentation](https://vmagnin.github.io/forcolormap/).
+The API is fully documented in the tabs of the online FORD documentation.
 
 # Examples
 And in the `example` directory, you will find these commented demos:
