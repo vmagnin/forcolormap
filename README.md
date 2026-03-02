@@ -1,5 +1,8 @@
 <img src="logo/logo_forcolormap-roma_8.svg" alt="" width="400" />
 
+[![GitHub](https://img.shields.io/github/license/vmagnin/forcolormap)](https://github.com/vmagnin/forcolormap/blob/main/LICENSE)
+[![Doc](https://img.shields.io/badge/doc-ForColormap-purple)](https://vmagnin.github.io/forcolormap/)
+
 The ForColormap Fortran library is independent of any graphical toolkit: its main functionality is to convert a real value to RGB values that you can use with any drawing toolkit. It includes:
 
 * the 222 colormaps of the ["Scientific Colour Maps"](https://www.fabiocrameri.ch/ws/media-library/a17d02961b3a4544961416de2d7900a4/posterscientificcolourmaps_crameri.pdf) collection v8.0.1 by Fabio Crameri. They are perceptually uniform, perceptually ordered, colour-vision-deficiency friendly, readable as black-and-white print and citable. They are classified into different palette types (continuous; discrete; categorical) and gradient types (sequential; diverging; multi-sequential; cyclic).
