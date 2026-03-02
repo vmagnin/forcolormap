@@ -1,4 +1,6 @@
-# Gallery
+---
+title: Gallery
+---
 
 If you use ForColormap in your simulations, you can sent us screenshots with details to put in this gallery:
 
