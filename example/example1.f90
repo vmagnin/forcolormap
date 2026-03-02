@@ -60,6 +60,7 @@ program example1
 
 contains
 
+   !> A sample test function to generate colormap images.
    pure function zfun(x,y) result(z)
       real(wp), intent(in) :: x, y
       real(wp) :: z
