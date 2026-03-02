@@ -8,6 +8,7 @@ module forcolormap_parameters
    integer, parameter :: colormap_name_length = 30
    real(wp), parameter :: pi = 4 * atan(1.0_wp)
 
+   !> A structure for storing the metadata of a colormap
    type :: colormap_metadata
       character(len=colormap_name_length) :: name
       character(len=32)                   :: family
