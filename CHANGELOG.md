@@ -1,24 +1,44 @@
 # Changelog
 All notable changes are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [forcolormap dev]
+## [forcolormap 1.0] 2026-03-??
 
 ### Added
+* `docs/`: a new FORD documentation following the [Diátaxis](https://diataxis.fr) framework organized in four quadrants: Tutorials, How-to, Explanation, Reference. The API documentation was improved.
+* Added INSTALL.md and CONTRIBUTING.md files.
 * The nvidia-hpc compiler in the CI workflow.
-* In `src/colormap_class.f90`: a `finalize` method for memory cleanup.
-* `gallery/lajolla_reaction_diffusion.png`
-* Displayed in the `README.md`: `gallery/lajolla_test.png` and `gallery/lajolla_colorbar.png`.
+* `src/forcolormap.f90`:
+    * A `colorbar_ansi()` method to preview the colormap in a truecolor ANSI terminal.
+    * A `blend()` method to blend two colormaps according to blend = (1-alpha)*self + alpha*other.
+    * A method `export_paraview_preset()` to export a colormap as a Paraview preset file (`.json`).
+    * A function can now be passed to `write_ppm_colormap_1d()` and `write_ppm_colormap_2d()`.
+    * An optional `sanitize` argument to methods creating colormaps, to switch off checks and fixes. Can improve speed when necessary.
+    * A `finalize()` method for memory cleanup.
+* Added a `colormap_metadata` type.
+* `src/forcolormap_info.f90`:
+    * A `find_index()` method to retrieve a colormap index by its name.
+    * `get_` functions for getting colormap metadata.
+* `test/check.f90`: tests were expanded and refactored by using generative AI.
+* `lcov.sh` script: cleans the build directory, builds and runs tests and computes coverage via `lcov`.
 
 ### Changed
-* Improved the CI (fpm, cmake, ford and fortitude): new `.github/workflows/CI-CD.yml` replacing the old `*.yml` files.
+* Improved the CI (fpm, cmake, ford and fortitude) in a new `.github/workflows/CI-CD.yml` replacing the old `*.yml` files.
 * Moved FORD configuration from `ford.yml` to `fpm.toml`.
-* Transformed main comments in FORD format.
+* Improved `lagrange()`, `lagrange_poly()`, `bezier()` and `factorial()` functions.
+* Improved performances.
+* Improved readability and performance in `forcolormap_info`.
+* Enhanced finalize subroutine to reset `status`.
+* Files and modules were renamed according to fpm recommendations. A `fpm clean` or `make clean` is therefore recommended if you update your ForColormap.
+* Code refactoring.
 
 ### Fixed
-* CMake: a problem concerning WIN32 and shared library (PR [#42](https://github.com/vmagnin/forcolormap/pull/42)).
-* CMake: `install_library` args and include install dirs.
+* CMake:
+    * A problem concerning WIN32 and shared library (PR [#42](https://github.com/vmagnin/forcolormap/pull/42)).
+    * `install_library` args and include install dirs.
+    * Add missing example `colormaps_list.f90` to `example/CMakeLists.txt`.
 * In `fpm.toml`, `name = "forcolormap"` is now lower case because fpm dependencies are case sensitive.
-
+* Missing local variables in `do concurrent` loops.
+* Many fixes.
 
 ## [forcolormap 0.9] 2024-03-11
 
