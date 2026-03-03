@@ -8,18 +8,23 @@ The main goal of v1.0 is to offer a reliable library with a stable API and to im
 
 - [x] Follow the [Diátaxis](https://diataxis.fr) framework. 
 - [x] Improve the FORD documentation, by adding FORD comments in the source code when needed.
-- [x] Include a few images in the `README.md` file.
+- [x] Include a few images in the `README.md` file and the new Diátaxis doc.
 - [x] Add properties of the colormaps in the `README.md` file: specify which colormaps are colorblind-friendly, perceptually uniform, B&W print safe, citable, etc.
 
 ### Quality Assurance
 
 - [x] Add more automatic tests in `test/check.f90`.
-- [ ] Refactoring and code cleanup.
-- [ ] fix bugs and compiler warnings.
+- [x] Refactoring and code cleanup.
+- [x] fix bugs and compiler warnings.
+
+### Features
+
+- [x] Add export file for use in ParaView.
+- [x] `blend()` two colormaps.
 
 ### Publication
 
-- [ ] Submit a JOSS *(Journal of Open Source Software)* paper similar to https://joss.theoj.org/papers/10.21105/joss.02004
+- [x] Prepare the submission of a JOSS *(Journal of Open Source Software)* paper similar to https://joss.theoj.org/papers/10.21105/joss.02004
 
 
 ## Version 1.1
@@ -38,9 +43,7 @@ These concepts are open for implementation or consideration. They may or may not
 - [ ] Methods
   - [ ] Colormaps could have an option for logscale.
   - [ ] A `get_colorbar()` function could return an `array(:,:,1:3)` containing the RGB image of the colorbar. The arguments could be the width and height, the direction (horizontal/vertical), etc.
-  - [ ] Add a `save()` or `export()` method
-    - [ ] Transfer lut file subroutines from ForImage to ForColormap.
-    - [ ] Add suport `.xml` file for use in ParaView or other softwares.
+  - [ ] Transfer lut file subroutines from ForImage to ForColormap.
   - [ ] Improve the `shift()` method: 
     - [ ] `shift_levels()`, `shift_real()`
     - [ ] Possibly shifting automatically the colormap according to the [zmin, zmax] range. For example [-6, 3].
@@ -49,7 +52,6 @@ These concepts are open for implementation or consideration. They may or may not
   - [ ] Convert to greyscale (note: convert to grayscale is implemented in ForImage).
   - [ ] Create and load colormaps based on other color formats (note: Color conversion is implemented in ForImage).
   - [ ] `brighten()` and darken (note: this is implemented in ForImage).
-  - [ ] `mix()` two colormaps.
 - [ ] Add Interpolation functions
   - [ ] B-Splines
   - [ ] NURBS
