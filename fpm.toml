@@ -74,6 +74,7 @@ project_github      = "https://github.com/vmagnin/forcolormap"
 author              = "Vincent Magnin, Seyed Ali Ghasemi"
 license             = "MIT"
 src_dir             = ["src", "example", "test"]
+doc_license         = "by-sa"
 output_dir          = "doc"
 page_dir            = "docs"
 media_dir           = "./logo"
