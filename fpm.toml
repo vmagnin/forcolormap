@@ -9,6 +9,9 @@ homepage   = "https://github.com/vmagnin/forcolormap"
 categories = ["graphics"]
 keywords   = ["Fortran", "colormap", "fpm", "CMake"]
 
+[preprocess]
+[preprocess.cpp]
+
 [dependencies]
 forimage = {git="https://github.com/gha3mi/forimage.git"}
 

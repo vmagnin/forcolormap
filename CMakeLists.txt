@@ -16,6 +16,13 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 endif()
 
+# C preprocessor
+if(CMAKE_Fortran_COMPILER_ID STREQUAL "IntelLLVM")
+  add_compile_options(-fpp)
+else()
+  add_compile_options(-cpp)
+endif()
+
 # By default, static library
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
