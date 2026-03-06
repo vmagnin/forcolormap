@@ -46,3 +46,5 @@
 build/
 doc/
 coverage/
+colormaps_list/png/
+
