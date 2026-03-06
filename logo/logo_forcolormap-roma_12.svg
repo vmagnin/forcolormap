@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="297mm"
-   height="100mm"
-   viewBox="0 0 297 100"
+   width="258.98209mm"
+   height="110.48241mm"
+   viewBox="0 0 258.98209 110.48241"
    version="1.1"
    id="svg157809"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   sodipodi:docname="logo_fcm_roma_12.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="logo_forcolormap-roma_12.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,14 +24,16 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.47215208"
-     inkscape:cx="950.96479"
-     inkscape:cy="324.04814"
-     inkscape:window-width="1366"
-     inkscape:window-height="704"
+     inkscape:cx="942.49294"
+     inkscape:cy="309.2224"
+     inkscape:window-width="2048"
+     inkscape:window-height="1083"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs157806">
     <rect
@@ -44,7 +46,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-2.9118519,-3.744697)">
     <g
        id="g160854"
        transform="matrix(1.6948161,0,0,1.6948161,-110.57386,-84.737916)">
@@ -123,8 +126,8 @@
          id="text39206-4"
          style="font-style:italic;font-weight:normal;font-size:266.667px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Italic';white-space:pre;shape-inside:url(#rect39208-8);fill:#023296;fill-opacity:1;stroke:#023296;stroke-opacity:1"><tspan
            x="297.71289"
-           y="502.49833"
-           id="tspan160986">fcm</tspan></text>
+           y="509.19423"
+           id="tspan1">fcm</tspan></text>
     </g>
   </g>
 </svg>

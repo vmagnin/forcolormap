@@ -38,6 +38,7 @@ All notable changes are documented in this file. The format is based on [Keep a 
     * Add missing example `colormaps_list.f90` to `example/CMakeLists.txt`.
 * In `fpm.toml`, `name = "forcolormap"` is now lower case because fpm dependencies are case sensitive.
 * Missing local variables in `do concurrent` loops.
+* The font of the logo is Noto Sans Italic.
 * Many fixes.
 
 ## [forcolormap 0.9] 2024-03-11
