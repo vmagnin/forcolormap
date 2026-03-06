@@ -69,7 +69,7 @@ jobs:
           compiler: gfortran
           generate-doc-ford: true
           ford-working-directory: .
-          ford-config: ford.yml
+          ford-config: README.md
           ford-output-directory: doc
           ford-branch: gh-pages
           ford-target-folder: .
