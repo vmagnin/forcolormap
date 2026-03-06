@@ -20,6 +20,7 @@ All notable changes are documented in this file. The format is based on [Keep a 
     * `get_` functions for getting colormap metadata.
 * `test/check.f90`: tests were expanded and refactored by using generative AI.
 * `lcov.sh` script: cleans the build directory, builds and runs tests and computes coverage via `lcov`.
+* `colormaps_list/generate_PDF.sh`: a script to regenerate the `ForColormap.pdf` file.
 
 ### Changed
 * Improved the CI (fpm, cmake, ford and fortitude) in a new `.github/workflows/CI-CD.yml` replacing the old `*.yml` files.

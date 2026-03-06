@@ -2,17 +2,12 @@ This directory contains the files and scripts necessary to regenerate the `ForCo
 
 # Regenerating the PDF
 
-In the `example/demo.f90` file, comment temporarily all the colormaps that are outside the `do...endo` loop (those customed colormaps must not appear in the PDF). Comment also in the loop the line generating the `*_test.ppm` files. 
+In the `example/demo.f90` file, comment temporarily all the colormaps that are outside the `do...endo` loop (those customed colormaps must not appear in the PDF).
 
-Then from the root directory of the project type these commands:
+You can also comment in the loop the line generating the `*_test.ppm` files, to accelerate the process.
+
+Then from the `colormaps_list/` directory, launch the script:
+
 ```bash
-$ rm colormaps_list/COLORMAPS_LIST_*.md
-$ fpm run --example colormaps_list
-$ fpm run --example demo
-$ mkdir colormaps_list/ppm/
-$ mv *.ppm colormaps_list/ppm/
-$ cd colormaps_list/
-$ ./ppm2png.sh
-$ cd latex
-$ ./pdflatex.sh
+$ ./generate_PDF.sh
 ```
