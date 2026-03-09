@@ -1,0 +1,34 @@
+{
+  "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "0000-0002-2317-8325",
+      "@type": "Person",
+      "email": "",
+      "name": "Seyed Ali Ghasemi",
+      "affiliation": "Institute of Structural Mechanics, Statics and Dynamics, TU Dortmund, Dortmund, Germany"
+    },
+    {
+      "@id": "0000-0002-9016-9955",
+      "@type": "Person",
+      "email": "vincent.magnin@univ-lille.fr",
+      "name": "Vincent Magnin",
+      "affiliation": "Univ. Lille, CNRS, Centrale Lille, ISEN, Univ. Valenciennes, UMR 8520 - IEMN, F-59000 Lille, France"
+    } 
+  ],
+  "identifier": "",
+  "codeRepository": "https://github.com/vmagnin/forcolormap",
+  "buildInstructions": "https://github.com/vmagnin/forcolormap/INSTALL.md",
+  "issueTracker": "https://github.com/vmagnin/forcolormap/issues",
+  "datePublished": "2023-10-21",
+  "dateModified": "2026-03-09",
+  "dateCreated": "2023-10-21",
+  "description": "A Fortran library for scientific colormaps ",
+  "isAccessibleForFree": true,
+  "keywords": "Fortran, colormaps, data visualization, plotting",
+  "license": "MIT",
+  "title": "ForColormap",
+  "version": "v1.0.0",
+  "programmingLanguage": "Fortran"
+}
