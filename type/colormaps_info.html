@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="A Fortran library for colormaps">
+      <meta name="description" content="A Fortran library for scientific colormaps">
     <meta name="author" content="Vincent Magnin, Seyed Ali Ghasemi" >
     <link rel="icon" href="../favicon.png">
 
@@ -52,6 +52,7 @@
 
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Handbook</a></li>
                   <li class="nav-item">
                     <a class="nav-link" href="../lists/files.html">Source Files</a>
                   </li>
@@ -60,6 +61,9 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../lists/types.html">Derived Types</a>
@@ -92,19 +96,19 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p>19.6% of total for derived types.</p>Including implementation: 635 statements, 39.4% of total for derived types.">10 statements</a>
+                 title="<p>27.0% of total for derived types.</p>Including implementation: 235 statements, 17.9% of total for derived types.">17 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/colormaps_info.f90"> Source File</a>
+              <a href="../src/forcolormap_info.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/colormaps_info.f90.html'>colormaps_info.f90</a></li>
+                <li class="breadcrumb-item"><a href='../sourcefile/forcolormap_info.f90.html'>forcolormap_info.f90</a></li>
                 <li class="breadcrumb-item"><a href='../module/forcolormap_info.html'>forcolormap_info</a></li>
             <li class="breadcrumb-item active" aria-current="page">Colormaps_info</li>
           </ol>
@@ -161,11 +165,18 @@
       </a>
       <div id="boundprocs-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-finalize~2">finalize</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-find_index">find_index</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_author">get_author</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_colorbar">get_colorbar</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_family">get_family</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_gradient">get_gradient</a>
             <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_levels">get_levels</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_license">get_license</a>
             <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_name">get_name</a>
             <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_ncolormaps">get_ncolormaps</a>
-            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-set_all">set_all</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_package">get_package</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_palette">get_palette</a>
+            <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-get_url">get_url</a>
             <a class="list-group-item" href="../type/colormaps_info.html#boundprocedure-write">write</a>
         </div>
       </div>
@@ -187,8 +198,8 @@
     
     <div class="col-md-9" id='text'>
       <h2 id="type-def-statement">
-        type, public :: Colormaps_info</h2>
-    <p>Define a derived type named 'Colormaps_info' to store an array of 'table' type</p>
+        type, private :: Colormaps_info</h2>
+    <p>Define a derived type that stores metadata for all colormaps.</p>
 <br>      <div class="card">
         <div class="card-header">
           <h3 class="card-title">Inherits</h3>
@@ -197,35 +208,35 @@
           <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 14.1.0 (20251207.0913)
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
  -->
 <!-- Title: type~~colormaps_info~~InheritsGraph Pages: 1 -->
-<svg id="typecolormaps_infoInheritsGraph" width="243pt" height="32pt"
- viewBox="0.00 0.00 243.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="typecolormaps_infoInheritsGraph" width="309pt" height="32pt"
+ viewBox="0.00 0.00 309.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="type~~colormaps_info~~InheritsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28.27)">
 <title>type~~colormaps_info~~InheritsGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 239.02,-28.27 239.02,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 304.54,-28.27 304.54,4 -4,4"/>
 <!-- type~colormaps_info -->
 <g id="type~~colormaps_info~~InheritsGraph_node1" class="node">
 <title>type~colormaps_info</title>
-<polygon fill="none" stroke="black" points="235.02,-24.27 140.25,-24.27 140.25,0 235.02,0 235.02,-24.27"/>
-<text xml:space="preserve" text-anchor="middle" x="187.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">Colormaps_info</text>
+<polygon fill="none" stroke="black" points="300.54,-24.27 205.77,-24.27 205.77,0 300.54,0 300.54,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="253.15" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">Colormaps_info</text>
 </g>
-<!-- type~table -->
+<!-- type~colormap_metadata -->
 <g id="type~~colormaps_info~~InheritsGraph_node2" class="node">
-<title>type~table</title>
-<g id="a_type~~colormaps_info~~InheritsGraph_node2"><a xlink:href="../type/table.html" xlink:title="table">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-24.27 0,-24.27 0,0 54,0 54,-24.27"/>
-<text xml:space="preserve" text-anchor="middle" x="27" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">table</text>
+<title>type~colormap_metadata</title>
+<g id="a_type~~colormaps_info~~InheritsGraph_node2"><a xlink:href="../type/colormap_metadata.html" xlink:title="colormap_metadata">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="119.52,-24.27 0,-24.27 0,0 119.52,0 119.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="59.76" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">colormap_metadata</text>
 </a>
 </g>
 </g>
-<!-- type~colormaps_info&#45;&gt;type~table -->
+<!-- type~colormaps_info&#45;&gt;type~colormap_metadata -->
 <g id="type~~colormaps_info~~InheritsGraph_edge1" class="edge">
-<title>type~colormaps_info&#45;&gt;type~table</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M139.9,-12.13C116.19,-12.13 87.79,-12.13 65.53,-12.13"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="65.7,-8.64 55.7,-12.14 65.7,-15.64 65.7,-8.64"/>
-<text xml:space="preserve" text-anchor="middle" x="97.12" y="-14.36" font-family="Helvetica,sans-Serif" font-size="9.50">colormaps</text>
+<title>type~colormaps_info&#45;&gt;type~colormap_metadata</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M205.33,-12.13C182.97,-12.13 155.75,-12.13 130.97,-12.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="131.31,-8.64 121.31,-12.14 131.31,-15.64 131.31,-8.64"/>
+<text xml:space="preserve" text-anchor="middle" x="162.64" y="-14.36" font-family="Helvetica,sans-Serif" font-size="9.50">colormaps</text>
 </g>
 </g>
 </svg>
@@ -244,7 +255,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 14.1.0 (20251207.0913)
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
  -->
 <!-- Title: Graph Key Pages: 1 -->
 <svg width="184pt" height="32pt"
@@ -297,18 +308,18 @@ large graphs.</div>
         <tr>
             <td>
               <span class="anchor" id="variable-colormaps"></span>
-              type(<a href='table.html'>table</a>),
+              type(<a href='colormap_metadata.html'>colormap_metadata</a>),
             </td>
-              <td>private</td>
+              <td>public</td>
             <td>
               
             </td>
             <td>::</td>
-            <td><strong>colormaps</strong>(232)</td>
-                <td></td>
-                <td></td>
+            <td><strong>colormaps</strong>(222+4+6)</td>
+<td> =</td>
+                <td>[scientific_metadata, miscellaneous_metadata, matplotlib_metadata]</td>
             <td>
-                <p>Array of 'table' type to store multiple colormaps</p>
+                
             </td>
         </tr>
     </tbody>
@@ -324,83 +335,25 @@ large graphs.</div>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-finalize~2"></span>
+      <span class="anchor" id="boundprocedure-find_index"></span>
       <h3>
           procedure, public ::
-  <strong>finalize</strong> => <a href='/home/runner/work/forcolormap/forcolormap/doc/proc/deallocate_colormaps_info.html'>deallocate_Colormaps_info</a>
+  <strong>find_index</strong>
         
       </h3>
     </div>
         <div class="card-body">
           
-          <p>Procedure to finalize the derived type</p>
+          <p>Return index by name (0 if not found)</p>
         </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure elemental subroutine <a href='../proc/deallocate_colormaps_info.html'>deallocate_Colormaps_info</a>(this)  
+    private pure function <a href='../proc/find_index.html'>find_index</a>(this, name) result(idx)  
 </h3>
     
 
-  
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" ></span>
-              class(<a href='colormaps_info.html'>Colormaps_info</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-          </li>
-      </ul>
-  </div>
-
-          </div>
-          <div class="row">
-              <div class="card mt-3">
-    <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-get_levels"></span>
-      <h3>
-          procedure, public ::
-  <strong>get_levels</strong>
-        
-      </h3>
-    </div>
-        <div class="card-body">
-          
-          <p>Procedure to get the number of levels in a colormap</p>
-        </div>
-      <ul class="list-group">
-          <li class="list-group-item">
-                    <h3>
-    private pure function <a href='../proc/get_levels.html'>get_levels</a>(this, index) result(levels)  
-</h3>
-    
-
-  
+  <p>Return the index of a colormap by its name. Returns 0 if not found.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -431,14 +384,14 @@ large graphs.</div>
         <tr>
             <td>
               <span class="anchor" ></span>
-              integer,
+              character(len=*),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>index</strong></td>
+            <td><strong>name</strong></td>
             <td>
 
             </td>
@@ -460,25 +413,25 @@ large graphs.</div>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-get_name"></span>
+      <span class="anchor" id="boundprocedure-get_author"></span>
       <h3>
           procedure, public ::
-  <strong>get_name</strong>
+  <strong>get_author</strong>
         
       </h3>
     </div>
         <div class="card-body">
           
-          <p>Procedure to get the name of a colormap</p>
+          <p>Return the author of a colormap by index</p>
         </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure elemental function <a href='../proc/get_name.html'>get_name</a>(this, index) result(name)  
+    private pure function <a href='../proc/get_author.html'>get_author</a>(this, idx) result(author)  
 </h3>
     
 
-  
+  <p>Return the author of a colormap by its index.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -516,7 +469,475 @@ large graphs.</div>
               
             </td>
             <td>::</td>
-            <td><strong>index</strong></td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=colormap_name_length)</small>
+    </h4>
+    
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-get_colorbar"></span>
+      <h3>
+          procedure, public ::
+  <strong>get_colorbar</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Return the colorbar type of a colormap by index</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure function <a href='../proc/get_colorbar.html'>get_colorbar</a>(this, idx) result(colorbar)  
+</h3>
+    
+
+  <p>Return the colorbar type of a colormap by its index.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormaps_info.html'>Colormaps_info</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=colormap_name_length)</small>
+    </h4>
+    
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-get_family"></span>
+      <h3>
+          procedure, public ::
+  <strong>get_family</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Return the family of a colormap by index</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure function <a href='../proc/get_family.html'>get_family</a>(this, idx) result(family)  
+</h3>
+    
+
+  <p>Return the family of a colormap by its index.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormaps_info.html'>Colormaps_info</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=colormap_name_length)</small>
+    </h4>
+    
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-get_gradient"></span>
+      <h3>
+          procedure, public ::
+  <strong>get_gradient</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Return the gradient type of a colormap by index</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure function <a href='../proc/get_gradient.html'>get_gradient</a>(this, idx) result(gradient)  
+</h3>
+    
+
+  <p>Return the gradient type of a colormap by its index.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormaps_info.html'>Colormaps_info</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=colormap_name_length)</small>
+    </h4>
+    
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-get_levels"></span>
+      <h3>
+          procedure, public ::
+  <strong>get_levels</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Return the number of levels by index</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure function <a href='../proc/get_levels.html'>get_levels</a>(this, idx) result(levels)  
+</h3>
+    
+
+  <p>Return the number of levels for a given index.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormaps_info.html'>Colormaps_info</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer</small>
+    </h4>
+    
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-get_license"></span>
+      <h3>
+          procedure, public ::
+  <strong>get_license</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Return the license of a colormap by index</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure function <a href='../proc/get_license.html'>get_license</a>(this, idx) result(license)  
+</h3>
+    
+
+  <p>Return the license of a colormap by its index.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormaps_info.html'>Colormaps_info</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=colormap_name_length)</small>
+    </h4>
+    
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-get_name"></span>
+      <h3>
+          procedure, public ::
+  <strong>get_name</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Return the name of a colormap by index</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure elemental function <a href='../proc/get_name.html'>get_name</a>(this, idx) result(name)  
+</h3>
+    
+
+  <p>Return the colormap name for a given index.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormaps_info.html'>Colormaps_info</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
             <td>
 
             </td>
@@ -547,16 +968,16 @@ large graphs.</div>
     </div>
         <div class="card-body">
           
-          <p>Procedure to get the number of colormaps</p>
+          <p>Return the total number of colormaps</p>
         </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure elemental function <a href='../proc/get_ncolormaps.html'>get_ncolormaps</a>(this) result(ncolormaps)  
+    private pure elemental function <a href='../proc/get_ncolormaps.html'>get_ncolormaps</a>(this) result(ncolormaps_)  
 </h3>
     
 
-  
+  <p>Return the total number of available colormaps.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -601,25 +1022,25 @@ large graphs.</div>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-set_all"></span>
+      <span class="anchor" id="boundprocedure-get_package"></span>
       <h3>
           procedure, public ::
-  <strong>set_all</strong>
+  <strong>get_package</strong>
         
       </h3>
     </div>
         <div class="card-body">
           
-          <p>Procedure to set information for all colormaps in the array</p>
+          <p>Return the package name of a colormap by index</p>
         </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure elemental subroutine <a href='../proc/set_all.html'>set_all</a>(this)  
+    private pure function <a href='../proc/get_package.html'>get_package</a>(this, idx) result(package)  
 </h3>
     
 
-  <p>Set information for all colormaps.</p>
+  <p>Return the package name of a colormap by its index.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -637,7 +1058,7 @@ large graphs.</div>
               <span class="anchor" ></span>
               class(<a href='colormaps_info.html'>Colormaps_info</a>),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
@@ -647,9 +1068,185 @@ large graphs.</div>
 
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
     </tbody>
   </table>
 
+    <h4>
+    Return Value
+    <small>character(len=colormap_name_length)</small>
+    </h4>
+    
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-get_palette"></span>
+      <h3>
+          procedure, public ::
+  <strong>get_palette</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Return the palette type of a colormap by index</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure function <a href='../proc/get_palette.html'>get_palette</a>(this, idx) result(palette)  
+</h3>
+    
+
+  <p>Return the palette type of a colormap by its index.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormaps_info.html'>Colormaps_info</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=colormap_name_length)</small>
+    </h4>
+    
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-get_url"></span>
+      <h3>
+          procedure, public ::
+  <strong>get_url</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Return the URL of a colormap by index</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure function <a href='../proc/get_url.html'>get_url</a>(this, idx) result(url)  
+</h3>
+    
+
+  <p>Return the URL of a colormap by its index.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormaps_info.html'>Colormaps_info</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>idx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>character(len=colormap_name_length)</small>
+    </h4>
+    
 
           </li>
       </ul>
@@ -668,16 +1265,16 @@ large graphs.</div>
     </div>
         <div class="card-body">
           
-          <p>Procedure to filter and write information about the colormaps</p>
+          <p>Filter and output colormap metadata</p>
         </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private impure subroutine <a href='../proc/write.html'>write</a>(this, verbose, name, family, gradient, palette, author, license, levels, file_name)  
+    private impure subroutine <a href='../proc/write.html'>write</a>(this, verbose, name, family, gradient, palette, author, license, levels, file_name, append)  
 </h3>
     
 
-  <p>Filter the array of colormaps based on the given criteria and write information about the filtered colormaps</p>
+  <p>Filter colormaps and write metadata.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -695,7 +1292,7 @@ large graphs.</div>
               <span class="anchor" ></span>
               class(<a href='colormaps_info.html'>Colormaps_info</a>),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
@@ -840,6 +1437,21 @@ large graphs.</div>
 
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>append</strong></td>
+            <td>
+
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -854,14 +1466,24 @@ large graphs.</div>
     <section>
     <h3><span class="anchor" id="src"></span>Source Code</h3>
     <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Colormaps_info</span>
-<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">table</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">colormaps</span><span class="p">(</span><span class="mi">232</span><span class="p">)</span><span class="w"> </span><span class="c">!! Array of &#39;table&#39; type to store multiple colormaps</span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">colormap_metadata</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">colormaps</span><span class="p">(</span><span class="mi">222</span><span class="o">+</span><span class="mi">4</span><span class="o">+</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">         </span><span class="n">scientific_metadata</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">         </span><span class="n">miscellaneous_metadata</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">         </span><span class="n">matplotlib_metadata</span><span class="p">]</span>
 <span class="w">   </span><span class="k">contains</span>
-<span class="k">      procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">set_all</span><span class="w"> </span><span class="c">!! Procedure to set information for all colormaps in the array</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">write</span><span class="w">   </span><span class="c">!! Procedure to filter and write information about the colormaps</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">finalize</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">deallocate_Colormaps_info</span><span class="w"> </span><span class="c">!! Procedure to finalize the derived type</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_ncolormaps</span><span class="w"> </span><span class="c">!! Procedure to get the number of colormaps</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_name</span><span class="w">       </span><span class="c">!! Procedure to get the name of a colormap</span>
-<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_levels</span><span class="w">     </span><span class="c">!! Procedure to get the number of levels in a colormap</span>
+<span class="k">      procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">write</span><span class="w">          </span><span class="c">!! Filter and output colormap metadata</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_ncolormaps</span><span class="w"> </span><span class="c">!! Return the total number of colormaps</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_name</span><span class="w">       </span><span class="c">!! Return the name of a colormap by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_levels</span><span class="w">     </span><span class="c">!! Return the number of levels by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">find_index</span><span class="w">     </span><span class="c">!! Return index by name (0 if not found)</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_family</span><span class="w">     </span><span class="c">!! Return the family of a colormap by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_gradient</span><span class="w">   </span><span class="c">!! Return the gradient type of a colormap by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_palette</span><span class="w">    </span><span class="c">!! Return the palette type of a colormap by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_colorbar</span><span class="w">   </span><span class="c">!! Return the colorbar type of a colormap by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_package</span><span class="w">    </span><span class="c">!! Return the package name of a colormap by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_author</span><span class="w">     </span><span class="c">!! Return the author of a colormap by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_license</span><span class="w">    </span><span class="c">!! Return the license of a colormap by index</span>
+<span class="w">      </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_url</span><span class="w">        </span><span class="c">!! Return the URL of a colormap by index</span>
 <span class="w">   </span><span class="k">end type </span><span class="n">Colormaps_info</span>
 </pre></div>
 
@@ -878,14 +1500,14 @@ large graphs.</div>
           <div class="col">
             <p>
               ForColormap
- was developed by Vincent Magnin, Seyed Ali Ghasemi<br>              &copy; 2023-2025 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
+ was developed by Vincent Magnin, Seyed Ali Ghasemi<br>              &copy; 2023-2026 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-12-26T09:22:17.073128+0000             </p>
+ on 2026-03-09T09:57:05.858393+0000 <br>&copy; <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>             </p>
           </div>
         </div>
         <br>

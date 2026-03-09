@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="A Fortran library for colormaps">
+      <meta name="description" content="A Fortran library for scientific colormaps">
     <meta name="author" content="Vincent Magnin, Seyed Ali Ghasemi" >
     <link rel="icon" href="../favicon.png">
 
@@ -52,6 +52,7 @@
 
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Handbook</a></li>
                   <li class="nav-item">
                     <a class="nav-link" href="../lists/files.html">Source Files</a>
                   </li>
@@ -60,6 +61,9 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../lists/types.html">Derived Types</a>
@@ -92,19 +96,19 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p>49.0% of total for derived types.</p>Including implementation: 857 statements, 53.2% of total for derived types.">25 statements</a>
+                 title="<p>54.0% of total for derived types.</p>Including implementation: 1069 statements, 81.2% of total for derived types.">34 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/colormap_class.f90"> Source File</a>
+              <a href="../src/forcolormap.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/colormap_class.f90.html'>colormap_class.f90</a></li>
+                <li class="breadcrumb-item"><a href='../sourcefile/forcolormap.f90.html'>forcolormap.f90</a></li>
                 <li class="breadcrumb-item"><a href='../module/forcolormap.html'>forcolormap</a></li>
             <li class="breadcrumb-item active" aria-current="page">Colormap</li>
           </ol>
@@ -134,9 +138,10 @@
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../type/colormap.html#variable-levels~5">levels</a>
-            <a class="list-group-item" href="../type/colormap.html#variable-map">map</a>
-            <a class="list-group-item" href="../type/colormap.html#variable-name~5">name</a>
+            <a class="list-group-item" href="../type/colormap.html#variable-levels~10">levels</a>
+            <a class="list-group-item" href="../type/colormap.html#variable-map~29">map</a>
+            <a class="list-group-item" href="../type/colormap.html#variable-name~95">name</a>
+            <a class="list-group-item" href="../type/colormap.html#variable-status">status</a>
             <a class="list-group-item" href="../type/colormap.html#variable-zmax">zmax</a>
             <a class="list-group-item" href="../type/colormap.html#variable-zmin">zmin</a>
         </div>
@@ -165,13 +170,17 @@
       </a>
       <div id="boundprocs-0" class="collapse">
         <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-blend">blend</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-colorbar~3">colorbar</a>
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-colorbar_ansi">colorbar_ansi</a>
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-colormap">colormap</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-compute_rgb">compute_RGB</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-create">create</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-create_bezier">create_bezier</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-create_lagrange">create_lagrange</a>
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-export_paraview_preset">export_paraview_preset</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-extract">extract</a>
-            <a class="list-group-item" href="../type/colormap.html#boundprocedure-finalize~3">finalize</a>
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-finalize">finalize</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-get_rgb">get_RGB</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-get_levels~2">get_levels</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-get_name~2">get_name</a>
@@ -179,22 +188,20 @@
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-get_zmin">get_zmin</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-load">load</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-print">print</a>
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-print_status">print_status</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-reverse">reverse</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-set">set</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-shift">shift</a>
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-assign_map">assign_map</a>
             <a class="list-group-item" href="../type/colormap.html#boundprocedure-check">check</a>
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-write_ppm_colormap_1d">write_ppm_colormap_1d</a>
+            <a class="list-group-item" href="../type/colormap.html#boundprocedure-write_ppm_colormap_2d">write_ppm_colormap_2d</a>
         </div>
       </div>
     </div>
 
   
   
-    <div class="card card-primary">
-      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
-      <div class="list-group">
-        <a class="list-group-item" href="../type/colormap.html#src">Colormap</a>
-      </div>
-    </div>
 
 
   </div>
@@ -221,7 +228,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-levels~5"></span>
+              <span class="anchor" id="variable-levels~10"></span>
               integer,
             </td>
               <td>private</td>
@@ -238,15 +245,15 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-map"></span>
+              <span class="anchor" id="variable-map~29"></span>
               integer,
             </td>
               <td>private,</td>
             <td>
-              dimension(:, :), allocatable
+              allocatable
             </td>
             <td>::</td>
-            <td><strong>map</strong></td>
+            <td><strong>map</strong>(:,:)</td>
                 <td></td>
                 <td></td>
             <td>
@@ -255,7 +262,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-name~5"></span>
+              <span class="anchor" id="variable-name~95"></span>
               character(len=colormap_name_length),
             </td>
               <td>private</td>
@@ -266,6 +273,23 @@
             <td><strong>name</strong></td>
                 <td></td>
                 <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-status"></span>
+              logical,
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>status</strong>(5)</td>
+<td> =</td>
+                <td>.false.</td>
             <td>
                 
             </td>
@@ -317,21 +341,21 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-colorbar~3"></span>
+      <span class="anchor" id="boundprocedure-blend"></span>
       <h3>
           procedure, public ::
-  <strong>colorbar</strong> => <a href='/home/runner/work/forcolormap/forcolormap/doc/proc/write_ppm_colorbar.html'>write_ppm_colorbar</a>
+  <strong>blend</strong>
         
       </h3>
     </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private impure subroutine <a href='../proc/write_ppm_colorbar.html'>write_ppm_colorbar</a>(self, filename, width, height, encoding)  
+    private pure subroutine <a href='../proc/blend.html'>blend</a>(self, other, alpha, name)  
 </h3>
     
 
-  
+  <p>Blend this colormap with another one: blend = (1-alpha)<em>self + alpha</em>other</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -350,6 +374,105 @@
               class(<a href='colormap.html'>Colormap</a>),
             </td>
 <td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              type(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>other</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>alpha</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>name</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-colorbar~3"></span>
+      <h3>
+          procedure, public ::
+  <strong>colorbar</strong> => <a href='/home/runner/work/forcolormap/forcolormap/doc/proc/write_ppm_colorbar.html'>write_ppm_colorbar</a>
+        
+      </h3>
+    </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private impure subroutine <a href='../proc/write_ppm_colorbar.html'>write_ppm_colorbar</a>(self, filename, width, height, encoding)  
+</h3>
+    
+
+  <p>Writes the colorbar of the colormap in a PPM file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
@@ -431,21 +554,22 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-compute_rgb"></span>
+      <span class="anchor" id="boundprocedure-colorbar_ansi"></span>
       <h3>
           procedure, public ::
-  <strong>compute_RGB</strong>
+  <strong>colorbar_ansi</strong>
         
       </h3>
     </div>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure subroutine <a href='../proc/compute_rgb.html'>compute_RGB</a>(self, z, red, green, blue)  
+    private impure subroutine <a href='../proc/colorbar_ansi.html'>colorbar_ansi</a>(self, width)  
 </h3>
     
 
-  <p>Most of the time you will just give z to obtain RGB values:</p>
+  <p>Preview the colormap in a truecolor ANSI terminal.
+Optional width controls how many color blocks are printed.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -463,7 +587,379 @@
               <span class="anchor" ></span>
               class(<a href='colormap.html'>Colormap</a>),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>width</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-colormap"></span>
+      <h3>
+          generic, public ::
+  <strong>colormap</strong> => <a href='/home/runner/work/forcolormap/forcolormap/doc/type/colormap.html#boundprocedure-write_ppm_colormap_1d'>write_ppm_colormap_1d</a>, <a href='/home/runner/work/forcolormap/forcolormap/doc/type/colormap.html#boundprocedure-write_ppm_colormap_2d'>write_ppm_colormap_2d</a>
+        
+      </h3>
+    </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private impure subroutine <a href='../proc/write_ppm_colormap_1d.html'>write_ppm_colormap_1d</a>(self, filename, zfun, xmin, xmax, width, height, encoding)  
+</h3>
+    
+
+  <p>render a colormap defined by a 1D function into a PPM file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>filename</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              procedure(<a href='../interface/zf1d.html'>zf1d</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>zfun</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xmin</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xmax</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>width</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>height</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>encoding</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+          <li class="list-group-item">
+                    <h3>
+    private impure subroutine <a href='../proc/write_ppm_colormap_2d.html'>write_ppm_colormap_2d</a>(self, filename, zfun, xmin, xmax, width, height, encoding)  
+</h3>
+    
+
+  <p>render a colormap defined by a 2D function into a PPM file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>filename</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              procedure(<a href='../interface/zf2d.html'>zf2d</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>zfun</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xmin</strong>(2)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xmax</strong>(2)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>width</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>height</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>encoding</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-compute_rgb"></span>
+      <h3>
+          procedure, public ::
+  <strong>compute_RGB</strong>
+        
+      </h3>
+    </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure subroutine <a href='../proc/compute_rgb.html'>compute_RGB</a>(self, z, red, green, blue)  
+</h3>
+    
+
+  <p>Compute the RGB values for a z real value</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
@@ -555,11 +1051,11 @@
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure subroutine <a href='../proc/create.html'>create</a>(self, name, zmin, zmax, map, reverse)  
+    private pure subroutine <a href='../proc/create.html'>create</a>(self, name, zmin, zmax, map, reverse, sanitize)  
 </h3>
     
 
-  <p>You can create a custom colormap from a "map" array.</p>
+  <p>Create a custom colormap from a "map" array.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -637,12 +1133,12 @@
               <span class="anchor" ></span>
               integer,
             </td>
-<td>intent(in),</td>
+<td>intent(in)</td>
               <td></td>            <td>
-              dimension(:, :)
+              
             </td>
             <td>::</td>
-            <td><strong>map</strong></td>
+            <td><strong>map</strong>(:,:)</td>
             <td>
 
             </td>
@@ -658,6 +1154,21 @@
             </td>
             <td>::</td>
             <td><strong>reverse</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sanitize</strong></td>
             <td>
 
             </td>
@@ -684,11 +1195,11 @@
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure subroutine <a href='../proc/create_bezier.html'>create_bezier</a>(self, name, zmin, zmax, colors, levels, reverse)  
+    private pure subroutine <a href='../proc/create_bezier.html'>create_bezier</a>(self, name, zmin, zmax, colors, levels, reverse, sanitize)  
 </h3>
     
 
-  <p>You can create a custom colormap using Bezier interpolation:</p>
+  <p>Create a custom colormap using Bezier interpolation:</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -766,12 +1277,12 @@
               <span class="anchor" ></span>
               integer,
             </td>
-<td>intent(in),</td>
+<td>intent(in)</td>
               <td></td>            <td>
-              dimension(:, :)
+              
             </td>
             <td>::</td>
-            <td><strong>colors</strong></td>
+            <td><strong>colors</strong>(:,:)</td>
             <td>
 
             </td>
@@ -802,6 +1313,21 @@
             </td>
             <td>::</td>
             <td><strong>reverse</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sanitize</strong></td>
             <td>
 
             </td>
@@ -828,11 +1354,11 @@
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure subroutine <a href='../proc/create_lagrange.html'>create_lagrange</a>(self, name, zmin, zmax, colors, levels, reverse)  
+    private pure subroutine <a href='../proc/create_lagrange.html'>create_lagrange</a>(self, name, zmin, zmax, colors, levels, reverse, sanitize)  
 </h3>
     
 
-  <p>You can create a custom colormap using Lagrange interpolation:</p>
+  <p>Create a custom colormap using Lagrange interpolation:</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -910,12 +1436,12 @@
               <span class="anchor" ></span>
               integer,
             </td>
-<td>intent(in),</td>
+<td>intent(in)</td>
               <td></td>            <td>
-              dimension(:, :)
+              
             </td>
             <td>::</td>
-            <td><strong>colors</strong></td>
+            <td><strong>colors</strong>(:,:)</td>
             <td>
 
             </td>
@@ -950,6 +1476,90 @@
 
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sanitize</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-export_paraview_preset"></span>
+      <h3>
+          procedure, public ::
+  <strong>export_paraview_preset</strong>
+        
+      </h3>
+    </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private impure subroutine <a href='../proc/export_paraview_preset.html'>export_paraview_preset</a>(self, filename)  
+</h3>
+    
+
+  <p>Export the colormap as a Paraview preset file (.json)</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>filename</strong></td>
+            <td>
+
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -972,11 +1582,11 @@
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure subroutine <a href='../proc/extract.html'>extract</a>(self, extractedLevels, name, zmin, zmax, reverse)  
+    private pure subroutine <a href='../proc/extract.html'>extract</a>(self, extractedLevels, name, zmin, zmax, reverse, sanitize)  
 </h3>
     
 
-  <p>Extracts colors from the colormap based on specified number of levels (nl)</p>
+  <p>Extracts colors from the colormap based on specified number of levels (extractedLevels).</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1079,6 +1689,21 @@
 
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sanitize</strong></td>
+            <td>
+
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1091,7 +1716,7 @@
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
-      <span class="anchor" id="boundprocedure-finalize~3"></span>
+      <span class="anchor" id="boundprocedure-finalize"></span>
       <h3>
           procedure, public ::
   <strong>finalize</strong>
@@ -1105,7 +1730,7 @@
 </h3>
     
 
-  <p>A finalizer procedure for memory cleanup:</p>
+  <p>Finalize the colormap, deallocating the map array and resetting status.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1159,7 +1784,7 @@
 </h3>
     
 
-  <p>But you can also obtain RGB by giving directly a level number:</p>
+  <p>Compute the RGB values directly from an integer level number</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1177,7 +1802,7 @@
               <span class="anchor" ></span>
               class(<a href='colormap.html'>Colormap</a>),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
@@ -1273,7 +1898,7 @@
 </h3>
     
 
-  
+  <p>Returns the number of levels in the colormap</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1332,7 +1957,7 @@
 </h3>
     
 
-  
+  <p>Returns the name of the colormap</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1391,7 +2016,7 @@
 </h3>
     
 
-  
+  <p>Returns the maximal value of the z range</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1450,7 +2075,7 @@
 </h3>
     
 
-  
+  <p>Returns the minimal value of the z range</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1505,7 +2130,7 @@
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private impure subroutine <a href='../proc/load.html'>load</a>(self, filename, zmin, zmax, reverse)  
+    private impure subroutine <a href='../proc/load.html'>load</a>(self, filename, zmin, zmax, reverse, sanitize)  
 </h3>
     
 
@@ -1599,6 +2224,21 @@ at the root of the fpm project of the user.</p>
 
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sanitize</strong></td>
+            <td>
+
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1643,7 +2283,61 @@ at the root of the fpm project of the user.</p>
               <span class="anchor" ></span>
               class(<a href='colormap.html'>Colormap</a>),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-print_status"></span>
+      <h3>
+          procedure, public ::
+  <strong>print_status</strong>
+        
+      </h3>
+    </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private impure subroutine <a href='../proc/print_status.html'>print_status</a>(self)  
+</h3>
+    
+
+  <p>Print error and fix messages for unvalid colormaps</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
@@ -1744,11 +2438,11 @@ at the root of the fpm project of the user.</p>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure subroutine <a href='../proc/set.html'>set</a>(self, name, zmin, zmax, levels, varargs, reverse)  
+    private pure subroutine <a href='../proc/set.html'>set</a>(self, name, zmin, zmax, levels, varargs, reverse, sanitize)  
 </h3>
     
 
-  
+  <p>Choose a colormap and set its parameters</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1842,11 +2536,11 @@ at the root of the fpm project of the user.</p>
               real(kind=wp),
             </td>
 <td>intent(in),</td>
-              <td>optional,</td>            <td>
-              dimension(:)
+              <td>optional</td>            <td>
+              
             </td>
             <td>::</td>
-            <td><strong>varargs</strong></td>
+            <td><strong>varargs</strong>(:)</td>
             <td>
 
             </td>
@@ -1862,6 +2556,21 @@ at the root of the fpm project of the user.</p>
             </td>
             <td>::</td>
             <td><strong>reverse</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sanitize</strong></td>
             <td>
 
             </td>
@@ -1947,6 +2656,75 @@ at the root of the fpm project of the user.</p>
           <div class="row">
               <div class="card mt-3">
     <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-assign_map"></span>
+      <h3>
+          procedure, private ::
+  <strong>assign_map</strong>
+        
+      </h3>
+    </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private pure subroutine <a href='../proc/assign_map.html'>assign_map</a>(self, map)  
+</h3>
+    
+
+  <p>Assign a colormap from a given "map" array</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>map</strong>(:,:)</td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
       <span class="anchor" id="boundprocedure-check"></span>
       <h3>
           procedure, private ::
@@ -1957,11 +2735,11 @@ at the root of the fpm project of the user.</p>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private pure subroutine <a href='../proc/check.html'>check</a>(self, check_name, check_bounds, check_levels)  
+    private pure subroutine <a href='../proc/check.html'>check</a>(self, check_name, check_bounds, check_levels, check_extract, extractedLevels)  
 </h3>
     
 
-  <p>Check validity of the colormap and fix it if necessary</p>
+  <p>Check the validity of the colormap and fix it if necessary</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2034,6 +2812,354 @@ at the root of the fpm project of the user.</p>
 
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>check_extract</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>extractedLevels</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-write_ppm_colormap_1d"></span>
+      <h3>
+          procedure, private ::
+  <strong>write_ppm_colormap_1d</strong>
+        
+      </h3>
+    </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private impure subroutine <a href='../proc/write_ppm_colormap_1d.html'>write_ppm_colormap_1d</a>(self, filename, zfun, xmin, xmax, width, height, encoding)  
+</h3>
+    
+
+  <p>render a colormap defined by a 1D function into a PPM file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>filename</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              procedure(<a href='../interface/zf1d.html'>zf1d</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>zfun</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xmin</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xmax</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>width</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>height</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>encoding</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-write_ppm_colormap_2d"></span>
+      <h3>
+          procedure, private ::
+  <strong>write_ppm_colormap_2d</strong>
+        
+      </h3>
+    </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private impure subroutine <a href='../proc/write_ppm_colormap_2d.html'>write_ppm_colormap_2d</a>(self, filename, zfun, xmin, xmax, width, height, encoding)  
+</h3>
+    
+
+  <p>render a colormap defined by a 2D function into a PPM file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='colormap.html'>Colormap</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>self</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>filename</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              procedure(<a href='../interface/zf2d.html'>zf2d</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>zfun</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xmin</strong>(2)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              real(kind=wp),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>xmax</strong>(2)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>width</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>height</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>encoding</strong></td>
+            <td>
+
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -2045,37 +3171,6 @@ at the root of the fpm project of the user.</p>
           </div>
       </section>
 
-    <section>
-    <h3><span class="anchor" id="src"></span>Source Code</h3>
-    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">type</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">Colormap</span>
-<span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="n">colormap_name_length</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span>
-<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">levels</span><span class="w">         </span><span class="c">! Number of levels</span>
-<span class="w">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">zmin</span><span class="p">,</span><span class="w"> </span><span class="n">zmax</span><span class="w">     </span><span class="c">! z range</span>
-<span class="w">        </span><span class="c">! An array containing for each level the associated RGB values:</span>
-<span class="w">        </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">map</span>
-<span class="w">    </span><span class="k">contains</span>
-<span class="k">        procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">set</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">finalize</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">create</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">create_lagrange</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">create_bezier</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">load</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_RGB</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">compute_RGB</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_name</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_levels</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_zmin</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">get_zmax</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">print</span>
-<span class="k">        procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">colorbar</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">write_ppm_colorbar</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">reverse</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">shift</span>
-<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">extract</span>
-<span class="w">        </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">check</span>
-<span class="w">    </span><span class="k">end type </span><span class="n">Colormap</span>
-</pre></div>
-
-    </section>
     
     </div>
   </div>
@@ -2088,14 +3183,14 @@ at the root of the fpm project of the user.</p>
           <div class="col">
             <p>
               ForColormap
- was developed by Vincent Magnin, Seyed Ali Ghasemi<br>              &copy; 2023-2025 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
+ was developed by Vincent Magnin, Seyed Ali Ghasemi<br>              &copy; 2023-2026 <a rel="license" href="https://opensource.org/licenses/MIT">MIT</a>
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-12-26T09:22:17.073128+0000             </p>
+ on 2026-03-09T09:57:05.858393+0000 <br>&copy; <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>             </p>
           </div>
         </div>
         <br>
