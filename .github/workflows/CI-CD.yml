@@ -59,7 +59,7 @@ jobs:
         run: fpm run --example --all --profile release --compiler ${{ matrix.compiler }} --verbose
 
   doc_ford:
-    if: ${{ ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/diataxis')) && !contains(github.event.head_commit.message, '[skip ci]') }}
+    if: ${{ ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/diataxis' || github.ref == 'refs/heads/main') )) && !contains(github.event.head_commit.message, '[skip ci]') }}
     name: Generate FORD Documentation
     runs-on: ubuntu-latest
     steps:
