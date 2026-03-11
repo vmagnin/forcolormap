@@ -23,13 +23,13 @@ All notable changes are documented in this file. The format is based on [Keep a 
 * `colormaps_list/generate_PDF.sh`: a script to regenerate the `ForColormap.pdf` file.
 
 ### Changed
+* Files and modules were renamed according to fpm recommendations. **A `fpm clean` or `make clean` is therefore recommended if you update your ForColormap project.**
 * Improved the CI (fpm, cmake, ford and fortitude) in a new `.github/workflows/CI-CD.yml` replacing the old `*.yml` files.
 * Moved FORD configuration from `ford.yml` to `fpm.toml`.
 * Improved `lagrange()`, `lagrange_poly()`, `bezier()` and `factorial()` functions.
 * Improved performances.
 * Improved readability and performance in `forcolormap_info`.
 * Enhanced finalize subroutine to reset `status`.
-* Files and modules were renamed according to fpm recommendations. A `fpm clean` or `make clean` is therefore recommended if you update your ForColormap.
 * Code refactoring.
 
 ### Fixed
