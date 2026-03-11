@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.24)
 project(
     forcolormap
     LANGUAGES Fortran
-    VERSION 0.9.0
+    VERSION 1.0.0
 )
 
 # Get useful macros
