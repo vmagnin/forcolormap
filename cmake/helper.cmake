@@ -15,6 +15,7 @@ endfunction()
 
 # Use instead of add_library.
 function(add_fortran_library lib_name mod_dir include_install_dir version major)
+    message(STATUS ">>> include_install_dir=${include_install_dir}")
     add_library(${lib_name} ${ARGN})
     set_target_properties(
         ${lib_name}
@@ -41,10 +42,13 @@ function(install_library lib_name lib_install_dir bin_install_dir mod_dir instal
         RUNTIME DESTINATION ${bin_install_dir}
         LIBRARY DESTINATION ${lib_install_dir}
         ARCHIVE DESTINATION ${lib_install_dir}
-        INCLUDES DESTINATION ${install_dir}/include
+        INCLUDES DESTINATION ${install_dir}
+#        INCLUDES DESTINATION ${install_dir}/include
     )
+    message(STATUS ">>> install_dir=${install_dir}")
+
     install(
-        DIRECTORY ${mod_dir}
+        DIRECTORY ${mod_dir}/
         DESTINATION ${install_dir}
     )
 endfunction()
