@@ -3,6 +3,8 @@ All notable changes are documented in this file. The format is based on [Keep a 
 
 ## [forcolormap 1.0.0] 2026-03-16
 
+**A `fpm clean --all` or `make clean all` is recommended if you update your ForColormap project** (Fortran modules were renamed).
+
 ### Added
 * `docs/`: a new FORD documentation following the [Diátaxis](https://diataxis.fr) framework organized in four quadrants: Tutorials, How-to, Explanation, Reference. The API documentation was improved.
 * Added INSTALL.md and CONTRIBUTING.md files.
@@ -23,7 +25,7 @@ All notable changes are documented in this file. The format is based on [Keep a 
 * `colormaps_list/generate_PDF.sh`: a script to regenerate the `ForColormap.pdf` file.
 
 ### Changed
-* Files and modules were renamed according to fpm recommendations. **A `fpm clean` or `make clean` is therefore recommended if you update your ForColormap project.**
+* Files and modules were renamed according to fpm recommendations. **A `fpm clean --all` or `make clean all` is therefore recommended if you update your ForColormap project.**
 * Improved the CI (fpm, cmake, ford and fortitude) in a new `.github/workflows/CI-CD.yml` replacing the old `*.yml` files.
 * Moved FORD configuration from `ford.yml` to `fpm.toml`.
 * Improved `lagrange()`, `lagrange_poly()`, `bezier()` and `factorial()` functions.
