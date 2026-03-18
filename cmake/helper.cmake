@@ -3,16 +3,6 @@
 # A collection of macros and functions making life with CMake and Fortran a
 # bit simpler.
 
-# Use to include and export headers
-function(include_headers lib dir install_dir)
-    target_include_directories(
-        ${lib}
-        INTERFACE
-        $<BUILD_INTERFACE:${dir}>
-        $<INSTALL_INTERFACE:${install_dir}>
-    )
-endfunction()
-
 # Use instead of add_library.
 function(add_fortran_library lib_name mod_dir include_install_dir version major)
     message(STATUS ">>> include_install_dir=${include_install_dir}")
@@ -49,14 +39,6 @@ function(install_library lib_name lib_install_dir bin_install_dir mod_dir instal
 
     install(
         DIRECTORY ${mod_dir}/
-        DESTINATION ${install_dir}
-    )
-endfunction()
-
-# Install the documentation files
-function(install_documentation doc_dir install_dir)
-    install(
-        DIRECTORY ${doc_dir}
         DESTINATION ${install_dir}
     )
 endfunction()
