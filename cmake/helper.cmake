@@ -5,7 +5,6 @@
 
 # Use instead of add_library.
 function(forcolormap_add_fortran_library lib_name mod_dir include_install_dir version major)
-    message(STATUS ">>> include_install_dir=${include_install_dir}")
     add_library(${lib_name} ${ARGN})
     set_target_properties(
         ${lib_name}
@@ -24,7 +23,7 @@ function(forcolormap_add_fortran_library lib_name mod_dir include_install_dir ve
     )
 endfunction()
 
-# Installs the library
+# Installs the library and the MOD files
 function(forcolormap_install_library lib_name lib_install_dir bin_install_dir mod_dir install_dir)
     install(
         TARGETS ${lib_name}
@@ -33,11 +32,10 @@ function(forcolormap_install_library lib_name lib_install_dir bin_install_dir mo
         LIBRARY DESTINATION ${lib_install_dir}
         ARCHIVE DESTINATION ${lib_install_dir}
         INCLUDES DESTINATION ${install_dir}
-#        INCLUDES DESTINATION ${install_dir}/include
     )
-    message(STATUS ">>> install_dir=${install_dir}")
 
     install(
+        # Copy the content of mod_dir into install_dir (the slash is necessary)
         DIRECTORY ${mod_dir}/
         DESTINATION ${install_dir}
     )
