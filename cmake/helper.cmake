@@ -4,7 +4,7 @@
 # bit simpler.
 
 # Use instead of add_library.
-function(add_fortran_library lib_name mod_dir include_install_dir version major)
+function(forcolormap_add_fortran_library lib_name mod_dir include_install_dir version major)
     message(STATUS ">>> include_install_dir=${include_install_dir}")
     add_library(${lib_name} ${ARGN})
     set_target_properties(
@@ -25,7 +25,7 @@ function(add_fortran_library lib_name mod_dir include_install_dir version major)
 endfunction()
 
 # Installs the library
-function(install_library lib_name lib_install_dir bin_install_dir mod_dir install_dir)
+function(forcolormap_install_library lib_name lib_install_dir bin_install_dir mod_dir install_dir)
     install(
         TARGETS ${lib_name}
         EXPORT ${lib_name}Targets
@@ -44,14 +44,14 @@ function(install_library lib_name lib_install_dir bin_install_dir mod_dir instal
 endfunction()
 
 # Links the supplied library
-function(link_library targ lib include_dir)
+function(forcolormap_link_library targ lib include_dir)
     target_link_libraries(${targ} ${lib})
     target_include_directories(${targ} PUBLIC $<BUILD_INTERFACE:${include_dir}>)
 endfunction()
 
 # ------------------------------------------------------------------------------
 # Helpful Macros
-macro(print_all_variables)
+macro(forcolormap_print_all_variables)
     message(STATUS "---------- CURRENTLY DEFINED VARIABLES -----------")
     get_cmake_property(varNames VARIABLES)
     foreach(varName ${varNames})

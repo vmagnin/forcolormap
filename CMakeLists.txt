@@ -5,7 +5,7 @@ project(
     VERSION 1.0.0
 )
 
-# Get useful macros
+# Get useful functions and macros
 include("${PROJECT_SOURCE_DIR}/cmake/helper.cmake")
 
 # Print compiler and linker versions:
@@ -57,7 +57,7 @@ add_subdirectory(cmake/dependencies)
 
 # Build
 add_subdirectory(src)
-add_fortran_library(
+forcolormap_add_fortran_library(
   ${PROJECT_NAME}
   ${PROJECT_INCLUDE_DIR}
   ${CMAKE_INSTALL_INCLUDEDIR}
@@ -65,7 +65,7 @@ add_fortran_library(
   ${PROJECT_VERSION_MAJOR}
   ${FORCOLORMAP_SOURCES}
 )
-link_library(${PROJECT_NAME} ${forimage_LIBRARY} ${forimage_INCLUDE_DIR})
+forcolormap_link_library(${PROJECT_NAME} ${forimage_LIBRARY} ${forimage_INCLUDE_DIR})
 
 # Installation
 add_subdirectory(cmake/install)
@@ -103,3 +103,4 @@ message(STATUS "Build FORCOLORMAP examples: ${BUILD_FORCOLORMAP_EXAMPLES}")
 if (BUILD_FORCOLORMAP_EXAMPLES)
     add_subdirectory(example)
 endif()
+
