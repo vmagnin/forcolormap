@@ -27,7 +27,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-10-30
-! Last modification: gha3mi 2023-10-30, vmagnin 2024-05-09
+! Last modification: gha3mi 2023-10-30, vmagnin 2026-03-19
 !-------------------------------------------------------------------------------
 
 !> This module contains a few matplotlib colormaps: "magma", "inferno",
@@ -38,10 +38,14 @@ module forcolormap_cm_matplotlib
     private
 
     type(colormap_metadata), dimension(*), parameter, public :: matplotlib_metadata = [ &
-        colormap_metadata("magma","magma","Sequential","Continuous",256,"magma_colorbar.ppm","Matplotlib","N. Smith et al.","Public Domain (CC0)","https://bids.github.io/colormap/"), &
-        colormap_metadata("inferno","inferno","Sequential","Continuous",256,"inferno_colorbar.ppm","Matplotlib","N. Smith et al.","Public Domain (CC0)","https://bids.github.io/colormap/"), &
-        colormap_metadata("plasma","plasma","Sequential","Continuous",256,"plasma_colorbar.ppm","Matplotlib","N. Smith et al.","Public Domain (CC0)","https://bids.github.io/colormap/"), &
-        colormap_metadata("viridis","viridis","Sequential","Continuous",256,"viridis_colorbar.ppm","Matplotlib","N. Smith et al.","Public Domain (CC0)","https://bids.github.io/colormap/") &
+        colormap_metadata("magma","magma","Sequential","Continuous",256,"magma_colorbar.ppm","Matplotlib","N. Smith et al.", &
+                          "Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("inferno","inferno","Sequential","Continuous",256,"inferno_colorbar.ppm","Matplotlib","N. Smith et al.", &
+                          "Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("plasma","plasma","Sequential","Continuous",256,"plasma_colorbar.ppm","Matplotlib","N. Smith et al.", &
+                          "Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("viridis","viridis","Sequential","Continuous",256,"viridis_colorbar.ppm","Matplotlib","N. Smith et al.", &
+                          "Public Domain (CC0)","https://bids.github.io/colormap/") &
     ]
 
     integer, dimension(0:255, 1:3), public :: magma=reshape( [ &
