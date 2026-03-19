@@ -86,7 +86,7 @@ contains
         integer, intent(in) :: n
         integer :: result, i
         result = 1
-        do concurrent (i = 2:n) reduce(*:result)
+        do concurrent (i = 2:n) !reduce(*:result)
             result = result * i
         end do
     end function factorial

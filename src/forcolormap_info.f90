@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-11-05
-! Last modification: gha3mi 2024-02-16, vmagnin 2026-01-07
+! Last modification: gha3mi 2024-02-16, vmagnin 2026-03-19
 !-------------------------------------------------------------------------------
 
 !> The Colormaps_info class offers information about each colormap.
@@ -229,7 +229,8 @@ contains
          unit = output_unit
       end if
 
-      apply_filter = present(name) .or. present(family) .or. present(gradient) .or. present(palette) .or. present(author) .or. present(license) .or. present(levels)
+      apply_filter = present(name) .or. present(family) .or. present(gradient) .or. present(palette) .or. present(author) .or. &
+                     present(license) .or. present(levels)
 
       ! initialize column widths from headers
       w_name     = LH_NAME
