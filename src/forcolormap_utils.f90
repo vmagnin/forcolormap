@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin & gha3mi: 2024-02-21
-! Last modification: vmagnin 2026-01-07
+! Last modification: vmagnin 2026-03-19
 !-------------------------------------------------------------------------------
 
 !> This module contains miscellaneous procedures and functions.
@@ -86,7 +86,7 @@ contains
         integer, intent(in) :: n
         integer :: result, i
         result = 1
-        do concurrent (i = 2:n) !reduce(*:result)
+        do i = 2, n
             result = result * i
         end do
     end function factorial
