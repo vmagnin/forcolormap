@@ -48,4 +48,4 @@ call setpixelrgb(x, y, red, green, blue)
 
 The full documentation is available at https://vmagnin.github.io/forcolormap/
 
-You will find there tutorials, how-tos, references and other explanations.
+You will find there tutorials, how-tos, references and other explanations by clicking on the _Handbook_ tab at top.
