@@ -1,7 +1,7 @@
 # Changelog
 All notable changes are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [forcolormap 1.0.0] 2026-03-16
+## [forcolormap 1.0.0] 2026-03-23
 
 **A `fpm clean --all` or `make clean all` is recommended if you update your ForColormap project** (Fortran modules were renamed).
 

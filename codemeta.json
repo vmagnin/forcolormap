@@ -22,7 +22,7 @@
   "buildInstructions": "https://github.com/vmagnin/forcolormap/INSTALL.md",
   "issueTracker": "https://github.com/vmagnin/forcolormap/issues",
   "datePublished": "2023-10-21",
-  "dateModified": "2026-03-16",
+  "dateModified": "2026-03-23",
   "dateCreated": "2023-10-21",
   "description": "A Fortran library for scientific colormaps ",
   "isAccessibleForFree": true,
