@@ -21,7 +21,7 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2024-02-14
-! Last modification: vmagnin 2024-02-15
+! Last modification: vmagnin 2026-01-08
 !-------------------------------------------------------------------------------
 
 !> This example shows how you can modify a colormap with methods like shift(),
@@ -41,7 +41,7 @@ program modify
     call cmap%colorbar("bamO_shifted")
     print *, "See the bamO.ppm and bamO_shifted.ppm colorbars"
 
-    !> In the Scientific colour maps collection, all categorical colormaps
+    !> And all categorical colormaps
     !> begin with a dark colour, but a shift can be applied to begin with a
     !> brighter colour.
     call cmap%set("actonS", 0.0_wp, 2.0_wp)
@@ -50,7 +50,7 @@ program modify
     call cmap%colorbar("actonS_shifted")
     print *, "See the actonS.ppm and actonS_shifted.ppm colorbars"
 
-    !> Starting from a diverging colormap, we can obtain what could be called
+    !> Finally, starting from a diverging colormap, we can obtain what could be called
     !> a diverging multi-sequential colormap.
     call cmap%set("bam", 0.0_wp, 2.0_wp)
     call cmap%colorbar("bam")
