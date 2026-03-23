@@ -1,13 +1,16 @@
 name = "forcolormap"
 description= "A Fortran colormap library"
-version = "0.9.0"
+version = "1.0.0"
 license = "MIT"
 author = "Vincent Magnin, Seyed Ali Ghasemi"
-copyright = "Copyright 2023-2025, Vincent Magnin & Seyed Ali Ghasemi"
+copyright = "Copyright 2023-2026, Vincent Magnin & Seyed Ali Ghasemi"
 maintainer = "https://github.com/vmagnin/forcolormap/issues"
 homepage   = "https://github.com/vmagnin/forcolormap"
 categories = ["graphics"]
 keywords   = ["Fortran", "colormap", "fpm", "CMake"]
+
+[preprocess]
+[preprocess.cpp]
 
 [dependencies]
 forimage = {git="https://github.com/gha3mi/forimage.git"}
@@ -68,13 +71,16 @@ source-form = "free"
 
 [extra.ford]
 project             = "ForColormap"
-year                = "2023-2025"
-summary             = 'A Fortran library for colormaps'
+year                = "2023-2026"
+summary             = '<img src="media/logo_forcolormap-roma_8.svg" alt="Logo" width="300" /><br> A Fortran library for scientific colormaps'
 project_github      = "https://github.com/vmagnin/forcolormap"
 author              = "Vincent Magnin, Seyed Ali Ghasemi"
 license             = "MIT"
 src_dir             = ["src", "example", "test"]
+doc_license         = "by-sa"
 output_dir          = "doc"
+page_dir            = "docs"
+media_dir           = "./logo"
 source              = true
 incl_src            = true
 graph               = true
@@ -83,8 +89,8 @@ search              = true
 print_creation_date = true
 sort                = "permission-alpha"
 display             = ["public", "private", "protected"]
-favicon             = "logo/logo_forcolormap-roma_8.svg"
 
 [extra.fortitude.check]
 exclude = ["scripts"]
-ignore = ["C003", "C121", "S001", "C092", "S061"]
+ignore = ["C003", "C121", "S001", "S061", "E001"]
+

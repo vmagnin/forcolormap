@@ -3,8 +3,10 @@ include("${PROJECT_SOURCE_DIR}/cmake/helper.cmake")
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
+message(STATUS "CMAKE_INSTALL_INCLUDEDIR: ${CMAKE_INSTALL_INCLUDEDIR}")
+
 # Install the library and necessary include files
-install_library(
+forcolormap_install_library(
     ${PROJECT_NAME}
     ${CMAKE_INSTALL_LIBDIR}
     ${CMAKE_INSTALL_BINDIR}

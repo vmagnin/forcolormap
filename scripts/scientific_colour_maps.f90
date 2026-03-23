@@ -22,8 +22,8 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 
-module scientific_colour_maps
-    use colormap_parameters, only: colormap_name_length
+module forcolormap_cm_scientific
+    use forcolormap_parameters, only: colormap_name_length
     implicit none
     private
 
@@ -5762,4 +5762,4 @@ module scientific_colour_maps
             102, 24, 36,      97, 22, 39,      92, 21, 43,      87, 22, 49, &
              83, 23, 54,      80, 25, 60  &
             ], shape(vikO50), order=[2, 1] )
-end module scientific_colour_maps
+end module forcolormap_cm_scientific

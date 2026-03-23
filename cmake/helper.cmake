@@ -3,18 +3,8 @@
 # A collection of macros and functions making life with CMake and Fortran a
 # bit simpler.
 
-# Use to include and export headers
-function(include_headers lib dir install_dir)
-    target_include_directories(
-        ${lib}
-        INTERFACE
-        $<BUILD_INTERFACE:${dir}>
-        $<INSTALL_INTERFACE:${install_dir}>
-    )
-endfunction()
-
 # Use instead of add_library.
-function(add_fortran_library lib_name mod_dir include_install_dir version major)
+function(forcolormap_add_fortran_library lib_name mod_dir include_install_dir version major)
     add_library(${lib_name} ${ARGN})
     set_target_properties(
         ${lib_name}
@@ -33,39 +23,33 @@ function(add_fortran_library lib_name mod_dir include_install_dir version major)
     )
 endfunction()
 
-# Installs the library
-function(install_library lib_name lib_install_dir bin_install_dir mod_dir install_dir)
+# Installs the library and the MOD files
+function(forcolormap_install_library lib_name lib_install_dir bin_install_dir mod_dir install_dir)
     install(
         TARGETS ${lib_name}
         EXPORT ${lib_name}Targets
         RUNTIME DESTINATION ${bin_install_dir}
         LIBRARY DESTINATION ${lib_install_dir}
         ARCHIVE DESTINATION ${lib_install_dir}
-        INCLUDES DESTINATION ${install_dir}/include
+        INCLUDES DESTINATION ${install_dir}
     )
-    install(
-        DIRECTORY ${mod_dir}
-        DESTINATION ${install_dir}
-    )
-endfunction()
 
-# Install the documentation files
-function(install_documentation doc_dir install_dir)
     install(
-        DIRECTORY ${doc_dir}
+        # Copy the content of mod_dir into install_dir (the slash is necessary)
+        DIRECTORY ${mod_dir}/
         DESTINATION ${install_dir}
     )
 endfunction()
 
 # Links the supplied library
-function(link_library targ lib include_dir)
+function(forcolormap_link_library targ lib include_dir)
     target_link_libraries(${targ} ${lib})
     target_include_directories(${targ} PUBLIC $<BUILD_INTERFACE:${include_dir}>)
 endfunction()
 
 # ------------------------------------------------------------------------------
 # Helpful Macros
-macro(print_all_variables)
+macro(forcolormap_print_all_variables)
     message(STATUS "---------- CURRENTLY DEFINED VARIABLES -----------")
     get_cmake_property(varNames VARIABLES)
     foreach(varName ${varNames})

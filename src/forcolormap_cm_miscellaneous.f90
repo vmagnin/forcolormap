@@ -21,22 +21,32 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by vmagnin: 2023-09-26
-! Last modifications: gha3mi 2024-01-06, vmagnin 2024-05-09
+! Last modifications: gha3mi 2024-01-06, vmagnin 2026-03-19
 !-------------------------------------------------------------------------------
 
-!> This module contains miscellaneous colormaps, especially black body andf cubehelix.
-module miscellaneous_colormaps
-    use colormap_parameters, only: colormap_name_length, wp, pi
+!> This module contains miscellaneous colormaps, especially black body and cubehelix.
+module forcolormap_cm_miscellaneous
+    use forcolormap_parameters, only: colormap_metadata, wp, pi
     implicit none
     private
 
     public :: fire_colormap, rainbow_colormap, &
               inv_rainbow_colormap, zebra_colormap, cubehelix_colormap
 
-    character(*), dimension(*), parameter, public :: miscellaneous_colormaps_list = &
-        [character(colormap_name_length) :: &
-        "fire", "rainbow", "inv_rainbow", "zebra", "cubehelix", &
-        "black_body"]
+    type(colormap_metadata), dimension(*), parameter, public :: miscellaneous_metadata = [ &
+        colormap_metadata("black_body","black_body","Sequential","Continuous",1024,"black_body_colorbar.ppm","Miscellaneous", &
+                          "Kenneth Moreland","Public Domain (CC0)","https://www.kennethmoreland.com"), &
+        colormap_metadata("cubehelix","cubehelix","Sequential","Continuous",-1,"cubehelix_colorbar.ppm","Miscellaneous", &
+                          "Dave Green","Public Domain (Unlicense license)","https://people.phy.cam.ac.uk/dag9/CUBEHELIX"), &
+        colormap_metadata("fire","fire","Sequential","Continuous",-1,"fire_colorbar.ppm","Miscellaneous", &
+                          "Vincent Magnin","Public Domain (CC0)",""), &
+        colormap_metadata("rainbow","rainbow","Sequential","Continuous",256,"rainbow_colorbar.ppm","Miscellaneous", &
+                          "Vincent Magnin","Public Domain (CC0)",""), &
+        colormap_metadata("inv_rainbow","rainbow","Sequential","Continuous",256,"inv_rainbow_colorbar.ppm","Miscellaneous", &
+                          "Vincent Magnin","Public Domain (CC0)",""), &
+        colormap_metadata("zebra","zebra","Categorical","Discrete",256,"zebra_colorbar.ppm","Miscellaneous", &
+                          "Vincent Magnin","Public Domain (CC0)","") &
+    ]
 
     integer, dimension(0:1023, 1:3), public :: black_body=reshape( [ &
               0,  0,  0,       1,  0,  0,       2,  0,  0,       2,  1,  0, &
@@ -299,6 +309,7 @@ module miscellaneous_colormaps
 
     contains
 
+    !> Creates a colormap with fire tones, similar to the black_body colormap
     pure subroutine fire_colormap(levels, map)
         integer, intent(in) :: levels
         integer, dimension(:,:), allocatable, intent(out) :: map
@@ -314,6 +325,7 @@ module miscellaneous_colormaps
         end do
     end subroutine fire_colormap
 
+    !> Creates a rainbow like colormap, from dark blue to red
     pure subroutine rainbow_colormap(map)
         integer, dimension(:,:), allocatable, intent(out) :: map
         integer :: levels, last, i
@@ -330,6 +342,7 @@ module miscellaneous_colormaps
         end do
     end subroutine rainbow_colormap
 
+    !> Creates a rainbow like colormap, from red to dark blue
     pure subroutine inv_rainbow_colormap(map)
         integer, dimension(:,:), allocatable, intent(out) :: map
         integer :: levels, last, i
@@ -346,6 +359,7 @@ module miscellaneous_colormaps
         end do
     end subroutine inv_rainbow_colormap
 
+    !> Creates a zebra-like colormap, alterning white and black stripes
     pure subroutine zebra_colormap(map)
         integer, dimension(:,:), allocatable, intent(out) :: map
         integer :: levels, last, i
@@ -362,7 +376,7 @@ module miscellaneous_colormaps
     end subroutine zebra_colormap
 
     !---------------------------------------------------------------------
-    !> This subroutine is based on the public domain FORTRAN 77 subroutine
+    !> Based on the public domain FORTRAN 77 subroutine
     !> published by D.A. Green:
     !>   Green, D. A., 2011, Bulletin of the Astronomical Society of India,
     !>      Vol.39, p.289
@@ -376,6 +390,8 @@ module miscellaneous_colormaps
         integer  :: i
         real(wp) :: start, rots, hue, gamma
         real(wp) :: fract, angle, amp
+
+        if (nlev < 2) error stop "ERROR: cubehelix nlev must be >= 2"
 
         if (present(varargs)) then
             if (size(varargs) /= 4) error stop "ERROR: cubehelix varargs(:) must have 4 values"
@@ -393,7 +409,7 @@ module miscellaneous_colormaps
 
         allocate(map(0:nlev-1, 1:3))
 
-        do concurrent (i = 0:nlev-1)
+        do concurrent (i = 0:nlev-1) local(fract, angle, amp)
             fract = real(i, kind=wp) / (nlev-1)
             angle = 2*pi * (start/3 + 1 + rots*fract)
             fract = fract ** gamma
@@ -404,4 +420,4 @@ module miscellaneous_colormaps
             map(i, 3) = nint(255*(fract + amp*(+1.97294_wp*cos(angle))))
         end do
     end subroutine cubehelix_colormap
-end module miscellaneous_colormaps
+end module forcolormap_cm_miscellaneous

@@ -264,8 +264,8 @@ program generate_scientific_colour_maps
     ! Output files units:
     integer :: out1, out2
 
-    ! The scientific_colour_maps module:
-    open(newunit=out1, file="scientific_colour_maps.f90")
+    ! The forcolormap_cm_scientific module:
+    open(newunit=out1, file="forcolormap_cm_scientific.f90")
 
     write(out1, '(A)') "! The MIT License (MIT)"
     write(out1, '(A)') "!"
@@ -291,8 +291,8 @@ program generate_scientific_colour_maps
     write(out1, '(A)') "! SOFTWARE."
     write(out1, '(A)') "!-------------------------------------------------------------------------------"
     write(out1, '()')
-    write(out1, '(A)') "module scientific_colour_maps"
-    write(out1, '(4x, A)') "use colormap_parameters, only: colormap_name_length"
+    write(out1, '(A)') "module forcolormap_cm_scientific"
+    write(out1, '(4x, A)') "use forcolormap_parameters, only: colormap_name_length"
     write(out1, '(4x, A)') "implicit none"
     write(out1, '(4x, A)') "private"
     write(out1, '()')
@@ -318,7 +318,7 @@ program generate_scientific_colour_maps
     do k = 1, size(scientific_colour_maps_list)
         cmap_name = trim(scientific_colour_maps_list(k))
 
-        ! That code must be copied/pasted in the colormap_class.f90 file:
+        ! That code must be copied/pasted in the forcolormap.f90 file:
         write(out2, '( 8x, A, A, A)') 'case("', trim(cmap_name), '")'
         write(out2, '(12x, 5A)') 'call self%create(self%name,&
                                 & self%zmin, self%zmax, ', trim(cmap_name), ")"
@@ -373,11 +373,11 @@ program generate_scientific_colour_maps
         end if
     end do
 
-    write(out1, '(A)') "end module scientific_colour_maps"
+    write(out1, '(A)') "end module forcolormap_cm_scientific"
     close(out1)
     close(out2)
 
     print *, "You can now copy the module file by typing:"
-    print *, "cp scientific_colour_maps.f90 ../src"
-    print *, "and copy/paste the cases in ../src/colormap_class.f90"
+    print *, "cp forcolormap_cm_scientific.f90 ../src"
+    print *, "and copy/paste the cases in ../src/forcolormap.f90"
 end program generate_scientific_colour_maps

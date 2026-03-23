@@ -27,19 +27,26 @@
 ! SOFTWARE.
 !-------------------------------------------------------------------------------
 ! Contributed by gha3mi: 2023-10-30
-! Last modification: gha3mi 2023-10-30, vmagnin 2024-05-09
+! Last modification: gha3mi 2023-10-30, vmagnin 2026-03-19
 !-------------------------------------------------------------------------------
 
 !> This module contains a few matplotlib colormaps: "magma", "inferno",
 !> "plasma", "viridis".
-module matplotlib_colormaps
-    use colormap_parameters, only: colormap_name_length
+module forcolormap_cm_matplotlib
+    use forcolormap_parameters, only: colormap_metadata
     implicit none
     private
 
-    character(*), dimension(*), parameter, public :: matplotlib_colormaps_list = &
-        [character(colormap_name_length) :: &
-        "magma", "inferno","plasma", "viridis"]
+    type(colormap_metadata), dimension(*), parameter, public :: matplotlib_metadata = [ &
+        colormap_metadata("magma","magma","Sequential","Continuous",256,"magma_colorbar.ppm","Matplotlib","N. Smith et al.", &
+                          "Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("inferno","inferno","Sequential","Continuous",256,"inferno_colorbar.ppm","Matplotlib","N. Smith et al.", &
+                          "Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("plasma","plasma","Sequential","Continuous",256,"plasma_colorbar.ppm","Matplotlib","N. Smith et al.", &
+                          "Public Domain (CC0)","https://bids.github.io/colormap/"), &
+        colormap_metadata("viridis","viridis","Sequential","Continuous",256,"viridis_colorbar.ppm","Matplotlib","N. Smith et al.", &
+                          "Public Domain (CC0)","https://bids.github.io/colormap/") &
+    ]
 
     integer, dimension(0:255, 1:3), public :: magma=reshape( [ &
               0,      0,      4,&
@@ -1076,4 +1083,4 @@ module matplotlib_colormaps
            251,     231,     35,&
            253,     231,     37 &
             ], shape(viridis), order=[2, 1] )
-end module matplotlib_colormaps
+end module forcolormap_cm_matplotlib
